@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Reportes";
+}
+
+<h2 class="page-header">@ViewBag.Title</h2>
+
+<div class="grid-container">
+
+    <div class="area1">
+
+        <h4>
+            Packing List
+        </h4>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_PackingListPDF", "Generar"))
+            {
+                <button class='export-pdf k-button'>Export .PDF</button>
+            }
+        </div>
+
+        <h4>
+            Manifiesto
+        </h4>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_ManifiestoXLSX", "Generar"))
+            {
+                <button class='export-pdf k-button'>Export .XLSX</button>
+            }
+
+        </div>
+
+        <h4>
+            Embarques Cantidad Realizada Diariamente
+        </h4>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_EmbarquesDiariosPDF", "Generar"))
+            {
+                <button class='export-pdf k-button'>Export .PDF</button>
+            }
+        </div>
+
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_EmbarquesDiariosXLSX", "Generar"))
+            {
+                <button class='export-pdf k-button'>Export .XLSX</button>
+            }
+        </div>
+    </div>
+
+    <div class="area2">
+
+        <h4>
+            Embarques Hot Shot Realizados Diariamente
+        </h4>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_EmbarquesHotShotPDF", "Generar"))
+            {
+                <button class='export-pdf k-button'>Export .PDF</button>
+            }
+        </div>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_EmbarquesHotShotXLSX", "Generar"))
+            {
+                <button class='export-pdf k-button'>Export .XLSX</button>
+            }
+        </div>
+
+        <h4>
+            Reportes por Filtro de Fecha de Emabarque Realizados
+        </h4>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_ReportesFechaNSerieXLSX", "Generar"))
+            {
+                <button class='export-pdf k-button'>.XLSX (Con N/Serie)</button>
+            }
+        </div>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Download_ManifiestoNAgrupadosXLSX", "Generar"))
+            {
+                <button class='export-pdf k-button'>.XLSX (N/P Agrupados)</button>
+            }
+        </div>
+
+    </div>
+
+
+    <div class="area3">
+
+        <h4>
+            Reporte Direcciones de Clientes
+        </h4>
+
+        <div class="box-col">
+            @using (Html.BeginForm("Index", "Generar"))
+            {
+                <button class='export-pdf k-button' type="submit">Generar</button>
+            }
+            </div>
+    </div>
+</div>
+
+<style>
+    .demo-section.k-content {
+        max-width: 490px;
+    }
+
+    .img-container {
+        margin: 0 auto 2em;
+        width: 100%;
+        text-align: center;
+    }
+
+    .options {
+        margin: 0;
+        display: inline-block;
+        width: 140px;
+    }
+
+    .options-container {
+        margin: 1em 0;
+    }
+
+        .options-container + .options-container {
+            margin-top: 1.5em;
+        }
+
+    .chartImg {
+        width: 490px;
+        height: 400px;
+    }
+
+    .downloadBtn {
+        float: right;
+        width: 240px;
+        margin: 0 auto;
+        display: block;
+        margin-top: 15px;
+    }
+
+    .options-field {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .k-checkbox-label {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .config-options {
+        margin-top: 10px;
+    }
+
+        .config-options label:not(:last-of-type) {
+            margin-right: 20px;
+        }
+</style>

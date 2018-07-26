@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="95ada9db00694133971f70158a5bdfc5" Name="Diagram1">
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Areas" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Assemblies" Width="1.5" PointX="7.125" PointY="5.875" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Clients" Width="1.5" PointX="3.25" PointY="1.5" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Components" Width="1.5" PointX="7.125" PointY="2.25" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.WireKit" Width="1.5" PointX="7.125" PointY="4.25" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Shipping_Catalog_Products" Width="1.5" PointX="3.25" PointY="3.375" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Shipping_Records" Width="1.5" PointX="5.25" PointY="2.125" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Products_Areas" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_Clients" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.ShipmentType" Width="1.5" PointX="3.25" PointY="5.875" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_ShipmentType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

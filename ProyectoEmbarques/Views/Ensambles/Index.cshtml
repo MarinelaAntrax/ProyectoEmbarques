@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Ver Ensambles";
+}
+
+<h2 class="page-header">@ViewBag.Title</h2>
+
+<div class="telerik-controls">
+    @(Html.Kendo().Grid<ProyectoEmbarques.Models.EnsamblesViewModel>()
+
+                                            .Name("grid")
+
+                                            .Columns(columns =>
+                                            {
+                                                columns.Bound(o => o.AssemblyPartNumber).Width(80);
+                                                columns.Bound(o => o.AreaID).Width(80);
+
+
+                                            })
+                                            .Sortable()
+                                            .Scrollable(scrollable => scrollable.Virtual(true))
+                                            .HtmlAttributes(new { style = "height: 300px;" })
+                                            .DataSource(dataSource => dataSource
+                                                .Ajax()
+                                                .PageSize(100)
+                                                .Read(read => read.Action("Read", "EnsamblesController"))
+                                             )
+    )
+
+</div>
+
+<style>
+
+    /*horizontal Grid scrollbar should appear if the browser window is shrinked too much*/
+    #grid table {
+        min-width: 80%;
+    }
+</style>

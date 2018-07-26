@@ -1,0 +1,245 @@
+﻿@model ProyectoEmbarques.Models.EmbarqueEnsamblesViewModel
+
+@{
+    ViewBag.Title = "Embarque de Ensambles";
+}
+@using (Html.BeginForm("InsertarDatos", "EmbarqueEnsambles"))
+{
+    <h2 class="page-header"> @ViewBag.Title</h2>
+
+    <div class="grid-container">
+
+        <div class="area1">
+            <h4>No. Parte</h4>
+           
+            @(Html.Kendo().ComboBox()
+                          .Name("NoParte")
+                          .DataTextField("ProductID")
+                          .DataValueField("ProductoID")
+                          .Filter("contains")
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetNoParte", "EmbarqueEnsambles");
+                              })
+                              .ServerFiltering(false);
+                          })
+                          .HtmlAttributes(new { style = "width:90%;" })
+            )
+
+            <h4>Orden de Trabajo</h4>
+            @(Html.Kendo().TextBox()
+                        .Name("OrdendeTrabajo")
+                        .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>Tracking de Papeleria</h4>
+            @(Html.Kendo().TextBox()
+                                    .Name("TrackingdePapeleria")
+                                    .HtmlAttributes(new { style = "width:90%" })
+
+
+            )
+
+            <h4>Dirigido a</h4>
+            @(Html.Kendo().ComboBox()
+                        .Name("Dirigidoa")
+                        .DataTextField("Nombre")
+                        .DataValueField("Companias")
+                        .HtmlAttributes(new { style = "width:90%" })
+                        .Filter("contains")
+                        .AutoBind(false)
+                        .MinLength(3)
+
+                        .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("GetCompanias", "EmbarqueEnsambles");
+                            })
+                            .ServerFiltering(false);
+                        })
+            )
+
+            <h4>Sellos de Seguridad</h4>
+            <div class="">
+                <h4>Sello 1</h4>
+                @(Html.Kendo().TextBox()
+                        .Name("Sello1")
+                        .HtmlAttributes(new { style = "width:90%" })
+                )
+                <h4>Sello 2</h4>
+                @(Html.Kendo().TextBox()
+                        .Name("Sello2")
+                        .HtmlAttributes(new { style = "width:90%" })
+                )
+                <h4>Sello 3</h4>
+                @(Html.Kendo().TextBox()
+                        .Name("Sello3")
+                        .HtmlAttributes(new { style = "width:90%" })
+                )
+                <h4>Sello 4</h4>
+                @(Html.Kendo().TextBox()
+                        .Name("Sello4")
+                        .HtmlAttributes(new { style = "width:90%" })
+                )
+            </div>
+        </div>
+
+        <div class="area2">
+
+            <h4>Area</h4>
+            @(Html.Kendo().ComboBox()
+                   .Name("Area")
+                   .DataTextField("AreaName")
+                   .DataValueField("AreaName")
+                   .Filter("contains")
+                   .DataSource(source =>
+                   {
+                       source.Read(read =>
+                       {
+                           read.Action("GetArea", "EmbarqueEnsambles");
+                       })
+                       .ServerFiltering(false);
+                   })
+                   .HtmlAttributes(new { style = "width:90%;" })
+            )
+
+            <h4>No. Serie</h4>
+            @(Html.Kendo().TextBox()
+                        .Name("No.Serie")
+                        .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>Cantidad</h4>
+            @(Html.Kendo().TextBox()
+                                                                    .Name("Cantidad")
+                                                                    .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>Compañia</h4>
+            @(Html.Kendo().TextBox()
+                                                                    .Name("Compañia")
+                                                                    .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+
+
+            <h4>Comentarios</h4>
+            @Html.TextArea("textarea", "", new { @class = "k-textbox", style = "width: 90%; height:280px" })
+
+        </div>
+        <div class="area3">
+
+            <h4>Fecha de Embarque</h4>
+            @(Html.Kendo().DatePicker()
+                                                    .Name("FechadeEmbarque")
+                                                    .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>FAI(Primera Pieza)</h4><center>
+                @(Html.Kendo().CheckBox()
+                                                .Name("FAICBox")
+                                                .HtmlAttributes(new { style = "width:300%; height:500px" })
+                )
+            </center>
+
+            <br/>
+            <h4>No. de Caja Piezas</h4>
+            @(Html.Kendo().TextBox()
+                                                    .Name("No.Serie")
+                                                    .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>Tipo de Servicio</h4>
+            @(Html.Kendo().ComboBox()
+                                                    .Name("TipodeServicio")
+                                                    .DataTextField("Servicio")
+                                                    .DataValueField("Servicios")
+                                                    .HtmlAttributes(new { style = "width:90%" })
+                                                    .Filter("contains")
+                                                    .AutoBind(false)
+                                                    .MinLength(3)
+
+                                                    .DataSource(source =>
+                                                    {
+                                                        source.Read(read =>
+                                                        {
+                                                            read.Action("GetServicios", "EmbarqueEnsambles");
+                                                        })
+                                                        .ServerFiltering(false);
+                                                    })
+            )
+
+
+            <h4>Comentarios 1</h4>
+            @Html.TextArea("textarea", "", new { @class = "k-textbox", style = "width: 90%; height:280px" })
+
+
+        </div>
+
+        <div class="area4">
+            <h4>Tracking de Fedex</h4>
+            @(Html.Kendo().TextBox()
+                                                .Name("TrackingFedex")
+                                                .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>No. de Caja C. Doc.</h4>
+            @(Html.Kendo().TextBox()
+                                                .Name("NoCajaDoc")
+                                                .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>Tipo de Embarque</h4>
+            @(Html.Kendo().ComboBox()
+                                                .Name("TipodeEmbarque")
+                                                .DataTextField("Embarque")
+                                                .DataValueField("ShipmentType1")
+                                                .HtmlAttributes(new { style = "width:90%" })
+                                                .Filter("contains")
+                                                .AutoBind(false)
+                                                .MinLength(3)
+
+                                                .DataSource(source =>
+                                                {
+                                                    source.Read(read =>
+                                                    {
+                                                        read.Action("GetTipoEmbarque", "EmbarqueEnsambles");
+                                                    })
+                                                    .ServerFiltering(false);
+                                                })
+            )
+
+            <h4>Retrabajo</h4>
+            @(Html.Kendo().TextBox()
+                                                .Name("Retrabajo")
+                                                .HtmlAttributes(new { style = "width:90%" })
+
+            )
+
+            <h4>Comentarios 2</h4>
+            @Html.TextArea("textarea", "", new { @class = "k-textbox", style = "width: 90%; height:280px" })
+
+
+
+
+        </div>
+
+        @(Html.Kendo().Button()
+                            .Name("textButton")
+                            .HtmlAttributes(new { type = "submit", @class = "k-textbox", style = "width: 50%; height:50px" })
+                            .Content("GUARDAR"))
+
+    </div>
+}
+@{Html.EndForm();}
