@@ -11,10 +11,10 @@ namespace ProyectoEmbarques.Models
         public int AssemblyID { get; set; }
 
         [Display(Name = "Area")]
-        public int AreaID { get; set; }
+        public int AreaName { get; set; }
 
         [Display(Name = "Nombre de partes de la pieza")]
-        public string AssemblyPartNumber { get; set; }
-     
+        public string ProductName { get; set; }
+
     }
 }

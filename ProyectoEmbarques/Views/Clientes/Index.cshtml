@@ -8,14 +8,10 @@
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
 
                             .Name("grid")
-
-
-
                             .Columns(columns =>
                             {
                                 columns.Bound(o => o.ClientName).Width(5);
                                 columns.Bound(o => o.ClientAddress).Width(7);
-
                             })
                             .Sortable()
                             .Scrollable(scrollable => scrollable.Virtual(true))
@@ -23,10 +19,9 @@
                             .DataSource(dataSource => dataSource
                                 .Ajax()
                                 .PageSize(100)
-                                .Read(read => read.Action("Read", "ClientesController"))
+                                .Read(read => read.Action("Read", "Clientes"))
                              )
     )
-
 </div>
 
 <style>

@@ -3,35 +3,29 @@
 }
 
 <h2 class="page-header">@ViewBag.Title</h2>
-
-<div class="telerik-controls">
-    @(Html.Kendo().Grid<ProyectoEmbarques.Models.EnsamblesViewModel>()
-
+    @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel>()
                                             .Name("grid")
-
                                             .Columns(columns =>
                                             {
-                                                columns.Bound(o => o.AssemblyPartNumber).Width(80);
-                                                columns.Bound(o => o.AreaID).Width(80);
-
-
+                                                columns.Bound(o => o.ProductName).Width(10);
+                                                columns.Bound(o => o.AreaName).Width(10);
                                             })
                                             .Sortable()
                                             .Scrollable(scrollable => scrollable.Virtual(true))
-                                            .HtmlAttributes(new { style = "height: 300px;" })
+                                            .Filterable()
+                                            .HtmlAttributes(new { style = "height: 543px;" })
                                             .DataSource(dataSource => dataSource
                                                 .Ajax()
                                                 .PageSize(100)
-                                                .Read(read => read.Action("Read", "EnsamblesController"))
+                                                .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
                                              )
     )
 
-</div>
 
 <style>
 
     /*horizontal Grid scrollbar should appear if the browser window is shrinked too much*/
     #grid table {
-        min-width: 80%;
+        min-width: 1000px;
     }
 </style>

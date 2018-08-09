@@ -8,14 +8,14 @@ namespace ProyectoEmbarques.Models
 {
     public class ClientesViewModel
     {
-        public int ClienteID { get; set; }
+        public int ClientID { get; set; }
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "Attn")]
         [Required(ErrorMessage = "Nombre requerido.")]
         [StringLength(50, ErrorMessage = "El nombre del cliente no puede ser mayor de 50 caracteres.")]
         public string ClientName { get; set; }
 
-        [Display(Name = "Compañia")]
+        [Display(Name = "Org")]
         [Required(ErrorMessage = "Nombre de la compañia requerida.")]
         public string ClientAddress { get; set; }
     }

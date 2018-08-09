@@ -21,8 +21,8 @@ namespace ProyectoEmbarques
 
             routes.MapRoute(
                 name: "EmbarqueEnsambles",
-                url: "EmbarqueEnsambles/{action}/{id}",
-                defaults: new { controller = "EmbarqueEnsambles", action = "Index", id = UrlParameter.Optional }
+                url: "Shipping_Records/{action}/{id}",
+                defaults: new { controller = "Shipping_Records", action = "Create", id = UrlParameter.Optional }
         );
 
             routes.MapRoute(
@@ -47,8 +47,13 @@ namespace ProyectoEmbarques
                 name: "Reportes",
                 url: "Reportes/{action}/{id}",
                 defaults: new { controller = "Reportes", action = "Index", id = UrlParameter.Optional }
-    );
+        );
 
+            routes.MapRoute(
+               name: "Shipping_Catalog_Products",
+               url: "Shipping_Catalog_Products/{action}/{id}",
+               defaults: new { controller = "Shipping_Catalog_Products", action = "Create", id = UrlParameter.Optional }
+        );
 
         }
     }

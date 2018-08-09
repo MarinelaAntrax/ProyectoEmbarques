@@ -12,11 +12,32 @@ namespace ProyectoEmbarques.Controllers
 {
     public class ReportesController : Controller
     {
-        // GET: Reportes
-        public ActionResult Index()
-        {
+        public ActionResult Index(){
             return View();
         }
-
+        public ActionResult Download_ManifiestoXLSX(){
+            return View();
+        }
+        public ActionResult EmbarquesDiarios_PDF(){
+            return View();
+        }
+        public ActionResult EmbarquesDiarios_Excel(){
+            return View();
+        }
+        public ActionResult EmbarquesHotShot(){
+            return View();
+        }
+        public ActionResult Download_EmbarquesHotShotXLSX(){
+            return View();
+        }
+        public ActionResult ReportesFechaNSerieXLSX(){
+            return View();
+        }
+        public ActionResult ManifiestoNAgrupadosXLSX(){
+            return View();
+        }
+        public ActionResult DireccionesClientes(){
+            return View();
+        }
     }
 }

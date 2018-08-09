@@ -3,75 +3,85 @@
 }
 
 <h2 class="page-header">@ViewBag.Title de Embarques</h2>
-
-<div class="telerik-controls">
-    @(Html.Kendo().Grid<ProyectoEmbarques.Models.EmbarqueEnsamblesViewModel>()
-
-                                            .Name("grid")
-
-                                            .ToolBar(tools =>
-                                            {
-                                            tools.Template(@<text>
-
-                                                <div class="toolbar">
-                                                    <label class="category-label">De</label>
-                                                    @(Html.Kendo().DatePicker()
-                                                                            .Name("Inicio")
-                                                                            .Value(DateTime.Today)
-                                                                            .Min("07/23/2018")
-                                                                            .HtmlAttributes(new { style = "width: 150px;" })
-                                                    )
-                                                    <label class="category-label">&nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp;</label>
-                                                    @(Html.Kendo().DatePicker()
-                                                                            .Name("Final")
-                                                                            .Value(DateTime.Today.AddDays(1))
-                                                                            .Min("07/23/2018")
-                                                                            .HtmlAttributes(new { style = "width: 150px;" })
-                                                    )
-                                                    <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar</a>
-                                                </div>
-                                            </text>);
-                                            })
-
-
-
-                                                    .Columns(columns =>
-                                                    {
-                                                        columns.Bound(o => o.ProductID).Width(150);
-                                                        columns.Bound(o => o.Areas).Width(150);
-                                                        columns.Bound(o => o.ClientID).Width(150);
-                                                        columns.Bound(o => o.Compañia).Width(150);
-                                                        columns.Bound(o => o.RecordPieceBoxNo).Width(150);
-                                                        columns.Bound(o => o.RecordTrackingId).Width(150);
-                                                        columns.Bound(o => o.RecordSerialNo).Width(150);
-                                                        columns.Bound(o => o.RecordQuantity).Width(150);
-                                                        columns.Bound(o => o.RecordDate).Width(150).Filterable(false);
-                                                        columns.Bound(o => o.RecordTrackingFedex).Width(150);
-                                                        columns.Bound(o => o.RecordControlBoxNo).Width(160);
-                                                        columns.Bound(o => o.ShipmentTypeID).Width(150);
-                                                        columns.Bound(o => o.RecordSeguritySeal).Width(150);
-                                                        columns.Bound(o => o.RecordComment).Width(150);
-                                                        columns.Bound(o => o.RecordComment1).Width(150);
-                                                        columns.Bound(o => o.RecordComment2).Width(150);
-                                                        columns.Bound(o => o.RecordRework).Width(180);
-                                                    })
-                                                    .Sortable()
-                                                    .Scrollable(scrollable => scrollable.Virtual(true))
-                                                    .HtmlAttributes(new { style = "height: 500px;" })
-                                                    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                                                    .DataSource(dataSource => dataSource
-                                                        .Ajax()
-                                                        .PageSize(100)
-                                                        .Read(read => read.Action("Read", "EnsamblesRealizados"))
-                                                     )
+@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
+                    .Name("grid")
+                     .ToolBar(tools =>
+                     {
+                    
+                     tools.Template(@<text>
+<div class="toolbar">
+    <label class="category-label">De</label>
+    @(Html.Kendo().DatePicker()
+                                        .Name("Inicio")
+                                        .Value(DateTime.Today)
+                                        .Min("07/23/2018")
+                                        .HtmlAttributes(new { style = "width: 150px;" })
     )
+    <label class="category-label"> a </label>
+    @(Html.Kendo().DatePicker()
+                                            .Name("Final")
+                                            .Value(DateTime.Today.AddDays(1))
+                                            .Min("07/23/2018")
+                                            .HtmlAttributes(new { style = "width: 150px;" })
+    )
+    <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar </a> 
+
 
 </div>
+    </text>);
+                     })
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(200);
+                columns.Bound(o => o.Shipping_Catalog_Products.AreaName).Width(200);
+                columns.Bound(o => o.Clients.ClientName).Width(200);
+                columns.Bound(o => o.Clients.ClientAddress).Width(200);
+                columns.Bound(o => o.RecordPieceBoxNo).Width(200);
+                columns.Bound(o => o.RecordTrackingId).Width(200);
+                columns.Bound(o => o.RecordSerialNo).Width(200);
+                columns.Bound(o => o.RecordQuantity).Width(200);
+                columns.Bound(o => o.RecordDate).Width(200).Filterable(false);
+                columns.Bound(o => o.RecordFedexTracking).Width(200);
+                columns.Bound(o => o.RecordControlBoxNo).Width(250);
+                columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(200);
+                columns.Bound(o => o.RecordSeguritySeal1).Width(200);
+                columns.Bound(o => o.RecordSeguritySeal2).Width(200);
+                columns.Bound(o => o.RecordSeguritySeal3).Width(200);
+                columns.Bound(o => o.RecordSeguritySeal4).Width(200);
+                columns.Bound(o => o.RecordComment).Width(200);
+                columns.Bound(o => o.RecordComment1).Width(200);
+                columns.Bound(o => o.RecordComment2).Width(200);
+                columns.Bound(o => o.RecordRework).Width(250);
+                columns.Bound(o => o.RecordFAI).Width(250);
+                columns.Bound(o => o.RecordServiceType).Width(250);
+            })
+            .Sortable()
+            .Scrollable(scrollable => scrollable.Enabled(true))
+            .Filterable()
+            .Sortable()
+            .Pageable()
+            .Excel(ex=>ex.FileName("File.xlsx"))
+            .Pdf(ex=>ex.FileName("File.PDF"))
+            .HtmlAttributes(new { style = "height: 543px;" })
+            .DataSource(dataSource => dataSource
 
+                .Ajax()
+                 .Read(read => read.Action("Read", "EnsamblesRealizados"))
+                .PageSize(100)
+
+
+             )
+)
+
+<script>
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+</script>
 <style>
-
     /*horizontal Grid scrollbar should appear if the browser window is shrinked too much*/
     #grid table {
         min-width: 1000px;
     }
 </style>
+

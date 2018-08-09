@@ -6,26 +6,33 @@ using System.Web;
 
 namespace ProyectoEmbarques.Models
 {
-    public class ProductosViewModel
+    public class Shipping_Catalog_ProductsViewModel
     {
-        public int ProductoID { get; set; }
-
-
-        [Display(Name = "Nombre del Area")]
+       
+        [ScaffoldColumn(false)]
+        public int ProductID { get; set; }
+        
+       
         public int AreaID { get; set; }
 
-        [Display(Name = "Nombre del producto")]
+        [Display(Name = "P/N")]
         [Required(ErrorMessage = "Nombre del producto requerida.")]
         [StringLength(30, ErrorMessage = "La descripcion del componente no puede ser mayor de 30 caracteres.")]
         public string ProductName { get; set; }
 
         [Display(Name = "Area Interna del Producto")]
+        [Required(ErrorMessage = "Nombre del Area Interna requerida.")]
         public string ProductInternaArea { get; set; }
 
         [Display(Name = "Tipo del Producto")]
         public string ProductType { get; set; }
 
-        public virtual AreasViewModel Area { get; set; }
+        [Display(Name = "Shop")]
+        [Required(ErrorMessage = "Nombre del Area requerida.")]
+        public string AreaName { get; set; }
 
+
+        public virtual Areas Areas { get; set; }
+        public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
     }
 }

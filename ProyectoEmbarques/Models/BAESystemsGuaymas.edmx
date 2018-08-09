@@ -43,7 +43,7 @@
           <Property Name="WireKitID" Type="int" Nullable="false" />
           <Property Name="WireKitPN" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="ShipmentType">
+        <EntityType Name="CatalogShipmentType">
           <Key>
             <PropertyRef Name="ShipmentTypeID" />
           </Key>
@@ -58,7 +58,7 @@
           <Property Name="AreaID" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductInternalArea" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ProductType" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProductType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Shipping_Records">
           <Key>
@@ -76,13 +76,24 @@
           <Property Name="RecordServiceType" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="RecordComment" Type="varchar" MaxLength="250" />
           <Property Name="RecordWorkOrder" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="RecordSerialNo" Type="varbinary" MaxLength="20" Nullable="false" />
+          <Property Name="RecordSerialNo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="RecordTrackingId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="RecordRework" Type="varchar" MaxLength="10" />
           <Property Name="RecordComment1" Type="varchar" MaxLength="250" />
           <Property Name="RecordComment2" Type="varchar" MaxLength="250" />
           <Property Name="RecordFAI" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RecordSeguritySeal" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="RecordSeguritySeal1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordSeguritySeal2" Type="varchar" MaxLength="50" />
+          <Property Name="RecordSeguritySeal3" Type="varchar" MaxLength="50" />
+          <Property Name="RecordSeguritySeal4" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VIEWDATA">
+          <Key>
+            <PropertyRef Name="DATA" />
+          </Key>
+          <Property Name="DATA" Type="varchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <Association Name="FK_Products_Areas">
           <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
@@ -96,6 +107,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Shipping_Records_CatalogShipmentType">
+          <End Role="CatalogShipmentType" Type="Self.CatalogShipmentType" Multiplicity="1" />
+          <End Role="Shipping_Records" Type="Self.Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogShipmentType">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Shipping_Records_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="Shipping_Records" Type="Self.Shipping_Records" Multiplicity="*" />
@@ -105,18 +128,6 @@
             </Principal>
             <Dependent Role="Shipping_Records">
               <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shipping_Records_ShipmentType">
-          <End Role="ShipmentType" Type="Self.ShipmentType" Multiplicity="1" />
-          <End Role="Shipping_Records" Type="Self.Shipping_Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShipmentType">
-              <PropertyRef Name="ShipmentTypeID" />
-            </Principal>
-            <Dependent Role="Shipping_Records">
-              <PropertyRef Name="ShipmentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -138,19 +149,24 @@
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="Components" EntityType="Self.Components" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="WireKit" EntityType="Self.WireKit" Schema="Catalog" store:Type="Tables" />
-          <EntitySet Name="ShipmentType" EntityType="Self.ShipmentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogShipmentType" EntityType="Self.CatalogShipmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipping_Catalog_Products" EntityType="Self.Shipping_Catalog_Products" Schema="Material" store:Type="Tables" />
           <EntitySet Name="Shipping_Records" EntityType="Self.Shipping_Records" Schema="Material" store:Type="Tables" />
+          <EntitySet Name="VIEWDATA" EntityType="Self.VIEWDATA" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VIEWDATA].[DATA] AS [DATA]
+FROM [dbo].[VIEWDATA] AS [VIEWDATA]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Products_Areas" Association="Self.FK_Products_Areas">
             <End Role="Areas" EntitySet="Areas" />
             <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shipping_Records_Clients" Association="Self.FK_Shipping_Records_Clients">
-            <End Role="Clients" EntitySet="Clients" />
+          <AssociationSet Name="FK_Shipping_Records_CatalogShipmentType" Association="Self.FK_Shipping_Records_CatalogShipmentType">
+            <End Role="CatalogShipmentType" EntitySet="CatalogShipmentType" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shipping_Records_ShipmentType" Association="Self.FK_Shipping_Records_ShipmentType">
-            <End Role="ShipmentType" EntitySet="ShipmentType" />
+          <AssociationSet Name="FK_Shipping_Records_Clients" Association="Self.FK_Shipping_Records_Clients">
+            <End Role="Clients" EntitySet="Clients" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
           </AssociationSet>
           <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_Products" Association="Self.FK_Shipping_Records_Shipping_Catalog_Products">
@@ -168,26 +184,27 @@
           <EntitySet Name="Clients" EntityType="BAESystemsGuaymasModel.Clients" />
           <EntitySet Name="Components" EntityType="BAESystemsGuaymasModel.Components" />
           <EntitySet Name="WireKit" EntityType="BAESystemsGuaymasModel.WireKit" />
-          <EntitySet Name="Shipping_Catalog_Products" EntityType="BAESystemsGuaymasModel.Shipping_Catalog_Products" />
+          <EntitySet Name="CatalogShipmentType" EntityType="BAESystemsGuaymasModel.CatalogShipmentType" />
+          <EntitySet Name="VIEWDATA" EntityType="BAESystemsGuaymasModel.VIEWDATA" />
           <EntitySet Name="Shipping_Records" EntityType="BAESystemsGuaymasModel.Shipping_Records" />
-          <AssociationSet Name="FK_Products_Areas" Association="BAESystemsGuaymasModel.FK_Products_Areas">
-            <End Role="Areas" EntitySet="Areas" />
-            <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
-          </AssociationSet>
           <AssociationSet Name="FK_Shipping_Records_Clients" Association="BAESystemsGuaymasModel.FK_Shipping_Records_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_CatalogShipmentType" Association="BAESystemsGuaymasModel.FK_Shipping_Records_CatalogShipmentType">
+            <End Role="CatalogShipmentType" EntitySet="CatalogShipmentType" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          <EntitySet Name="Shipping_Catalog_Products" EntityType="BAESystemsGuaymasModel.Shipping_Catalog_Products" />
+          <AssociationSet Name="FK_Products_Areas" Association="BAESystemsGuaymasModel.FK_Products_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
           </AssociationSet>
           <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_Products" Association="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products">
             <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
           </AssociationSet>
-          <EntitySet Name="ShipmentType" EntityType="BAESystemsGuaymasModel.ShipmentType" />
-          <AssociationSet Name="FK_Shipping_Records_ShipmentType" Association="BAESystemsGuaymasModel.FK_Shipping_Records_ShipmentType">
-            <End Role="ShipmentType" EntitySet="ShipmentType" />
-            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Areas">
           <Key>
             <PropertyRef Name="AreaID" />
@@ -228,17 +245,19 @@
           <Property Name="WireKitID" Type="Int32" Nullable="false" />
           <Property Name="WireKitPN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Shipping_Catalog_Products">
+        <EntityType Name="CatalogShipmentType">
           <Key>
-            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ShipmentTypeID" />
           </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AreaID" Type="Int32" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductInternalArea" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Areas" Relationship="BAESystemsGuaymasModel.FK_Products_Areas" FromRole="Shipping_Catalog_Products" ToRole="Areas" />
-          <NavigationProperty Name="Shipping_Records" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Catalog_Products" ToRole="Shipping_Records" />
+          <Property Name="ShipmentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ShipmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Shipping_Records" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_CatalogShipmentType" FromRole="CatalogShipmentType" ToRole="Shipping_Records" />
+        </EntityType>
+        <EntityType Name="VIEWDATA">
+          <Key>
+            <PropertyRef Name="DATA" />
+          </Key>
+          <Property Name="DATA" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Shipping_Records">
           <Key>
@@ -256,16 +275,55 @@
           <Property Name="RecordServiceType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="RecordComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RecordWorkOrder" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="RecordSerialNo" Type="Binary" Nullable="false" MaxLength="20" FixedLength="false" />
+          <Property Name="RecordSerialNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RecordTrackingId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RecordRework" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="RecordComment1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RecordComment2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RecordFAI" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RecordSeguritySeal" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+          <Property Name="RecordSeguritySeal1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Clients" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_Clients" FromRole="Shipping_Records" ToRole="Clients" />
+          <NavigationProperty Name="CatalogShipmentType" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_CatalogShipmentType" FromRole="Shipping_Records" ToRole="CatalogShipmentType" />
           <NavigationProperty Name="Shipping_Catalog_Products" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Records" ToRole="Shipping_Catalog_Products" />
-          <NavigationProperty Name="ShipmentType" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_ShipmentType" FromRole="Shipping_Records" ToRole="ShipmentType" />
+        </EntityType>
+        <Association Name="FK_Shipping_Records_Clients">
+          <End Type="BAESystemsGuaymasModel.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="BAESystemsGuaymasModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_CatalogShipmentType">
+          <End Type="BAESystemsGuaymasModel.CatalogShipmentType" Role="CatalogShipmentType" Multiplicity="1" />
+          <End Type="BAESystemsGuaymasModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogShipmentType">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Shipping_Catalog_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductInternalArea" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Areas" Relationship="BAESystemsGuaymasModel.FK_Products_Areas" FromRole="Shipping_Catalog_Products" ToRole="Areas" />
+          <NavigationProperty Name="Shipping_Records" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Catalog_Products" ToRole="Shipping_Records" />
         </EntityType>
         <Association Name="FK_Products_Areas">
           <End Type="BAESystemsGuaymasModel.Areas" Role="Areas" Multiplicity="1" />
@@ -276,18 +334,6 @@
             </Principal>
             <Dependent Role="Shipping_Catalog_Products">
               <PropertyRef Name="AreaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shipping_Records_Clients">
-          <End Type="BAESystemsGuaymasModel.Clients" Role="Clients" Multiplicity="1" />
-          <End Type="BAESystemsGuaymasModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="ClientID" />
-            </Principal>
-            <Dependent Role="Shipping_Records">
-              <PropertyRef Name="ClientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -303,27 +349,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ShipmentType">
-          <Key>
-            <PropertyRef Name="ShipmentTypeID" />
-          </Key>
-          <Property Name="ShipmentTypeID" Type="Int32" Nullable="false" />
-          <Property Name="ShipmentType1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Shipping_Records" Relationship="BAESystemsGuaymasModel.FK_Shipping_Records_ShipmentType" FromRole="ShipmentType" ToRole="Shipping_Records" />
-        </EntityType>
-        <Association Name="FK_Shipping_Records_ShipmentType">
-          <End Type="BAESystemsGuaymasModel.ShipmentType" Role="ShipmentType" Multiplicity="1" />
-          <End Type="BAESystemsGuaymasModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShipmentType">
-              <PropertyRef Name="ShipmentTypeID" />
-            </Principal>
-            <Dependent Role="Shipping_Records">
-              <PropertyRef Name="ShipmentTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -372,21 +398,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shipping_Catalog_Products">
-            <EntityTypeMapping TypeName="BAESystemsGuaymasModel.Shipping_Catalog_Products">
-              <MappingFragment StoreEntitySet="Shipping_Catalog_Products">
-                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
-                <ScalarProperty Name="ProductInternalArea" ColumnName="ProductInternalArea" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <EntitySetMapping Name="CatalogShipmentType">
+            <EntityTypeMapping TypeName="BAESystemsGuaymasModel.CatalogShipmentType">
+              <MappingFragment StoreEntitySet="CatalogShipmentType">
+                <ScalarProperty Name="ShipmentType" ColumnName="ShipmentType" />
+                <ScalarProperty Name="ShipmentTypeID" ColumnName="ShipmentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIEWDATA">
+            <EntityTypeMapping TypeName="BAESystemsGuaymasModel.VIEWDATA">
+              <MappingFragment StoreEntitySet="VIEWDATA">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shipping_Records">
             <EntityTypeMapping TypeName="BAESystemsGuaymasModel.Shipping_Records">
               <MappingFragment StoreEntitySet="Shipping_Records">
-                <ScalarProperty Name="RecordSeguritySeal" ColumnName="RecordSeguritySeal" />
+                <ScalarProperty Name="RecordSeguritySeal4" ColumnName="RecordSeguritySeal4" />
+                <ScalarProperty Name="RecordSeguritySeal3" ColumnName="RecordSeguritySeal3" />
+                <ScalarProperty Name="RecordSeguritySeal2" ColumnName="RecordSeguritySeal2" />
+                <ScalarProperty Name="RecordSeguritySeal1" ColumnName="RecordSeguritySeal1" />
                 <ScalarProperty Name="RecordFAI" ColumnName="RecordFAI" />
                 <ScalarProperty Name="RecordComment2" ColumnName="RecordComment2" />
                 <ScalarProperty Name="RecordComment1" ColumnName="RecordComment1" />
@@ -408,11 +441,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ShipmentType">
-            <EntityTypeMapping TypeName="BAESystemsGuaymasModel.ShipmentType">
-              <MappingFragment StoreEntitySet="ShipmentType">
-                <ScalarProperty Name="ShipmentType1" ColumnName="ShipmentType" />
-                <ScalarProperty Name="ShipmentTypeID" ColumnName="ShipmentTypeID" />
+          <EntitySetMapping Name="Shipping_Catalog_Products">
+            <EntityTypeMapping TypeName="BAESystemsGuaymasModel.Shipping_Catalog_Products">
+              <MappingFragment StoreEntitySet="Shipping_Catalog_Products">
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductInternalArea" ColumnName="ProductInternalArea" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

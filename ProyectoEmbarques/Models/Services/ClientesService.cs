@@ -9,24 +9,21 @@ namespace ProyectoEmbarques.Models.Services
     public class ClientesService : Controller
     {
         private BAESystemsGuaymasEntities BAE;
-
         public ClientesService(BAESystemsGuaymasEntities BAE)
         {
             this.BAE = BAE;
         }
-
         public ClientesService() : this(new BAESystemsGuaymasEntities())
-        {
-
-        }
+        {    }
         public IList<ClientesViewModel> GetAll()
         {
             IList<ClientesViewModel> result = new List<ClientesViewModel>();
-
             result = BAE.Clients.Select(componente => new ClientesViewModel
             {
-                ClienteID = componente.ClientID,
+                ClientID = componente.ClientID,
                 ClientName = componente.ClientName,
+                ClientAddress =componente.ClientAddress
+
             }).ToList();
             return result;
         }

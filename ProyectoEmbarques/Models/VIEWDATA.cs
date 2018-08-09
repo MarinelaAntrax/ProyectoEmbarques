@@ -12,16 +12,8 @@ namespace ProyectoEmbarques.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ShipmentType
+    public partial class VIEWDATA
     {
-        public ShipmentType()
-        {
-            this.Shipping_Records = new HashSet<Shipping_Records>();
-        }
-    
-        public int ShipmentTypeID { get; set; }
-        public string ShipmentType1 { get; set; }
-    
-        public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
+        public string DATA { get; set; }
     }
 }

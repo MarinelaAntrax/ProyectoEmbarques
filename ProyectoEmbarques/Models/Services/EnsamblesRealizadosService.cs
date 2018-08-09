@@ -1,58 +1,133 @@
-﻿using Kendo.Mvc.UI;
+﻿using controlEmbar.Models;
+using Kendo.Mvc.UI;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Data;
+using System;
+using System.Web;
 
 namespace ProyectoEmbarques.Models.Services
 {
-        public class EnsamblesRealizadosService : Controller
-        {
-            private BAESystemsGuaymasEntities Entities;
-
+        public class EnsamblesRealizadosService : IDisposable
+    {
+        private static bool UpdateDatabase = false;
+        private BAESystemsGuaymasEntities Entities;
             public EnsamblesRealizadosService(BAESystemsGuaymasEntities Entities)
             {
                 this.Entities = Entities;
             }
-
             public EnsamblesRealizadosService() : this(new BAESystemsGuaymasEntities())
+            {       }
+            public IList<Shipping_RecordsViewModel> GetAll()
+            {
+            var result = HttpContext.Current.Session["Shipping_Record"] as IList<Shipping_RecordsViewModel>;
+
+            if (result == null || UpdateDatabase)
             {
 
+                //IList<Shipping_RecordsViewModel> result = new List<Shipping_RecordsViewModel>();
+                result = Entities.Shipping_Records.Select(componente => new Shipping_RecordsViewModel
+                {
+                    ClientID = componente.ClientID,
+                    Clients = new ClientesViewModel()
+                    {
+                        ClientName = componente.Clients.ClientName,
+                        ClientAddress = componente.Clients.ClientAddress
+                    },
+                    ProductID = componente.ProductID,
+                    Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
+                    {
+                        ProductName = componente.Shipping_Catalog_Products.ProductName,
+                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName,
+                        ProductType = componente.Shipping_Catalog_Products.ProductType,
+                    },
+                    RecordID = componente.RecordID,
+                    RecordQuantity = componente.RecordQuantity,
+                    RecordDate = componente.RecordDate,
+                    RecordFedexTracking = componente.RecordFedexTracking,
+                    RecordControlBoxNo = componente.RecordControlBoxNo,
+                    RecordPieceBoxNo = componente.RecordPieceBoxNo,
+
+                    ShipmentTypeID = componente.ShipmentTypeID,
+                    CatalogShipmentType = new TipoEmbarqueViewModel()
+                    {
+                        ShipmentType = componente.CatalogShipmentType.ShipmentType
+                    },
+
+                    RecordComment = componente.RecordComment,
+                    RecordWorkOrder = componente.RecordWorkOrder,
+                    RecordSerialNo = componente.RecordSerialNo,
+                    RecordTrackingId = componente.RecordTrackingId,
+                    RecordRework = componente.RecordRework,
+                    RecordComment1 = componente.RecordComment1,
+                    RecordComment2 = componente.RecordComment2,
+                    RecordServiceType = componente.RecordServiceType,
+                    RecordFAI = componente.RecordFAI,
+                    RecordSeguritySeal1 = componente.RecordSeguritySeal1,
+                    RecordSeguritySeal2 = componente.RecordSeguritySeal2,
+                    RecordSeguritySeal3 = componente.RecordSeguritySeal3,
+                    RecordSeguritySeal4 = componente.RecordSeguritySeal4
+                }).ToList();
+                HttpContext.Current.Session["Shipping_Records"] = result;
             }
-            public IList<EmbarqueEnsamblesViewModel> GetAll()
-        {
-            IList<EmbarqueEnsamblesViewModel> result = new List<EmbarqueEnsamblesViewModel>();
+                return result;
+                }
+           
 
-            result = Entities.Shipping_Records.Select(componente => new EmbarqueEnsamblesViewModel
+          
+        public void Create(Shipping_RecordsViewModel Record)
+        {           
+            if (!UpdateDatabase)
             {
-                ProductID = componente.ProductID,
-                Shop = componente.Shipping_Catalog_Products,
-                RecordDate = componente.RecordDate,
-                RecordTrackingFedex = componente.RecordFedexTracking,
-                RecordWorkOrder = componente.RecordWorkOrder,
-                RecordSerialNo = componente.RecordSerialNo,
-                RecordControlBoxNo = componente.RecordControlBoxNo,
-                RecordTrackingId = componente.RecordTrackingId,
-                RecordQuantity = componente.RecordQuantity,
-                RecordPieceBoxNo = componente.RecordPieceBoxNo,
-                ClientID = componente.ClientID,
-                //ClientAddress = componente.Clients,
-                ShipmentTypeID = componente.ShipmentTypeID,
-                RecordRework = componente.RecordRework,
-                RecordSeguritySeal = componente.RecordSeguritySeal,
-                RecordComment = componente.RecordComment,
-                RecordComment1 = componente.RecordComment1,
-                RecordComment2 = componente.RecordComment2,
-                RecordServiceType = componente.RecordServiceType,
-            }).ToList();
-            return result;
+                var firts = Read().OrderByDescending(e => e.RecordID).FirstOrDefault();
+                var id = (firts != null) ? firts.RecordID : 0;
+                Record.RecordID = id + 1;
+                GetAll().Insert(0, Record);
+            }
+            else
+            {
+                var entity = new Shipping_Records();
+                entity.ClientID = Record.ClientID;
+                entity.ProductID = Record.ProductID;
+                entity.RecordQuantity = Record.RecordQuantity;
+                entity.RecordDate = Record.RecordDate;
+                entity.RecordFedexTracking = Record.RecordFedexTracking;
+                entity.RecordControlBoxNo = Record.RecordControlBoxNo;
+                entity.RecordPieceBoxNo = Record.RecordPieceBoxNo;
+                entity.ShipmentTypeID = Record.ShipmentTypeID;
+                entity.RecordServiceType = Record.RecordServiceType;
+                entity.RecordComment = Record.RecordComment;
+                entity.RecordWorkOrder = Record.RecordWorkOrder;
+                entity.RecordSerialNo = Record.RecordSerialNo;
+                entity.RecordTrackingId = Record.RecordTrackingId;
+                entity.RecordRework = Record.RecordRework;
+                entity.RecordComment1 = Record.RecordComment1;
+                entity.RecordComment2 = Record.RecordComment2;
+                entity.RecordFAI = Record.RecordFAI;
+                entity.RecordSeguritySeal1 = Record.RecordSeguritySeal1;
+                entity.RecordSeguritySeal2 = Record.RecordSeguritySeal2;
+                entity.RecordSeguritySeal3 = Record.RecordSeguritySeal3;
+                entity.RecordSeguritySeal4 = Record.RecordSeguritySeal4;
+                Entities.Shipping_Records.Add(entity);
+                Entities.SaveChanges();
+                Record.RecordID = entity.RecordID;
+            }
         }
 
-
-        public IEnumerable<EmbarqueEnsamblesViewModel> Read()
+        public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
+        {
+            return GetAll().FirstOrDefault(predicate);
+        }
+        public IEnumerable<Shipping_RecordsViewModel> Read()
             {
                 return GetAll();
             }
+        public void Dispose()
+        {
+            Entities.Dispose();
         }
+    }
     }
 
 

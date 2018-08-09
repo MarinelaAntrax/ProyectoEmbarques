@@ -50,9 +50,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>..\lib\KENDOUIMVC\2018.2.620.545.Trial\Kendo.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Kendo.Mvc, Version=2018.2.620.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Kendo.Mvc.Export">
       <HintPath>..\lib\KENDOUIMVC\2018.2.620.545.Trial\export\binaries\net40\Kendo.Mvc.Export.dll</HintPath>
@@ -159,14 +159,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AreasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CreatePDF.cs" />
-    <Compile Include="Controllers\EmbarqueEnsamblesController.cs" />
     <Compile Include="Controllers\EnsamblesController.cs" />
     <Compile Include="Controllers\EnsamblesRealizadosController.cs" />
+    <Compile Include="Controllers\Excel_ExportController.cs" />
+    <Compile Include="Controllers\Shipping_RecordsController.cs" />
     <Compile Include="Controllers\GenerarController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\TipoEmbarqueController.cs" />
+    <Compile Include="Controllers\VIEWDATAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +195,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BAESystemsGuaymas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CatalogShipmentType.cs">
+      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ClientesViewModel.cs" />
     <Compile Include="Models\Clients.cs">
       <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
@@ -200,24 +206,28 @@
     <Compile Include="Models\Components.cs">
       <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmbarqueEnsamblesViewModel.cs" />
-    <Compile Include="Models\EnsamblesViewModel.cs" />
-    <Compile Include="Models\KitCablesViewModel.cs" />
-    <Compile Include="Models\ProductosViewModel.cs" />
-    <Compile Include="Models\Services\ClientesService.cs" />
-    <Compile Include="Models\Services\EnsamblesRealizadosService.cs" />
-    <Compile Include="Models\Services\EnsamblesService.cs" />
-    <Compile Include="Models\Services\ProductosService.cs" />
-    <Compile Include="Models\ShipmentType.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Shipping_Catalog_Products.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Shipping_Records.cs">
       <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Shipping_RecordsViewModel.cs" />
+    <Compile Include="Models\EnsamblesViewModel.cs" />
+    <Compile Include="Models\KitCablesViewModel.cs" />
+    <Compile Include="Models\Services\AreasService.cs" />
+    <Compile Include="Models\Services\TipoEmbarqueService.cs" />
+    <Compile Include="Models\Services\VIEWDATAService.cs" />
+    <Compile Include="Models\Shipping_Catalog_ProductsViewModel.cs" />
+    <Compile Include="Models\Services\ClientesService.cs" />
+    <Compile Include="Models\Services\EnsamblesRealizadosService.cs" />
+    <Compile Include="Models\Services\EnsamblesService.cs" />
+    <Compile Include="Models\Services\Shipping_Catalog_ProductsService.cs" />
+    <Compile Include="Models\Shipping_Catalog_Products.cs">
+      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoEmbarqueViewModel.cs" />
+    <Compile Include="Models\VIEWDATA.cs">
+      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VIEWDATAViewModel.cs" />
     <Compile Include="Models\WireKit.cs">
       <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
     </Compile>
@@ -227,6 +237,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Shipping_Catalog_ProductsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bae-styles.css" />
@@ -283,6 +294,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert2.all.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -308,13 +320,23 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
-    <None Include="Views\EmbarqueEnsambles\Index.cshtml" />
+    <Content Include="Views\Excel_Export\Index.cshtml" />
+    <Content Include="Views\Reportes\EmbarquesHotShot.cshtml" />
+    <Content Include="Views\Reportes\Download_ManifiestoXLSX.cshtml" />
+    <Content Include="Views\Reportes\EmbarquesDiarios_PDF.cshtml" />
+    <Content Include="Views\Reportes\EmbarquesDiarios_Excel.cshtml" />
+    <Content Include="Views\Reportes\Download_EmbarquesHotShotXLSX.cshtml" />
+    <Content Include="Views\Reportes\ReportesFechaNSerieXLSX.cshtml" />
+    <Content Include="Views\Reportes\ManifiestoNAgrupadosXLSX.cshtml" />
+    <Content Include="Views\Reportes\DireccionesClientes.cshtml" />
+    <None Include="Views\Shipping_Records\Create.cshtml" />
     <Content Include="Views\Ensambles\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\EnsamblesRealizados\Index.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Shipping_Catalog_Products\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -325,6 +347,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Areas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

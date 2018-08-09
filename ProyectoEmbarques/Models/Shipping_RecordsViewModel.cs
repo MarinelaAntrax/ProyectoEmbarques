@@ -7,23 +7,19 @@ using System.Web;
 
 namespace ProyectoEmbarques.Models
 {
-    public class EmbarqueEnsamblesViewModel
+    public class Shipping_RecordsViewModel
     {
-
-        internal Shipping_Catalog_Products Shop;
-
-        public EmbarqueEnsamblesViewModel()
-        { }
-
+       
+        [ScaffoldColumn(false)]
         public int RecordID { get; set; }
 
-        [Display(Name = "No. Parte.")]
+        [Display(Name = "No. Parte")]
         [Required(ErrorMessage = "No. de parte requerida.")]
         public int ProductID { get; set; }
 
-        [Display(Name = "Shop")]
+        [Display(Name = "Area")]
         [Required(ErrorMessage = "Nombre del area requerida.")]
-        public string Areas { get; set; }
+        public string AreaID { get; set; }
 
         [Display(Name = "Attn")]
         [Required(ErrorMessage = "Nombre del cliente requerido.")]
@@ -31,35 +27,33 @@ namespace ProyectoEmbarques.Models
 
         [Display(Name = "Org")]
         [Required(ErrorMessage = "Nombre de la organizacion requerido.")]
-        public string Compañia { get; set; }
+        public string ClientAddress { get; set; }
 
         [Display(Name = "Job #")]
         [Required(ErrorMessage = "No. de caja con piezas requerido.")]
         public int RecordPieceBoxNo { get; set; }
 
         [Display(Name = "Tracking ID")]
-        [Required(ErrorMessage = "Tracking de papeleria requerido.")]
         public string RecordTrackingId { get; set; }
 
-        [Display(Name = "No. de Serie.")]
+        [Display(Name = "Serial#")]
         [Required(ErrorMessage = "No. de serie requerido.")]
-        public byte[] RecordSerialNo { get; set; }
+        public string RecordSerialNo { get; set; }
 
         [Display(Name = "QTY")]
         [Required(ErrorMessage = "Cantidad requerida.")]
         public byte RecordQuantity { get; set; }
 
-        [Display(Name = "Fecha de embarque")]
+        [Display(Name = "Date(D/M/Y)")]
         [Required(ErrorMessage = "Fecha requerida.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: dd MMM yyyy}")]
         public System.DateTime RecordDate { get; set; }
 
-        [Display(Name = "Tracking de fedex")]
+        [Display(Name = "Fedex Tracking ")]
         [Required(ErrorMessage = "Tracking de fedex requerido.")]
-        [StringLength(20, ErrorMessage = "La guia no puede ser mayor a 20 digitos.")]
-        public string RecordTrackingFedex { get; set; }
+        public string RecordFedexTracking { get; set; }
 
-        [Display(Name = "No. de Caja con Documento")]
+        [Display(Name = "No. Caja CD")]
         [Required(ErrorMessage = "No. de caja con documento requerido.")]
         public string RecordControlBoxNo { get; set; }
 
@@ -67,35 +61,47 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Tipo de Embarque requerido.")]
         public int ShipmentTypeID { get; set; }
 
-        [Display(Name = "No. del producto retrabajado")]
+        [Display(Name = "Retrabajado")]
         public string RecordRework { get; set; }
 
-        [Display(Name = "Sello de Seguridad")]
+        [Display(Name = "Sello de Seguridad1")]
         [Required(ErrorMessage = "No. del sello de seguridad requerido.")]
-        public byte[] RecordSeguritySeal { get; set; }
-        
+        public string RecordSeguritySeal1 { get; set; }
+
+        [Display(Name = "Sello de Seguridad2")]
+        [Required(ErrorMessage = "No. del sello de seguridad requerido.")]
+        public string RecordSeguritySeal2 { get; set; }
+
+        [Display(Name = "Sello de Seguridad3")]
+        [Required(ErrorMessage = "No. del sello de seguridad requerido.")]
+        public string RecordSeguritySeal3 { get; set; }
+
+        [Display(Name = "Sello de Seguridad4")]
+        [Required(ErrorMessage = "No. del sello de seguridad requerido.")]
+        public string RecordSeguritySeal4 { get; set; }
+
         [Display(Name = "Orden del Trabajo")]
         public string RecordWorkOrder { get; set; }
 
         [Display(Name = "Comentario")]
-        [StringLength(200, ErrorMessage = "La descripción de la instrucción, no debe de tener mas de 200 caracteres.")]
         public string RecordComment { get; set; }
 
         [Display(Name = "Comentario1")]
-        [StringLength(200, ErrorMessage = "La descripción de la instrucción, no debe de tener mas de 200 caracteres.")]
         public string RecordComment1 { get; set; }
 
         [Display(Name = "Comentario2")]
-        [StringLength(200, ErrorMessage = "La descripción de la instrucción, no debe de tener mas de 200 caracteres.")]
         public string RecordComment2 { get; set; }
-        
+
+        [Display(Name ="FAI(PrimeraPieza)")]
+        public string RecordFAI { get; set; }
+
         [Display(Name = "Tipo de Servicio")]
         [Required(ErrorMessage = "Tipo de servicio requerido.")]
         public string RecordServiceType { get; set; }
 
-        public virtual TipoEmbarqueViewModel ShipmentType { get; set; }
+        public virtual TipoEmbarqueViewModel CatalogShipmentType { get; set; }
         public virtual ClientesViewModel Clients { get; set; }
-        public virtual ProductosViewModel Shipping_Catalogo_Products { get; set; }
+        public virtual Shipping_Catalog_ProductsViewModel Shipping_Catalog_Products { get; set; }
 
     }
 }

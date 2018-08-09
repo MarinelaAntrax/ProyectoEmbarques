@@ -9,8 +9,8 @@ using System.Web.Mvc;
 
 namespace ProyectoEmbarques.Controllers
 {
-        public partial class EnsamblesRealizadosController : Controller
-        {
+    public partial class EnsamblesRealizadosController : Controller
+    {
         private EnsamblesRealizadosService _SumarioEmbarquesService;
 
         public EnsamblesRealizadosController()
@@ -30,5 +30,4 @@ namespace ProyectoEmbarques.Controllers
 
         }
     }
- }
-
+}

@@ -11,9 +11,8 @@
         <h4>
             Packing List
         </h4>
-
         <div class="box-col">
-            @using (Html.BeginForm("Download_PackingListPDF", "Generar"))
+            @using (Html.BeginForm("Download_PackingListPDF", "Reportes"))
             {
                 <button class='export-pdf k-button'>Export .PDF</button>
             }
@@ -22,21 +21,18 @@
         <h4>
             Manifiesto
         </h4>
-
         <div class="box-col">
-            @using (Html.BeginForm("Download_ManifiestoXLSX", "Generar"))
+            @using (Html.BeginForm("Download_ManifiestoXLSX", "Reportes"))
             {
                 <button class='export-pdf k-button'>Export .XLSX</button>
             }
-
         </div>
 
         <h4>
             Embarques Cantidad Realizada Diariamente
         </h4>
-
         <div class="box-col">
-            @using (Html.BeginForm("Download_EmbarquesDiariosPDF", "Generar"))
+            @using (Html.BeginForm("EmbarquesDiarios_PDF", "Reportes"))
             {
                 <button class='export-pdf k-button'>Export .PDF</button>
             }
@@ -44,7 +40,7 @@
 
 
         <div class="box-col">
-            @using (Html.BeginForm("Download_EmbarquesDiariosXLSX", "Generar"))
+            @using (Html.BeginForm("EmbarquesDiarios_Excel", "Reportes"))
             {
                 <button class='export-pdf k-button'>Export .XLSX</button>
             }
@@ -56,16 +52,15 @@
         <h4>
             Embarques Hot Shot Realizados Diariamente
         </h4>
-
         <div class="box-col">
-            @using (Html.BeginForm("Download_EmbarquesHotShotPDF", "Generar"))
+            @using (Html.BeginForm("EmbarquesHotShot", "Reportes"))
             {
                 <button class='export-pdf k-button'>Export .PDF</button>
             }
         </div>
 
         <div class="box-col">
-            @using (Html.BeginForm("Download_EmbarquesHotShotXLSX", "Generar"))
+            @using (Html.BeginForm("Download_EmbarquesHotShotXLSX", "Reportes"))
             {
                 <button class='export-pdf k-button'>Export .XLSX</button>
             }
@@ -74,16 +69,15 @@
         <h4>
             Reportes por Filtro de Fecha de Emabarque Realizados
         </h4>
-
         <div class="box-col">
-            @using (Html.BeginForm("Download_ReportesFechaNSerieXLSX", "Generar"))
+            @using (Html.BeginForm("ReportesFechaNSerieXLSX", "Reportes"))
             {
                 <button class='export-pdf k-button'>.XLSX (Con N/Serie)</button>
             }
         </div>
 
         <div class="box-col">
-            @using (Html.BeginForm("Download_ManifiestoNAgrupadosXLSX", "Generar"))
+            @using (Html.BeginForm("ManifiestoNAgrupadosXLSX", "Reportes"))
             {
                 <button class='export-pdf k-button'>.XLSX (N/P Agrupados)</button>
             }
@@ -97,13 +91,12 @@
         <h4>
             Reporte Direcciones de Clientes
         </h4>
-
         <div class="box-col">
-            @using (Html.BeginForm("Index", "Generar"))
+            @using (Html.BeginForm("DireccionesClientes", "Reportes"))
             {
                 <button class='export-pdf k-button' type="submit">Generar</button>
             }
-            </div>
+        </div>
     </div>
 </div>
 

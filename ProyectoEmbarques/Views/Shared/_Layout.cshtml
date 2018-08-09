@@ -5,13 +5,10 @@
     <title>@ViewBag.Title - CONTROL DE EMBARQUES - BAE  Systems</title>
     <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/bae-styles.css")" rel="stylesheet" type="text/css" />
-
     @* Content-box fixes as per http://docs.telerik.com/kendo-ui/third-party/using-kendo-with-twitter-bootstrap article  *@
     <link href="@Url.Content("~/Content/box-sizing-fixes.css")" rel="stylesheet" type="text/css" />
-
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/sweetalert2.css")" rel="stylesheet" type="text/css" />
-
     <link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
     <link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -22,16 +19,8 @@
     <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 </head>
 <body>
-
-
-
-
     @Html.Partial("_MainMenu")
-
     @Html.Partial("_Menu")
-
-
-
     <div class="body-content">
         <div class="container">
             <br /><br />
@@ -39,12 +28,10 @@
             <br /><br /><br />
             <footer>
                 <hr />
-
                 <p></p>
             </footer>
         </div>
     </div>
-
     <script>
         $(document).ready(function () {
             $("#responsive-panel").kendoResponsivePanel({
@@ -57,7 +44,6 @@
             $("#responsive-panel").getKendoResponsivePanel().toggle();
         }
     </script>
-
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

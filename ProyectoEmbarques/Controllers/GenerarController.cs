@@ -17,12 +17,10 @@ namespace ProyectoEmbarques.Controllers
         {
             return View();
         }
-
         public ActionResult Download_PackingListPDF()
         {
             PdfFormatProvider formatProvider = new PdfFormatProvider();
             formatProvider.ExportSettings.ImageQuality = ImageQuality.High;
-
             byte[] renderedBytes = null;
             using (MemoryStream ms = new MemoryStream())
             {
@@ -30,7 +28,6 @@ namespace ProyectoEmbarques.Controllers
                 formatProvider.Export(document, ms);
                 renderedBytes = ms.ToArray();
             }
-
             return File(renderedBytes, "application/pdf", "PackingList.pdf");
         }
     }
