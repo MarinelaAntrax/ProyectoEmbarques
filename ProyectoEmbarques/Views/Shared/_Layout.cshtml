@@ -5,7 +5,7 @@
     <title>@ViewBag.Title - CONTROL DE EMBARQUES - BAE  Systems</title>
     <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/bae-styles.css")" rel="stylesheet" type="text/css" />
-    @* Content-box fixes as per http://docs.telerik.com/kendo-ui/third-party/using-kendo-with-twitter-bootstrap article  *@
+  
     <link href="@Url.Content("~/Content/box-sizing-fixes.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/sweetalert2.css")" rel="stylesheet" type="text/css" />
@@ -21,7 +21,6 @@
 <body>
     @Html.Partial("_MainMenu")
     @Html.Partial("_Menu")
-    <div class="body-content">
         <div class="container">
             <br /><br />
             @RenderBody()
@@ -31,7 +30,6 @@
                 <p></p>
             </footer>
         </div>
-    </div>
     <script>
         $(document).ready(function () {
             $("#responsive-panel").kendoResponsivePanel({
@@ -44,6 +42,7 @@
             $("#responsive-panel").getKendoResponsivePanel().toggle();
         }
     </script>
+    @Html.Partial("_MainFooter")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

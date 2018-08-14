@@ -24,9 +24,9 @@ namespace ProyectoEmbarques.Controllers
         }
 
         //Load data to a grid
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
-            return Json(_SumarioEmbarquesService.Read().ToDataSourceResult(request));
+            return Json(_SumarioEmbarquesService.Read( starDate, endDate).ToDataSourceResult(request));
 
         }
     }

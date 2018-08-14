@@ -17,10 +17,10 @@
             <div class="col-md-10">
                 @(Html.Kendo().ComboBox()
                                         .Name("AreaID")
+                                        .Placeholder("Seleccione Area...")
                                         .DataTextField("AreaName")
                                         .DataValueField("AreaID")
                                         .Filter(FilterType.Contains)
-                                        .Placeholder("Seleccione el Area")
                                         .DataSource(source =>
                                         {
                                             source.Read(read =>
@@ -37,9 +37,9 @@
             <div class="col-md-10">
                 @(Html.Kendo().ComboBox()
                                 .Name("ProductName")
+                                .Placeholder("Seleccione No.Pieza...")
                                 .DataTextField("DATA")
                                 .DataValueField("ProductName")
-                                .Placeholder("Seleccione el No. Parte")
                                 .Filter(FilterType.Contains)
                                 .DataSource(source =>
                                 { source.Read(read =>
@@ -59,10 +59,12 @@
                                         .Placeholder("seleccione Area Interna")
                                         .DataTextField("Text")
                                         .DataValueField("Value")
-                                        .BindTo(new List<SelectListItem>() {
-                                        new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
-                                        new SelectListItem() { Text = "WK o RM", Value = "2" },
-                                        new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" } })
+                                        .BindTo(new List<SelectListItem>()
+                                            {
+                                                new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
+                                                new SelectListItem() { Text = "WK o RM", Value = "2" },
+                                                new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" }
+                                            })
                                         .SelectedIndex(3)
                                         .Suggest(false)
                                         .HtmlAttributes(new { style = "width:50%;" }) )

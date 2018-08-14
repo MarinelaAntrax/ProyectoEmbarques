@@ -25,7 +25,6 @@ namespace ProyectoEmbarques.Models.Services
 
             if (result == null || UpdateDatabase)
             {
-
                 //IList<Shipping_RecordsViewModel> result = new List<Shipping_RecordsViewModel>();
                 result = Entities.Shipping_Records.Select(componente => new Shipping_RecordsViewModel
                 {
@@ -68,6 +67,8 @@ namespace ProyectoEmbarques.Models.Services
                     RecordSeguritySeal2 = componente.RecordSeguritySeal2,
                     RecordSeguritySeal3 = componente.RecordSeguritySeal3,
                     RecordSeguritySeal4 = componente.RecordSeguritySeal4
+                   
+
                 }).ToList();
                 HttpContext.Current.Session["Shipping_Records"] = result;
             }
@@ -120,8 +121,12 @@ namespace ProyectoEmbarques.Models.Services
             return GetAll().FirstOrDefault(predicate);
         }
         public IEnumerable<Shipping_RecordsViewModel> Read()
+        {
+            return GetAll();
+        }
+            public IEnumerable<Shipping_RecordsViewModel> Read(DateTime starDate, DateTime endDate)
             {
-                return GetAll();
+                return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate);
             }
         public void Dispose()
         {

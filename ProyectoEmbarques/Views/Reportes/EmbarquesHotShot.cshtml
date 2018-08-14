@@ -1,26 +1,25 @@
-﻿
-        @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
+﻿@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
                             .Name("grid")
                              .ToolBar(tools =>
                              { tools.Pdf().Text("Exportar a PDF"); })
                        .Columns(columns =>
                        {
                            columns.Bound(o => o.RecordDate).Width(200);
-                           columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(200);
-                           columns.Bound(o => o.RecordQuantity).Width(200);
-                           columns.Bound(o => o.RecordSerialNo).Width(200);
-                           columns.Bound(o => o.Clients.ClientName).Width(200);
-                           columns.Bound(o => o.Clients.ClientAddress).Width(200);
-                           columns.Bound(o => o.RecordFedexTracking).Width(200);
-                           columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Width(200);
-                           columns.Bound(o => o.RecordServiceType).Width(250);
+                           columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Title("P/N").Width(200);
+                           columns.Bound(o => o.RecordQuantity).Title("Qty").Width(200);
+                           columns.Bound(o => o.RecordSerialNo).Title("No.Serial").Width(200);
+                           columns.Bound(o => o.Clients.ClientName).Title("Attention").Width(200);
+                           columns.Bound(o => o.Clients.ClientAddress).Title("Organization").Width(200);
+                           columns.Bound(o => o.RecordFedexTracking).Title("Tracking Fedex").Width(200);
+                           columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Title("Material Type").Width(200);
+                           columns.Bound(o => o.RecordServiceType).Title("Service").Width(250);
                        })
                        .Sortable()
                        .Scrollable(scrollable => scrollable.Enabled(true))
                        .Filterable()
                        .Sortable()
                        .Pageable()
-                       .Pdf(ex => ex.FileName("File.PDF"))
+                       .Pdf(ex => ex.FileName("List of Parts  Hot Shot.PDF"))
                        .HtmlAttributes(new { style = "height: 543px;" })
                        .DataSource(dataSource => dataSource
 

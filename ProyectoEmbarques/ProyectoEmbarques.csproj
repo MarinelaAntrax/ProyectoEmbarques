@@ -164,7 +164,6 @@
     <Compile Include="Controllers\CreatePDF.cs" />
     <Compile Include="Controllers\EnsamblesController.cs" />
     <Compile Include="Controllers\EnsamblesRealizadosController.cs" />
-    <Compile Include="Controllers\Excel_ExportController.cs" />
     <Compile Include="Controllers\Shipping_RecordsController.cs" />
     <Compile Include="Controllers\GenerarController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -241,7 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bae-styles.css" />
-    <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -249,7 +247,6 @@
     <Content Include="Content\Images\bae-logo-grey.png" />
     <Content Include="Content\Images\bae-logo.svg" />
     <Content Include="Content\Images\heading-banner.png" />
-    <Content Include="Content\kendo.compatibility.css" />
     <Content Include="Content\sweetalert2.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,7 +255,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <EntityDeploy Include="Models\BAESystemsGuaymas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BAESystemsGuaymas.Designer.cs</LastGenOutput>
@@ -291,7 +287,6 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sweetalert2.all.js" />
@@ -320,15 +315,15 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
-    <Content Include="Views\Excel_Export\Index.cshtml" />
     <Content Include="Views\Reportes\EmbarquesHotShot.cshtml" />
     <Content Include="Views\Reportes\Download_ManifiestoXLSX.cshtml" />
     <Content Include="Views\Reportes\EmbarquesDiarios_PDF.cshtml" />
     <Content Include="Views\Reportes\EmbarquesDiarios_Excel.cshtml" />
     <Content Include="Views\Reportes\Download_EmbarquesHotShotXLSX.cshtml" />
     <Content Include="Views\Reportes\ReportesFechaNSerieXLSX.cshtml" />
-    <Content Include="Views\Reportes\ManifiestoNAgrupadosXLSX.cshtml" />
+    <Content Include="Views\Reportes\ReporteFechaNAgrupadosXLSX.cshtml" />
     <Content Include="Views\Reportes\DireccionesClientes.cshtml" />
+    <Content Include="Views\Shared\_MainFooter.cshtml" />
     <None Include="Views\Shipping_Records\Create.cshtml" />
     <Content Include="Views\Ensambles\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />
@@ -347,7 +342,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Areas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

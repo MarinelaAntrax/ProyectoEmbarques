@@ -16,15 +16,16 @@ namespace ProyectoEmbarques.Models
         public int AreaID { get; set; }
 
         [Display(Name = "P/N")]
-        [Required(ErrorMessage = "Nombre del producto requerida.")]
+        [Required(ErrorMessage = "Nombre del producto requerido.")]
         [StringLength(30, ErrorMessage = "La descripcion del componente no puede ser mayor de 30 caracteres.")]
         public string ProductName { get; set; }
 
         [Display(Name = "Area Interna del Producto")]
-        [Required(ErrorMessage = "Nombre del Area Interna requerida.")]
+        [Required(ErrorMessage = "Area Interna requerida.")]
         public string ProductInternaArea { get; set; }
 
         [Display(Name = "Tipo del Producto")]
+        [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
 
         [Display(Name = "Shop")]

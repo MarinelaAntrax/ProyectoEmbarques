@@ -1,1 +1,42 @@
-﻿
+﻿@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
+                .Name("grid")
+                .ToolBar(tools =>
+                { tools.Excel().Text("Exportar a EXCEL"); })
+                .Columns(columns =>
+                {
+                    columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Title("P/N").Width(200);
+                    columns.Bound(o => o.Shipping_Catalog_Products.AreaName).Title("Shop").Width(200);
+                    columns.Bound(o => o.Clients.ClientName).Title("Attn").Width(200);
+                    columns.Bound(o => o.Clients.ClientAddress).Title("Org").Width(200);
+                    columns.Bound(o => o.RecordPieceBoxNo).Title("Job #").Width(200);
+                    columns.Bound(o => o.RecordTrackingId).Title("Track. ID").Width(200);
+                    columns.Bound(o => o.RecordSerialNo).Title("Serial #").Width(200);
+                    columns.Bound(o => o.RecordQuantity).Title("QTY").Width(200);
+                    columns.Bound(o => o.RecordDate).Title("Date(D/M/Y)").Width(200);
+                    columns.Bound(o => o.RecordFedexTracking).Title("Fedex Tracking").Width(200);
+                    columns.Bound(o => o.CatalogShipmentType.ShipmentType).Title("Tipo").Width(200);
+                    columns.Bound(o => o.RecordServiceType).Title("Service").Width(250);
+                    columns.Bound(o => o.RecordSeguritySeal1).Title("Sello 1").Width(200);
+                    columns.Bound(o => o.RecordSeguritySeal2).Title("Sello 2").Width(200);
+                    columns.Bound(o => o.RecordSeguritySeal3).Title("Sello 3").Width(200);
+                    columns.Bound(o => o.RecordSeguritySeal4).Title("Sello 4").Width(200);
+                    columns.Bound(o => o.RecordComment).Title("Comentario").Width(200);
+                    columns.Bound(o => o.RecordComment1).Title("Comentario1").Width(200);
+                    columns.Bound(o => o.RecordComment2).Title("Comentario2").Width(200);
+                })
+
+                .Sortable()
+                .Scrollable(scrollable => scrollable.Enabled(true))
+                .Filterable()
+                .Sortable()
+                .Pageable()
+                .Excel(ex => ex.FileName("List of parts Hot Shot EX.XLSX"))
+                .HtmlAttributes(new { style = "height: 543px;" })
+                .DataSource(dataSource => dataSource
+
+                               .Ajax()
+                                .Read(read => read.Action("Read", "EnsamblesRealizados"))
+                               .PageSize(100)
+                            )
+)
+

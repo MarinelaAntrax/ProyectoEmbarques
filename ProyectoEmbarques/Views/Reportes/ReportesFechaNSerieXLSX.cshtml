@@ -1,1 +1,43 @@
-﻿
+﻿@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
+                .Name("grid")
+                .ToolBar(tools =>
+                { tools.Excel().Text("Exportar a EXCEL"); })
+                .Columns(columns =>
+                {
+                    columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Title("NPpieza").Width(200);
+                    columns.Bound(o => o.Shipping_Catalog_Products.AreaName).Title("Area").Width(200);
+                    columns.Bound(o => o.Clients.ClientName).Title("Dirigidoa").Width(200);
+                    columns.Bound(o => o.Clients.ClientAddress).Title("Compañia").Width(200);
+                    columns.Bound(o => o.RecordWorkOrder).Title("JobNumber").Width(200);
+                    columns.Bound(o => o.RecordTrackingId).Title("TrackingPapeleria").Width(200);
+                    columns.Bound(o => o.RecordSerialNo).Title("NoSerie").Width(200);
+                    columns.Bound(o => o.RecordQuantity).Title("Cantidad").Width(200);
+                    columns.Bound(o => o.RecordDate).Title("Fecha de Embarque").Width(200);
+                    columns.Bound(o => o.RecordFedexTracking).Title("TrackingCajadeEnvio").Width(200);
+                    columns.Bound(o => o.CatalogShipmentType.ShipmentType).Title("Tipo de Embarque").Width(200);
+                    columns.Bound(o => o.RecordServiceType).Title("TipoServicio").Width(250);
+                    columns.Bound(o => o.RecordSeguritySeal1).Title("Sello 1").Width(200);
+                    columns.Bound(o => o.RecordSeguritySeal2).Title("Sello 2").Width(200);
+                    columns.Bound(o => o.RecordSeguritySeal3).Title("Sello 3").Width(200);
+                    columns.Bound(o => o.RecordSeguritySeal4).Title("Sello 4").Width(200);
+                    columns.Bound(o => o.RecordComment).Title("Comentario").Width(200);
+                    columns.Bound(o => o.RecordComment1).Title("Comentario1").Width(200);
+                    columns.Bound(o => o.RecordComment2).Title("Comentario2").Width(200);
+                   
+                })
+
+                .Sortable()
+                .Scrollable(scrollable => scrollable.Enabled(true))
+                .Filterable()
+                .Sortable()
+                .Pageable()
+                .Excel(ex => ex.FileName("Ver Embarques Realizados con N_Serie.XLSX"))
+                .HtmlAttributes(new { style = "height: 543px;" })
+                .DataSource(dataSource => dataSource
+
+                               .Ajax()
+                                .Read(read => read.Action("Read", "EnsamblesRealizados"))
+                               .PageSize(100)
+                            )
+)
+

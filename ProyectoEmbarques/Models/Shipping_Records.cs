@@ -11,19 +11,38 @@ namespace ProyectoEmbarques.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Shipping_Records
     {
         public int RecordID { get; set; }
+        [Required(ErrorMessage = "Nombre del cliente requerido.")]
         public int ClientID { get; set; }
+
+        [Required(ErrorMessage = "No. de parte requerida.")]
         public int ProductID { get; set; }
-        public byte RecordQuantity { get; set; }
+
+        [Required(ErrorMessage = "Cantidad requerida.")]
+        public int RecordQuantity { get; set; }
+
         public System.DateTime RecordDate { get; set; }
+
+        [Required(ErrorMessage = "Tracking de fedex requerido.")]
         public string RecordFedexTracking { get; set; }
+
+        [Required(ErrorMessage = "No. de caja con Doc. requerido.")]
         public string RecordControlBoxNo { get; set; }
+
+        [Required(ErrorMessage = "No. de caja con piezas requerido.")]
         public int RecordPieceBoxNo { get; set; }
+
+        [Required(ErrorMessage = "Tipo de Embarque requerido.")]
         public int ShipmentTypeID { get; set; }
+
+        [Required(ErrorMessage = "Tipo de servicio requerido.")]
         public string RecordServiceType { get; set; }
+
+
         public string RecordComment { get; set; }
         public string RecordWorkOrder { get; set; }
         public string RecordSerialNo { get; set; }

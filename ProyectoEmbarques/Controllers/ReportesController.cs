@@ -33,7 +33,7 @@ namespace ProyectoEmbarques.Controllers
         public ActionResult ReportesFechaNSerieXLSX(){
             return View();
         }
-        public ActionResult ManifiestoNAgrupadosXLSX(){
+        public ActionResult ReporteFechaNAgrupadosXLSX(){
             return View();
         }
         public ActionResult DireccionesClientes(){

@@ -3,25 +3,24 @@
 }
 
 <h2 class="page-header">@ViewBag.Title</h2>
-    @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel>()
-                                            .Name("grid")
-                                            .Columns(columns =>
-                                            {
-                                                columns.Bound(o => o.ProductName).Width(10);
-                                                columns.Bound(o => o.AreaName).Width(10);
-                                            })
-                                            .Sortable()
-                                            .Scrollable(scrollable => scrollable.Virtual(true))
-                                            .Filterable()
-                                            .HtmlAttributes(new { style = "height: 543px;" })
-                                            .DataSource(dataSource => dataSource
-                                                .Ajax()
-                                                .PageSize(100)
-                                                .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
-                                             )
-    )
-
-
+@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel>()
+                        .Name("grid")
+                        .Columns(columns =>
+                        {
+                            columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
+                            columns.Bound(o => o.AreaName).Title("Area").Width(5);
+                        })
+                        .Sortable()
+                        .Groupable()
+                        .Scrollable(scrollable => scrollable.Virtual(true))
+                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                        .HtmlAttributes(new { style = "height: 650px;" })
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .PageSize(100)
+                            .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
+                     ) 
+                     )
 <style>
 
     /*horizontal Grid scrollbar should appear if the browser window is shrinked too much*/

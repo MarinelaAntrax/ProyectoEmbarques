@@ -14,7 +14,7 @@
         <div class="box-col">
             @using (Html.BeginForm("Download_PackingListPDF", "Reportes"))
             {
-                <button class='export-pdf k-button'>Export .PDF</button>
+                <button  class='export-pdf k-button'>Export .PDF</button>
             }
         </div>
 
@@ -42,7 +42,7 @@
         <div class="box-col">
             @using (Html.BeginForm("EmbarquesDiarios_Excel", "Reportes"))
             {
-                <button class='export-pdf k-button'>Export .XLSX</button>
+                <button formtarget="_blank" class='export-pdf k-button'>Export .XLSX</button>
             }
         </div>
     </div>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="box-col">
-            @using (Html.BeginForm("ManifiestoNAgrupadosXLSX", "Reportes"))
+            @using (Html.BeginForm("ReporteFechaNAgrupadosXLSX", "Reportes"))
             {
                 <button class='export-pdf k-button'>.XLSX (N/P Agrupados)</button>
             }

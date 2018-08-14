@@ -32,7 +32,7 @@ namespace ProyectoEmbarques.Models
         public DbSet<WireKit> WireKit { get; set; }
         public DbSet<CatalogShipmentType> CatalogShipmentType { get; set; }
         public DbSet<VIEWDATA> VIEWDATA { get; set; }
-        public DbSet<Shipping_Records> Shipping_Records { get; set; }
         public DbSet<Shipping_Catalog_Products> Shipping_Catalog_Products { get; set; }
+        public DbSet<Shipping_Records> Shipping_Records { get; set; }
     }
 }

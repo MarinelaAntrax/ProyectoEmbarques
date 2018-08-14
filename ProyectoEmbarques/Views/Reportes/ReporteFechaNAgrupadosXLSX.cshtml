@@ -1,0 +1,28 @@
+﻿@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>
+    ()
+    .Name("grid")
+    .ToolBar(tools =>
+    { tools.Excel().Text("Exportar a EXCEL"); })
+    .Columns(columns =>
+    {
+    columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Title("NPPieza").Width(200);
+    columns.Bound(o => o.RecordQuantity).Title("SumaDeCantidad").Width(200);
+    columns.Bound(o => o.Clients.ClientName).Title("Dirigidoa").Width(200);
+    columns.Bound(o => o.Clients.ClientAddress).Title("Compañia").Width(200);
+    columns.Bound(o => o.RecordFedexTracking).Title("TrackingCajadeEnvio").Width(200);
+    columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Title("Tipo").Width(200);
+    })
+    .Sortable()
+    .Scrollable(scrollable => scrollable.Enabled(true))
+    .Filterable()
+    .Sortable()
+    .Pageable()
+    .Excel(ex => ex.FileName("List of Parts Consolidated (Agrupados).XLSX"))
+    .HtmlAttributes(new { style = "height: 543px;" })
+    .DataSource(dataSource => dataSource
+
+    .Ajax()
+    .Read(read => read.Action("Read", "EnsamblesRealizados"))
+    .PageSize(100)
+    )
+)

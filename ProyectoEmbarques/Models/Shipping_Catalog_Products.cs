@@ -11,7 +11,8 @@ namespace ProyectoEmbarques.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Shipping_Catalog_Products
     {
         public Shipping_Catalog_Products()
@@ -20,9 +21,17 @@ namespace ProyectoEmbarques.Models
         }
     
         public int ProductID { get; set; }
+
+        [Required(ErrorMessage = "Nombre del Area requerida.")]
         public int AreaID { get; set; }
+
+        [Required(ErrorMessage = "Nombre del producto requerido.")]
         public string ProductName { get; set; }
+
+        [Required(ErrorMessage = " Area Interna requerida.")]
         public string ProductInternalArea { get; set; }
+
+        [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
     
         public virtual Areas Areas { get; set; }
