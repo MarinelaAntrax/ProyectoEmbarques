@@ -31,15 +31,16 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Tracking de fedex requerido.")]
         public decimal RecordFedexTracking { get; set; }
 
+        [Required(ErrorMessage = "No. Caja Con Doc. requerido.")]
         public decimal RecordControlBoxNo { get; set; }
 
-        [Required(ErrorMessage = "No. de caja con piezas requerido.")]
+        [Required(ErrorMessage = "No. Caja de Piezas requerido.")]
         public decimal RecordPieceBoxNo { get; set; }
 
         [Required(ErrorMessage = "Tipo de Embarque requerido.")]
         public int ShipmentTypeID { get; set; }
 
-        [Required(ErrorMessage = "Tipo de servicio requerido.")]
+        [Required(ErrorMessage = "Tipo de Servicio requerido.")]
         public string RecordServiceType { get; set; }
 
         public string RecordComment { get; set; }

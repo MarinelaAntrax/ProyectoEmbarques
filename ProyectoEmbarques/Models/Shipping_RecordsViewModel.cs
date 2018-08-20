@@ -13,7 +13,6 @@ namespace ProyectoEmbarques.Models
         public int RecordID { get; set; }
         
         [Display(Name = "No. Parte")]
-        [Required(ErrorMessage = "No. de parte requerida.")]
         [StringLength(25, ErrorMessage = "El ID de la herramienta no puede ser mayor de 25 caracteres")]
         public int ProductID { get; set; }
 
@@ -21,7 +20,6 @@ namespace ProyectoEmbarques.Models
         public string AreaID { get; set; }
 
         [Display(Name = "Attn")]
-        [Required(ErrorMessage = "Nombre del cliente requerido.")]
         [StringLength(100, ErrorMessage = "El nombre del cliente no puede ser mayor de 100 caracteres.")]
         public int ClientID { get; set; }
 
@@ -29,7 +27,6 @@ namespace ProyectoEmbarques.Models
         public string ClientAddress { get; set; }
 
         [Display(Name = "No. de Caja Piezas")]
-        [Required(ErrorMessage = "No. de caja con piezas requerido.")]
         public decimal RecordPieceBoxNo { get; set; }
 
         [Display(Name = "Tracking ID")]
@@ -47,14 +44,12 @@ namespace ProyectoEmbarques.Models
         public System.DateTime RecordDate { get; set; }
 
         [Display(Name = "Fedex Tracking ")]
-        [Required(ErrorMessage = "Tracking de fedex requerido.")]
         public decimal RecordFedexTracking { get; set; }
 
         [Display(Name = "No. Caja CD")]
         public decimal RecordControlBoxNo { get; set; }
 
         [Display(Name = "Tipo de Embarque")]
-        [Required(ErrorMessage = "Tipo de Embarque requerido.")]
         public int ShipmentTypeID { get; set; }
 
         [Display(Name = "Retrabajado")]
@@ -64,19 +59,15 @@ namespace ProyectoEmbarques.Models
         public string RecordTransfer { get; set; }
 
         [Display(Name = "Sello de Seguridad1")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal1 { get; set; }
 
         [Display(Name = "Sello de Seguridad2")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal2 { get; set; }
 
         [Display(Name = "Sello de Seguridad3")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal3 { get; set; }
 
         [Display(Name = "Sello de Seguridad4")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal4 { get; set; }
 
         [Display(Name = "Job #")]
@@ -98,7 +89,6 @@ namespace ProyectoEmbarques.Models
         public string RecordFAI { get; set; }
 
         [Display(Name = "Tipo de Servicio")]
-        [Required(ErrorMessage = "Tipo de servicio requerido.")]
         public string RecordServiceType { get; set; }
         
         public string RecordDescripcion { get; set; }
