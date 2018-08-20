@@ -25,12 +25,9 @@ namespace ProyectoEmbarques.Models.Services
             }).ToList();
             return result;
         }
-
         public IEnumerable<EnsamblesViewModel> Read()
         {
             return GetAll();
-        }
-    }
-}
+        } } }
 
     

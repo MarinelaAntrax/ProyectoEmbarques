@@ -19,7 +19,7 @@ namespace ProyectoEmbarques.Models
         {
             this.Shipping_Records = new HashSet<Shipping_Records>();
         }
-    
+        
         public int ProductID { get; set; }
 
         [Required(ErrorMessage = "Nombre del Area requerida.")]
@@ -28,7 +28,7 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Nombre del producto requerido.")]
         public string ProductName { get; set; }
 
-        [Required(ErrorMessage = " Area Interna requerida.")]
+        [Required(ErrorMessage = "Area Interna requerida.")]
         public string ProductInternalArea { get; set; }
 
         [Required(ErrorMessage = "Tipo del producto requerido.")]

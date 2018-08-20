@@ -30,30 +30,22 @@ namespace ProyectoEmbarques.Models.Services
                 {
                     ClientID = componente.ClientID,
                     Clients = new ClientesViewModel()
-                    {
-                        ClientName = componente.Clients.ClientName,
-                        ClientAddress = componente.Clients.ClientAddress
-                    },
+                    {   ClientName = componente.Clients.ClientName,
+                        ClientAddress = componente.Clients.ClientAddress },
                     ProductID = componente.ProductID,
                     Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
-                    {
-                        ProductName = componente.Shipping_Catalog_Products.ProductName,
+                    {   ProductName = componente.Shipping_Catalog_Products.ProductName,
                         AreaName = componente.Shipping_Catalog_Products.Areas.AreaName,
-                        ProductType = componente.Shipping_Catalog_Products.ProductType,
-                    },
+                        ProductType = componente.Shipping_Catalog_Products.ProductType },
                     RecordID = componente.RecordID,
                     RecordQuantity = componente.RecordQuantity,
                     RecordDate = componente.RecordDate,
                     RecordFedexTracking = componente.RecordFedexTracking,
                     RecordControlBoxNo = componente.RecordControlBoxNo,
                     RecordPieceBoxNo = componente.RecordPieceBoxNo,
-
                     ShipmentTypeID = componente.ShipmentTypeID,
                     CatalogShipmentType = new TipoEmbarqueViewModel()
-                    {
-                        ShipmentType = componente.CatalogShipmentType.ShipmentType
-                    },
-
+                    {   ShipmentType = componente.CatalogShipmentType.ShipmentType },
                     RecordComment = componente.RecordComment,
                     RecordWorkOrder = componente.RecordWorkOrder,
                     RecordSerialNo = componente.RecordSerialNo,
@@ -63,20 +55,16 @@ namespace ProyectoEmbarques.Models.Services
                     RecordComment2 = componente.RecordComment2,
                     RecordServiceType = componente.RecordServiceType,
                     RecordFAI = componente.RecordFAI,
+                    RecordTransfer = componente.RecordTransfer,
                     RecordSeguritySeal1 = componente.RecordSeguritySeal1,
                     RecordSeguritySeal2 = componente.RecordSeguritySeal2,
                     RecordSeguritySeal3 = componente.RecordSeguritySeal3,
                     RecordSeguritySeal4 = componente.RecordSeguritySeal4
-                   
-
                 }).ToList();
                 HttpContext.Current.Session["Shipping_Records"] = result;
-            }
-                return result;
                 }
-           
-
-          
+                return result;
+                } 
         public void Create(Shipping_RecordsViewModel Record)
         {           
             if (!UpdateDatabase)
@@ -106,6 +94,7 @@ namespace ProyectoEmbarques.Models.Services
                 entity.RecordComment1 = Record.RecordComment1;
                 entity.RecordComment2 = Record.RecordComment2;
                 entity.RecordFAI = Record.RecordFAI;
+                entity.RecordTransfer = Record.RecordTransfer;
                 entity.RecordSeguritySeal1 = Record.RecordSeguritySeal1;
                 entity.RecordSeguritySeal2 = Record.RecordSeguritySeal2;
                 entity.RecordSeguritySeal3 = Record.RecordSeguritySeal3;
@@ -113,9 +102,7 @@ namespace ProyectoEmbarques.Models.Services
                 Entities.Shipping_Records.Add(entity);
                 Entities.SaveChanges();
                 Record.RecordID = entity.RecordID;
-            }
-        }
-
+            } }
         public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
         {
             return GetAll().FirstOrDefault(predicate);
@@ -131,8 +118,6 @@ namespace ProyectoEmbarques.Models.Services
         public void Dispose()
         {
             Entities.Dispose();
-        }
-    }
-    }
+        }  }  }
 
 

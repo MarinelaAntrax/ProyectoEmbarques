@@ -15,6 +15,4 @@ namespace ProyectoEmbarques.Models
 
         [Display(Name = "Nombre de partes de la pieza")]
         public string ProductName { get; set; }
-
-    }
-}
+            } }

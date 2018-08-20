@@ -1,8 +1,7 @@
-﻿
-@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
-                            .Name("grid")
-                             .ToolBar(tools =>
-                             { tools.Pdf().Text("Exportar a PDF"); })
+﻿@(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
+                    .Name("grid")
+                       .ToolBar(tools =>
+                       { tools.Pdf().Text("Exportar a PDF"); })
                        .Columns(columns =>
                        {
                            columns.Bound(o => o.RecordDate).Width(200);
@@ -23,9 +22,8 @@
                        .Pdf(ex => ex.FileName("List of parts CONSOLIDATED.PDF"))
                        .HtmlAttributes(new { style = "height: 543px;" })
                        .DataSource(dataSource => dataSource
-
                            .Ajax()
-                            .Read(read => read.Action("Read", "EnsamblesRealizados"))
+                           .Read(read => read.Action("Read", "EnsamblesRealizados"))
                            .PageSize(100)
                         )
 )

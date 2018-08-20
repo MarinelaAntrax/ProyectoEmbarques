@@ -25,7 +25,7 @@ namespace ProyectoEmbarques.Controllers
         {
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);
         }
-    public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(_Service.Read().ToDataSourceResult(request));
         }
@@ -35,6 +35,4 @@ namespace ProyectoEmbarques.Controllers
                        where b.ClientID == id
                        select b.ClientAddress).FirstOrDefault();
             return Content(val.ToString());
-        }
-    }
-}
+        } } }

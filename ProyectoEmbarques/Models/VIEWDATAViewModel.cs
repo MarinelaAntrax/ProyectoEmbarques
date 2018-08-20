@@ -8,5 +8,4 @@ namespace ProyectoEmbarques.Models
     public class VIEWDATAViewModel
     {
         public string DATA { get; set; }
-    }
-}
+    } }

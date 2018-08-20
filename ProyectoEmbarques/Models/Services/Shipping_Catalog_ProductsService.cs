@@ -32,5 +32,4 @@ namespace ProyectoEmbarques.Models.Services
         {
             return GetAll();
         }
-    }
-}
+    } }

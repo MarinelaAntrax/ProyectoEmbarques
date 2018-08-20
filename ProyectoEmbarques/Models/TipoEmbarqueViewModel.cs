@@ -13,5 +13,4 @@ namespace controlEmbar.Models
         [Display(Name = "Tipo de embarque")]
         [Required(ErrorMessage = "Tipo de embarque requerido.")]
         public string ShipmentType { get; set; }
-    }
-}
+    } }

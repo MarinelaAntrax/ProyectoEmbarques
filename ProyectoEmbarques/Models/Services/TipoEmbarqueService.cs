@@ -30,6 +30,4 @@ namespace ProyectoEmbarques.Models.Services
         public IEnumerable<TipoEmbarqueViewModel> Read()
         {
             return GetAll();
-        }
-    }
-}
+        } } }

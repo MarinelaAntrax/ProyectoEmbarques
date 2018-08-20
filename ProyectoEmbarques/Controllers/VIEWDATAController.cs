@@ -15,7 +15,6 @@ namespace ProyectoEmbarques.Controllers
         {
             _Service = new VIEWDATAService();
         }
-   
         public ActionResult Index()
         {
             return View();
@@ -23,6 +22,4 @@ namespace ProyectoEmbarques.Controllers
         public ActionResult FillCombobox()
         {
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);
-        }
-    }
-}
+        } } }

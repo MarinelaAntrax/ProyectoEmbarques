@@ -27,6 +27,4 @@ namespace ProyectoEmbarques.Models.Services
         public IEnumerable<AreasViewModel> Read()
         {
             return GetAll();
-        }
-    }
-}
+        } } }

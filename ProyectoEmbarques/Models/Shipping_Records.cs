@@ -16,6 +16,7 @@ namespace ProyectoEmbarques.Models
     public partial class Shipping_Records
     {
         public int RecordID { get; set; }
+
         [Required(ErrorMessage = "Nombre del cliente requerido.")]
         public int ClientID { get; set; }
 
@@ -28,13 +29,12 @@ namespace ProyectoEmbarques.Models
         public System.DateTime RecordDate { get; set; }
 
         [Required(ErrorMessage = "Tracking de fedex requerido.")]
-        public string RecordFedexTracking { get; set; }
+        public decimal RecordFedexTracking { get; set; }
 
-        [Required(ErrorMessage = "No. de caja con Doc. requerido.")]
-        public string RecordControlBoxNo { get; set; }
+        public decimal RecordControlBoxNo { get; set; }
 
         [Required(ErrorMessage = "No. de caja con piezas requerido.")]
-        public int RecordPieceBoxNo { get; set; }
+        public decimal RecordPieceBoxNo { get; set; }
 
         [Required(ErrorMessage = "Tipo de Embarque requerido.")]
         public int ShipmentTypeID { get; set; }
@@ -42,19 +42,35 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Tipo de servicio requerido.")]
         public string RecordServiceType { get; set; }
 
-
         public string RecordComment { get; set; }
-        public string RecordWorkOrder { get; set; }
-        public string RecordSerialNo { get; set; }
-        public string RecordTrackingId { get; set; }
+
+        public Nullable<decimal> RecordWorkOrder { get; set; }
+
+        public Nullable<decimal> RecordSerialNo { get; set; }
+
+        public Nullable<decimal> RecordTrackingId { get; set; }
+
         public string RecordRework { get; set; }
+
         public string RecordComment1 { get; set; }
+
         public string RecordComment2 { get; set; }
+
         public string RecordFAI { get; set; }
+
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal1 { get; set; }
+
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal2 { get; set; }
+
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal3 { get; set; }
+
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal4 { get; set; }
+
+        public string RecordTransfer { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual CatalogShipmentType CatalogShipmentType { get; set; }

@@ -13,5 +13,4 @@ namespace ProyectoEmbarques.Models
         public string AreaName { get; set; }
 
         public virtual  Shipping_Catalog_Products Area { get; set; }
-    }
-} 
+    } } 

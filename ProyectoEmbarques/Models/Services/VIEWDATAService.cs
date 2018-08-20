@@ -20,13 +20,10 @@ namespace ProyectoEmbarques.Models.Services
             result = entities.VIEWDATA.Select(product => new VIEWDATAViewModel
             {
                 DATA = product.DATA,
-                
             }).ToList();
             return result;
         }
         public IEnumerable<VIEWDATAViewModel> Read()
         {
             return GetAll();
-        }
-    }
-}
+        } } }

@@ -35,5 +35,4 @@ namespace ProyectoEmbarques.Models
 
         public virtual Areas Areas { get; set; }
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
-    }
-}
+    } }

@@ -16,5 +16,4 @@ namespace ProyectoEmbarques.Models
         public string ComponentPN { get; set; }
         public string ComponentDescription { get; set; }
         public string ComponentName { get; set; }
-    }
-}
+    } }

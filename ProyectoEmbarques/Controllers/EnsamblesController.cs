@@ -19,12 +19,10 @@ namespace ProyectoEmbarques.Controllers
                 return View();
             }
             public ActionResult FillCombobox()
-        {
+            {
             return Json(_EnsamblesService.Read(), JsonRequestBehavior.AllowGet);
-        }
+            }
             public ActionResult Read([DataSourceRequest] DataSourceRequest request)
             {
                 return Json(_EnsamblesService.Read().ToDataSourceResult(request));
-            }
-        }
-}
+            } } }

@@ -12,22 +12,17 @@ namespace ProyectoEmbarques.Controllers
     public partial class EnsamblesRealizadosController : Controller
     {
         private EnsamblesRealizadosService _SumarioEmbarquesService;
-
         public EnsamblesRealizadosController()
         {
             _SumarioEmbarquesService = new EnsamblesRealizadosService();
         }
-
         public ActionResult Index()
         {
             return View();
         }
-
         //Load data to a grid
         public ActionResult Read([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
             return Json(_SumarioEmbarquesService.Read( starDate, endDate).ToDataSourceResult(request));
-
         }
-    }
-}
+    } }
