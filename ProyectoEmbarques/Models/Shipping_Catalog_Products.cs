@@ -19,7 +19,7 @@ namespace ProyectoEmbarques.Models
         {
             this.Shipping_Records = new HashSet<Shipping_Records>();
         }
-        
+        [ScaffoldColumn(false)]
         public int ProductID { get; set; }
 
         [Required(ErrorMessage = "Nombre del Area requerida.")]
@@ -33,7 +33,9 @@ namespace ProyectoEmbarques.Models
 
         [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
-    
+
+       public string AreaName { get; set; }
+
         public virtual Areas Areas { get; set; }
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
     }

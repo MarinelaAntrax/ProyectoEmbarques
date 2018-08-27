@@ -11,9 +11,13 @@ namespace ProyectoEmbarques.Models
        
         [ScaffoldColumn(false)]
         public int ProductID { get; set; }
-        
-       
+
+        [ScaffoldColumn(false)]
         public int AreaID { get; set; }
+
+        [Display(Name = "Shop")]
+        [Required(ErrorMessage = "Nombre del Area requerida.")]
+        public string AreaName { get; set; }
 
         [Display(Name = "P/N")]
         [Required(ErrorMessage = "Nombre del producto requerido.")]
@@ -22,16 +26,11 @@ namespace ProyectoEmbarques.Models
 
         [Display(Name = "Area Interna del Producto")]
         [Required(ErrorMessage = "Area Interna requerida.")]
-        public string ProductInternaArea { get; set; }
+        public string ProductInternalArea { get; set; }
 
         [Display(Name = "Tipo del Producto")]
         [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
-
-        [Display(Name = "Shop")]
-        [Required(ErrorMessage = "Nombre del Area requerida.")]
-        public string AreaName { get; set; }
-
 
         public virtual Areas Areas { get; set; }
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }

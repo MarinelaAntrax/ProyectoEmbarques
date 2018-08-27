@@ -54,10 +54,9 @@ namespace ProyectoEmbarques.Models
 
         [Display(Name = "Retrabajado")]
         public string RecordRework { get; set; }
-
-        [Display(Name = "Transferir")]
+        
         public string RecordTransfer { get; set; }
-
+       
         [Display(Name = "Sello de Seguridad1")]
         public string RecordSeguritySeal1 { get; set; }
 
@@ -94,6 +93,7 @@ namespace ProyectoEmbarques.Models
         public string RecordDescripcion { get; set; }
         public string RecordPeso { get; set; }
         public string RecordObservaciones { get; set; }
+       
 
         public virtual TipoEmbarqueViewModel CatalogShipmentType { get; set; }
         public virtual ClientesViewModel Clients { get; set; }

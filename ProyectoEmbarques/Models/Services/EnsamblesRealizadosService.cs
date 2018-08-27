@@ -6,12 +6,13 @@ using System.Web.Mvc;
 using System.Data;
 using System;
 using System.Web;
+using System.Data.Entity;
 
 namespace ProyectoEmbarques.Models.Services
 {
         public class EnsamblesRealizadosService : IDisposable
     {
-        private static bool UpdateDatabase = false;
+        private static bool UpdateDatabase = true;
         private BAESystemsGuaymasEntities Entities;
             public EnsamblesRealizadosService(BAESystemsGuaymasEntities Entities)
             {
@@ -118,6 +119,31 @@ namespace ProyectoEmbarques.Models.Services
         public void Dispose()
         {
             Entities.Dispose();
-        }  }  }
+        }
+        public void Update(Shipping_Records Record)
+        {
+            Record.Shipping_Catalog_Products = null;
+            if (!UpdateDatabase)
+            {
+                var target = One(e => e.RecordID == Record.RecordID);
+
+                if (target != null)
+                {
+                    target.RecordTransfer = Record.RecordTransfer;
+                 
+                }
+            }
+            else
+            {
+                var entity = new Shipping_Records();
+                
+                entity.RecordTransfer = Record.RecordTransfer;
+                
+                Entities.Shipping_Records.Attach(entity);
+                Entities.Entry(entity).State = EntityState.Modified;
+                Entities.SaveChanges();
+            }
+        }
+    }  }
 
 

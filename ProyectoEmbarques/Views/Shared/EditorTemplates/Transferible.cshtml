@@ -1,0 +1,16 @@
+﻿@(Html.Kendo().DropDownList()
+              .Name("RecordTransfer")
+              .DataTextField("Text")
+              .DataValueField("Value")
+              .BindTo(new List<SelectListItem>() {
+                      new SelectListItem() {
+                          Text = "Transferir",
+                          Value = "TRANSFERIR"
+                      },
+                      new SelectListItem() {
+                          Text = "No Transferir",
+                          Value = "NO TRANSFERIR"
+                      }
+              })
+      .Value("TRANSFERIR")
+)

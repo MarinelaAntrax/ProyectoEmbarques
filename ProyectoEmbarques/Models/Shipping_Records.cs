@@ -15,6 +15,7 @@ namespace ProyectoEmbarques.Models
 
     public partial class Shipping_Records
     {
+        [ScaffoldColumn(false)]
         public int RecordID { get; set; }
 
         [Required(ErrorMessage = "Nombre del cliente requerido.")]
@@ -72,7 +73,7 @@ namespace ProyectoEmbarques.Models
         public string RecordSeguritySeal4 { get; set; }
 
         public string RecordTransfer { get; set; }
-    
+
         public virtual Clients Clients { get; set; }
         public virtual CatalogShipmentType CatalogShipmentType { get; set; }
         public virtual Shipping_Catalog_Products Shipping_Catalog_Products { get; set; }

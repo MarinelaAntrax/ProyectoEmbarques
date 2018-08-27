@@ -5,81 +5,56 @@
 <h2 class="page-header">@ViewBag.Title</h2>
 <div class="telerik-controls">
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
-                                    .Name("grid")
-                                    .Columns(columns =>
-                                    {
-                                        columns.Bound(o => o.ClientName).Title("Nombre del Cliente").Width(200);
-                                        columns.Bound(o => o.ClientAddress).Title("Direccion").Width(200);
-                                    })
-                                    .Sortable()
-                                    .ColumnMenu()
-                                    .Resizable(resize => resize.Columns(true))
-                                    .Reorderable(reordable => reordable.Columns(true))
-                                    .Groupable()
-                                    .Scrollable()
-                                    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                                    .HtmlAttributes(new { style = "height: 700px;" })
-                                    .Pageable(x => x.Numeric(true)
-                                    .PreviousNext(true)
-                                    .Refresh(true)
-                                    .ButtonCount(5))
-                                    .DataSource(dataSource => dataSource
+                                            .Name("grid")
+                                            .Sortable()
+                                                .ToolBar(tools =>
+                                                {
+                                                    tools.Create().Text("Agregar Cliente");
+                                                })
+                                .Editable(editable => editable.Mode(GridEditMode.PopUp))
+                                .Pageable(x => x.Numeric(true)
+                                .PreviousNext(true)
+                                .Refresh(true)
+                                .ButtonCount(5))
+                                .DataSource(dataSource => dataSource
                                     .Ajax()
+                                    .Model(model => model.Id(e => e.ClientID))
+                                    .Events(events => events.Error("error_handler"))
                                     .Read(read => read.Action("Read", "Clientes"))
-                                    .PageSize(100) ) 
-            )
-    </div>
+                                    .Create(create => create.Action("Create", "Clientes"))
+                                    .Update(update => update.Action("Update", "Clientes"))
+                                    .PageSize(100)
+                                )
+                            .Columns(columns =>
+                            {
+                                columns.Bound(o => o.ClientName).Title("Nombre del Cliente").Width(200);
+                                columns.Bound(o => o.ClientAddress).Title("Direccion").Width(200);
+                            })
+                            .Scrollable()
+                            .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                            .HtmlAttributes(new { style = "height: 650px" })
+    )
+</div>
 
+@section Scripts{
+    <script type="text/javascript">
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+    </script>
+}
 <style>
-    #grid .k-grid-toolbar {
-        padding: .75em 1.3em .8333em 1em;
-    }
-    .toolbar {
-        float: right;
-    }
-    .detalle-reporte-image {
-        border: 1px solid #eaeaeb;
-        vertical-align: middle;
-        box-sizing: content-box;
-    }
-    .detalle-reporte-wrapper {
-        vertical-align: middle;
-        margin: 20px;
-    }
-    .detalle-reporte-wrapper h5 {
-        font-size: 11px;
-        color: #F26521;
-        vertical-align: middle;
-        top: 20%;
-        position: relative;
-        margin-bottom: 20px;
-    }
-    #grid .k-grid-toolbar {
-        padding: .75em 1.3em .8333em 1em;
-    }
-    .toolbar {
-        float: right;
-    }
-    .detalle-reporte > ul {
-        list-style: none;
-        font-style: italic;
-        margin: 15px;
-        padding: 0;
-    }
-    .detalle-reporte ul li {
-        margin: 0;
-        line-height: 1.7em;
-    }
-    .detalle-reporte label {
-        display: inline-block;
-        width: 110px;
-        padding-right: 10px;
-        text-align: right;
-        font-style: normal;
-        font-weight: bold;
-        color: #F26521;
-    }
-    .indicador-Columna {
-        background-color: #fdd;
+    .k-edit-form-container {
+        width: 600px;
     }
 </style>

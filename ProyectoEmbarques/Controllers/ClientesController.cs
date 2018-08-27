@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
 using ProyectoEmbarques.Models;
 using ProyectoEmbarques.Models.Services;
 using System.Linq;
-using System.Diagnostics;
+using System;
+using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
 
 namespace ProyectoEmbarques.Controllers
 {
@@ -35,4 +35,57 @@ namespace ProyectoEmbarques.Controllers
                        where b.ClientID == id
                        select b.ClientAddress).FirstOrDefault();
             return Content(val.ToString());
-        } } }
+        }
+      
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create([DataSourceRequest] DataSourceRequest request, ClientesViewModel clientes)
+        {
+            try
+            {
+                if (clientes != null && ModelState.IsValid)
+                {
+                    _Service.Create(clientes);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY contraint"))
+                {
+                    ModelState.AddModelError("", "El Nombre del Cliente que introdujo ya existe en la base de datos.");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", ex.Message);
+
+                }
+            }
+
+            return Json(new[] { clientes }.ToDataSourceResult(request, ModelState));
+        }
+        
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, ClientesViewModel clientes)
+        {
+            try
+            {
+                if (_Service != null && ModelState.IsValid)
+                {
+                    _Service.Update(clientes);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY constraint"))
+                {
+                    ModelState.AddModelError("", "El Nombre de la compañia que introdujo ya existe en la base de datos.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+
+            return Json(new[] { clientes }.ToDataSourceResult(request, ModelState));
+        }
+    } }

@@ -2,23 +2,42 @@
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-
+using ProyectoEmbarques.Models;
 
 namespace ProyectoEmbarques.Controllers
 {
     public class EnsamblesController : Controller
     {
-            // GET: Ensambles
-            private EnsamblesService _EnsamblesService;
+
+        BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
+        // GET: Ensambles
+        private EnsamblesService _EnsamblesService;
             public EnsamblesController()
             {
                 _EnsamblesService = new EnsamblesService();
             }
+        public ActionResult Create() {
+            return View();
+        }
             public ActionResult Index()
             {
                 return View();
             }
-            public ActionResult FillCombobox()
+
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Shipping_Catalog_Products.Add(Products);
+                    db.SaveChanges();
+                    return RedirectToAction("Create");
+                }
+                return View(Products);
+            }
+
+        public ActionResult FillCombobox()
             {
             return Json(_EnsamblesService.Read(), JsonRequestBehavior.AllowGet);
             }

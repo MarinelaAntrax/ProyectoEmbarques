@@ -1,118 +1,108 @@
 ﻿@model ProyectoEmbarques.Models.Shipping_Catalog_Products
-
+@using Kendo.Mvc.UI;
 @{
     ViewBag.Title = " Registra Productos ";
 }
 <h2 class="page-header"> @ViewBag.Title</h2>
-
-@using (Html.BeginForm("Create", "Shipping_Catalog_Products", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-<div class="form-horizontal">
-    <br />
-    <div class="form-group">
-        @Html.Label("Area", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @(Html.Kendo().ComboBox()
-                    .Name("AreaID")
-                    .Placeholder("Seleccione Area...")
-                    .DataTextField("AreaName")
-                    .DataValueField("AreaID")
-                    .Filter(FilterType.Contains)
-                    .DataSource(source =>
-                        {
-                            source.Read(read =>
-                        { read.Action("FillCombobox", "Areas"); })
-                        .ServerFiltering(false);
-                        })
-                    .HtmlAttributes(new { style = "width:60%;" }) )
+<div class="telerik-controls">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
             <br />
-            @Html.ValidationMessageFor(a => a.AreaID)
-        </div>
-    </div>
-
-    <br />
-    <div class="form-group">
-        @Html.Label("Productos", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @(Html.Kendo().ComboBox()
-                    .Name("ProductName")
-                    .Placeholder("Seleccione No.Pieza...")
-                    .DataTextField("DATA")
-                    .DataValueField("ProductName")
-                    .Filter(FilterType.Contains)
-                    .DataSource(source =>
-                    {
-                        source.Read(read =>
-                        { read.Action("FillCombobox", "VIEWDATA"); })
-                        .ServerFiltering(false);
-                    })
-                    .HtmlAttributes(new { style = "width:60%;" }) )
-            <br />
-            @Html.ValidationMessageFor(a => a.ProductName)
-        </div>
-    </div>
-
-    <br />
-    <div class="form-group">
-        @Html.Label("Area Interna del Producto", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @(Html.Kendo().ComboBox()
-                    .Name("ProductInternalArea")
-                    .Filter("contains")
-                    .Placeholder("seleccione Area Interna")
-                    .DataTextField("Text")
-                    .DataValueField("Value")
-                    .BindTo(new List<SelectListItem>() {
-                            new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
-                            new SelectListItem() { Text = "WK o RM", Value = "2" },
-                            new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" } })
-                    .SelectedIndex(3)
-                    .Suggest(false)
-                    .HtmlAttributes(new { style = "width:60%;" }) )
-            <br />
-            @Html.ValidationMessageFor(a => a.ProductInternalArea)
-        </div>
-    </div>
-
-    <br />
-    <div class="form-group">
-        @Html.Label("Tipo del Producto", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @(Html.Kendo().ComboBox()
-                    .Name("ProductType")
-                    .Filter("contains")
-                    .Placeholder("Seleccione el Tipo")
-                    .DataTextField("Text")
-                    .DataValueField("Value")
-                    .BindTo(new List<SelectListItem>() {
-                            new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
-                            new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
-                            new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}  })
-                    .SelectedIndex(3)
-                    .Suggest(false)
-                    .HtmlAttributes(new { style = "width:60%;" }) )
-            <br />
-            @Html.ValidationMessageFor(a => a.ProductType)
-        </div>
-    </div>
-</div>
-
-    <div id="save" class="row telerik-controls">
-        <div class="form-group">
-            <div class="col-md-offset-4 col-md-12">
-                <div class="form-group">
+            <div class="form-group">
+                @Html.Label("Area", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Html.Kendo().ComboBox()
+                                                    .Name("AreaID")
+                                                    .Placeholder("Seleccione Area...")
+                                                    .DataTextField("AreaName")
+                                                    .DataValueField("AreaID")
+                                                    .Filter(FilterType.Contains)
+                                                    .DataSource(source =>
+                                                        {
+                                                            source.Read(read =>
+                                                        { read.Action("FillCombobox", "Areas"); })
+                                                        .ServerFiltering(false);
+                                                        })
+                                                    .HtmlAttributes(new { style = "width:60%;" }) )
                     <br />
+                    @Html.ValidationMessageFor(a => a.AreaID)
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+                @Html.Label("Productos", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Html.Kendo().ComboBox()
+                                                    .Name("ProductName")
+                                                    .Placeholder("Seleccione No.Pieza...")
+                                                    .DataTextField("DATA")
+                                                    .DataValueField("ProductName")
+                                                    .Filter(FilterType.Contains)
+                                                    .DataSource(source =>
+                                                    {
+                                                        source.Read(read =>
+                                                        { read.Action("FillCombobox", "VIEWDATA"); })
+                                                        .ServerFiltering(false);
+                                                    })
+                                                    .HtmlAttributes(new { style = "width:60%;" }) )
                     <br />
-                    <input type="submit" value="Guardar" class="k-button" style="color:#fff; border-color:#e45200; background-color:#ff6b18;width: 20%; height:40px" />
+                    @Html.ValidationMessageFor(a => a.ProductName)
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+                @Html.Label("Area Interna del Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Html.Kendo().ComboBox()
+                                                    .Name("ProductInternalArea")
+                                                    .Filter("contains")
+                                                    .Placeholder("seleccione Area Interna")
+                                                    .DataTextField("Text")
+                                                    .DataValueField("Value")
+                                                    .BindTo(new List<SelectListItem>() {
+                                            new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
+                                            new SelectListItem() { Text = "WK o RM", Value = "2" },
+                                            new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" } })
+                                                    .SelectedIndex(3)
+                                                    .Suggest(false)
+                                                    .HtmlAttributes(new { style = "width:60%;" }) )
+                    <br />
+                    @Html.ValidationMessageFor(a => a.ProductInternalArea)
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+                @Html.Label("Tipo del Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Html.Kendo().ComboBox()
+                                                    .Name("ProductType")
+                                                    .Filter("contains")
+                                                    .Placeholder("Seleccione el Tipo")
+                                                    .DataTextField("Text")
+                                                    .DataValueField("Value")
+                                                    .BindTo(new List<SelectListItem>() {
+                                            new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
+                                            new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
+                                            new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}  })
+                                                    .SelectedIndex(3)
+                                                    .Suggest(false)
+                                                    .HtmlAttributes(new { style = "width:60%;" }) )
+                    <br />
+                    @Html.ValidationMessageFor(a => a.ProductType)
                 </div>
             </div>
         </div>
-    </div>
-    <div class="push">
-    </div>
-    <div class="push">
-    </div>
-}
 
-
+        <center>
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Guardar" class="k-button" style="color:#fff; border-color:#e45200; background-color:#ff6b18;width: 20%; height:40px" />
+            </div>
+        </center>
+    }
+    </div>

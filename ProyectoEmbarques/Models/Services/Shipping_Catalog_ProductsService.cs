@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace ProyectoEmbarques.Models.Services
 {
-    public class Shipping_Catalog_ProductsService
+    public class Shipping_Catalog_ProductsService 
     {
         private BAESystemsGuaymasEntities entities;
         public Shipping_Catalog_ProductsService(BAESystemsGuaymasEntities entities)
@@ -23,7 +24,7 @@ namespace ProyectoEmbarques.Models.Services
                 AreaID = product.AreaID,
                 AreaName =product.Areas.AreaName,
                 ProductName =product.ProductName,
-                ProductInternaArea = product.ProductName,
+                ProductInternalArea = product.ProductInternalArea,
                 ProductType=product.ProductType,
            }).ToList();
             return result;
@@ -32,4 +33,5 @@ namespace ProyectoEmbarques.Models.Services
         {
             return GetAll();
         }
-    } }
+    }
+}

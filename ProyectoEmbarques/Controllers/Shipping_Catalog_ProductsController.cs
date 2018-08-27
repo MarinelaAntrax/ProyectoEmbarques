@@ -17,17 +17,23 @@ namespace ProyectoEmbarques.Controllers
 {
     public class Shipping_Catalog_ProductsController : Controller
     {
+        BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
         private Shipping_Catalog_ProductsService _Service;
         public Shipping_Catalog_ProductsController()
         {
             _Service = new Shipping_Catalog_ProductsService();
         }
-        private BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
         // GET: Shipping_Catalog_Products
         public ActionResult Create()
         {
+            
             return View();
         }
+        public ActionResult GetMaxControlBox() {
+            var Max = (db.Shipping_Records.Max(max => max.RecordControlBoxNo));
+            return Content(Max.ToString());
+        }
+
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(_Service.Read().ToDataSourceResult(request));
@@ -67,4 +73,7 @@ namespace ProyectoEmbarques.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        } } }
+        }
+        
+    }
+}

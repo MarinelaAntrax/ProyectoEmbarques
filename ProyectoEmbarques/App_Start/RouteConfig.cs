@@ -49,11 +49,11 @@ namespace ProyectoEmbarques
                 defaults: new { controller = "Reportes", action = "Index", id = UrlParameter.Optional }
         );
 
-            routes.MapRoute(
-               name: "Shipping_Catalog_Products",
-               url: "Shipping_Catalog_Products/{action}/{id}",
-               defaults: new { controller = "Shipping_Catalog_Products", action = "Create", id = UrlParameter.Optional }
-        );
+        //    routes.MapRoute(
+        //       name: "Shipping_Catalog_Products",
+        //       url: "Shipping_Catalog_Products/{action}/{id}",
+        //       defaults: new { controller = "Shipping_Catalog_Products", action = "Create", id = UrlParameter.Optional }
+        //);
 
         }
     }
