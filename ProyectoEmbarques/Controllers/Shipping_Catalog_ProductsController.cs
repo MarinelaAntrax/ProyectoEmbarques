@@ -29,8 +29,37 @@ namespace ProyectoEmbarques.Controllers
             
             return View();
         }
-        public ActionResult GetMaxControlBox() {
-            var Max = (db.Shipping_Records.Max(max => max.RecordControlBoxNo));
+        public ActionResult GetMaxControlBox()
+        {
+            decimal Max = 0;
+            try
+            {
+                Max = (db.Shipping_Records.Max(max => max.RecordControlBoxNo));
+            }
+            catch (Exception ex) { Debug.WriteLine("Exepcion controlada por el usuario: " + ex); }
+
+            return Content(Max.ToString());
+        }
+        public ActionResult GetMaxFedexTracking()
+        {
+            decimal Max = 0;
+            try
+            {
+                Max = (db.Shipping_Records.Max(max => max.RecordFedexTracking));
+            }
+            catch (Exception ex) { Debug.WriteLine("Exepcion controlada por el usuario: " + ex); }
+
+            return Content(Max.ToString());
+        }
+        public ActionResult GetMaxPieceBoxNo()
+        {
+            decimal Max = 0;
+            try
+            {
+                Max = (db.Shipping_Records.Max(max => max.RecordPieceBoxNo));
+            }
+            catch (Exception ex) { Debug.WriteLine("Exepcion controlada por el usuario: " + ex); }
+
             return Content(Max.ToString());
         }
 

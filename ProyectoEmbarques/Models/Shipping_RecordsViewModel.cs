@@ -1,4 +1,4 @@
-﻿using controlEmbar.Models;
+﻿using ProyectoEmbarques.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,18 +13,12 @@ namespace ProyectoEmbarques.Models
         public int RecordID { get; set; }
         
         [Display(Name = "No. Parte")]
-        [StringLength(25, ErrorMessage = "El ID de la herramienta no puede ser mayor de 25 caracteres")]
+        [Required(ErrorMessage = "No.Parte requerida.")]
         public int ProductID { get; set; }
 
-        [Display(Name = "Area")]
-        public string AreaID { get; set; }
-
         [Display(Name = "Attn")]
-        [StringLength(100, ErrorMessage = "El nombre del cliente no puede ser mayor de 100 caracteres.")]
+        [Required(ErrorMessage = "Nombre del Cliente requerida.")]
         public int ClientID { get; set; }
-
-        [Display(Name = "Org")]
-        public string ClientAddress { get; set; }
 
         [Display(Name = "No. de Caja Piezas")]
         public decimal RecordPieceBoxNo { get; set; }
@@ -54,19 +48,24 @@ namespace ProyectoEmbarques.Models
 
         [Display(Name = "Retrabajado")]
         public string RecordRework { get; set; }
-        
+
+        [UIHint("Transferible")]
         public string RecordTransfer { get; set; }
        
         [Display(Name = "Sello de Seguridad1")]
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal1 { get; set; }
 
         [Display(Name = "Sello de Seguridad2")]
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal2 { get; set; }
 
         [Display(Name = "Sello de Seguridad3")]
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal3 { get; set; }
 
         [Display(Name = "Sello de Seguridad4")]
+        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
         public string RecordSeguritySeal4 { get; set; }
 
         [Display(Name = "Job #")]
@@ -88,14 +87,12 @@ namespace ProyectoEmbarques.Models
         public string RecordFAI { get; set; }
 
         [Display(Name = "Tipo de Servicio")]
+        [Required(ErrorMessage = "Tipo de Servicio requerido.")]
         public string RecordServiceType { get; set; }
-        
-        public string RecordDescripcion { get; set; }
-        public string RecordPeso { get; set; }
-        public string RecordObservaciones { get; set; }
-       
 
-        public virtual TipoEmbarqueViewModel CatalogShipmentType { get; set; }
+
+        public virtual CatalogShipmentTypeViewModel CatalogShipmentType { get; set; }
         public virtual ClientesViewModel Clients { get; set; }
         public virtual Shipping_Catalog_ProductsViewModel Shipping_Catalog_Products { get; set; }
-    } }
+    }
+}

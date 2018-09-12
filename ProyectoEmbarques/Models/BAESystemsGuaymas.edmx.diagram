@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="95ada9db00694133971f70158a5bdfc5" Name="Diagram1">
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Areas" Width="2.25" PointX="0.5" PointY="1.875" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Assemblies" Width="2" PointX="8" PointY="5.625" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Clients" Width="1.625" PointX="3" PointY="1.5" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Components" Width="2" PointX="8" PointY="1.625" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.WireKit" Width="1.5" PointX="8" PointY="3.875" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.CatalogShipmentType" Width="1.625" PointX="3" PointY="5.875" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.VIEWDATA" Width="1.5" PointX="0.5" PointY="4.875" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Shipping_Catalog_Products" Width="1.5" PointX="3.125" PointY="3.375" />
-        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Products_Areas" />
-        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Shipping_Records" Width="2.125" PointX="5.375" PointY="1.5" />
-        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_Clients" />
-        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_CatalogShipmentType" />
-        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products" />
+      <Diagram DiagramId="2a88031307134b91bd51c6ebc085ebff" Name="Diagram1">
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Area" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Assembly" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.CatalogShipmentType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Client" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Component" Width="1.5" PointX="7.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Shipping_Catalog_Products" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.Shipping_Records" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.WireKit" Width="1.5" PointX="7.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAESystemsGuaymasModel.VIEWDATA" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Products_Areas" ManuallyRouted="false" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_CatalogShipmentType" ManuallyRouted="false" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="BAESystemsGuaymasModel.FK_Shipping_Records_Shipping_Catalog_Products" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

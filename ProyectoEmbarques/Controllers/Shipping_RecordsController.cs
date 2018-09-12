@@ -26,14 +26,13 @@ namespace ProyectoEmbarques.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecordID,ClientID,ProductID,RecordQuantity,RecordDate,RecordFedexTracking,RecordControlBoxNo,RecordPieceBoxNo,ShipmentTypeID,RecordServiceType,RecordComment,RecordWorkOrder,RecordSerialNo,RecordTrackingId,RecordRework,RecordComment1,RecordComment2,RecordFAI,RecordTransfer,RecordSeguritySeal1,RecordSeguritySeal2,RecordSeguritySeal3,RecordSeguritySeal4,")] Shipping_Records Perro)
+        public ActionResult Create([Bind(Include = "RecordID,ClientID,ProductID,RecordQuantity,RecordDate,RecordFedexTracking,RecordControlBoxNo,RecordPieceBoxNo,ShipmentTypeID,RecordServiceType,RecordComment,RecordWorkOrder,RecordSerialNo,RecordTrackingId,RecordRework,RecordComment1,RecordComment2,RecordFAI,RecordTransfer,RecordSeguritySeal1,RecordSeguritySeal2,RecordSeguritySeal3,RecordSeguritySeal4,")] Shipping_RecordsViewModel Perro)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Shipping_Records.Add(Perro);
-                    db.SaveChanges();
+                    _Service.Create(Perro);
                     return RedirectToAction("Create");
                 }
                 return View(Perro);
@@ -51,5 +50,7 @@ namespace ProyectoEmbarques.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        } } }
+        }
+    }
+}
 

@@ -18,5 +18,10 @@ namespace ProyectoEmbarques.Models
 
         [Display(Name = "Nombre de la Compañia ")]
         [Required(ErrorMessage = "Nombre de la compañia requerida.")]
+        public string ClientCompany { get; set; }
+
+        [Display(Name = "Direccion ")]
+        [Required(ErrorMessage = "Dirreccion requerida.")]
         public string ClientAddress { get; set; }
-           } }
+    }
+}

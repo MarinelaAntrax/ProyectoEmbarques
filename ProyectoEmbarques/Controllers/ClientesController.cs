@@ -33,7 +33,7 @@ namespace ProyectoEmbarques.Controllers
         {
             var val = (from b in Entities.Clients
                        where b.ClientID == id
-                       select b.ClientAddress).FirstOrDefault();
+                       select b.ClientCompany).FirstOrDefault();
             return Content(val.ToString());
         }
       
@@ -51,7 +51,6 @@ namespace ProyectoEmbarques.Controllers
             {
                 if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY contraint"))
                 {
-                    ModelState.AddModelError("", "El Nombre del Cliente que introdujo ya existe en la base de datos.");
 
                 }
                 else

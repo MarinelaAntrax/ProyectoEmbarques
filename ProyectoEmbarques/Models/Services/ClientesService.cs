@@ -25,7 +25,9 @@ namespace ProyectoEmbarques.Models.Services
             {
                 ClientID = componente.ClientID,
                 ClientName = componente.ClientName,
-                ClientAddress =componente.ClientAddress
+                ClientAddress = componente.ClientAddress,
+                ClientCompany = componente.ClientCompany
+               
             }).ToList();
             return result;
         }
@@ -46,11 +48,12 @@ namespace ProyectoEmbarques.Models.Services
             }
             else
             {
-                var entity = new Clients();
+                var entity = new Client();
 
                 entity.ClientID = clientes.ClientID;
                 entity.ClientName = clientes.ClientName;
                 entity.ClientAddress = clientes.ClientAddress;
+                entity.ClientCompany = clientes.ClientCompany;
 
                 BAE.Clients.Add(entity);
                 BAE.SaveChanges();
@@ -69,15 +72,17 @@ namespace ProyectoEmbarques.Models.Services
                     target.ClientID = clientes.ClientID;
                     target.ClientName = clientes.ClientName;
                     target.ClientAddress = clientes.ClientAddress;
+                    target.ClientCompany = clientes.ClientCompany;
                 }
             }
             else
             {
-                var entity = new Clients();
+                var entity = new Client();
 
                 entity.ClientID = clientes.ClientID;
                 entity.ClientName = clientes.ClientName;
                 entity.ClientAddress = clientes.ClientAddress;
+                entity.ClientCompany = clientes.ClientCompany;
 
                 BAE.Clients.Attach(entity);
                 BAE.Entry(entity).State = EntityState.Modified;

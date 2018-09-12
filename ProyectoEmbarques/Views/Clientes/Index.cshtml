@@ -5,34 +5,35 @@
 <h2 class="page-header">@ViewBag.Title</h2>
 <div class="telerik-controls">
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
-                                            .Name("grid")
-                                            .Sortable()
-                                                .ToolBar(tools =>
-                                                {
-                                                    tools.Create().Text("Agregar Cliente");
-                                                })
-                                .Editable(editable => editable.Mode(GridEditMode.PopUp))
-                                .Pageable(x => x.Numeric(true)
-                                .PreviousNext(true)
-                                .Refresh(true)
-                                .ButtonCount(5))
-                                .DataSource(dataSource => dataSource
-                                    .Ajax()
-                                    .Model(model => model.Id(e => e.ClientID))
-                                    .Events(events => events.Error("error_handler"))
-                                    .Read(read => read.Action("Read", "Clientes"))
-                                    .Create(create => create.Action("Create", "Clientes"))
-                                    .Update(update => update.Action("Update", "Clientes"))
-                                    .PageSize(100)
-                                )
-                            .Columns(columns =>
-                            {
-                                columns.Bound(o => o.ClientName).Title("Nombre del Cliente").Width(200);
-                                columns.Bound(o => o.ClientAddress).Title("Direccion").Width(200);
-                            })
-                            .Scrollable()
-                            .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                            .HtmlAttributes(new { style = "height: 650px" })
+                                                    .Name("grid")
+                                                    .Sortable()
+                                                        .ToolBar(tools =>
+                                                        {
+                                                            tools.Create().Text("Agregar Cliente");
+                                                        })
+                                        .Editable(editable => editable.Mode(GridEditMode.PopUp))
+                                        .Pageable(x => x.Numeric(true)
+                                        .PreviousNext(true)
+                                        .Refresh(true)
+                                        .ButtonCount(5))
+                                        .DataSource(dataSource => dataSource
+                                            .Ajax()
+                                            .Model(model => model.Id(e => e.ClientID))
+                                            .Events(events => events.Error("error_handler"))
+                                            .Read(read => read.Action("Read", "Clientes"))
+                                            .Create(create => create.Action("Create", "Clientes"))
+                                            .Update(update => update.Action("Update", "Clientes"))
+                                            .PageSize(100)
+                                        )
+                                    .Columns(columns =>
+                                    {
+                                        columns.Bound(o => o.ClientName).Title("Nombre del Cliente").Width(200);
+                                        columns.Bound(o => o.ClientCompany).Title("Direccion").Width(200);
+                                    })
+                                    .Scrollable()
+                                    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                                    .HtmlAttributes(new { style = "height: 650px" })
+                                    .Events(e => { e.Edit("onEdit"); })
     )
 </div>
 
@@ -50,6 +51,11 @@
                 });
                 alert(message);
             }
+        }
+    </script>
+    <script>
+        function onEdit(e) {
+            e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Cliente" : + $('#nombreCliente').val());
         }
     </script>
 }

@@ -1,10 +1,11 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-
 using ProyectoEmbarques.Models;
 using ProyectoEmbarques.Models.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace ProyectoEmbarques.Controllers
 {
     public partial class EnsamblesRealizadosController : Controller
     {
+        BAESystemsGuaymasEntities BD = new BAESystemsGuaymasEntities();
         private EnsamblesRealizadosService _SumarioEmbarquesService;
         public EnsamblesRealizadosController()
         {
@@ -26,33 +28,23 @@ namespace ProyectoEmbarques.Controllers
         //Load data to a grid
         public ActionResult Read([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
-            return Json(_SumarioEmbarquesService.Read( starDate, endDate).ToDataSourceResult(request));
+            return Json(_SumarioEmbarquesService.Read(starDate, endDate).ToDataSourceResult(request));
         }
-       
+
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request,Shipping_Records Datos)
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_Records Datos)
         {
-            Debug.WriteLine("Datos enviados al metodo: "+ Datos);
-            try { 
-                if (request != null && ModelState.IsValid)
-                {
-
-                    _SumarioEmbarquesService.Update(Datos);
-                }
-            }
-            catch (Exception ex)
+            try
             {
-                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY constraint"))
-                {
-                    ModelState.AddModelError("", "El no. de empleado que introdujo ya existe en la base de datos.");
-                    Debug.WriteLine("Excepcion controlada:" + ex.Message);
-                }
-                else
-                {
-                    ModelState.AddModelError("", ex.Message);
-                }
+                BD.Entry(Datos).State = EntityState.Modified;
+                BD.SaveChanges();
+                return RedirectToAction("Index");
             }
-
-            return Json(new[] { Datos }.ToDataSourceResult(request, ModelState));
+            catch(DbEntityValidationException ex)
+            {
+                Debug.WriteLine("ErrorMessage: " + ex.EntityValidationErrors);
+                return RedirectToAction("Index");
+            }
         }
-    } }
+    }
+}

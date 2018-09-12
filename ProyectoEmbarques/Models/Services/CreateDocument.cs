@@ -117,7 +117,7 @@ namespace ProyectoEmbarques
                          where b.RecordFedexTracking == ParametroFedex
                          select new ClientesViewModel
                          {
-                             ClientName = b.Clients.ClientName
+                             ClientName = b.Client.ClientName
                          }).FirstOrDefault();
 
                 block = new Block();//Declara un nuevo bloque

@@ -1,3 +1,17 @@
+/* NUGET: BEGIN LICENSE TEXT
+ *
+ * Microsoft grants you the right to use these script files for the sole
+ * purpose of either: (i) interacting through your browser with the Microsoft
+ * website or online service, subject to the applicable licensing or use
+ * terms; or (ii) using the files as included with a Microsoft product subject
+ * to that product's license terms. Microsoft reserves all other rights to the
+ * files not expressly granted by Microsoft, whether by implication, estoppel
+ * or otherwise. Insofar as a script file is dual licensed under GPL,
+ * Microsoft neither took the code under GPL nor distributes it thereunder but
+ * under the terms set out in this paragraph. All notices and licenses
+ * below are for informational purposes only.
+ *
+ * NUGET: END LICENSE TEXT */
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
 /*! NOTE: If you're already including a window.matchMedia polyfill via Modernizr or otherwise, you don't need this part */
 window.matchMedia = window.matchMedia || (function(doc, undefined){
@@ -105,17 +119,13 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 		},
 		
 		//find media blocks in css text, convert to style blocks
-		translate			= function( styles, href, media ){
-			var qs			= styles.match(  /@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi ),
-				ql			= qs && qs.length || 0,
-				//try to get CSS path
-				href		= href.substring( 0, href.lastIndexOf( "/" )),
-				repUrls		= function( css ){
-					return css.replace( /(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g, "$1" + href + "$2$3" );
-				},
+		translate = function( styles, href, media ){
+			var qs = styles.match(/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi ), ql = qs && qs.length || 0, //try to get CSS path 
+                href = href.substring(0, href.lastIndexOf("/")), repUrls = function( css ){
+					return css.replace( /(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g, "$1" + href + "$2$3" ); },
 				useMedia	= !ql && media,
 				//vars used in loop
-				i			= 0,
+				i = 0,
 				j, fullq, thisq, eachq, eql;
 
 			//if path exists, tack on trailing slash
@@ -160,8 +170,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			}
 
 			applyMedia();
-		},
-        	
+		},       	
 		lastCall,
 		
 		resizeDefer,
@@ -229,10 +238,10 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 					maxnull = max === null,
 					em = "em";
 				
-				if( !!min ){
+				if( !min ){
 					min = parseFloat( min ) * ( min.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 );
 				}
-				if( !!max ){
+				if( !max ){
 					max = parseFloat( max ) * ( max.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 );
 				}
 				
@@ -258,19 +267,13 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 					css		= styleBlocks[ i ].join( "\n" );
 				
 				ss.type = "text/css";	
-				ss.media	= i;
+				ss.media = i;
 				
 				//originally, ss was appended to a documentFragment and sheets were appended in bulk.
 				//this caused crashes in IE in a number of circumstances, such as when the HTML element had a bg image set, so appending beforehand seems best. Thanks to @dvelyk for the initial research on this one!
 				head.insertBefore( ss, lastLink.nextSibling );
 				
-				if ( ss.styleSheet ){ 
-		        	ss.styleSheet.cssText = css;
-		        } 
-		        else {
-					ss.appendChild( doc.createTextNode( css ) );
-		        }
-		        
+				if ( ss.styleSheet ){ss.styleSheet.cssText = css; } else { ss.appendChild( doc.createTextNode( css ) ); }
 				//push to appendedEls to track for later removal
 				appendedEls.push( ss );
 			}
@@ -283,12 +286,12 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			}	
 			req.open( "GET", url, true );
 			req.onreadystatechange = function () {
-				if ( req.readyState != 4 || req.status !== 200 && req.status !== 304 ){
+				if ( req.readyState !== 4 || req.status !== 200 && req.status !== 304 ){
 					return;
 				}
 				callback( req.responseText );
-            } if (req.readyState == 4)
-            {
+			}
+			if ( req.readyState === 4 ){
 				return;
 			}
 			req.send( null );

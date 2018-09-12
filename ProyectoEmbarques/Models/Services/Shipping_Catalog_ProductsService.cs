@@ -22,7 +22,7 @@ namespace ProyectoEmbarques.Models.Services
             {
                 ProductID = product.ProductID,
                 AreaID = product.AreaID,
-                AreaName =product.Areas.AreaName,
+                AreaName =product.Area.AreaName,
                 ProductName =product.ProductName,
                 ProductInternalArea = product.ProductInternalArea,
                 ProductType=product.ProductType,

@@ -1,4 +1,4 @@
-﻿using controlEmbar.Models;
+﻿using ProyectoEmbarques.Models;
 using Kendo.Mvc.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +10,8 @@ using System.Data.Entity;
 
 namespace ProyectoEmbarques.Models.Services
 {
-        public class EnsamblesRealizadosService : IDisposable
-    {
+      public class EnsamblesRealizadosService : IDisposable
+      {
         private static bool UpdateDatabase = true;
         private BAESystemsGuaymasEntities Entities;
             public EnsamblesRealizadosService(BAESystemsGuaymasEntities Entities)
@@ -19,25 +19,31 @@ namespace ProyectoEmbarques.Models.Services
                 this.Entities = Entities;
             }
             public EnsamblesRealizadosService() : this(new BAESystemsGuaymasEntities())
-            {       }
+            {
+
+            }
             public IList<Shipping_RecordsViewModel> GetAll()
             {
-            var result = HttpContext.Current.Session["Shipping_Record"] as IList<Shipping_RecordsViewModel>;
+                IList<Shipping_RecordsViewModel> result = new List<Shipping_RecordsViewModel>();
 
-            if (result == null || UpdateDatabase)
-            {
-                //IList<Shipping_RecordsViewModel> result = new List<Shipping_RecordsViewModel>();
                 result = Entities.Shipping_Records.Select(componente => new Shipping_RecordsViewModel
                 {
                     ClientID = componente.ClientID,
                     Clients = new ClientesViewModel()
-                    {   ClientName = componente.Clients.ClientName,
-                        ClientAddress = componente.Clients.ClientAddress },
+                    {
+                        ClientName = componente.Client.ClientName,
+                        ClientAddress = componente.Client.ClientAddress,
+                        ClientCompany = componente.Client.ClientCompany
+                    },
                     ProductID = componente.ProductID,
                     Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
-                    {   ProductName = componente.Shipping_Catalog_Products.ProductName,
-                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName,
-                        ProductType = componente.Shipping_Catalog_Products.ProductType },
+                    {
+                        ProductID = componente.Shipping_Catalog_Products.ProductID,
+                        ProductName = componente.Shipping_Catalog_Products.ProductName,
+                        AreaName = componente.Shipping_Catalog_Products.Area.AreaName,
+                        ProductType = componente.Shipping_Catalog_Products.ProductType,
+                        ProductInternalArea = componente.Shipping_Catalog_Products.ProductInternalArea
+                    },
                     RecordID = componente.RecordID,
                     RecordQuantity = componente.RecordQuantity,
                     RecordDate = componente.RecordDate,
@@ -45,8 +51,11 @@ namespace ProyectoEmbarques.Models.Services
                     RecordControlBoxNo = componente.RecordControlBoxNo,
                     RecordPieceBoxNo = componente.RecordPieceBoxNo,
                     ShipmentTypeID = componente.ShipmentTypeID,
-                    CatalogShipmentType = new TipoEmbarqueViewModel()
-                    {   ShipmentType = componente.CatalogShipmentType.ShipmentType },
+                    CatalogShipmentType = new CatalogShipmentTypeViewModel()
+                    {
+                        ShipmentTypeID = componente.CatalogShipmentType.ShipmentTypeID,
+                        ShipmentType = componente.CatalogShipmentType.ShipmentType
+                    },
                     RecordComment = componente.RecordComment,
                     RecordWorkOrder = componente.RecordWorkOrder,
                     RecordSerialNo = componente.RecordSerialNo,
@@ -62,8 +71,6 @@ namespace ProyectoEmbarques.Models.Services
                     RecordSeguritySeal3 = componente.RecordSeguritySeal3,
                     RecordSeguritySeal4 = componente.RecordSeguritySeal4
                 }).ToList();
-                HttpContext.Current.Session["Shipping_Records"] = result;
-                }
                 return result;
                 } 
         public void Create(Shipping_RecordsViewModel Record)
@@ -103,47 +110,48 @@ namespace ProyectoEmbarques.Models.Services
                 Entities.Shipping_Records.Add(entity);
                 Entities.SaveChanges();
                 Record.RecordID = entity.RecordID;
-            } }
-        public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
-        {
-            return GetAll().FirstOrDefault(predicate);
+            }
         }
-        public IEnumerable<Shipping_RecordsViewModel> Read()
-        {
-            return GetAll();
-        }
+            public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
+            {
+               return GetAll().FirstOrDefault(predicate);
+            }
+                public IEnumerable<Shipping_RecordsViewModel> Read()
+                {
+                    return GetAll();
+                }
             public IEnumerable<Shipping_RecordsViewModel> Read(DateTime starDate, DateTime endDate)
             {
                 return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate);
             }
-        public void Dispose()
-        {
-            Entities.Dispose();
-        }
-        public void Update(Shipping_Records Record)
-        {
-            Record.Shipping_Catalog_Products = null;
-            if (!UpdateDatabase)
-            {
-                var target = One(e => e.RecordID == Record.RecordID);
-
-                if (target != null)
+                public void Dispose()
                 {
+                    Entities.Dispose();
+                }
+            public void Update(Shipping_RecordsViewModel Record)
+            {
+            //Record.Shipping_Catalog_Products = null;
+                if (!UpdateDatabase)
+                {
+                    var target = One(e => e.RecordID == Record.RecordID);
+
+                    if (target != null)
+                    {
                     target.RecordTransfer = Record.RecordTransfer;
-                 
+                    }
+                }
+                else
+                 {
+                    var entity = new Shipping_Records();
+                
+                    entity.RecordTransfer = Record.RecordTransfer;
+                
+                    Entities.Shipping_Records.Attach(entity);
+                    Entities.Entry(entity).State = EntityState.Modified;
+                    Entities.SaveChanges();
                 }
             }
-            else
-            {
-                var entity = new Shipping_Records();
-                
-                entity.RecordTransfer = Record.RecordTransfer;
-                
-                Entities.Shipping_Records.Attach(entity);
-                Entities.Entry(entity).State = EntityState.Modified;
-                Entities.SaveChanges();
-            }
-        }
-    }  }
+      }
+}
 
 
