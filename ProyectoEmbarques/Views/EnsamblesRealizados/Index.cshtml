@@ -44,7 +44,7 @@
                             <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar</a>
                         </div>
                     </text>);
-                    })
+            })
                             .Editable(editable => editable.Mode(GridEditMode.InCell))
                             .Pageable(x => x.Numeric(true)
                             .PreviousNext(true)
@@ -83,7 +83,7 @@
                             })
                             .Update(up => up.Action("Update", "EnsamblesRealizados"))
                             .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
-                            .PageSize(100)
+                            .PageSize(15)
                                 )
                                 .Columns(columns =>
                                 {

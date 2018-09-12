@@ -35,7 +35,7 @@
                                     })
                                 .ServerFiltering(false);
                                 })
-                                .HtmlAttributes(new { style = "width:60%;" }) )
+                                .HtmlAttributes(new { style = "width:80%;" }) )
                         <br />
                         @Html.ValidationMessageFor(a => a.AreaID)
                     </div>
@@ -46,20 +46,20 @@
                         <h4>Productos</h4>
                         <div class="form-group">
                             @(Html.Kendo().ComboBox()
-                                            .Name("ProductName")
-                                            .Placeholder("Seleccione No.Pieza...")
-                                            .DataTextField("DATA")
-                                            .DataValueField("ProductName")
-                                            .Filter(FilterType.Contains)
-                                            .DataSource(source =>
-                                            {
-                                                source.Read(read =>
-                                                {
-                                                    read.Action("FillCombobox", "VIEWDATA");
-                                                })
-                                            .ServerFiltering(false);
-                                            })
-                                            .HtmlAttributes(new { style = "width:60%;" }) )
+                                    .Name("ProductName")
+                                    .Placeholder("Seleccione No.Pieza...")
+                                    .DataTextField("DATA")
+                                    .DataValueField("ProductName")
+                                    .Filter(FilterType.Contains)
+                                    .DataSource(source =>
+                                    {
+                                        source.Read(read =>
+                                        {
+                                            read.Action("FillCombobox", "VIEWDATA");
+                                        })
+                                    .ServerFiltering(false);
+                                    })
+                                    .HtmlAttributes(new { style = "width:80%;" }) )
                             <br />
                             @Html.ValidationMessageFor(a => a.ProductName)
                         </div>
@@ -70,18 +70,18 @@
                     <h4>Area Interna del Producto</h4>
                     <div class="form-group">
                         @(Html.Kendo().ComboBox()
-                                                .Name("ProductInternalArea")
-                                                .Filter("contains")
-                                                .Placeholder("seleccione Area Interna")
-                                                .DataTextField("Text")
-                                                .DataValueField("Value")
-                                                .BindTo(new List<SelectListItem>() {
-                                                        new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
-                                                        new SelectListItem() { Text = "WK o RM", Value = "2" },
-                                                        new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" } })
-                                                .SelectedIndex(3)
-                                                .Suggest(false)
-                                                .HtmlAttributes(new { style = "width:60%;" }) )
+                                .Name("ProductInternalArea")
+                                .Filter("contains")
+                                .Placeholder("seleccione Area Interna")
+                                .DataTextField("Text")
+                                .DataValueField("Value")
+                                .BindTo(new List<SelectListItem>() {
+                                        new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
+                                        new SelectListItem() { Text = "WK o RM", Value = "2" },
+                                        new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" } })
+                                .SelectedIndex(3)
+                                .Suggest(false)
+                                .HtmlAttributes(new { style = "width:80%;" }) )
                         <br />
                         @Html.ValidationMessageFor(a => a.ProductInternalArea)
                     </div>
@@ -98,12 +98,12 @@
                                 .DataTextField("Text")
                                 .DataValueField("Value")
                                 .BindTo(new List<SelectListItem>() {
-                                            new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
-                                            new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
-                                            new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}  })
+                                        new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
+                                        new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
+                                        new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}  })
                                 .SelectedIndex(3)
                                 .Suggest(false)
-                                .HtmlAttributes(new { style = "width:60%;" }) )
+                                .HtmlAttributes(new { style = "width:80%;" }) )
                     <br />
                         @Html.ValidationMessageFor(a => a.ProductType)
                     </div>
@@ -111,7 +111,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="col-lg-12">
         <div class="form-group">
