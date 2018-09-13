@@ -13,7 +13,9 @@ namespace ProyectoEmbarques.Models.Services
             this.entities = entities;
         }
         public VIEWDATAService() : this(new BAESystemsGuaymasEntities())
-        { }
+        {
+
+        }
         public IList<VIEWDATAViewModel> GetAll()
         {
             IList<VIEWDATAViewModel> result = new List<VIEWDATAViewModel>();
@@ -26,4 +28,6 @@ namespace ProyectoEmbarques.Models.Services
         public IEnumerable<VIEWDATAViewModel> Read()
         {
             return GetAll();
-        } } }
+        }
+    }
+}

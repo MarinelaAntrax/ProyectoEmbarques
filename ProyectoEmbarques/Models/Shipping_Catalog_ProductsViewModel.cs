@@ -8,7 +8,6 @@ namespace ProyectoEmbarques.Models
 {
     public class Shipping_Catalog_ProductsViewModel
     {
-       
         [ScaffoldColumn(false)]
         public int ProductID { get; set; }
 
@@ -34,4 +33,5 @@ namespace ProyectoEmbarques.Models
 
         public virtual Area Areas { get; set; }
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
-    } }
+    }
+}

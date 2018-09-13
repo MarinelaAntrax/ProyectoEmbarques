@@ -24,9 +24,6 @@ namespace ProyectoEmbarques
         
         private static readonly double MargenDerecho = 50;
         private static readonly double AnchoDeLinea = 12;//Alto por defecto de la linea (de texto?)
-       
-
-
         public static RadFixedDocument CreatePDFDocument(decimal ParametroFedex)
         {
             RadFixedDocument document = new RadFixedDocument();
@@ -34,7 +31,6 @@ namespace ProyectoEmbarques
 
             page.Size = new Size(600, 800);
             double maxWidth = page.Size.Width - MargenDerecho * 2;//Establece el tamano de ancho maximo multiplicando el valor de Ident izquierdo por dos y restandole esta cantidad al ancho total de pagina
-
 
             FixedContentEditor editor = new FixedContentEditor(page);//Se declara el editor de la pagina 
 
@@ -87,7 +83,6 @@ namespace ProyectoEmbarques
             editor.DrawBlock(block);
             WriteWhere += AnchoDeLinea * 2;
             editor.Position.Translate(MargenDerecho, WriteWhere);//Traslada el editor al nuevo punto de escritura
-
         }
 
         private static void DrawData(FixedContentEditor editor, double maxWidth, decimal ParametroFedex)
@@ -131,7 +126,6 @@ namespace ProyectoEmbarques
             }
             catch (System.Exception)
             {
-
                 throw;
             }
             //SaltoLinea
@@ -185,7 +179,6 @@ namespace ProyectoEmbarques
             ObjetoBlock3.HorizontalAlignment = HorizontalAlignment.Center;//Le da la alineacion
             ObjetoBlock3.InsertText("QUANTITY SHIPPED");//Le agrega el texto en el formato dado 
 
-
                 IQueryable<Shipping_RecordsViewModel> select = (from b in BD.Shipping_Records
                               where b.RecordFedexTracking==ParametroFedex
                               select new Shipping_RecordsViewModel()
@@ -230,7 +223,6 @@ namespace ProyectoEmbarques
 
                 }
             
-
             ////////////////////////////////////////////////////////////////////Contenido de la tabla///////////////////////////////////////////
             editor.DrawTable(table);
         }
@@ -259,7 +251,5 @@ namespace ProyectoEmbarques
             block.InsertText(new FontFamily("Arial"), "Certificamos por este medio todos los productos arriba mencionados se han producido, ensamblado, examinados, y probados de acuerdo a todas las especificaciones, dibujos, y requisitos de calidad.");
             editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
         }
-
-
     }
 }

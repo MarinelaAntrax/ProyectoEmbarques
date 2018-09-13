@@ -14,7 +14,9 @@ namespace ProyectoEmbarques.Models.Services
             this.entities = entities;
         }
         public Shipping_Catalog_ProductsService() : this(new BAESystemsGuaymasEntities())
-        {          }
+        {
+
+        }
         public IList<Shipping_Catalog_ProductsViewModel> GetAll()
         {
             IList<Shipping_Catalog_ProductsViewModel> result = new List<Shipping_Catalog_ProductsViewModel>();

@@ -8,40 +8,39 @@ namespace ProyectoEmbarques.Controllers
 {
     public class EnsamblesController : Controller
     {
-
         BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
         // GET: Ensambles
         private EnsamblesService _EnsamblesService;
-            public EnsamblesController()
-            {
-                _EnsamblesService = new EnsamblesService();
-            }
+        public EnsamblesController()
+        {
+            _EnsamblesService = new EnsamblesService();
+        }
         public ActionResult Create() {
+        return View();
+        }
+        public ActionResult Index()
+        {
             return View();
         }
-            public ActionResult Index()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
+        {
+            if (ModelState.IsValid)
             {
-                return View();
+                db.Shipping_Catalog_Products.Add(Products);
+                db.SaveChanges();
+                return RedirectToAction("Create");
             }
-
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Shipping_Catalog_Products.Add(Products);
-                    db.SaveChanges();
-                    return RedirectToAction("Create");
-                }
-                return View(Products);
-            }
-
+            return View(Products);
+        }
         public ActionResult FillCombobox()
-            {
-            return Json(_EnsamblesService.Read(), JsonRequestBehavior.AllowGet);
-            }
-            public ActionResult Read([DataSourceRequest] DataSourceRequest request)
-            {
-                return Json(_EnsamblesService.Read().ToDataSourceResult(request));
-            } } }
+        {
+        return Json(_EnsamblesService.Read(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(_EnsamblesService.Read().ToDataSourceResult(request));
+        }
+    }
+}

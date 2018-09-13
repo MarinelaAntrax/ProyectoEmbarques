@@ -14,7 +14,9 @@ namespace ProyectoEmbarques.Models.Services
             this.Systems = Systems;
         }
         public EnsamblesService() : this(new BAESystemsGuaymasEntities())
-        { }
+        {
+
+        }
         public IList<EnsamblesViewModel> GetAll()
         {
             IList<EnsamblesViewModel> result = new List<EnsamblesViewModel>();
@@ -28,6 +30,8 @@ namespace ProyectoEmbarques.Models.Services
         public IEnumerable<EnsamblesViewModel> Read()
         {
             return GetAll();
-        } } }
+        }
+    }
+}
 
     

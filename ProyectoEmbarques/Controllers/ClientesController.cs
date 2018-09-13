@@ -36,7 +36,6 @@ namespace ProyectoEmbarques.Controllers
                        select b.ClientCompany).FirstOrDefault();
             return Content(val.ToString());
         }
-      
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request, ClientesViewModel clientes)
         {
@@ -59,7 +58,6 @@ namespace ProyectoEmbarques.Controllers
 
                 }
             }
-
             return Json(new[] { clientes }.ToDataSourceResult(request, ModelState));
         }
         
@@ -84,7 +82,7 @@ namespace ProyectoEmbarques.Controllers
                     ModelState.AddModelError("", ex.Message);
                 }
             }
-
             return Json(new[] { clientes }.ToDataSourceResult(request, ModelState));
         }
-    } }
+    }
+}

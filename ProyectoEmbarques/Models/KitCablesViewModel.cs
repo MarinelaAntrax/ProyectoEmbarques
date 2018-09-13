@@ -13,4 +13,5 @@ namespace ProyectoEmbarques.Models
         [Display(Name = "Nombre del Kit de cables")]
         [Required(ErrorMessage = "Nombre del kit de cables requerido.")]
         public string WireKitPN { get; set; }
-            } }
+    }
+}

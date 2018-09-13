@@ -17,6 +17,7 @@ namespace ProyectoEmbarques.Models.Services
         }
         public ClientesService() : this(new BAESystemsGuaymasEntities())
         {
+
         }
         public IList<ClientesViewModel> GetAll()
         {
@@ -89,7 +90,6 @@ namespace ProyectoEmbarques.Models.Services
                 BAE.SaveChanges();
             }
         }
-
         public ClientesViewModel One(Func<ClientesViewModel, bool> predicate)
         {
             return Read().FirstOrDefault(predicate);

@@ -5,8 +5,10 @@ using System.Web;
 
 namespace ProyectoEmbarques.Models
 {
-    public class VIEWDATAViewModel
+    public class GraficaViewModel
     {
-        public string DATA { get; set; }
+        //    public string Contador { get; set; }
+
+        //    public string Date { get; set; }
     }
 }

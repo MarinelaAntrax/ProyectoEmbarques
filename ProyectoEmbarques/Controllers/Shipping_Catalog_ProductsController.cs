@@ -26,9 +26,9 @@ namespace ProyectoEmbarques.Controllers
         // GET: Shipping_Catalog_Products
         public ActionResult Create()
         {
-            
             return View();
         }
+
         public ActionResult GetMaxControlBox()
         {
             decimal Max = 0;
@@ -40,6 +40,7 @@ namespace ProyectoEmbarques.Controllers
 
             return Content(Max.ToString());
         }
+
         public ActionResult GetMaxFedexTracking()
         {
             decimal Max = 0;
@@ -51,6 +52,7 @@ namespace ProyectoEmbarques.Controllers
 
             return Content(Max.ToString());
         }
+
         public ActionResult GetMaxPieceBoxNo()
         {
             decimal Max = 0;
@@ -67,6 +69,7 @@ namespace ProyectoEmbarques.Controllers
         {
             return Json(_Service.Read().ToDataSourceResult(request));
         }
+
         public ActionResult getAreaName(int id)
         {
             var idArea = (from b in db.Shipping_Catalog_Products
@@ -77,11 +80,13 @@ namespace ProyectoEmbarques.Controllers
                           select x.AreaName).FirstOrDefault();
             return Content(result.ToString());
         }
+
         // GET: Shipping_Catalog_Products/Create
         public ActionResult FillCombobox()
         {
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);
         }
+
         // POST: Shipping_Catalog_Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -95,6 +100,7 @@ namespace ProyectoEmbarques.Controllers
             }
             return View(Products);
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -103,6 +109,5 @@ namespace ProyectoEmbarques.Controllers
             }
             base.Dispose(disposing);
         }
-        
     }
 }

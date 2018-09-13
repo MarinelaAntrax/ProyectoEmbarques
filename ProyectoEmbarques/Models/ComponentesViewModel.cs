@@ -14,6 +14,9 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Nombre del componente requerida.")]
         [StringLength(250, ErrorMessage = "La descripcion del componente no puede ser mayor de 250 caracteres.")]
         public string ComponentPN { get; set; }
+
         public string ComponentDescription { get; set; }
+
         public string ComponentName { get; set; }
-    } }
+    }
+}

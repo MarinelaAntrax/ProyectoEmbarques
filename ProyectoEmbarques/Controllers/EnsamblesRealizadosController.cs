@@ -40,11 +40,13 @@ namespace ProyectoEmbarques.Controllers
                 BD.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch(DbEntityValidationException ex)
+            catch (DbEntityValidationException ex)
             {
                 Debug.WriteLine("ErrorMessage: " + ex.EntityValidationErrors);
                 return RedirectToAction("Index");
             }
         }
+            
+        
     }
 }

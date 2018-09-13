@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = " Registra Productos ";
 }
+
 <script src="~/Scripts/sweetalert2.all.js"></script>
 <script src="~/Content/fancybox/jquery.fancybox.pack.js"></script>
 <link rel="stylesheet" href="~/Content/sweetalert2.css">
@@ -11,19 +12,20 @@
 <link href="~/Content/fancybox/helpers/jquery.fancybox-buttons.css" rel="stylesheet" />
 
 <h2 class="page-header"> @ViewBag.Title</h2>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <br />
+
     <div class="form-horizontal">
         <div id="MainForm">
             <div class="row">
                 <div class="col-lg-8">
                     <h4>Area</h4>
                     <div class="form-group">
-                        @(Html.Kendo().ComboBox()
+                        @(Html.Kendo().DropDownList()
                                 .Name("AreaID")
-                                .Placeholder("Seleccione Area...")
+                                .OptionLabel("Seleccione Area...")
                                 .DataTextField("AreaName")
                                 .DataValueField("AreaID")
                                 .Filter(FilterType.Contains)
@@ -41,13 +43,13 @@
                     </div>
                 </div>
 
-                <br />
+
                 <div class="col-lg-8">
                         <h4>Productos</h4>
                         <div class="form-group">
-                            @(Html.Kendo().ComboBox()
+                            @(Html.Kendo().DropDownList()
                                     .Name("ProductName")
-                                    .Placeholder("Seleccione No.Pieza...")
+                                    .OptionLabel("Seleccione No.Pieza...")
                                     .DataTextField("DATA")
                                     .DataValueField("ProductName")
                                     .Filter(FilterType.Contains)
@@ -63,48 +65,42 @@
                             <br />
                             @Html.ValidationMessageFor(a => a.ProductName)
                         </div>
-                    </div>
+                </div>
 
-                <br />
+
                 <div class="col-lg-8">
                     <h4>Area Interna del Producto</h4>
                     <div class="form-group">
-                        @(Html.Kendo().ComboBox()
+                        @(Html.Kendo().DropDownList()
                                 .Name("ProductInternalArea")
-                                .Filter("contains")
-                                .Placeholder("seleccione Area Interna")
+                                .OptionLabel("seleccione Area Interna")
                                 .DataTextField("Text")
                                 .DataValueField("Value")
                                 .BindTo(new List<SelectListItem>() {
                                         new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
                                         new SelectListItem() { Text = "WK o RM", Value = "2" },
                                         new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" } })
-                                .SelectedIndex(3)
-                                .Suggest(false)
                                 .HtmlAttributes(new { style = "width:80%;" }) )
                         <br />
                         @Html.ValidationMessageFor(a => a.ProductInternalArea)
                     </div>
                 </div>
 
-                <br />
+
                 <div class="col-lg-8">
                     <h4>Tipo del Producto</h4>
                     <div class="form-group">
-                        @(Html.Kendo().ComboBox()
+                        @(Html.Kendo().DropDownList()
                                 .Name("ProductType")
-                                .Filter("contains")
-                                .Placeholder("Seleccione el Tipo")
+                                .OptionLabel("Seleccione el Tipo")
                                 .DataTextField("Text")
                                 .DataValueField("Value")
                                 .BindTo(new List<SelectListItem>() {
                                         new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
                                         new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
                                         new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}  })
-                                .SelectedIndex(3)
-                                .Suggest(false)
                                 .HtmlAttributes(new { style = "width:80%;" }) )
-                    <br />
+                        <br />
                         @Html.ValidationMessageFor(a => a.ProductType)
                     </div>
                 </div>
@@ -124,7 +120,7 @@
             <br />
         </div>
     </div>
-}
+ }
 
 <script>
     $("Mainform").kendoValidator();

@@ -16,7 +16,9 @@ namespace ProyectoEmbarques.Models.Services
             this.entities = entities;
         }
         public CatalogShipmentTypeService() : this(new BAESystemsGuaymasEntities())
-        {      }
+        {
+
+        }
         public IList<CatalogShipmentTypeViewModel> GetAll()
         {
             IList<CatalogShipmentTypeViewModel> result = new List<CatalogShipmentTypeViewModel>();
@@ -30,4 +32,6 @@ namespace ProyectoEmbarques.Models.Services
         public IEnumerable<CatalogShipmentTypeViewModel> Read()
         {
             return GetAll();
-        } } }
+        }
+    }
+}

@@ -72,7 +72,7 @@ namespace ProyectoEmbarques.Models.Services
                     RecordSeguritySeal4 = componente.RecordSeguritySeal4
                 }).ToList();
                 return result;
-                } 
+            } 
         public void Create(Shipping_RecordsViewModel Record)
         {           
             if (!UpdateDatabase)
