@@ -13,15 +13,19 @@ namespace ProyectoEmbarques.Models.Services
       public class EnsamblesRealizadosService : IDisposable
       {
         private static bool UpdateDatabase = true;
+
         private BAESystemsGuaymasEntities Entities;
+
             public EnsamblesRealizadosService(BAESystemsGuaymasEntities Entities)
             {
                 this.Entities = Entities;
             }
+
             public EnsamblesRealizadosService() : this(new BAESystemsGuaymasEntities())
             {
 
             }
+
             public IList<Shipping_RecordsViewModel> GetAll()
             {
                 IList<Shipping_RecordsViewModel> result = new List<Shipping_RecordsViewModel>();
@@ -73,6 +77,7 @@ namespace ProyectoEmbarques.Models.Services
                 }).ToList();
                 return result;
             } 
+
         public void Create(Shipping_RecordsViewModel Record)
         {           
             if (!UpdateDatabase)
@@ -112,22 +117,27 @@ namespace ProyectoEmbarques.Models.Services
                 Record.RecordID = entity.RecordID;
             }
         }
+
             public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
             {
                return GetAll().FirstOrDefault(predicate);
             }
+
                 public IEnumerable<Shipping_RecordsViewModel> Read()
                 {
                     return GetAll();
                 }
+
             public IEnumerable<Shipping_RecordsViewModel> Read(DateTime starDate, DateTime endDate)
             {
                 return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate);
             }
+
                 public void Dispose()
                 {
                     Entities.Dispose();
                 }
+
             public void Update(Shipping_RecordsViewModel Record)
             {
             //Record.Shipping_Catalog_Products = null;

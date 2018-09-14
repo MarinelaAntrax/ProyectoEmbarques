@@ -13,20 +13,23 @@ namespace ProyectoEmbarques.Models.Services
         {
             this.Systems = Systems;
         }
+
         public EnsamblesService() : this(new BAESystemsGuaymasEntities())
         {
 
         }
+
         public IList<EnsamblesViewModel> GetAll()
         {
             IList<EnsamblesViewModel> result = new List<EnsamblesViewModel>();
+
             result = Systems.Assemblies.Select(componente => new EnsamblesViewModel
             {
-                AssemblyID = componente.AssemblyID,
-                
+                AssemblyID = componente.AssemblyID
             }).ToList();
             return result;
         }
+
         public IEnumerable<EnsamblesViewModel> Read()
         {
             return GetAll();

@@ -5,7 +5,7 @@
 <h2 class="page-header">@ViewBag.Title</h2>
 
 <div class="telerik-controls">
-    @(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
+@(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
             .Name("grid")
             .Sortable()
                 .ToolBar(tools =>
@@ -35,7 +35,7 @@
                             .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
                             .HtmlAttributes(new { style = "height: 650px" })
                             .Events(e => { e.Edit("onEdit"); })
-    )
+)
 </div>
 
 @section Scripts{
@@ -63,7 +63,8 @@
 }
 
 <style>
-    .k-edit-form-container {
+    .k-edit-form-container 
+    {
         width: 600px;
     }
 </style>

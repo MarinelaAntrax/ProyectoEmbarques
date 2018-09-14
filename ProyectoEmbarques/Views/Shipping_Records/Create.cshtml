@@ -35,7 +35,6 @@
                                 })
                                 .HtmlAttributes(new { style = "width:90%;" })
                                 .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.ProductID))
                     </div>
                 </div>
@@ -55,8 +54,7 @@
                         @(Html.Kendo().DatePickerFor(model => model.RecordDate)
                                 .Name("RecordDate")
                                 .Value(DateTime.Today).Format("dd MMM yyyy")
-                                .HtmlAttributes(new { style = "width:90%" }) )
-                        <br />
+                                .HtmlAttributes(new { style = "width:90%", title = "datepicker" }) )
                         @(Html.ValidationMessageFor(nam => nam.RecordDate, "", new { @class = "text-danger" }))
                     </div>
                 </div>
@@ -67,11 +65,10 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordFedexTracking")
                                 .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordFedexTracking))
                     </div>
                 </div>
-            </div><br />
+            </div>
 
             <div class="row">
                 <div class="col-lg-3">
@@ -108,11 +105,10 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordControlBoxNo")
                                 .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordControlBoxNo))
                     </div>
                 </div>
-            </div><br />
+            </div>
 
             <div class="row">
                 <div class="col-lg-3">
@@ -130,7 +126,6 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordQuantity")
                                 .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordQuantity))
                     </div>
                 </div>
@@ -141,7 +136,6 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordPieceBoxNo")
                                 .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordPieceBoxNo))
                     </div>
                 </div>
@@ -163,11 +157,10 @@
                                 })
                                 .HtmlAttributes(new { style = "width:90%;" })
                                 .ValueTemplate("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID))
                     </div>
                 </div>
-            </div><br />
+            </div>
 
             <div class="row">
                 <div class="col-lg-3">
@@ -188,8 +181,7 @@
                                 })
                                 .HtmlAttributes(new { style = "width:90%;" })
                                 .ValueTemplate("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
-                        <br />
-                        @(Html.ValidationMessageFor(nam => nam.ClientID))
+                            @(Html.ValidationMessageFor(nam => nam.ClientID))
                     </div>
                 </div>
 
@@ -215,7 +207,6 @@
                                             new SelectListItem() { Text = "Ground" , Value="FEDEX GROUND PARCEL"} })
 
                                 .HtmlAttributes(new { style = "width:90%;" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordServiceType))
                     </div>
                 </div>
@@ -229,7 +220,7 @@
                         </center>
                     </div>
                 </div>
-            </div><br />
+            </div>
 
             <div class="row">
                 <div class="col-lg-3">
@@ -252,7 +243,6 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordSeguritySeal1")
                                 .HtmlAttributes(new { style = "width:90%" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordSeguritySeal1))
                     </div>
 
@@ -261,7 +251,6 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordSeguritySeal2")
                                 .HtmlAttributes(new { style = "width:90%" }))
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordSeguritySeal2))
                     </div>
 
@@ -270,7 +259,6 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordSeguritySeal3")
                                 .HtmlAttributes(new { style = "width:90%" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordSeguritySeal3))
                     </div>
 
@@ -279,7 +267,6 @@
                         @(Html.Kendo().TextBox()
                                 .Name("RecordSeguritySeal4")
                                 .HtmlAttributes(new { style = "width:90%" }) )
-                        <br />
                         @(Html.ValidationMessageFor(nam => nam.RecordSeguritySeal4))
                     </div>
                 </div>
@@ -309,7 +296,6 @@
                                 <p id="2alert"></p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -317,14 +303,10 @@
 
         <div class="col-lg-12">
             <div class="form-group">
-                <br />
                 <center>
+                    <br />
                     <input type="submit" value="Guardar" class="k-button k-primary" style="width: 20%; height:40px" />
                 </center>
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
         </div>
     </div>
@@ -332,6 +314,7 @@
 
 <script>
     $("Mainform").kendoValidator();
+    $("#RecordDate").prop("readonly", true);
 </script>
 <script>
         $(document).ready(function () {
@@ -377,7 +360,7 @@
             $.ajax({
                 data: { id: $("#ProductID").val() },//Parametros de entrada
                 type: 'GET',
-                url: '@Url.Action("getAreaName","Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
+                url: '@Url.Action("GetAreaName","Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
                 success: function (Content) {
                     $("#AreaName").val(Content);
                 }, error: function () {
@@ -394,7 +377,7 @@
             $.ajax({
                 data: { id: $("#ClientID").val() },//Parametros de entrada
                 type: 'GET',
-                url: '@Url.Action("getCompania","Clientes")', //Vinculacion con caracteristicas de ASP.Net
+                url: '@Url.Action("GetCompania","Clientes")', //Vinculacion con caracteristicas de ASP.Net
                 success: function (Content) {
                     $("#Compania").val(Content);
                 }, error: function () {

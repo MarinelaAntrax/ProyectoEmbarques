@@ -192,7 +192,7 @@ html, body {
 }
 
     .detalles p {
-        margin-bottom: 0px;
+        margin-bottom:0px;
     }
 
 /*BAE Systems  Home Page Carousel */
@@ -218,7 +218,8 @@ header.carousel {
     color: black;
 }
 
-    .greeting-title div.dropdown a {
+    .greeting-title div.dropdown a 
+    {
         color: black;
     }
 
@@ -284,7 +285,8 @@ header.carousel {
         height: 70%;
     }
 
-    .baeImage {
+    .baeImage 
+    {
         background: url(../Content/Images/bae-logo.svg) no-repeat top;
         Margin-top: 8px;
         Margin-left: 10px;
@@ -320,17 +322,20 @@ footer a {
 }
 
 /*************************************************BAE Systems Custom Boostrap Properties***********************************************************/
-.badge {
+.badge 
+{
     background-color: #F26521;
 }
 
-.alert-message-bae {
+.alert-message-bae 
+{
     background-color: #fcdecf;
     border-color: #faceb7;
     color: #F26521;
 }
 
-.demo-section {
+.demo-section 
+{
     padding-top: 10px;
     padding-right: 70px;
     border: 1px solid rgba(20,53,80,0.14);
@@ -564,7 +569,8 @@ a, a:hover, a:focus {
             color: #fff;
         }
 
-    .dropdown-menu > li > a {
+    .dropdown-menu > li > a 
+    {
         display: block;
         padding: 3px 20px;
         clear: both;
@@ -574,29 +580,35 @@ a, a:hover, a:focus {
         white-space: nowrap;
     }
 
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus 
+    {
         color: #fff;
         background-color: #F26521;
     }
 
-    .dropdown-menu-large {
+    .dropdown-menu-large 
+    {
         margin-left: 0;
         margin-right: 0;
     }
 
-        .dropdown-menu-large > li {
+        .dropdown-menu-large > li 
+        {
             margin-bottom: 30px;
         }
 
-            .dropdown-menu-large > li:last-child {
+            .dropdown-menu-large > li:last-child 
+            {
                 margin-bottom: 0;
             }
 
-        .dropdown-menu-large .dropdown-header {
+        .dropdown-menu-large .dropdown-header 
+        {
             padding: 3px 15px !important;
         }
 
-    .dropdown-menu.multi-column {
+    .dropdown-menu.multi-column 
+    {
         min-width: 240px !important;
         overflow-x: hidden;
     }

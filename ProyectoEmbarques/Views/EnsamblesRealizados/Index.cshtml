@@ -1,5 +1,5 @@
 ﻿@{
-        ViewBag.Title = "Sumario ";
+    ViewBag.Title = "Sumario ";
 }
 
 <script src="~/Scripts/sweetalert2.all.js"></script>
@@ -9,7 +9,7 @@
 <script type="x/kendo-template" id="page-template">
     <div class="page-template">
         <div class="header">
-            <div style="float: right"><span class="date">Date:@DateTime.Now.ToShortDateString()</span>Page #: pageNum # of #: totalPages #</div>
+            <div style="float: right"><span class="date">Date:@DateTime.Now.ToShortDateString()</span>Page #: pageNum # of #: totalPages # </div>
             BAE Systems - Pull Test
         </div>
 
@@ -25,108 +25,109 @@
 
 <div class="telerik-controls">
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
-            .Name("grid")
-            .Selectable()
-            .ToolBar(tools =>
-            {
-                    tools.Template(@<text>
-                        <a class="k-button k-button-icontext" href="#" data-toggle="modal" data-target="#exampleModalCenter"><span class="k-icon k-i-pdf"></span>PackingList</a>
-                        <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
-                        @item.SaveButton()
-                        <div class="toolbar">
-                            <label class="category-label"> De </label>
-                            @(Html.Kendo().DatePicker()
-                                    .Name("Inicio")
-                                    .Value(DateTime.Today)
-                                    .Min("07/23/2018")
-                                    .HtmlAttributes(new { style = "width: 150px;" }) )
-                            <label class="category-label"> &nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp; </label>
-                            @(Html.Kendo().DatePicker()
-                                    .Name("Final")
-                                    .Value(DateTime.Today.AddDays(1))
-                                    .Min("07/23/2018")
-                                    .HtmlAttributes(new { style = "width: 150px;" }) )
-                            <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar</a>
-                        </div>
-                    </text>);
-            })
-                            .Editable(editable => editable.Mode(GridEditMode.InCell))
-                            .Pageable(x => x.Numeric(true)
-                            .PreviousNext(true)
-                            .Refresh(true)
-                            .ButtonCount(5))
-                            .DataSource(dataSource => dataSource
-                            .Ajax()
-                            .Model(model =>
-                            {
-                                model.Id(id => id.RecordID);
-                                model.Field(id => id.RecordID).DefaultValue(9999);
-                                model.Field(Fie => Fie.RecordTransfer).Editable(true);
-                                model.Field(Fie => Fie.RecordDate).Editable(false);
-                                model.Field(Fie => Fie.Shipping_Catalog_Products.ProductName).Editable(false);
-                                model.Field(Fie => Fie.Shipping_Catalog_Products.AreaName).Editable(false);
-                                model.Field(Fie => Fie.Clients.ClientName).Editable(false);
-                                model.Field(Fie => Fie.Clients.ClientAddress).Editable(false);
-                                model.Field(Fie => Fie.RecordWorkOrder).Editable(false);
-                                model.Field(Fie => Fie.RecordTrackingId).Editable(false);
-                                model.Field(Fie => Fie.RecordSerialNo).Editable(false);
-                                model.Field(Fie => Fie.RecordQuantity).Editable(false);
-                                model.Field(Fie => Fie.RecordFedexTracking).Editable(false);
-                                model.Field(Fie => Fie.RecordControlBoxNo).Editable(false);
-                                model.Field(Fie => Fie.RecordPieceBoxNo).Editable(false);
-                                model.Field(Fie => Fie.CatalogShipmentType.ShipmentType).Editable(false);
-                                model.Field(Fie => Fie.RecordSeguritySeal1).Editable(false);
-                                model.Field(Fie => Fie.RecordSeguritySeal2).Editable(false);
-                                model.Field(Fie => Fie.RecordSeguritySeal3).Editable(false);
-                                model.Field(Fie => Fie.RecordSeguritySeal4).Editable(false);
-                                model.Field(Fie => Fie.RecordComment).Editable(false);
-                                model.Field(Fie => Fie.RecordComment1).Editable(false);
-                                model.Field(Fie => Fie.RecordComment2).Editable(false);
-                                model.Field(Fie => Fie.RecordRework).Editable(false);
-                                model.Field(Fie => Fie.RecordFAI).Editable(false);
-                                model.Field(Fie => Fie.RecordServiceType).Editable(false);
+                    .Name("grid")
+                    .Selectable()
+                    .ToolBar(tools =>
+                    {
+                        tools.Template(@<text>
+                            <a class="k-button k-button-icontext" href="#" data-toggle="modal" data-target="#exampleModalCenter"><span class="k-icon k-i-pdf"></span>PackingList</a>
+                            <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
+                            @item.SaveButton()
+                            <div class="toolbar">
+                                <label class="category-label"> De </label>
+                                @(Html.Kendo().DatePicker()
+                                                .Name("Inicio")
+                                                .Value(DateTime.Today)
+                                                .Min("01/01/2018")
+                                                .HtmlAttributes(new { style = "width: 150px;" }) )
+                                <label class="category-label"> &nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp; </label>
+                                @(Html.Kendo().DatePicker()
+                                                .Name("Final")
+                                                .Value(DateTime.Today.AddDays(1))
+                                                .Min("07/01/2018")
+                                                .HtmlAttributes(new { style = "width: 150px;" }) )
+                                <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar</a>
+                            </div>
+                        </text>);
                             })
-                            .Update(up => up.Action("Update", "EnsamblesRealizados"))
-                            .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
-                            .PageSize(100)
-                                )
-                                .Columns(columns =>
-                                {
-                                    columns.Bound(o => o.RecordDate).Width(110).Filterable(false);
-                                    columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(180);
-                                    columns.Bound(o => o.Shipping_Catalog_Products.AreaName).Width(150);
-                                    columns.Bound(o => o.Clients.ClientName).Title("Attn").Width(210);
-                                    columns.Bound(o => o.Clients.ClientAddress).Title("Org").Width(150);
-                                    columns.Bound(o => o.RecordWorkOrder).Width(150);
-                                    columns.Bound(o => o.RecordTrackingId).Width(150);
-                                    columns.Bound(o => o.RecordSerialNo).Width(150);
-                                    columns.Bound(o => o.RecordQuantity).Width(150);
-                                    columns.Bound(o => o.RecordFedexTracking).Width(130);
-                                    columns.Bound(o => o.RecordControlBoxNo).Width(150);
-                                    columns.Bound(o => o.RecordPieceBoxNo).Width(140);
-                                    columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(140);
-                                    columns.Bound(o => o.RecordSeguritySeal1).Width(140);
-                                    columns.Bound(o => o.RecordSeguritySeal2).Width(140);
-                                    columns.Bound(o => o.RecordSeguritySeal3).Width(140);
-                                    columns.Bound(o => o.RecordSeguritySeal4).Width(140);
-                                    columns.Bound(o => o.RecordComment).Width(200);
-                                    columns.Bound(o => o.RecordComment1).Width(200);
-                                    columns.Bound(o => o.RecordComment2).Width(200);
-                                    columns.Bound(o => o.RecordRework).Width(120);
-                                    columns.Bound(o => o.RecordFAI).Width(130);
-                                    columns.Bound(o => o.RecordServiceType).Width(140);
-                                    columns.Bound(o => o.RecordTransfer).Width(150);
-                                })
-                        .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
-                        .Scrollable()
-                        .Resizable(resize => resize.Columns(true))
-                        .Reorderable(reordable => reordable.Columns(true))
-                        .Sortable()
-                        .Pageable()
-                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                        .Groupable()
-                        .ColumnMenu()
-                        .HtmlAttributes(new { style = "height: 600px" })
+                                            .Editable(editable => editable.Mode(GridEditMode.InCell))
+                                            .Pageable(x => x.Numeric(true)
+                                            .PreviousNext(true)
+                                            .Refresh(true)
+                                            .ButtonCount(5))
+                                            .DataSource(dataSource => dataSource
+                                            .Ajax()
+                                            .Model(model =>
+                                            {
+                                                model.Id(id => id.RecordID);
+                                                model.Field(id => id.RecordID).DefaultValue(9999);
+                                                model.Field(Fie => Fie.RecordTransfer).Editable(true);
+                                                model.Field(Fie => Fie.RecordDate).Editable(false);
+                                                model.Field(Fie => Fie.Shipping_Catalog_Products.ProductName).Editable(false);
+                                                model.Field(Fie => Fie.Shipping_Catalog_Products.AreaName).Editable(false);
+                                                model.Field(Fie => Fie.Clients.ClientName).Editable(false);
+                                                model.Field(Fie => Fie.Clients.ClientAddress).Editable(false);
+                                                model.Field(Fie => Fie.RecordWorkOrder).Editable(false);
+                                                model.Field(Fie => Fie.RecordTrackingId).Editable(false);
+                                                model.Field(Fie => Fie.RecordSerialNo).Editable(false);
+                                                model.Field(Fie => Fie.RecordQuantity).Editable(false);
+                                                model.Field(Fie => Fie.RecordFedexTracking).Editable(false);
+                                                model.Field(Fie => Fie.RecordControlBoxNo).Editable(false);
+                                                model.Field(Fie => Fie.RecordPieceBoxNo).Editable(false);
+                                                model.Field(Fie => Fie.CatalogShipmentType.ShipmentType).Editable(false);
+                                                model.Field(Fie => Fie.RecordSeguritySeal1).Editable(false);
+                                                model.Field(Fie => Fie.RecordSeguritySeal2).Editable(false);
+                                                model.Field(Fie => Fie.RecordSeguritySeal3).Editable(false);
+                                                model.Field(Fie => Fie.RecordSeguritySeal4).Editable(false);
+                                                model.Field(Fie => Fie.RecordComment).Editable(false);
+                                                model.Field(Fie => Fie.RecordComment1).Editable(false);
+                                                model.Field(Fie => Fie.RecordComment2).Editable(false);
+                                                model.Field(Fie => Fie.RecordRework).Editable(false);
+                                                model.Field(Fie => Fie.RecordFAI).Editable(false);
+                                                model.Field(Fie => Fie.RecordServiceType).Editable(false);
+                                            })
+                                            .Events(events => events.Error("error_handler"))
+                                            .Update(up => up.Action("Update", "EnsamblesRealizados"))
+                                            .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
+                                            .PageSize(100)
+                                                )
+                                                .Columns(columns =>
+                                                {
+                                                    columns.Bound(o => o.RecordDate).Width(110).Filterable(false);
+                                                    columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(180);
+                                                    columns.Bound(o => o.Shipping_Catalog_Products.AreaName).Width(150);
+                                                    columns.Bound(o => o.Clients.ClientName).Title("Attn").Width(210);
+                                                    columns.Bound(o => o.Clients.ClientAddress).Title("Org").Width(150);
+                                                    columns.Bound(o => o.RecordWorkOrder).Width(150);
+                                                    columns.Bound(o => o.RecordTrackingId).Width(150);
+                                                    columns.Bound(o => o.RecordSerialNo).Width(150);
+                                                    columns.Bound(o => o.RecordQuantity).Width(150);
+                                                    columns.Bound(o => o.RecordFedexTracking).Width(130);
+                                                    columns.Bound(o => o.RecordControlBoxNo).Width(150);
+                                                    columns.Bound(o => o.RecordPieceBoxNo).Width(140);
+                                                    columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(140);
+                                                    columns.Bound(o => o.RecordSeguritySeal1).Width(140);
+                                                    columns.Bound(o => o.RecordSeguritySeal2).Width(140);
+                                                    columns.Bound(o => o.RecordSeguritySeal3).Width(140);
+                                                    columns.Bound(o => o.RecordSeguritySeal4).Width(140);
+                                                    columns.Bound(o => o.RecordComment).Width(200);
+                                                    columns.Bound(o => o.RecordComment1).Width(200);
+                                                    columns.Bound(o => o.RecordComment2).Width(200);
+                                                    columns.Bound(o => o.RecordRework).Width(120);
+                                                    columns.Bound(o => o.RecordFAI).Width(130);
+                                                    columns.Bound(o => o.RecordServiceType).Width(140);
+                                                    columns.Bound(o => o.RecordTransfer).Width(150);
+                                                })
+                                        .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
+                                        .Scrollable()
+                                        .Resizable(resize => resize.Columns(true))
+                                        .Reorderable(reordable => reordable.Columns(true))
+                                        .Sortable()
+                                        .Pageable()
+                                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                                        .Groupable()
+                                        .ColumnMenu()
+                                        .HtmlAttributes(new { style = "height: 650px" })
     )
 </div>
 
@@ -147,17 +148,19 @@
                         <div class="form-group py-5">
                             <h4>Ingrese el Tracking de Fedex</h4>
                             @(Html.Kendo().AutoComplete()
-                                    .Name("ParametroFedex")
-                                    .DataTextField("RecordFedexTracking")
-                                    .Filter(FilterType.Contains)
-                                    .DataSource(source =>
-                                    {
-                                        source.Read(read =>
-                                        { read.Action("FillCombobox", "Reportes"); })
-                                        .ServerFiltering(false);
-                                    })
-                                    .HtmlAttributes(new { style = "width:90%;" })
-                                    .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.RecordFedexTracking" + " #</div>") )
+                                            .Name("ParametroFedex")
+                                            .DataTextField("RecordFedexTracking")
+                                            .Filter(FilterType.Contains)
+                                            .DataSource(source =>
+                                            {
+                                                source.Read(read =>
+                                                {
+                                                    read.Action("FillCombobox", "Reportes");
+                                                })
+                                                .ServerFiltering(false);
+                                            })
+                                            .HtmlAttributes(new { style = "width:90%;" })
+                                            .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.RecordFedexTracking" + " #</div>") )
                         </div>
                     </div>
                     <br /><br />
@@ -170,7 +173,7 @@
             </div>
         </div>
     </div>
- }
+}
 
 @*<div class="demo-section k-content wide">
         @(Html.Kendo().Chart<ProyectoEmbarques.Models.GraficaViewModel>()
@@ -209,13 +212,39 @@
     });
 </script>
 
+@section Scripts{
+    <script type="text/javascript">
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+    </script>
+}
+
+<style>
+    .k-edit-form-container {
+        width: 650px;
+    }
+</style>
+
 <style>
     #grid .k-grid-toolbar {
         padding: .75em 1.3em .8333em 1em;
     }
+
     .toolbar {
         float: right;
     }
+
     .indicador-Columna {
         background-color: #fdd;
     }

@@ -16,15 +16,19 @@ namespace ProyectoEmbarques.Controllers
     public partial class EnsamblesRealizadosController : Controller
     {
         BAESystemsGuaymasEntities BD = new BAESystemsGuaymasEntities();
+
         private EnsamblesRealizadosService _SumarioEmbarquesService;
+
         public EnsamblesRealizadosController()
         {
             _SumarioEmbarquesService = new EnsamblesRealizadosService();
         }
+
         public ActionResult Index()
         {
             return View();
         }
+
         //Load data to a grid
         public ActionResult Read([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
@@ -40,13 +44,11 @@ namespace ProyectoEmbarques.Controllers
                 BD.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (DbEntityValidationException ex)
+                catch (DbEntityValidationException ex)
             {
                 Debug.WriteLine("ErrorMessage: " + ex.EntityValidationErrors);
                 return RedirectToAction("Index");
             }
-        }
-            
-        
+        }   
     }
 }

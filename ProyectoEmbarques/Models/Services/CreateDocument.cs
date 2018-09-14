@@ -21,7 +21,6 @@ namespace ProyectoEmbarques
 {
     public class CreateDocument
     {
-        
         private static readonly double MargenDerecho = 50;
         private static readonly double AnchoDeLinea = 12;//Alto por defecto de la linea (de texto?)
         public static RadFixedDocument CreatePDFDocument(decimal ParametroFedex)

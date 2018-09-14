@@ -10,15 +10,19 @@ namespace ProyectoEmbarques.Models.Services
     public class ClientesService : IDisposable
     {
         private static bool UpdateDatabase = true;
+
         private BAESystemsGuaymasEntities BAE;
+
         public ClientesService(BAESystemsGuaymasEntities BAE)
         {
             this.BAE = BAE;
         }
+
         public ClientesService() : this(new BAESystemsGuaymasEntities())
         {
 
         }
+
         public IList<ClientesViewModel> GetAll()
         {
             IList<ClientesViewModel> result = new List<ClientesViewModel>();
@@ -28,14 +32,15 @@ namespace ProyectoEmbarques.Models.Services
                 ClientName = componente.ClientName,
                 ClientAddress = componente.ClientAddress,
                 ClientCompany = componente.ClientCompany
-               
             }).ToList();
             return result;
         }
+
         public IEnumerable<ClientesViewModel> Read()
         {
             return GetAll();
         }
+
         public void Create(ClientesViewModel clientes)
         {
             if (!UpdateDatabase)
@@ -62,6 +67,7 @@ namespace ProyectoEmbarques.Models.Services
                 clientes.ClientID = entity.ClientID;
             }
         }
+
         public void Update(ClientesViewModel clientes)
         {
             if (!UpdateDatabase)
@@ -90,10 +96,12 @@ namespace ProyectoEmbarques.Models.Services
                 BAE.SaveChanges();
             }
         }
+
         public ClientesViewModel One(Func<ClientesViewModel, bool> predicate)
         {
             return Read().FirstOrDefault(predicate);
         }
+
         public void Dispose()
         {
             BAE.Dispose();

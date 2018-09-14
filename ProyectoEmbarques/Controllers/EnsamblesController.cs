@@ -9,19 +9,25 @@ namespace ProyectoEmbarques.Controllers
     public class EnsamblesController : Controller
     {
         BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
+
         // GET: Ensambles
         private EnsamblesService _EnsamblesService;
+
         public EnsamblesController()
         {
             _EnsamblesService = new EnsamblesService();
         }
-        public ActionResult Create() {
-        return View();
+
+        public ActionResult Create()
+        {
+            return View();
         }
+
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
@@ -34,10 +40,12 @@ namespace ProyectoEmbarques.Controllers
             }
             return View(Products);
         }
+
         public ActionResult FillCombobox()
         {
-        return Json(_EnsamblesService.Read(), JsonRequestBehavior.AllowGet);
+            return Json(_EnsamblesService.Read(), JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(_EnsamblesService.Read().ToDataSourceResult(request));

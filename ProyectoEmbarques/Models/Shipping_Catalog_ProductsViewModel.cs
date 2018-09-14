@@ -31,7 +31,7 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
 
-        public virtual Area Areas { get; set; }
+        public virtual AreasViewModel Areas { get; set; }
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
     }
 }

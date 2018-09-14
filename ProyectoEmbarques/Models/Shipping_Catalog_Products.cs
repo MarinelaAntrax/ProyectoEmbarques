@@ -11,7 +11,8 @@ namespace ProyectoEmbarques.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Shipping_Catalog_Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,26 @@ namespace ProyectoEmbarques.Models
         {
             this.Shipping_Records = new HashSet<Shipping_Records>();
         }
-    
+        [ScaffoldColumn(false)]
         public int ProductID { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Required(ErrorMessage = "Nombre del Area requerida.")]
         public int AreaID { get; set; }
+
+        [Display(Name = "P/N")]
+        [Required(ErrorMessage = "Nombre del producto requerido.")]
+        [StringLength(30, ErrorMessage = "La descripcion del componente no puede ser mayor de 30 caracteres.")]
         public string ProductName { get; set; }
+
+        [Display(Name = "Area Interna del Producto")]
+        [Required(ErrorMessage = "Area Interna requerida.")]
         public string ProductInternalArea { get; set; }
+
+        [Display(Name = "Tipo del Producto")]
+        [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
-    
+
         public virtual Area Area { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }

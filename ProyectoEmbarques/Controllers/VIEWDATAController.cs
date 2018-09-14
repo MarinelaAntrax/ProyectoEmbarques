@@ -11,14 +11,17 @@ namespace ProyectoEmbarques.Controllers
     {
         // GET: VIEWDATA
         private VIEWDATAService _Service;
+
         public VIEWDATAController()
         {
             _Service = new VIEWDATAService();
         }
+
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult FillCombobox()
         {
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);

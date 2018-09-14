@@ -16,13 +16,17 @@ namespace ProyectoEmbarques.Controllers
     public class ReportesController : Controller
     {
         BAESystemsGuaymasEntities Entities = new BAESystemsGuaymasEntities();
+
         public ActionResult Index(){
             return View();
         }
+
         public ActionResult FillCombobox()
         {
             var FD = new BAESystemsGuaymasEntities().Shipping_Records.Select(client => new
-            { RecordFedexTracking = client.RecordFedexTracking.ToString() });
+            {
+                RecordFedexTracking = client.RecordFedexTracking.ToString()
+            });
             return Json(FD, JsonRequestBehavior.AllowGet);
         }
 
@@ -40,33 +44,7 @@ namespace ProyectoEmbarques.Controllers
                 formatProvider.Export(document, ms);
                 renderedBytes = ms.ToArray();
             }
-
             return File(renderedBytes, "application/pdf", "PackingList (" + DateTime.Now.ToString() + ").pdf");
-        }
-
-        public ActionResult Download_ManifiestoXLSX(){
-            return View();
-        }
-        public ActionResult EmbarquesDiarios_PDF(){
-            return View();
-        }
-        public ActionResult EmbarquesDiarios_Excel(){
-            return View();
-        }
-        public ActionResult EmbarquesHotShot(){
-            return View();
-        }
-        public ActionResult Download_EmbarquesHotShotXLSX(){
-            return View();
-        }
-        public ActionResult ReportesFechaNSerieXLSX(){
-            return View();
-        }
-        public ActionResult ReporteFechaNAgrupadosXLSX(){
-            return View();
-        }
-        public ActionResult DireccionesClientes(){
-            return View();
         }
     }
 }

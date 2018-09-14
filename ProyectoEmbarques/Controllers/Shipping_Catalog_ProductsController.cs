@@ -18,11 +18,14 @@ namespace ProyectoEmbarques.Controllers
     public class Shipping_Catalog_ProductsController : Controller
     {
         BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
+
         private Shipping_Catalog_ProductsService _Service;
+
         public Shipping_Catalog_ProductsController()
         {
             _Service = new Shipping_Catalog_ProductsService();
         }
+
         // GET: Shipping_Catalog_Products
         public ActionResult Create()
         {
@@ -36,8 +39,10 @@ namespace ProyectoEmbarques.Controllers
             {
                 Max = (db.Shipping_Records.Max(max => max.RecordControlBoxNo));
             }
-            catch (Exception ex) { Debug.WriteLine("Exepcion controlada por el usuario: " + ex); }
-
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exepcion controlada por el usuario: " + ex);
+            }
             return Content(Max.ToString());
         }
 
@@ -48,8 +53,10 @@ namespace ProyectoEmbarques.Controllers
             {
                 Max = (db.Shipping_Records.Max(max => max.RecordFedexTracking));
             }
-            catch (Exception ex) { Debug.WriteLine("Exepcion controlada por el usuario: " + ex); }
-
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exepcion controlada por el usuario: " + ex);
+            }
             return Content(Max.ToString());
         }
 
@@ -60,8 +67,10 @@ namespace ProyectoEmbarques.Controllers
             {
                 Max = (db.Shipping_Records.Max(max => max.RecordPieceBoxNo));
             }
-            catch (Exception ex) { Debug.WriteLine("Exepcion controlada por el usuario: " + ex); }
-
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exepcion controlada por el usuario: " + ex);
+            }
             return Content(Max.ToString());
         }
 
@@ -70,7 +79,7 @@ namespace ProyectoEmbarques.Controllers
             return Json(_Service.Read().ToDataSourceResult(request));
         }
 
-        public ActionResult getAreaName(int id)
+        public ActionResult GetAreaName(int id)
         {
             var idArea = (from b in db.Shipping_Catalog_Products
                        where b.ProductID == id
