@@ -1,96 +1,125 @@
-﻿
-$(document).ready(function () {
-    $('#submit').click(function (e) {
+﻿$(document).ready(function ()
+{
+    $('#submit').click(function (e)
+    {
         e.preventDefault();
         var isAllValid = true;
         var validator = $("#MainForm").kendoValidator().data("kendoValidator");
 
         var list = [];
         var errorItemCount = 0;
-        $('#orderdetailsItems tbody tr').each(function (index, ele)
+        $('#orderdetailsItems tbody tr').each(function (create, ele)
         {
-            if ($('.idHerramientaInstrucciones', this).val() === "" || $('.verificacion', this).val() === "") {
+            if ($('.ProductName', this).val() === "" || $('.verificacion', this).val() === "")
+            {
                 alert("Faltan Instrucciones por verificar, por favor verifique todas las instrucciones.");
 
                 errorItemCount++;
-            } else {                
-                var orderItem = {
-                    idHerramientaInstrucciones: $('.idHerramientaInstrucciones', this).val(),
-                    verificacion: $('.verificacion', this).val()
+            }
+                else
+            {                
+                var orderItem =
+                {
+                    ProductName: $('.ProductName', this).val(),
+                    AreaID: $('.AreaID', this).val(),
+                    ProductInternalArea: $('ProductInternalArea', this).val(),
+                    ProductType: $('ProductType', this).val()
                 }
                 list.push(orderItem);
             }
             
         })
 
-        if (errorItemCount > 0) {
+        if (errorItemCount > 0)
+        {
             $('#orderItemError').text(errorItemCount + "instruccione(s) faltantes de verificar");
             $('#orderItemError').css('display', 'block');
             isAllValid = false;
         }
 
-        $(".verificacion").each(function (index, element) {
-            if ($(this).val() === "") {
+        $(".verificacion").each(function (Create, element)
+        {
+            if ($(this).val() === "")
+            {
                 isAllValid = false;
                 $(this).siblings('span.error').css('display', 'block');
             }
-
-            else {
+                else
+            {
                 $(this).siblings('span.error').css('display', 'none');
 
             }
         })
 
-        if (validator.validate() && isAllValid) {
-            var data = {
-                Date: $('#Date').val(),                
-                idEmpleado: $('#idEmpleado').val(),
-                idHerramienta: $('#idHerramienta').val(),
-                idArea: $('#idArea').val(),
-                DetallesHerramienta: list                
+        if (validator.validate() && isAllValid)
+        {
+            var data =
+            {         
+                ProductName: $('#ProductName').val(),
+                AreaID: $('#AreaID').val(),
+                ProductInternalArea: $('#ProductInternalArea').val(),
+                ProductType: $('#ProductType').val(),                
             }
 
-            $.ajax({
+            $.ajax(
+            {
                 type: 'POST',
-                url: '/Reportes/Create',
+                url: '/Shipping_Catalog_Products/Create',
                 data: JSON.stringify(data),
                 contentType: 'application/json',
-                success: function (data) {
-                    if (data.status) {
-                        swal({
+                success: function (data)
+                {
+                    if (data.status)
+                    {
+                        swal(
+                        {
                             type: 'warning',
                             title: 'Por favor, espere mientras se verifica la herramienta.',
                             showComfirmButton: false,
                             timer: 3000,
                             allowOutsideClick: false,
-                            onOpen: () => {
+                            onOpen: () =>
+                            {
                                 swal.showLoading()
                             },
-                            onBeforeOpen: function () {
-                                $(".swal2-popup").css({
-                                    "font-size": 1.3 + 'rem', }) } })
-                        var time
+                                onBeforeOpen: function ()
+                                {
+                                    $(".swal2-popup").css(
+                                    {
+                                        "font-size": 1.3 + 'rem',
+                                    })
+                                }
+                        })
+                            var time
 
-                        time = window.setTimeout(linkToIndex, 1000); function linkToIndex() {window.location.href = data.url;}
+                        time = window.setTimeout(linkToIndex, 1000); function linkToIndex()
+                        {
+                            window.location.href = data.url;
+                        }
                     }
-                    else {
-                        swal({
+                        else
+                    {
+                        swal(
+                        {
                             type: 'error',
                             title: 'Hay un problema...',
                             text: 'Faltan Instrucciones por verificar, por favor verifique todas las instrucciones.!',
                             showCloseButton: 'true',
                             allowOutsideClick: false,
-                            onBeforeOpen: function () {
-                                $(".swal2-popup").css({
+                            onBeforeOpen: function ()
+                            {
+                                $(".swal2-popup").css(
+                                {
                                     "font-size": 1.3+'rem',
                                 })                                
                             }
                         })                        
                     }
                 },
-                error: function (error) {
-                    console.log(error);
-                }
+                    error: function (error)
+                    {
+                        console.log(error);
+                    }
             });
         }
     })

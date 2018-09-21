@@ -161,57 +161,48 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AreasController.cs" />
+    <Compile Include="Models\Areas.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Assemblies.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clients.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Components.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EnsamblesController.cs" />
     <Compile Include="Controllers\EnsamblesRealizadosController.cs" />
     <Compile Include="Controllers\Shipping_RecordsController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\CatalogShipmentTypeController.cs" />
-    <Compile Include="Controllers\VIEWDATAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Area.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
+    <Compile Include="Models\MaterialShippingControl.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaterialShippingControl.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MaterialShippingControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MaterialShippingControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaterialShippingControl.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AreasViewModel.cs" />
-    <Compile Include="Models\Assembly.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BAESystemsGuaymas.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAESystemsGuaymas.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BAESystemsGuaymas.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BAESystemsGuaymas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAESystemsGuaymas.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CatalogShipmentType.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Client.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ClientesViewModel.cs" />
-    <Compile Include="Models\Component.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ComponentesViewModel.cs" />
-    <Compile Include="Models\GraficaViewModel.cs" />
     <Compile Include="Models\Services\CreateDocument.cs" />
-    <Compile Include="Models\Shipping_Catalog_Products.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Shipping_Records.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipping_RecordsViewModel.cs" />
     <Compile Include="Models\EnsamblesViewModel.cs" />
@@ -225,14 +216,20 @@
     <Compile Include="Models\Services\EnsamblesService.cs" />
     <Compile Include="Models\Services\Shipping_Catalog_ProductsService.cs" />
     <Compile Include="Models\CatalogShipmentTypeViewModel.cs" />
-    <Compile Include="Models\VIEWDATA.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\VIEWDATAViewModel.cs" />
-    <Compile Include="Models\WireKit.cs">
-      <DependentUpon>BAESystemsGuaymas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Shipping_Catalog_ProductsController.cs" />
+    <Compile Include="Models\Shipping_Catalog_Products.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shipping_Catalog_ShipmentTypes.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VIEWDATA.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WireKit.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bae-styles.css" />
@@ -701,13 +698,6 @@
     <Content Include="Content\kendo\2018.1.221\fonts\glyphs\WebComponentsIcons.woff" />
     <Content Include="Content\kendo\2018.1.221\images\kendoui.ttf" />
     <Content Include="Content\kendo\2018.1.221\images\kendoui.woff" />
-    <EntityDeploy Include="Models\BAESystemsGuaymas.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BAESystemsGuaymas.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BAESystemsGuaymas.edmx.diagram">
-      <DependentUpon>BAESystemsGuaymas.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\BAESystemsWeb-Bold.woff" />
     <Content Include="fonts\BAESystemsWeb-Regular.woff" />
     <Content Include="fonts\fa-brands-400.eot" />
@@ -730,16 +720,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <None Include="packages.config" />
-    <Content Include="Models\BAESystemsGuaymas.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BAESystemsGuaymas.edmx</DependentUpon>
-      <LastGenOutput>BAESystemsGuaymas.Context.cs</LastGenOutput>
+    <EntityDeploy Include="Models\MaterialShippingControl.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MaterialShippingControl.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MaterialShippingControl.edmx.diagram">
+      <DependentUpon>MaterialShippingControl.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\BAESystemsGuaymas.tt">
+    <None Include="packages.config" />
+    <Content Include="Models\MaterialShippingControl.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BAESystemsGuaymas.edmx</DependentUpon>
-      <LastGenOutput>BAESystemsGuaymas.cs</LastGenOutput>
+      <DependentUpon>MaterialShippingControl.edmx</DependentUpon>
+      <LastGenOutput>MaterialShippingControl.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MaterialShippingControl.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MaterialShippingControl.edmx</DependentUpon>
+      <LastGenOutput>MaterialShippingControl.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -1164,6 +1161,7 @@
     <Content Include="Scripts\cultures\kendo.culture.zu-ZA.min.js" />
     <Content Include="Scripts\cultures\kendo.culture.zu.min.js" />
     <Content Include="Scripts\InstruccionesScript.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1552,7 +1550,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

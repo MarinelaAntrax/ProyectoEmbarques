@@ -10,14 +10,14 @@ namespace ProyectoEmbarques.Models.Services
     public class CatalogShipmentTypeService : Controller
     {
         // GET: TipoEmbarque
-        private BAESystemsGuaymasEntities entities;
+        private MaterialShippingControlEntities entities;
 
-        public CatalogShipmentTypeService(BAESystemsGuaymasEntities entities)
+        public CatalogShipmentTypeService(MaterialShippingControlEntities entities)
         {
             this.entities = entities;
         }
 
-        public CatalogShipmentTypeService() : this(new BAESystemsGuaymasEntities())
+        public CatalogShipmentTypeService() : this(new MaterialShippingControlEntities())
         {
 
         }
@@ -26,7 +26,7 @@ namespace ProyectoEmbarques.Models.Services
         {
             IList<CatalogShipmentTypeViewModel> result = new List<CatalogShipmentTypeViewModel>();
 
-            result = entities.CatalogShipmentType.Select(product => new CatalogShipmentTypeViewModel
+            result = entities.Shipping_Catalog_ShipmentTypes.Select(product => new CatalogShipmentTypeViewModel
             {
                 ShipmentTypeID = product.ShipmentTypeID,
                 ShipmentType = product.ShipmentType

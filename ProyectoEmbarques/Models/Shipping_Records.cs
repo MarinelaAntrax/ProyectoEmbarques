@@ -27,19 +27,19 @@ namespace ProyectoEmbarques.Models
         public string RecordComment { get; set; }
         public Nullable<decimal> RecordWorkOrder { get; set; }
         public Nullable<decimal> RecordSerialNo { get; set; }
+        public bool RecordRework { get; set; }
         public Nullable<decimal> RecordTrackingId { get; set; }
-        public string RecordRework { get; set; }
         public string RecordComment1 { get; set; }
         public string RecordComment2 { get; set; }
-        public string RecordFAI { get; set; }
+        public bool RecordFAI { get; set; }
         public string RecordSeguritySeal1 { get; set; }
         public string RecordSeguritySeal2 { get; set; }
         public string RecordSeguritySeal3 { get; set; }
         public string RecordSeguritySeal4 { get; set; }
         public string RecordTransfer { get; set; }
     
-        public virtual CatalogShipmentType CatalogShipmentType { get; set; }
-        public virtual Client Client { get; set; }
+        public virtual Clients Clients { get; set; }
         public virtual Shipping_Catalog_Products Shipping_Catalog_Products { get; set; }
+        public virtual Shipping_Catalog_ShipmentTypes Shipping_Catalog_ShipmentTypes { get; set; }
     }
 }

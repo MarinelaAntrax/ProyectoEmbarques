@@ -7,14 +7,14 @@ namespace ProyectoEmbarques.Models.Services
 {
     public class VIEWDATAService
     {
-        private BAESystemsGuaymasEntities entities;
+        private MaterialShippingControlEntities entities;
 
-        public VIEWDATAService(BAESystemsGuaymasEntities entities)
+        public VIEWDATAService(MaterialShippingControlEntities entities)
         {
             this.entities = entities;
         }
 
-        public VIEWDATAService() : this(new BAESystemsGuaymasEntities())
+        public VIEWDATAService() : this(new MaterialShippingControlEntities())
         {
 
         }

@@ -10,7 +10,7 @@ namespace ProyectoEmbarques.Controllers
 {
     public class ClientesController : Controller
     {
-        BAESystemsGuaymasEntities Entities = new BAESystemsGuaymasEntities();
+        MaterialShippingControlEntities Entities = new MaterialShippingControlEntities();
 
         // GET: Clientes
         private ClientesService _Service;
@@ -22,6 +22,7 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.showSuccessAlert = false;
             return View();
         }
 
@@ -51,6 +52,7 @@ namespace ProyectoEmbarques.Controllers
                 if (clientes != null && ModelState.IsValid)
                 {
                     _Service.Create(clientes);
+                    ViewBag.showSuccessAlert = true;
                 }
             }
             catch (Exception ex)

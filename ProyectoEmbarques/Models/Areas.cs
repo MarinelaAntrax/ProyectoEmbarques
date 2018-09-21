@@ -12,20 +12,21 @@ namespace ProyectoEmbarques.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class Areas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
+        public Areas()
         {
-            this.Shipping_Records = new HashSet<Shipping_Records>();
+            this.Assemblies = new HashSet<Assemblies>();
+            this.Shipping_Catalog_Products = new HashSet<Shipping_Catalog_Products>();
         }
     
-        public int ClientID { get; set; }
-        public string ClientName { get; set; }
-        public string ClientAddress { get; set; }
-        public string ClientCompany { get; set; }
+        public int AreaID { get; set; }
+        public string AreaName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
+        public virtual ICollection<Assemblies> Assemblies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shipping_Catalog_Products> Shipping_Catalog_Products { get; set; }
     }
 }

@@ -7,14 +7,14 @@ namespace ProyectoEmbarques.Models.Services
 {
     public class AreasService
     {
-        private BAESystemsGuaymasEntities entities;
+        private MaterialShippingControlEntities entities;
 
-        public AreasService(BAESystemsGuaymasEntities entities)
+        public AreasService(MaterialShippingControlEntities entities)
         {
             this.entities = entities;
         }
 
-        public AreasService() : this(new BAESystemsGuaymasEntities())
+        public AreasService() : this(new MaterialShippingControlEntities())
         {
 
         }

@@ -17,8 +17,9 @@ namespace ProyectoEmbarques.Controllers
 {
     public class Shipping_Catalog_ProductsController : Controller
     {
-        BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
-
+        MaterialShippingControlEntities db = new MaterialShippingControlEntities();
+        AreasService _Areas = new AreasService();
+        VIEWDATAService _ViewData = new VIEWDATAService();
         private Shipping_Catalog_ProductsService _Service;
 
         public Shipping_Catalog_ProductsController()
@@ -29,6 +30,7 @@ namespace ProyectoEmbarques.Controllers
         // GET: Shipping_Catalog_Products
         public ActionResult Create()
         {
+            TempData.Remove("AlertMessage");
             return View();
         }
 
@@ -97,26 +99,33 @@ namespace ProyectoEmbarques.Controllers
         }
 
         // POST: Shipping_Catalog_Products/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_ProductsViewModel Products)
         {
             if (ModelState.IsValid)
             {
-                db.Shipping_Catalog_Products.Add(Products);
-                db.SaveChanges();
-                return RedirectToAction("Create");
+                TempData.Remove("AlertMessage");
+                _Service.Create(Products);
             }
-            return View(Products);
+                return View("Create");
+        }
+
+        public ActionResult FillComboboxAreas()
+        {
+            return Json(_Areas.Read(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult FillComboboxViewData()
+        {
+            return Json(_ViewData.Read(), JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            _Service.Dispose();
             base.Dispose(disposing);
         }
+
     }
 }
+

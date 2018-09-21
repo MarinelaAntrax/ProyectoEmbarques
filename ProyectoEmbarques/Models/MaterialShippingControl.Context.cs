@@ -13,10 +13,10 @@ namespace ProyectoEmbarques.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BAESystemsGuaymasEntities : DbContext
+    public partial class MaterialShippingControlEntities : DbContext
     {
-        public BAESystemsGuaymasEntities()
-            : base("name=BAESystemsGuaymasEntities")
+        public MaterialShippingControlEntities()
+            : base("name=MaterialShippingControlEntities")
         {
         }
     
@@ -25,14 +25,13 @@ namespace ProyectoEmbarques.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Area> Areas { get; set; }
-        public virtual DbSet<Assembly> Assemblies { get; set; }
-        public virtual DbSet<CatalogShipmentType> CatalogShipmentType { get; set; }
-        public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<Component> Components { get; set; }
-        public virtual DbSet<Shipping_Catalog_Products> Shipping_Catalog_Products { get; set; }
-        public virtual DbSet<Shipping_Records> Shipping_Records { get; set; }
-        public virtual DbSet<WireKit> WireKits { get; set; }
         public virtual DbSet<VIEWDATA> VIEWDATA { get; set; }
+        public virtual DbSet<Areas> Areas { get; set; }
+        public virtual DbSet<Assemblies> Assemblies { get; set; }
+        public virtual DbSet<Clients> Clients { get; set; }
+        public virtual DbSet<WireKit> WireKit { get; set; }
+        public virtual DbSet<Shipping_Catalog_Products> Shipping_Catalog_Products { get; set; }
+        public virtual DbSet<Shipping_Catalog_ShipmentTypes> Shipping_Catalog_ShipmentTypes { get; set; }
+        public virtual DbSet<Shipping_Records> Shipping_Records { get; set; }
     }
 }

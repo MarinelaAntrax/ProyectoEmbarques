@@ -1,51 +1,56 @@
 ﻿@{
-    ViewBag.Title = "Ver Cliente";
+    ViewBag.Title = "Clientes";
 }
 
 <h2 class="page-header">@ViewBag.Title</h2>
 
 <div class="telerik-controls">
-@(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
-            .Name("grid")
-            .Sortable()
-                .ToolBar(tools =>
-                {
-                    tools.Create().Text("Agregar Cliente");
-                })
-                    .Editable(editable => editable.Mode(GridEditMode.PopUp))
-                    .Pageable(x => x.Numeric(true)
-                    .PreviousNext(true)
-                    .Refresh(true)
-                    .ButtonCount(5))
-                    .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Model(model => model.Id(e => e.ClientID))
-                        .Events(events => events.Error("error_handler"))
-                        .Read(read => read.Action("Read", "Clientes"))
-                        .Create(create => create.Action("Create", "Clientes"))
-                        .Update(update => update.Action("Update", "Clientes"))
-                        .PageSize(100)
-                        )
-                            .Columns(columns =>
-                            {
-                                columns.Bound(o => o.ClientName).Title("Nombre del Cliente").Width(200);
-                                columns.Bound(o => o.ClientCompany).Title("Direccion").Width(200);
-                            })
-                            .Scrollable()
-                            .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                            .HtmlAttributes(new { style = "height: 650px" })
-                            .Events(e => { e.Edit("onEdit"); })
-)
+    @(Html.Kendo().Grid<ProyectoEmbarques.Models.ClientesViewModel>()
+                    .Name("grid")
+                    .Sortable()
+                        .ToolBar(tools =>
+                        {
+                            tools.Create().Text("Agregar Cliente");
+                        })
+                            .Editable(editable => editable.Mode(GridEditMode.PopUp))
+                            .Pageable(x => x.Numeric(true)
+                            .PreviousNext(true)
+                            .Refresh(true)
+                            .ButtonCount(5))
+                            .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Model(model => model.Id(e => e.ClientID))
+                                .Events(events => events.Error("error_handler"))
+                                .Read(read => read.Action("Read", "Clientes"))
+                                .Create(create => create.Action("Create", "Clientes"))
+                                .Update(update => update.Action("Update", "Clientes"))
+                                .PageSize(100)
+                                )
+                                    .Columns(columns =>
+                                    {
+                                        columns.Bound(o => o.ClientName).Title("Nombre del Cliente").Width(200);
+                                        columns.Bound(o => o.ClientCompany).Title("Dirección").Width(200);
+                                    })
+                                    .Scrollable()
+                                    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                                    .HtmlAttributes(new { style = "height: 650px" })
+                                    .Events(e => { e.Edit("onEdit"); })
+    )
 </div>
 
 @section Scripts{
     <script type="text/javascript">
-        function error_handler(e) {
-            if (e.errors) {
+        function error_handler(e)
+        {
+            if (e.errors)
+            {
                 var message = "Errors:\n";
-                $.each(e.errors, function (key, value) {
-                    if ('errors' in value) {
-                        $.each(value.errors, function () {
+                $.each(e.errors, function (key, value)
+                {
+                    if ('errors' in value)
+                    {
+                        $.each(value.errors, function ()
+                        {
                             message += this + "\n";
                         });
                     }
@@ -56,7 +61,8 @@
     </script>
 
     <script>
-        function onEdit(e) {
+        function onEdit(e)
+        {
             e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Cliente" : + $('#nombreCliente').val());
         }
     </script>
@@ -68,3 +74,10 @@
         width: 600px;
     }
 </style>
+
+@if (ViewBag.showSuccessAlert == true)
+ {
+    <script>
+        alert('El registro se ha guardado');
+    </script>
+ }

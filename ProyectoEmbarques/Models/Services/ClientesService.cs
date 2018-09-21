@@ -11,14 +11,14 @@ namespace ProyectoEmbarques.Models.Services
     {
         private static bool UpdateDatabase = true;
 
-        private BAESystemsGuaymasEntities BAE;
+        private MaterialShippingControlEntities BAE;
 
-        public ClientesService(BAESystemsGuaymasEntities BAE)
+        public ClientesService(MaterialShippingControlEntities BAE)
         {
             this.BAE = BAE;
         }
 
-        public ClientesService() : this(new BAESystemsGuaymasEntities())
+        public ClientesService() : this(new MaterialShippingControlEntities())
         {
 
         }
@@ -54,7 +54,7 @@ namespace ProyectoEmbarques.Models.Services
             }
             else
             {
-                var entity = new Client();
+                var entity = new Clients();
 
                 entity.ClientID = clientes.ClientID;
                 entity.ClientName = clientes.ClientName;
@@ -84,7 +84,7 @@ namespace ProyectoEmbarques.Models.Services
             }
             else
             {
-                var entity = new Client();
+                var entity = new Clients();
 
                 entity.ClientID = clientes.ClientID;
                 entity.ClientName = clientes.ClientName;

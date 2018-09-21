@@ -12,10 +12,10 @@ namespace ProyectoEmbarques.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CatalogShipmentType
+    public partial class Shipping_Catalog_ShipmentTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CatalogShipmentType()
+        public Shipping_Catalog_ShipmentTypes()
         {
             this.Shipping_Records = new HashSet<Shipping_Records>();
         }

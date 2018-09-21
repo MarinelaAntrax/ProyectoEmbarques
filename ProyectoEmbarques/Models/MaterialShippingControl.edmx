@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MaterialShippingControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assemblies">
+          <Key>
+            <PropertyRef Name="AssemblyID" />
+          </Key>
+          <Property Name="AssemblyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssemblyPartNumber" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="AreaID" Type="int" />
+          <Property Name="BinLocation" Type="varchar" MaxLength="20" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Quantity" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClientAddress" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ClientCompany" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WireKit">
+          <Key>
+            <PropertyRef Name="WireKitID" />
+          </Key>
+          <Property Name="WireKitID" Type="int" Nullable="false" />
+          <Property Name="WireKitPN" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipping_Catalog_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductInternalArea" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipping_Catalog_ShipmentTypes">
+          <Key>
+            <PropertyRef Name="ShipmentTypeID" />
+          </Key>
+          <Property Name="ShipmentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipmentType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipping_Records">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="RecordQuantity" Type="int" Nullable="false" />
+          <Property Name="RecordDate" Type="date" Nullable="false" />
+          <Property Name="RecordFedexTracking" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RecordControlBoxNo" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RecordPieceBoxNo" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ShipmentTypeID" Type="int" Nullable="false" />
+          <Property Name="RecordServiceType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordComment" Type="varchar" MaxLength="250" />
+          <Property Name="RecordWorkOrder" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RecordSerialNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RecordRework" Type="bit" Nullable="false" />
+          <Property Name="RecordTrackingId" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RecordComment1" Type="varchar" MaxLength="250" />
+          <Property Name="RecordComment2" Type="varchar" MaxLength="250" />
+          <Property Name="RecordFAI" Type="bit" Nullable="false" />
+          <Property Name="RecordSeguritySeal1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordSeguritySeal2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordSeguritySeal3" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordSeguritySeal4" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordTransfer" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VIEWDATA">
+          <Key>
+            <PropertyRef Name="DATA" />
+          </Key>
+          <Property Name="DATA" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Assemblies_Areas">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="0..1" />
+          <End Role="Assemblies" Type="Self.Assemblies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Assemblies">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Areas">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="Shipping_Catalog_Products" Type="Self.Shipping_Catalog_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Shipping_Catalog_Products">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Shipping_Records" Type="Self.Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_Shipping_Catalog_Products">
+          <End Role="Shipping_Catalog_Products" Type="Self.Shipping_Catalog_Products" Multiplicity="1" />
+          <End Role="Shipping_Records" Type="Self.Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping_Catalog_Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_Shipping_Catalog_ShipmentTypes">
+          <End Role="Shipping_Catalog_ShipmentTypes" Type="Self.Shipping_Catalog_ShipmentTypes" Multiplicity="1" />
+          <End Role="Shipping_Records" Type="Self.Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping_Catalog_ShipmentTypes">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MaterialShippingControlModelStoreContainer">
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="Catalog" store:Type="Tables" />
+          <EntitySet Name="Assemblies" EntityType="Self.Assemblies" Schema="Catalog" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="Catalog" store:Type="Tables" />
+          <EntitySet Name="WireKit" EntityType="Self.WireKit" Schema="Catalog" store:Type="Tables" />
+          <EntitySet Name="Shipping_Catalog_Products" EntityType="Self.Shipping_Catalog_Products" Schema="Material" store:Type="Tables" />
+          <EntitySet Name="Shipping_Catalog_ShipmentTypes" EntityType="Self.Shipping_Catalog_ShipmentTypes" Schema="Material" store:Type="Tables" />
+          <EntitySet Name="Shipping_Records" EntityType="Self.Shipping_Records" Schema="Material" store:Type="Tables" />
+          <EntitySet Name="VIEWDATA" EntityType="Self.VIEWDATA" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEWDATA].[DATA] AS [DATA]
+    FROM [dbo].[VIEWDATA] AS [VIEWDATA]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Assemblies_Areas" Association="Self.FK_Assemblies_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Assemblies" EntitySet="Assemblies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Areas" Association="Self.FK_Products_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_Clients" Association="Self.FK_Shipping_Records_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_Products" Association="Self.FK_Shipping_Records_Shipping_Catalog_Products">
+            <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" Association="Self.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes">
+            <End Role="Shipping_Catalog_ShipmentTypes" EntitySet="Shipping_Catalog_ShipmentTypes" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaterialShippingControlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="VIEWDATA">
+          <Key>
+            <PropertyRef Name="DATA" />
+          </Key>
+          <Property Name="DATA" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MaterialShippingControlEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VIEWDATA" EntityType="Self.VIEWDATA" />
+          <EntitySet Name="Areas" EntityType="MaterialShippingControlModel.Areas" />
+          <EntitySet Name="Assemblies" EntityType="MaterialShippingControlModel.Assemblies" />
+          <EntitySet Name="Clients" EntityType="MaterialShippingControlModel.Clients" />
+          <EntitySet Name="WireKit" EntityType="MaterialShippingControlModel.WireKit" />
+          <EntitySet Name="Shipping_Catalog_Products" EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" />
+          <EntitySet Name="Shipping_Catalog_ShipmentTypes" EntityType="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes" />
+          <EntitySet Name="Shipping_Records" EntityType="MaterialShippingControlModel.Shipping_Records" />
+          <AssociationSet Name="FK_Assemblies_Areas" Association="MaterialShippingControlModel.FK_Assemblies_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Assemblies" EntitySet="Assemblies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Areas" Association="MaterialShippingControlModel.FK_Products_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_Clients" Association="MaterialShippingControlModel.FK_Shipping_Records_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_Products" Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products">
+            <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes">
+            <End Role="Shipping_Catalog_ShipmentTypes" EntitySet="Shipping_Catalog_ShipmentTypes" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Assemblies" Relationship="MaterialShippingControlModel.FK_Assemblies_Areas" FromRole="Areas" ToRole="Assemblies" />
+          <NavigationProperty Name="Shipping_Catalog_Products" Relationship="MaterialShippingControlModel.FK_Products_Areas" FromRole="Areas" ToRole="Shipping_Catalog_Products" />
+        </EntityType>
+        <EntityType Name="Assemblies">
+          <Key>
+            <PropertyRef Name="AssemblyID" />
+          </Key>
+          <Property Name="AssemblyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssemblyPartNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AreaID" Type="Int32" />
+          <Property Name="BinLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Byte" />
+          <NavigationProperty Name="Areas" Relationship="MaterialShippingControlModel.FK_Assemblies_Areas" FromRole="Assemblies" ToRole="Areas" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ClientCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Clients" ToRole="Shipping_Records" />
+        </EntityType>
+        <EntityType Name="WireKit">
+          <Key>
+            <PropertyRef Name="WireKitID" />
+          </Key>
+          <Property Name="WireKitID" Type="Int32" Nullable="false" />
+          <Property Name="WireKitPN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Shipping_Catalog_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductInternalArea" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Areas" Relationship="MaterialShippingControlModel.FK_Products_Areas" FromRole="Shipping_Catalog_Products" ToRole="Areas" />
+          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Catalog_Products" ToRole="Shipping_Records" />
+        </EntityType>
+        <EntityType Name="Shipping_Catalog_ShipmentTypes">
+          <Key>
+            <PropertyRef Name="ShipmentTypeID" />
+          </Key>
+          <Property Name="ShipmentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" FromRole="Shipping_Catalog_ShipmentTypes" ToRole="Shipping_Records" />
+        </EntityType>
+        <EntityType Name="Shipping_Records">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="RecordQuantity" Type="Int32" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RecordFedexTracking" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="RecordControlBoxNo" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="RecordPieceBoxNo" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ShipmentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="RecordServiceType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RecordWorkOrder" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RecordSerialNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RecordRework" Type="Boolean" Nullable="false" />
+          <Property Name="RecordTrackingId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RecordComment1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RecordComment2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RecordFAI" Type="Boolean" Nullable="false" />
+          <Property Name="RecordSeguritySeal1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordTransfer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clients" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Shipping_Records" ToRole="Clients" />
+          <NavigationProperty Name="Shipping_Catalog_Products" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Records" ToRole="Shipping_Catalog_Products" />
+          <NavigationProperty Name="Shipping_Catalog_ShipmentTypes" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" FromRole="Shipping_Records" ToRole="Shipping_Catalog_ShipmentTypes" />
+        </EntityType>
+        <Association Name="FK_Assemblies_Areas">
+          <End Type="MaterialShippingControlModel.Areas" Role="Areas" Multiplicity="0..1" />
+          <End Type="MaterialShippingControlModel.Assemblies" Role="Assemblies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Assemblies">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Areas">
+          <End Type="MaterialShippingControlModel.Areas" Role="Areas" Multiplicity="1" />
+          <End Type="MaterialShippingControlModel.Shipping_Catalog_Products" Role="Shipping_Catalog_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Shipping_Catalog_Products">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_Clients">
+          <End Type="MaterialShippingControlModel.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="MaterialShippingControlModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_Shipping_Catalog_Products">
+          <End Type="MaterialShippingControlModel.Shipping_Catalog_Products" Role="Shipping_Catalog_Products" Multiplicity="1" />
+          <End Type="MaterialShippingControlModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping_Catalog_Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipping_Records_Shipping_Catalog_ShipmentTypes">
+          <End Type="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes" Role="Shipping_Catalog_ShipmentTypes" Multiplicity="1" />
+          <End Type="MaterialShippingControlModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping_Catalog_ShipmentTypes">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ShipmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaterialShippingControlModelStoreContainer" CdmEntityContainer="MaterialShippingControlEntities">
+          <EntitySetMapping Name="VIEWDATA">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.VIEWDATA">
+              <MappingFragment StoreEntitySet="VIEWDATA">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Areas">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assemblies">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Assemblies">
+              <MappingFragment StoreEntitySet="Assemblies">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="BinLocation" ColumnName="BinLocation" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="AssemblyPartNumber" ColumnName="AssemblyPartNumber" />
+                <ScalarProperty Name="AssemblyID" ColumnName="AssemblyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientCompany" ColumnName="ClientCompany" />
+                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WireKit">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.WireKit">
+              <MappingFragment StoreEntitySet="WireKit">
+                <ScalarProperty Name="WireKitPN" ColumnName="WireKitPN" />
+                <ScalarProperty Name="WireKitID" ColumnName="WireKitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipping_Catalog_Products">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Shipping_Catalog_Products">
+              <MappingFragment StoreEntitySet="Shipping_Catalog_Products">
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductInternalArea" ColumnName="ProductInternalArea" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipping_Catalog_ShipmentTypes">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes">
+              <MappingFragment StoreEntitySet="Shipping_Catalog_ShipmentTypes">
+                <ScalarProperty Name="ShipmentType" ColumnName="ShipmentType" />
+                <ScalarProperty Name="ShipmentTypeID" ColumnName="ShipmentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipping_Records">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Shipping_Records">
+              <MappingFragment StoreEntitySet="Shipping_Records">
+                <ScalarProperty Name="RecordTransfer" ColumnName="RecordTransfer" />
+                <ScalarProperty Name="RecordSeguritySeal4" ColumnName="RecordSeguritySeal4" />
+                <ScalarProperty Name="RecordSeguritySeal3" ColumnName="RecordSeguritySeal3" />
+                <ScalarProperty Name="RecordSeguritySeal2" ColumnName="RecordSeguritySeal2" />
+                <ScalarProperty Name="RecordSeguritySeal1" ColumnName="RecordSeguritySeal1" />
+                <ScalarProperty Name="RecordFAI" ColumnName="RecordFAI" />
+                <ScalarProperty Name="RecordComment2" ColumnName="RecordComment2" />
+                <ScalarProperty Name="RecordComment1" ColumnName="RecordComment1" />
+                <ScalarProperty Name="RecordTrackingId" ColumnName="RecordTrackingId" />
+                <ScalarProperty Name="RecordRework" ColumnName="RecordRework" />
+                <ScalarProperty Name="RecordSerialNo" ColumnName="RecordSerialNo" />
+                <ScalarProperty Name="RecordWorkOrder" ColumnName="RecordWorkOrder" />
+                <ScalarProperty Name="RecordComment" ColumnName="RecordComment" />
+                <ScalarProperty Name="RecordServiceType" ColumnName="RecordServiceType" />
+                <ScalarProperty Name="ShipmentTypeID" ColumnName="ShipmentTypeID" />
+                <ScalarProperty Name="RecordPieceBoxNo" ColumnName="RecordPieceBoxNo" />
+                <ScalarProperty Name="RecordControlBoxNo" ColumnName="RecordControlBoxNo" />
+                <ScalarProperty Name="RecordFedexTracking" ColumnName="RecordFedexTracking" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="RecordQuantity" ColumnName="RecordQuantity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

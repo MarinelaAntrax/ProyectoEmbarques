@@ -10,20 +10,22 @@ using Telerik.Windows.Documents.Fixed.Model;
 using ProyectoEmbarques.Models.Services;
 using System.Diagnostics;
 using ProyectoEmbarques.Models;
+
 namespace ProyectoEmbarques.Controllers
 {
     
     public class ReportesController : Controller
     {
-        BAESystemsGuaymasEntities Entities = new BAESystemsGuaymasEntities();
+        MaterialShippingControlEntities Entities = new MaterialShippingControlEntities();
 
-        public ActionResult Index(){
+        public ActionResult Index()
+        {
             return View();
         }
 
         public ActionResult FillCombobox()
         {
-            var FD = new BAESystemsGuaymasEntities().Shipping_Records.Select(client => new
+            var FD = new MaterialShippingControlEntities().Shipping_Records.Select(client => new
             {
                 RecordFedexTracking = client.RecordFedexTracking.ToString()
             });

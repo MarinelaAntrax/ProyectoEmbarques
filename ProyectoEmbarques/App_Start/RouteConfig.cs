@@ -16,7 +16,7 @@ namespace ProyectoEmbarques
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "EnsamblesRealizados", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Shipping_Records", action = "Create", id = UrlParameter.Optional },
                  namespaces: new[] { "ProyectoEmbarques.Controllers" }
             );
 

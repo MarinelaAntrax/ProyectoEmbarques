@@ -17,10 +17,11 @@ namespace ProyectoEmbarques.Controllers
             _Service = new EnsamblesRealizadosService();
         }
 
-        private BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
+        private MaterialShippingControlEntities db = new MaterialShippingControlEntities();
 
         public ActionResult Create()
         {
+            ViewBag.showSuccessAlert = false;
             return View();
         }
 
@@ -33,20 +34,12 @@ namespace ProyectoEmbarques.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RecordID,ClientID,ProductID,RecordQuantity,RecordDate,RecordFedexTracking,RecordControlBoxNo,RecordPieceBoxNo,ShipmentTypeID,RecordServiceType,RecordComment,RecordWorkOrder,RecordSerialNo,RecordTrackingId,RecordRework,RecordComment1,RecordComment2,RecordFAI,RecordTransfer,RecordSeguritySeal1,RecordSeguritySeal2,RecordSeguritySeal3,RecordSeguritySeal4,")] Shipping_RecordsViewModel Perro)
         {
-            try
+                if (Perro != null && ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
                     _Service.Create(Perro);
-                    return RedirectToAction("Create");
+                    ViewBag.showSuccessAlert = true;  
                 }
-                return View(Perro);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                Debug.WriteLine("Error: "+ex);
-            }
-            return View(Perro);
+             return View("Create", Perro);
         }
 
         protected override void Dispose(bool disposing)

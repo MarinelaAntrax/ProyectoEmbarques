@@ -8,7 +8,7 @@ namespace ProyectoEmbarques.Controllers
 {
     public class EnsamblesController : Controller
     {
-        BAESystemsGuaymasEntities db = new BAESystemsGuaymasEntities();
+        MaterialShippingControlEntities db = new MaterialShippingControlEntities();
 
         // GET: Ensambles
         private EnsamblesService _EnsamblesService;

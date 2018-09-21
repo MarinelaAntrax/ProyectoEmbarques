@@ -17,10 +17,11 @@ namespace ProyectoEmbarques.Models
         public int ProductID { get; set; }
 
         [Display(Name = "Attn")]
-        [Required(ErrorMessage = "Nombre del Cliente requerida.")]
+        [Required(ErrorMessage = "Nombre del cliente requerida.")]
         public int ClientID { get; set; }
 
         [Display(Name = "No. de Caja Piezas")]
+        [Required(ErrorMessage = "No. de caja piezas requerida.")]
         public decimal RecordPieceBoxNo { get; set; }
 
         [Display(Name = "Tracking ID")]
@@ -38,34 +39,36 @@ namespace ProyectoEmbarques.Models
         public System.DateTime RecordDate { get; set; }
 
         [Display(Name = "Fedex Tracking ")]
+        [Required(ErrorMessage = "Fedex Tracking requerido.")]
         public decimal RecordFedexTracking { get; set; }
 
         [Display(Name = "No. Caja CD")]
+        [Required(ErrorMessage = "No. Caja CD requerido.")]
         public decimal RecordControlBoxNo { get; set; }
 
         [Display(Name = "Tipo de Embarque")]
         public int ShipmentTypeID { get; set; }
 
         [Display(Name = "Retrabajado")]
-        public string RecordRework { get; set; }
+        public bool RecordRework { get; set; }
 
         [UIHint("Transferible")]
         public string RecordTransfer { get; set; }
        
         [Display(Name = "Sello de Seguridad1")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
+        [Required(ErrorMessage = "Sello requerido.")]
         public string RecordSeguritySeal1 { get; set; }
 
         [Display(Name = "Sello de Seguridad2")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
+        [Required(ErrorMessage = "Sello requerido.")]
         public string RecordSeguritySeal2 { get; set; }
 
         [Display(Name = "Sello de Seguridad3")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
+        [Required(ErrorMessage = "Sello requerido.")]
         public string RecordSeguritySeal3 { get; set; }
 
         [Display(Name = "Sello de Seguridad4")]
-        [Required(ErrorMessage = "Sello de Seguridad requerido.")]
+        [Required(ErrorMessage = "Sello requerido.")]
         public string RecordSeguritySeal4 { get; set; }
 
         [Display(Name = "Job #")]
@@ -84,12 +87,12 @@ namespace ProyectoEmbarques.Models
         public string RecordComment2 { get; set; }
 
         [Display(Name ="FAI(PrimeraPieza)")]
-        public string RecordFAI { get; set; }
+        public bool RecordFAI { get; set; }
 
         [Display(Name = "Tipo de Servicio")]
-        [Required(ErrorMessage = "Tipo de Servicio requerido.")]
+        [Required(ErrorMessage = "Tipo de servicio requerido.")]
         public string RecordServiceType { get; set; }
-
+        
         public virtual CatalogShipmentTypeViewModel CatalogShipmentType { get; set; }
         public virtual ClientesViewModel Clients { get; set; }
         public virtual Shipping_Catalog_ProductsViewModel Shipping_Catalog_Products { get; set; }

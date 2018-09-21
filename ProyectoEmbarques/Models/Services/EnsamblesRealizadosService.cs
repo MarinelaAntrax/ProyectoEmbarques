@@ -14,14 +14,14 @@ namespace ProyectoEmbarques.Models.Services
       {
         private static bool UpdateDatabase = true;
 
-        private BAESystemsGuaymasEntities Entities;
+        private MaterialShippingControlEntities Entities;
 
-            public EnsamblesRealizadosService(BAESystemsGuaymasEntities Entities)
+            public EnsamblesRealizadosService(MaterialShippingControlEntities Entities)
             {
                 this.Entities = Entities;
             }
 
-            public EnsamblesRealizadosService() : this(new BAESystemsGuaymasEntities())
+            public EnsamblesRealizadosService() : this(new MaterialShippingControlEntities())
             {
 
             }
@@ -35,16 +35,16 @@ namespace ProyectoEmbarques.Models.Services
                     ClientID = componente.ClientID,
                     Clients = new ClientesViewModel()
                     {
-                        ClientName = componente.Client.ClientName,
-                        ClientAddress = componente.Client.ClientAddress,
-                        ClientCompany = componente.Client.ClientCompany
+                        ClientName = componente.Clients.ClientName,
+                        ClientAddress = componente.Clients.ClientAddress,
+                        ClientCompany = componente.Clients.ClientCompany
                     },
                     ProductID = componente.ProductID,
                     Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
                     {
                         ProductID = componente.Shipping_Catalog_Products.ProductID,
                         ProductName = componente.Shipping_Catalog_Products.ProductName,
-                        AreaName = componente.Shipping_Catalog_Products.Area.AreaName,
+                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName,
                         ProductType = componente.Shipping_Catalog_Products.ProductType,
                         ProductInternalArea = componente.Shipping_Catalog_Products.ProductInternalArea
                     },
@@ -57,8 +57,8 @@ namespace ProyectoEmbarques.Models.Services
                     ShipmentTypeID = componente.ShipmentTypeID,
                     CatalogShipmentType = new CatalogShipmentTypeViewModel()
                     {
-                        ShipmentTypeID = componente.CatalogShipmentType.ShipmentTypeID,
-                        ShipmentType = componente.CatalogShipmentType.ShipmentType
+                        ShipmentTypeID = componente.Shipping_Catalog_ShipmentTypes.ShipmentTypeID,
+                        ShipmentType = componente.Shipping_Catalog_ShipmentTypes.ShipmentType
                     },
                     RecordComment = componente.RecordComment,
                     RecordWorkOrder = componente.RecordWorkOrder,
@@ -90,6 +90,7 @@ namespace ProyectoEmbarques.Models.Services
             else
             {
                 var entity = new Shipping_Records();
+                
                 entity.ClientID = Record.ClientID;
                 entity.ProductID = Record.ProductID;
                 entity.RecordQuantity = Record.RecordQuantity;
@@ -118,7 +119,36 @@ namespace ProyectoEmbarques.Models.Services
             }
         }
 
-            public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
+        public void Destroy(Shipping_RecordsViewModel Record)
+        {
+            if (!UpdateDatabase)
+            {
+                var target = Read().FirstOrDefault(e => e.RecordID == Record.RecordID);
+                if (target != null)
+                {
+                    GetAll().Remove(target);
+                }
+            }
+            else
+            {
+                var entity = new Shipping_Records();
+
+                entity.RecordID = Record.RecordID;
+
+                Entities.Shipping_Records.Attach(entity);
+                Entities.Shipping_Records.Remove(entity);
+
+                var record = Entities.Shipping_Records.Where(s => s.RecordID == entity.RecordID);
+
+                foreach (var e in record)
+                {
+                    Entities.Shipping_Records.Remove(e);
+                }
+                Entities.SaveChanges();
+            }
+        }
+
+        public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
             {
                return GetAll().FirstOrDefault(predicate);
             }
@@ -153,10 +183,32 @@ namespace ProyectoEmbarques.Models.Services
                 else
                  {
                     var entity = new Shipping_Records();
-                
+                entity.RecordID = Record.RecordID;
                     entity.RecordTransfer = Record.RecordTransfer;
-                
-                    Entities.Shipping_Records.Attach(entity);
+                    entity.ClientID = Record.ClientID;
+                    entity.ProductID = Record.ProductID;
+                    entity.RecordQuantity = Record.RecordQuantity;
+                    entity.RecordDate = Record.RecordDate;
+                    entity.RecordFedexTracking = Record.RecordFedexTracking;
+                    entity.RecordControlBoxNo = Record.RecordControlBoxNo;
+                    entity.RecordPieceBoxNo = Record.RecordPieceBoxNo;
+                    entity.ShipmentTypeID = Record.ShipmentTypeID;
+                    entity.RecordServiceType = Record.RecordServiceType;
+                    entity.RecordComment = Record.RecordComment;
+                    entity.RecordWorkOrder = Record.RecordWorkOrder;
+                    entity.RecordSerialNo = Record.RecordSerialNo;
+                    entity.RecordTrackingId = Record.RecordTrackingId;
+                    entity.RecordRework = Record.RecordRework;
+                    entity.RecordComment1 = Record.RecordComment1;
+                    entity.RecordComment2 = Record.RecordComment2;
+                    entity.RecordFAI = Record.RecordFAI;
+                    
+                    entity.RecordSeguritySeal1 = Record.RecordSeguritySeal1;
+                    entity.RecordSeguritySeal2 = Record.RecordSeguritySeal2;
+                    entity.RecordSeguritySeal3 = Record.RecordSeguritySeal3;
+                    entity.RecordSeguritySeal4 = Record.RecordSeguritySeal4;
+                    Entities.Shipping_Records.Add(entity);
+                    
                     Entities.Entry(entity).State = EntityState.Modified;
                     Entities.SaveChanges();
                 }

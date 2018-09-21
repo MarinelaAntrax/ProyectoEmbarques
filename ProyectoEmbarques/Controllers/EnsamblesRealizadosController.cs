@@ -10,12 +10,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ProyectoEmbarques.Controllers
 {
     public partial class EnsamblesRealizadosController : Controller
     {
-        BAESystemsGuaymasEntities BD = new BAESystemsGuaymasEntities();
+        MaterialShippingControlEntities BD = new MaterialShippingControlEntities();
 
         private EnsamblesRealizadosService _SumarioEmbarquesService;
 
@@ -36,19 +37,31 @@ namespace ProyectoEmbarques.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_Records Datos)
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_RecordsViewModel Datos)
         {
             try
             {
-                BD.Entry(Datos).State = EntityState.Modified;
-                BD.SaveChanges();
+                _SumarioEmbarquesService.Update(Datos);
                 return RedirectToAction("Index");
             }
-                catch (DbEntityValidationException ex)
+            catch (DbEntityValidationException ex)
             {
                 Debug.WriteLine("ErrorMessage: " + ex.EntityValidationErrors);
                 return RedirectToAction("Index");
             }
-        }   
-    }
+        }
+             [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request, Shipping_RecordsViewModel Datos)
+        {
+            RouteValueDictionary routeValues;
+
+            _SumarioEmbarquesService.Destroy(Datos);
+
+            routeValues = this.GridRouteValues();
+
+            return Json(new[] { Datos }.ToDataSourceResult(request, ModelState));
+        }
+
+    }   
+    
 }

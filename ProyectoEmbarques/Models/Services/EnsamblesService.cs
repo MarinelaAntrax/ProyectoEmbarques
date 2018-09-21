@@ -8,13 +8,13 @@ namespace ProyectoEmbarques.Models.Services
 {
     public class EnsamblesService : Controller
     {
-        private BAESystemsGuaymasEntities Systems;
-        public EnsamblesService(BAESystemsGuaymasEntities Systems)
+        private MaterialShippingControlEntities Systems;
+        public EnsamblesService(MaterialShippingControlEntities Systems)
         {
             this.Systems = Systems;
         }
 
-        public EnsamblesService() : this(new BAESystemsGuaymasEntities())
+        public EnsamblesService() : this(new MaterialShippingControlEntities())
         {
 
         }

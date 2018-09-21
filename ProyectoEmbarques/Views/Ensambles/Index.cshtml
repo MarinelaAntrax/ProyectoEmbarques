@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Ver Ensambles";
+    ViewBag.Title = "Ensambles";
 }
 
 <h2 class="page-header">@ViewBag.Title</h2>
@@ -28,7 +28,7 @@
                                         .Columns(columns =>
                                         {
                                             columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
-                                            columns.Bound(o => o.AreaName).Title("Area").Width(5);
+                                            columns.Bound(o => o.AreaName).Title("Área").Width(5);
                                         })
                                         .Scrollable()
                                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
@@ -38,12 +38,17 @@
 
 @section Scripts{
     <script type="text/javascript">
-        function error_handler(e) {
-            if (e.errors) {
+        function error_handler(e)
+        {
+            if (e.errors)
+            {
                 var message = "Errors:\n";
-                $.each(e.errors, function (key, value) {
-                    if ('errors' in value) {
-                        $.each(value.errors, function () {
+                $.each(e.errors, function (key, value)
+                {
+                    if ('errors' in value)
+                    {
+                        $.each(value.errors, function ()
+                        {
                             message += this + "\n";
                         });
                     }

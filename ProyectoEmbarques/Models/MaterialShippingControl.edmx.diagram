@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a6c013e856a14f2a8b2e94262d7900eb" Name="Diagram1">
+        <EntityTypeShape EntityType="MaterialShippingControlModel.VIEWDATA" Width="1.5" PointX="0.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Areas" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Assemblies" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Clients" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.WireKit" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes" Width="1.5" PointX="3" PointY="12.125" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Records" Width="1.5" PointX="5.25" PointY="3.25" />
+        <AssociationConnector Association="MaterialShippingControlModel.FK_Assemblies_Areas" />
+        <AssociationConnector Association="MaterialShippingControlModel.FK_Products_Areas" />
+        <AssociationConnector Association="MaterialShippingControlModel.FK_Shipping_Records_Clients" />
+        <AssociationConnector Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" />
+        <AssociationConnector Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

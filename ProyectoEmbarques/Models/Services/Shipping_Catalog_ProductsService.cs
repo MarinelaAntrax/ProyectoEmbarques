@@ -6,16 +6,17 @@ using System.Web;
 
 namespace ProyectoEmbarques.Models.Services
 {
-    public class Shipping_Catalog_ProductsService 
+    public class Shipping_Catalog_ProductsService : IDisposable
     {
-        private BAESystemsGuaymasEntities entities;
+        private static bool UpdateDatabase = true;
+        private MaterialShippingControlEntities entities;
 
-        public Shipping_Catalog_ProductsService(BAESystemsGuaymasEntities entities)
+        public Shipping_Catalog_ProductsService(MaterialShippingControlEntities entities)
         {
             this.entities = entities;
         }
 
-        public Shipping_Catalog_ProductsService() : this(new BAESystemsGuaymasEntities())
+        public Shipping_Catalog_ProductsService() : this(new MaterialShippingControlEntities())
         {
 
         }
@@ -28,7 +29,7 @@ namespace ProyectoEmbarques.Models.Services
             {
                 ProductID = product.ProductID,
                 AreaID = product.AreaID,
-                AreaName =product.Area.AreaName,
+                AreaName =product.Areas.AreaName,
                 ProductName =product.ProductName,
                 ProductInternalArea = product.ProductInternalArea,
                 ProductType=product.ProductType
@@ -40,5 +41,44 @@ namespace ProyectoEmbarques.Models.Services
         {
             return GetAll();
         }
+
+        public void Create(Shipping_Catalog_ProductsViewModel product)
+        {
+            if (!UpdateDatabase)
+            {
+                var first = Read().OrderByDescending(s => s.ProductID).FirstOrDefault();
+                var id = (first != null) ? first.ProductID : 0;
+
+                product.ProductID = id + 1;
+
+                GetAll().Insert(0, product);
+            }
+                else
+                {
+                    var entity = new Shipping_Catalog_Products();
+
+                    entity.ProductID = product.ProductID;
+                    entity.AreaID = product.AreaID;
+                    entity.ProductName = product.ProductName;
+                    entity.ProductInternalArea = product.ProductInternalArea;
+                    entity.ProductType = product.ProductType;
+
+                    entities.Shipping_Catalog_Products.Add(entity);
+                    entities.SaveChanges();
+
+                    product.ProductID = entity.ProductID;
+                }
+        }
+
+             public Shipping_Catalog_ProductsViewModel One(Func<Shipping_Catalog_ProductsViewModel, bool> predicate)
+             {
+                return Read().FirstOrDefault(predicate);       
+             }
+
+            public void Dispose()
+            {
+                entities.Dispose();
+            }
+        
     }
 }

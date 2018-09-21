@@ -12,9 +12,11 @@ namespace ProyectoEmbarques.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Assembly
+    public partial class Components
     {
-        public int AssemblyID { get; set; }
-        public string AssemblyPartNumber { get; set; }
+        public int ComponentID { get; set; }
+        public string ComponentPN { get; set; }
+        public string ComponentDescription { get; set; }
+        public string ComponentName { get; set; }
     }
 }
