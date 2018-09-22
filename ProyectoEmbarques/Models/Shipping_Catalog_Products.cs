@@ -21,24 +21,14 @@ namespace ProyectoEmbarques.Models
             this.Shipping_Records = new HashSet<Shipping_Records>();
         }
 
-        [ScaffoldColumn(false)]
         public int ProductID { get; set; }
 
-        [ScaffoldColumn(false)]
-        [Required(ErrorMessage = "Nombre del área requerida.")]
         public int AreaID { get; set; }
 
-        [Display(Name = "P/N")]
-        [Required(ErrorMessage = "Nombre del producto requerido.")]
-        [StringLength(30, ErrorMessage = "La descripcion del componente no puede ser mayor de 30 caracteres.")]
         public string ProductName { get; set; }
 
-        [Display(Name = "Área Interna del Producto")]
-        [Required(ErrorMessage = "Área interna requerida.")]
         public string ProductInternalArea { get; set; }
 
-        [Display(Name = "Tipo del Producto")]
-        [Required(ErrorMessage = "Tipo del producto requerido.")]
         public string ProductType { get; set; }
 
         public virtual Areas Areas { get; set; }

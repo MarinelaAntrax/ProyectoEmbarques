@@ -29,7 +29,10 @@ namespace ProyectoEmbarques.Models.Services
             {
                 ProductID = product.ProductID,
                 AreaID = product.AreaID,
-                AreaName =product.Areas.AreaName,
+                Areas = new AreasViewModel()
+                {
+                    AreaName = product.Areas.AreaName
+              },
                 ProductName =product.ProductName,
                 ProductInternalArea = product.ProductInternalArea,
                 ProductType=product.ProductType
@@ -57,7 +60,7 @@ namespace ProyectoEmbarques.Models.Services
                 {
                     var entity = new Shipping_Catalog_Products();
 
-                    entity.ProductID = product.ProductID;
+                    //entity.ProductID = product.ProductID;
                     entity.AreaID = product.AreaID;
                     entity.ProductName = product.ProductName;
                     entity.ProductInternalArea = product.ProductInternalArea;
@@ -66,7 +69,7 @@ namespace ProyectoEmbarques.Models.Services
                     entities.Shipping_Catalog_Products.Add(entity);
                     entities.SaveChanges();
 
-                    product.ProductID = entity.ProductID;
+                    //product.ProductID = entity.ProductID;
                 }
         }
 

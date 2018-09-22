@@ -1,169 +1,124 @@
 ﻿@model ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel
-@using Kendo.Mvc.UI;
 
-@{
-    ViewBag.Title = "Productos";
-}
-
-<script src="~/Scripts/sweetalert2.all.js"></script>
-<script src="~/Content/fancybox/jquery.fancybox.pack.js"></script>
-<link rel="stylesheet" href="~/Content/sweetalert2.css">
+@{ViewBag.Title = "Productos";}
 
 <h2 class="page-header"> @ViewBag.Title</h2>
 
 @using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal telerik-controls">
-        <div id="MainForm">
-            <div class="container">
-                <div class="col-lg-8">
-                    <h4>Productos</h4>
-                    <div class="form-group">
-                        @(Html.Kendo().DropDownListFor(fo => fo.ProductName)
-                                .Name("ProductName")
-                                .OptionLabel("Seleccione No.Pieza...")
-                                .DataTextField("DATA")
-                                .DataValueField("ProductName")
-                                .Filter(FilterType.Contains)
-                                .Events(e => e.Change("OnChange"))
-                                .DataSource(source =>
-                                {
-                                    source.Read(read =>
-                                    {
-                                        read.Action("FillComboboxViewData", "Shipping_Catalog_Products");
-                                    })
-                                        .ServerFiltering(false);
-                                })
-                                .HtmlAttributes(new { style = "width:60%;" })
-                                .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.DATA" + " #</div>") )
-                        <br />
-                        @Html.ValidationMessageFor(a => a.ProductName)
-                    </div>
-                </div>
-
-                <div class="col-lg-8">
-                    <h4>Área</h4>
-                    <div class="form-group">
-                        @(Html.Kendo().DropDownList()
-                                .Name("AreaID")
-                                .OptionLabel("Seleccione área...")
-                                .DataTextField("AreaName")
-                                .DataValueField("AreaID")
-                                .Filter(FilterType.Contains)
-                                .DataSource(source =>
-                                {
-                                    source.Read(read =>
-                                    {
-                                        read.Action("FillComboboxAreas", "Shipping_Catalog_Products");
-                                    })
-                                        .ServerFiltering(false);
-                                })
-                                .HtmlAttributes(new { style = "width:60%;" })
-                                .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.AreaName" + " #</div>") )
-                        <br />
-                        @Html.ValidationMessageFor(a => a.AreaID)
-                    </div>
-                </div>
-
-                <div class="col-lg-8">
-                    <h4>Área Interna del Producto</h4>
-                    <div class="form-group">
-                        @(Html.Kendo().DropDownList()
-                                .Name("ProductInternalArea")
-                                .OptionLabel("Seleccione área interna")
-                                .DataTextField("Text")
-                                .DataValueField("Value")
-                                .BindTo(new List<SelectListItem>()
-                                {
-                                                            new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
-                                                            new SelectListItem() { Text = "WK o RM", Value = "2" },
-                                                            new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" }
-                                })
-                                .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
-                                .HtmlAttributes(new { style = "width:60%;" }) )
-                        <br />
-                        @Html.ValidationMessageFor(a => a.ProductInternalArea)
-                    </div>
-                </div>
-
-                <div class="col-lg-8">
-                    <h4>Tipo del Producto</h4>
-                    <div class="form-group">
-                        @(Html.Kendo().DropDownList()
-                                .Name("ProductType")
-                                .OptionLabel("Seleccione el Tipo")
-                                .DataTextField("Text")
-                                .DataValueField("Value")
-                                .BindTo(new List<SelectListItem>()
-                                {
-                                                            new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
-                                                            new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
-                                                            new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}
-                                })
-                                .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
-                                .HtmlAttributes(new { style = "width:60%;" }) )
-                        <br />
-                        @Html.ValidationMessageFor(a => a.ProductType)
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="save" class="row telerik-controls">
-            <div class="form-group">
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <center>
-                            <input id="submit" type="button"  value="Guardar" class="k-button k-primary" style="width: 20%; height:40px" />
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="push">
-
-        </div>
-
-        <div class="push">
-
-        </div>
-
-        @*<div class="col-lg-12">
+{ @Html.AntiForgeryToken()
+    <div id="MainForm" class="form-horizontal telerik-controls">
+        <div class="container">
+            <div class="col-lg-8">
+                <h4>Productos</h4>
                 <div class="form-group">
-                    <br />
-                    <br />
-                    <br />
-                    <center>
-                        <input type="submit" value="Guardar" class="k-button k-primary" style="width: 20%; height:40px" />
-                    </center>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                    @(Html.Kendo().DropDownListFor(fo => fo.ProductName)
+                                                                .Name("ProductName")
+                                                                .OptionLabel("Seleccione No.Pieza...")
+                                                                .DataTextField("DATA")
+                                                                .DataValueField("ProductName")
+                                                                .Filter(FilterType.Contains)
+                                                                .AutoBind(true)
+                                                                .BindTo(Model.ProductName)
+                                                                .DataSource(source =>
+                                                                {
+                                                                    source.Read(read =>
+                                                                    {
+                                                                        read.Action("FillComboboxViewData", "Shipping_Catalog_Products");
+                                                                    })
+                                                                        .ServerFiltering(true);
+                                                                    
+                                                                })
+                                                                .HtmlAttributes(new { style = "width:60%;" })
+                                                                .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:DATA#</div>") )
+                    <br /> @Html.ValidationMessageFor(a => a.ProductName)
                 </div>
-            </div>*@
+            </div>
+
+            <div class="col-lg-8">
+                <h4>Área</h4>
+                <div class="form-group">
+                    @(Html.Kendo().DropDownList()
+                                                                .Name("AreaID")
+                                                                .OptionLabel("Seleccione área...")
+                                                                .DataTextField("AreaName")
+                                                                .DataValueField("AreaID")
+                                                                .Filter(FilterType.Contains)
+                                                                .DataSource(source =>
+                                                                {
+                                                                    source.Read(read =>
+                                                                    {
+                                                                        read.Action("FillComboboxAreas", "Shipping_Catalog_Products");
+                                                                    })
+                                                                        .ServerFiltering(false);
+                                                                })
+                                                                .HtmlAttributes(new { style = "width:60%;" })
+                                                                .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:AreaName#</div>") )
+                    <br /> @Html.ValidationMessageFor(a => a.AreaID)
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <h4>Área Interna del Producto</h4>
+                <div class="form-group">
+                    @(Html.Kendo().DropDownList()
+                                                                .Name("ProductInternalArea")
+                                                                .OptionLabel("Seleccione área interna")
+                                                                .DataTextField("Text")
+                                                                .DataValueField("Value")
+                                                                .BindTo(new List<SelectListItem>()
+                                                                {
+                                                                                                        new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
+                                                                                                        new SelectListItem() { Text = "WK o RM", Value = "2" },
+                                                                                                        new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" }
+                                                                })
+                                                                .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
+                                                                .HtmlAttributes(new { style = "width:60%;" }) )
+                    <br /> @Html.ValidationMessageFor(a => a.ProductInternalArea)
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <h4>Tipo del Producto</h4>
+                <div class="form-group">
+                    @(Html.Kendo().DropDownList()
+                                                                .Name("ProductType")
+                                                                .OptionLabel("Seleccione el Tipo")
+                                                                .DataTextField("Text")
+                                                                .DataValueField("Value")
+                                                                .BindTo(new List<SelectListItem>()
+                                                                {
+                                                                                                        new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
+                                                                                                        new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
+                                                                                                        new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}
+                                                                })
+                                                                .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
+                                                                .HtmlAttributes(new { style = "width:60%;" }) )
+                    <br /> @Html.ValidationMessageFor(a => a.ProductType)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="save" class="row telerik-controls">
+        <div class="form-group">
+            <center>
+                <input id="submit" type="submit" value="Guardar" class="k-button k-primary" style="width: 20%; height:40px" />
+            </center>
+        </div>
     </div>
 }
 
-<script>
-    $("Mainform").kendoValidator();
-</script>
-
-<script>
-    function OnChange(e)
+@{
+     if (ViewBag.showMs == 1)
     {
-       var val = $('#ProductName').data('kendoDropDownList').value();
-    };
-</script>
-@*@if(ViewBag.showSuccessAlert==true)
- {
-    <script>
-        alert('El registro se ha guardado');
-    </script>
-  }*@
-
-<script src="~/Scripts/InstruccionesScript.js"></script>
+        <script>
+            alert("Success");
+        </script>
+    }
+    else if (ViewBag.showMs == 2)
+    {
+        <script>
+            alert("Error al guardar los datos")
+        </script>
+    }
+} 

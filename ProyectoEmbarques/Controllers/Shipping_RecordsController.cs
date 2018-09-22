@@ -34,12 +34,16 @@ namespace ProyectoEmbarques.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RecordID,ClientID,ProductID,RecordQuantity,RecordDate,RecordFedexTracking,RecordControlBoxNo,RecordPieceBoxNo,ShipmentTypeID,RecordServiceType,RecordComment,RecordWorkOrder,RecordSerialNo,RecordTrackingId,RecordRework,RecordComment1,RecordComment2,RecordFAI,RecordTransfer,RecordSeguritySeal1,RecordSeguritySeal2,RecordSeguritySeal3,RecordSeguritySeal4,")] Shipping_RecordsViewModel Perro)
         {
-                if (Perro != null && ModelState.IsValid)
+            if (Perro != null && ModelState.IsValid)
             {
-                    _Service.Create(Perro);
-                    ViewBag.showSuccessAlert = true;  
-                }
+                _Service.Create(Perro);
+                ModelState.Clear();
+                return RedirectToAction("Create");
+            }
+            else { 
+
              return View("Create", Perro);
+            }
         }
 
         protected override void Dispose(bool disposing)

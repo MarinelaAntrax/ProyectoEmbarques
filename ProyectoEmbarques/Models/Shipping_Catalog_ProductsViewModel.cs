@@ -12,13 +12,10 @@ namespace ProyectoEmbarques.Models
         public int ProductID { get; set; }
 
         [ScaffoldColumn(false)]
+        [Required(ErrorMessage = "Nombre del Area requerida.")]
         public int AreaID { get; set; }
 
-        [Display(Name = "Shop")]
-        [Required(ErrorMessage = "Nombre del Area requerida.")]
-        public string AreaName { get; set; }
-
-        [Display(Name = "P/N")]
+        
         [Required(ErrorMessage = "Nombre del producto requerido.")]
         [StringLength(30, ErrorMessage = "La descripcion del componente no puede ser mayor de 30 caracteres.")]
         public string ProductName { get; set; }

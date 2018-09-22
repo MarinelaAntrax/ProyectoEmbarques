@@ -44,7 +44,7 @@ namespace ProyectoEmbarques.Models.Services
                     {
                         ProductID = componente.Shipping_Catalog_Products.ProductID,
                         ProductName = componente.Shipping_Catalog_Products.ProductName,
-                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName,
+                        AreaID = componente.Shipping_Catalog_Products.AreaID,
                         ProductType = componente.Shipping_Catalog_Products.ProductType,
                         ProductInternalArea = componente.Shipping_Catalog_Products.ProductInternalArea
                     },

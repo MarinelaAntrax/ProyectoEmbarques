@@ -30,7 +30,7 @@ namespace ProyectoEmbarques.Controllers
         // GET: Shipping_Catalog_Products
         public ActionResult Create()
         {
-            TempData.Remove("AlertMessage");
+            ModelState.Clear();
             return View();
         }
 
@@ -100,17 +100,22 @@ namespace ProyectoEmbarques.Controllers
 
         // POST: Shipping_Catalog_Products/Create
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_ProductsViewModel Products)
+        public ActionResult Create([Bind(Include = "AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_ProductsViewModel Products)
         {
-            if (ModelState.IsValid)
-            {
-                TempData.Remove("AlertMessage");
-                _Service.Create(Products);
-            }
-                return View("Create");
-        }
 
-        public ActionResult FillComboboxAreas()
+            if (Products.ProductName!=null&&Products.ProductInternalArea!=null&&Products.ProductType!=null) {
+                _Service.Create(Products);
+                ModelState.Clear();
+                ViewBag.showMs = 1;
+                return RedirectToAction("Create");
+            }
+            else {
+                ViewBag.showMs = 2;
+                return View("Create", Products);
+                }
+            }
+
+            public ActionResult FillComboboxAreas()
         {
             return Json(_Areas.Read(), JsonRequestBehavior.AllowGet);
         }

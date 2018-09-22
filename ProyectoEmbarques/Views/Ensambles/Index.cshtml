@@ -28,7 +28,7 @@
                                         .Columns(columns =>
                                         {
                                             columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
-                                            columns.Bound(o => o.AreaName).Title("Área").Width(5);
+                                            columns.Bound(o => o.Areas.AreaName).Title("Área").Width(5);
                                         })
                                         .Scrollable()
                                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row))

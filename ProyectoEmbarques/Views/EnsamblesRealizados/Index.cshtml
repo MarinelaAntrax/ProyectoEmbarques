@@ -66,7 +66,7 @@
                                                                 model.Field(Fie => Fie.RecordTransfer).Editable(true);
                                                                 model.Field(Fie => Fie.RecordDate).Editable(false);
                                                                 model.Field(Fie => Fie.Shipping_Catalog_Products.ProductName).Editable(false);
-                                                                model.Field(Fie => Fie.Shipping_Catalog_Products.AreaName).Editable(false);
+                                                                model.Field(Fie => Fie.Shipping_Catalog_Products.Areas.AreaName).Editable(false);
                                                                 model.Field(Fie => Fie.Clients.ClientName).Editable(false);
                                                                 model.Field(Fie => Fie.Clients.ClientAddress).Editable(false);
                                                                 model.Field(Fie => Fie.RecordWorkOrder).Editable(false);
@@ -98,7 +98,7 @@
                                                                 {
                                                                     columns.Bound(o => o.RecordDate).Width(110).Filterable(false).Title("Fecha(D/M/Y)");
                                                                     columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(200).Title("No. Parte");
-                                                                    columns.Bound(o => o.Shipping_Catalog_Products.AreaName).Width(150).Title("Área");
+                                                                    columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(150).Title("Área");
                                                                     columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(210);
                                                                     columns.Bound(o => o.Clients.ClientAddress).Title("Compañía").Width(200);
                                                                     columns.Bound(o => o.RecordWorkOrder).Width(150);

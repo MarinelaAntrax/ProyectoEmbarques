@@ -5,29 +5,24 @@
         e.preventDefault();
         var isAllValid = true;
         var validator = $("#MainForm").kendoValidator().data("kendoValidator");
-
         var list = [];
         var errorItemCount = 0;
-        $('#orderdetailsItems tbody tr').each(function (create, ele)
+        $('#orderdetailsItems tbody tr').each(function (index, ele)
         {
-            if ($('.ProductName', this).val() === "" || $('.verificacion', this).val() === "")
-            {
+            if ($('.ProductName', this).val() === "") {
                 alert("Faltan Instrucciones por verificar, por favor verifique todas las instrucciones.");
 
-                errorItemCount++;
+              errorItemCount++;
             }
                 else
-            {                
+            {
                 var orderItem =
                 {
-                    ProductName: $('.ProductName', this).val(),
-                    AreaID: $('.AreaID', this).val(),
-                    ProductInternalArea: $('ProductInternalArea', this).val(),
-                    ProductType: $('ProductType', this).val()
+                    ProductName: $('.ProductName', this).val()
                 }
                 list.push(orderItem);
             }
-            
+
         })
 
         if (errorItemCount > 0)
@@ -37,28 +32,14 @@
             isAllValid = false;
         }
 
-        $(".verificacion").each(function (Create, element)
-        {
-            if ($(this).val() === "")
-            {
-                isAllValid = false;
-                $(this).siblings('span.error').css('display', 'block');
-            }
-                else
-            {
-                $(this).siblings('span.error').css('display', 'none');
-
-            }
-        })
 
         if (validator.validate() && isAllValid)
         {
-            var data =
-            {         
+            var data ={         
                 ProductName: $('#ProductName').val(),
-                AreaID: $('#AreaID').val(),
+               AreaID: $('#AreaID').val(),
                 ProductInternalArea: $('#ProductInternalArea').val(),
-                ProductType: $('#ProductType').val(),                
+                ProductType: $('#ProductType').val()
             }
 
             $.ajax(
@@ -66,15 +47,21 @@
                 type: 'POST',
                 url: '/Shipping_Catalog_Products/Create',
                 data: JSON.stringify(data),
+                /*data: JSON.stringify({
+                    ProductName: $('#ProductName').val(),
+                    AreaID: $('#AreaID').val(),
+                    ProductInternalArea: $('#ProductInternalArea').val(),
+                    ProductType: $('#ProductType').val()
+                }),*/
                 contentType: 'application/json',
                 success: function (data)
                 {
-                    if (data.status)
-                    {
+                   /* if (data.status)
+                    {*/
                         swal(
                         {
                             type: 'warning',
-                            title: 'Por favor, espere mientras se verifica la herramienta.',
+                            title: 'Por favor, espere mientras se verifica',
                             showComfirmButton: false,
                             timer: 3000,
                             allowOutsideClick: false,
@@ -96,8 +83,8 @@
                         {
                             window.location.href = data.url;
                         }
-                    }
-                        else
+                     /*}
+                       else
                     {
                         swal(
                         {
@@ -114,7 +101,7 @@
                                 })                                
                             }
                         })                        
-                    }
+                    }*/
                 },
                     error: function (error)
                     {
