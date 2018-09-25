@@ -53,7 +53,7 @@ namespace ProyectoEmbarques
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
             block.InsertText("BAE SYSTEMS");
             block.TextProperties.Font = FontsRepository.Helvetica;
-            block.TextProperties.FontSize = 14;
+            block.TextProperties.FontSize = 13;
             editor.DrawBlock(block);
             block = new Block();
             editor.Position.Translate(450, WriteWhere);//Traslada el editor al nuevo punto de escritura
@@ -69,6 +69,7 @@ namespace ProyectoEmbarques
 
             block = new Block();
             block.InsertText("Carretera Internacional KM.129 Salida");
+            block.TextProperties.FontSize = 11;
             editor.DrawBlock(block);
             WriteWhere += AnchoDeLinea * 1.5;
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
@@ -76,12 +77,14 @@ namespace ProyectoEmbarques
             block = new Block();
             block.InsertText("Norte Parque Industrial Roca Fuerte");
             editor.DrawBlock(block);
+            block.TextProperties.FontSize = 11;
             WriteWhere += AnchoDeLinea * 1.5;
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
 
             block = new Block();
             block.InsertText("Edificio#19 Guaymas Sonora, Mexico");
             editor.DrawBlock(block);
+            block.TextProperties.FontSize = 11;
             WriteWhere += AnchoDeLinea * 2;
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
         }
@@ -99,7 +102,7 @@ namespace ProyectoEmbarques
             using (block.SaveTextProperties())
             {
                 block.TextProperties.Font = FontsRepository.CourierBold;
-                block.InsertText(new FontFamily("Calibri"), "Fedex Tracking: ");
+                block.InsertText(new FontFamily("Calibri"), "FEDEX TRACKING: ");
             }
             block.InsertText(new FontFamily("Calibri"), ParametroFedex.ToString());
             editor.DrawBlock(block);
@@ -120,7 +123,7 @@ namespace ProyectoEmbarques
 
                 using (block.SaveTextProperties())
                 {
-                    block.InsertText(new FontFamily("Calibri"), "Reference: ");
+                    block.InsertText(new FontFamily("Calibri"), "REFERENCE: ");
                 }
                     block.InsertText(new FontFamily("Calibri"), x.ClientName.ToString());
                     editor.DrawBlock(block);
@@ -135,7 +138,7 @@ namespace ProyectoEmbarques
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Mueve ele editor
             block.InsertText("FINISH PRODUCT: SHIPMENTS TO THE UNITED STATES PACKING LIST");
             block.TextProperties.Font = FontsRepository.Helvetica;
-            block.TextProperties.FontSize = 14;
+            block.TextProperties.FontSize = 11;
             editor.DrawBlock(block);
 
             WriteWhere += AnchoDeLinea * 2;//Salto de linea al editor
@@ -162,7 +165,7 @@ namespace ProyectoEmbarques
             ObjetoCelda.PreferredWidth = 100;
             ObjetoCelda.Background = headerColor;//A partir de ahora se declaran celdas que se agregaran al row
             Block ObjetoBlock = ObjetoCelda.Blocks.AddBlock();//Declara un objeto de clase Block
-            ObjetoBlock.TextProperties.FontSize = 12;
+            ObjetoBlock.TextProperties.FontSize = 11;
             ObjetoBlock.HorizontalAlignment = HorizontalAlignment.Center;//Le da la alineacion
             ObjetoBlock.VerticalAlignment = VerticalAlignment.Center;
             ObjetoBlock.InsertText("PACKAGING INFORMATION");//Agrega el texto de la primera columna
@@ -172,7 +175,7 @@ namespace ProyectoEmbarques
             ObjetoCelda2.Background = headerColor;//Toma el color de fondo
             ObjetoCelda2.PreferredWidth = 250;
             Block ObjetoBlock2 = ObjetoCelda2.Blocks.AddBlock();//Declara un objeto de clase Block
-            ObjetoBlock2.TextProperties.FontSize = 12;
+            ObjetoBlock2.TextProperties.FontSize = 11;
             ObjetoBlock2.HorizontalAlignment = HorizontalAlignment.Center;//Le da la alineacion
             ObjetoBlock2.VerticalAlignment = VerticalAlignment.Center;
             ObjetoBlock2.InsertText("PART NUMBER");//Le agrega el texto en el formato dado 
@@ -182,7 +185,7 @@ namespace ProyectoEmbarques
             ObjetoCelda3.Background = headerColor;//Toma el color de fondo
             ObjetoCelda3.PreferredWidth = 100;
             Block ObjetoBlock3 = ObjetoCelda3.Blocks.AddBlock();//Declara un objeto de clase Block
-            ObjetoBlock3.TextProperties.FontSize = 12;
+            ObjetoBlock3.TextProperties.FontSize = 11;
             ObjetoBlock3.VerticalAlignment = VerticalAlignment.Center;
             ObjetoBlock3.HorizontalAlignment = HorizontalAlignment.Center;//Le da la alineacion
             ObjetoBlock3.InsertText("QUANTITY SHIPPED");//Le agrega el texto en el formato dado 

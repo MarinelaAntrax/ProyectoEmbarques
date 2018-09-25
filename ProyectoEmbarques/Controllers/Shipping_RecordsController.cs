@@ -21,7 +21,7 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.showSuccessAlert = false;
+            ViewBag.showMs = 0;
             return View();
         }
 
@@ -38,11 +38,12 @@ namespace ProyectoEmbarques.Controllers
             {
                 _Service.Create(Perro);
                 ModelState.Clear();
-                return RedirectToAction("Create");
+                ViewBag.showMs = 1;
+                return View("Create");
             }
-            else { 
-
-             return View("Create", Perro);
+            else {
+                ViewBag.showMs = 2;
+                return View("Create", Perro);
             }
         }
 

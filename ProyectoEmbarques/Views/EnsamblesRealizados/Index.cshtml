@@ -52,7 +52,6 @@
                                 </text>);
                             })
                                                             .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation("Estas a punto de eliminar un registro. ¿Deseas continuar?"))
-
                                                             .Pageable(x => x.Numeric(true)
                                                             .PreviousNext(true)
                                                             .Refresh(true)
@@ -121,7 +120,6 @@
                                                                     columns.Bound(o => o.RecordServiceType).Width(140);
                                                                     columns.Bound(o => o.RecordTransfer).Width(130).Title("Transferir");
                                                                     columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(250);
-
                                                                 })
                                                         .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
                                                         .Scrollable()

@@ -45,6 +45,10 @@ namespace ProyectoEmbarques.Models.Services
                         ProductID = componente.Shipping_Catalog_Products.ProductID,
                         ProductName = componente.Shipping_Catalog_Products.ProductName,
                         AreaID = componente.Shipping_Catalog_Products.AreaID,
+                    Areas = new AreasViewModel()
+                    {
+                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName
+                    },
                         ProductType = componente.Shipping_Catalog_Products.ProductType,
                         ProductInternalArea = componente.Shipping_Catalog_Products.ProductInternalArea
                     },
@@ -183,7 +187,7 @@ namespace ProyectoEmbarques.Models.Services
                 else
                  {
                     var entity = new Shipping_Records();
-                entity.RecordID = Record.RecordID;
+                    entity.RecordID = Record.RecordID;
                     entity.RecordTransfer = Record.RecordTransfer;
                     entity.ClientID = Record.ClientID;
                     entity.ProductID = Record.ProductID;

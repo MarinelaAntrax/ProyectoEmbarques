@@ -27,6 +27,7 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult Index()
         {
+
             return View();
         }
 
