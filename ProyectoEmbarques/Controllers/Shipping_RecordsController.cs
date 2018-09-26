@@ -36,10 +36,17 @@ namespace ProyectoEmbarques.Controllers
         {
             if (Perro != null && ModelState.IsValid)
             {
+                if (Perro.RecordSeguritySeal1!=Perro.RecordSeguritySeal2&& Perro.RecordSeguritySeal1 != Perro.RecordSeguritySeal2 &&) { 
                 _Service.Create(Perro);
                 ModelState.Clear();
                 ViewBag.showMs = 1;
                 return View("Create");
+                }
+                else
+                {
+                    return View("Create", Perro);
+                }
+                
             }
             else {
                 ViewBag.showMs = 2;

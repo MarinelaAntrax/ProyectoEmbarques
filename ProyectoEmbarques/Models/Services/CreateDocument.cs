@@ -21,6 +21,7 @@ namespace ProyectoEmbarques
 {
     public class CreateDocument
     {
+        
         private static readonly double MargenIzquierdo = 50;
         private static readonly double AnchoDeLinea = 12;//Alto por defecto de la linea (de texto?)
         public static RadFixedDocument CreatePDFDocument(decimal ParametroFedex)
@@ -91,6 +92,7 @@ namespace ProyectoEmbarques
 
         private static void DrawData(FixedContentEditor editor, double maxWidth, decimal ParametroFedex)
         {
+            EnsamblesRealizadosService _ServiceER = new EnsamblesRealizadosService();
             MaterialShippingControlEntities BD = new MaterialShippingControlEntities();
             double WriteWhere = 160;//Define el actual tope del editor
 
@@ -110,28 +112,14 @@ namespace ProyectoEmbarques
             //SaltoLinea
             WriteWhere += AnchoDeLinea * 2;//Salto de linea al editor
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Mueve ele editor
-            try
-            {
-                var x = (from b in BD.Shipping_Records
-                         where b.RecordFedexTracking == ParametroFedex
-                         select new ClientesViewModel
-                         {
-                             ClientName = b.Clients.ClientName
-                         }).FirstOrDefault();
 
-                block = new Block();//Declara un nuevo bloque
-
-                using (block.SaveTextProperties())
-                {
-                    block.InsertText(new FontFamily("Calibri"), "REFERENCE: ");
-                }
-                    block.InsertText(new FontFamily("Calibri"), x.ClientName.ToString());
-                    editor.DrawBlock(block);
+            block = new Block();//Declara un nuevo bloque
+            using (block.SaveTextProperties()){
+            block.InsertText(new FontFamily("Calibri"), "REFERENCE: ");
             }
-                catch (System.Exception)
-            {
-                throw;
-            }
+            block.InsertText(new FontFamily("Calibri"),_ServiceER.ReadE(ParametroFedex));
+            editor.DrawBlock(block);
+           
             //SaltoLinea
             block = new Block();//Declara un nuevo bloque
             WriteWhere += AnchoDeLinea * 3;//Salto de linea al editor
@@ -190,29 +178,16 @@ namespace ProyectoEmbarques
             ObjetoBlock3.HorizontalAlignment = HorizontalAlignment.Center;//Le da la alineacion
             ObjetoBlock3.InsertText("QUANTITY SHIPPED");//Le agrega el texto en el formato dado 
 
-                IQueryable<Shipping_RecordsViewModel> select = (from b in BD.Shipping_Records
-                              where b.RecordFedexTracking==ParametroFedex
-                              select new Shipping_RecordsViewModel()
-                              {
-                                  RecordPieceBoxNo = b.RecordPieceBoxNo,
-                                  Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
-                                  {
-                                      ProductName=b.Shipping_Catalog_Products.ProductName
-                                  },
-                                    RecordQuantity = b.RecordQuantity
-                              });
-
                 int i = 0;
-                foreach (var sel in select)
-                {
-                    i++;
+
+            foreach (var sel in _ServiceER.ReadD(ParametroFedex))
+            {i++;
                     TableRow FilaContent = table.Rows.AddTableRow();//Nuevo objeto TableRow se anade a la tabla
                     RgbColor rowColor = i % 2 == 0 ? alternatingRowColor : RgbColors.White;// Alterna el color de la tabla obteniendo el residuo de la variable del ciclo 
 
                     //1erCampo
                     TableCell ObjetoContenido = FilaContent.Cells.AddTableCell();//Objeto TableCell se anade a la tabla como fila
                     ObjetoContenido.Background = rowColor;//Toma el color de fondo
-
                     Block amountBlock = ObjetoContenido.Blocks.AddBlock();
                     amountBlock.HorizontalAlignment = HorizontalAlignment.Center;
                     amountBlock.InsertText(sel.RecordPieceBoxNo.ToString());
@@ -220,19 +195,18 @@ namespace ProyectoEmbarques
                     //SegundoCampo
                     TableCell ObjetoContenido2 = FilaContent.Cells.AddTableCell();//Objeto TableCell se anade a la tabla como fila
                     ObjetoContenido2.Background = rowColor;//Toma el color de fondo
-
                     Block amountBlock2 = ObjetoContenido2.Blocks.AddBlock();
                     amountBlock2.HorizontalAlignment = HorizontalAlignment.Center;
-                    amountBlock2.InsertText(sel.Shipping_Catalog_Products.ProductName);
-
+                    amountBlock2.InsertText(sel.ProductName);
+                    
                     //3er Campo
                     TableCell ObjetoContenido3 = FilaContent.Cells.AddTableCell();//Objeto TableCell se anade a la tabla como fila
                     ObjetoContenido3.Background = rowColor;//Toma el color de fondo
-
                     Block amountBlock3 = ObjetoContenido3.Blocks.AddBlock();
                     amountBlock3.HorizontalAlignment = HorizontalAlignment.Center;
-                    amountBlock3.InsertText(sel.RecordQuantity.ToString());
-                }
+                    amountBlock3.InsertText(sel.RecordCantidad.ToString());
+
+            }
             ////////////////////////////////////////////////////////////////////Contenido de la tabla///////////////////////////////////////////
             editor.DrawTable(table);
         }

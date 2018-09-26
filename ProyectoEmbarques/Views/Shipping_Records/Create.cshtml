@@ -466,41 +466,6 @@
     });
 
     /*Sellos de Seguridad*/
-    jQuery.val.addMethod("notEqualToGroup", function (value, element, options) {
-        var elems = $(element).parents('form').find(options[0]);
-        var valueToCompare = value;
-        var matchesFound = 0;
-        jQuery.each(elems, function () {
-            thisVal = $(this).val();
-            if (thisVal == valueToCompare) {
-                matchesFound++;
-            }
-        });
-        if (this.optional(element) || matchesFound <= 1) {
-            return true;
-        } else {
-        }, jQuery.format("Please enter a Unique Value."))
-
-    $("#Form").val({
-        rules: {
-            RecordSeguritySeal1: {
-                RecordSeguritySeal1: true,
-                notEqualToGroup: ['.sealD']
-            },
-            RecordSeguritySeal2: {
-                RecordSeguritySeal1: true,
-                notEqualToGroup: ['.sealD']
-            },
-            RecordSeguritySeal3: {
-                RecordSeguritySeal1: true,
-                notEqualToGroup: ['.sealD']
-            },
-            RecordSeguritySeal4: {
-                RecordSeguritySeal1: true,
-                notEqualToGroup: ['.sealD']
-            },
-        },
-    });
     
 </script>
 @* -----------------------------------------Notificaciones--------------------------------------------------- *@

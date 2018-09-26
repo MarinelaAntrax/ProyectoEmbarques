@@ -7,13 +7,13 @@ using System.Data;
 using System;
 using System.Web;
 using System.Data.Entity;
-
+using ProyectoEmbarques.Models;
 namespace ProyectoEmbarques.Models.Services
 {
       public class EnsamblesRealizadosService : IDisposable
       {
         private static bool UpdateDatabase = true;
-
+        MaterialShippingControlEntities BD = new MaterialShippingControlEntities();
         private MaterialShippingControlEntities Entities;
 
             public EnsamblesRealizadosService(MaterialShippingControlEntities Entities)
@@ -157,20 +157,44 @@ namespace ProyectoEmbarques.Models.Services
                return GetAll().FirstOrDefault(predicate);
             }
 
-                public IEnumerable<Shipping_RecordsViewModel> Read()
+        public IEnumerable<Shipping_RecordsViewModel> Read()
                 {
                     return GetAll();
                 }
 
-            public IEnumerable<Shipping_RecordsViewModel> Read(DateTime starDate, DateTime endDate)
-            {
-                return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate);
-            }
+        public IEnumerable<Shipping_RecordsViewModel> ReadD(decimal ParametroFedex)
+        {
 
-                public void Dispose()
-                {
-                    Entities.Dispose();
-                }
+            var total = from Shipping_Records in BD.Shipping_Records
+                       join products in BD.Shipping_Catalog_Products on Shipping_Records.ProductID equals products.ProductID 
+                        group Shipping_Records by new {
+                            products.ProductName,
+                            Shipping_Records.RecordPieceBoxNo
+                        } into Shipping_RecordsGroup
+                        select new Shipping_RecordsViewModel()
+                        {   ProductName=Shipping_RecordsGroup.Key.ProductName,
+                            RecordPieceBoxNo=Shipping_RecordsGroup.Key.RecordPieceBoxNo,
+                           RecordCantidad = Shipping_RecordsGroup.Sum(x=> x.RecordQuantity)
+                        };
+            return total;
+            //return GetAll().Where(w => w.RecordFedexTracking == ParametroFedex).ToList();
+        }
+
+        public string ReadE(decimal ParametroFedex)
+        {
+            return GetAll().Where(w => w.RecordFedexTracking == ParametroFedex).Select(s=>s.Clients.ClientName).FirstOrDefault();
+        }
+
+
+        public IEnumerable<Shipping_RecordsViewModel> Read(DateTime starDate, DateTime endDate)
+        {
+            return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate);
+        }
+
+        public void Dispose()
+        {
+            Entities.Dispose();
+        }
 
             public void Update(Shipping_RecordsViewModel Record)
             {

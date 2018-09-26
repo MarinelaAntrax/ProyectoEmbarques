@@ -92,7 +92,10 @@ namespace ProyectoEmbarques.Models
         [Display(Name = "Tipo de Servicio")]
         [Required(ErrorMessage = "Tipo de servicio requerido.")]
         public string RecordServiceType { get; set; }
-        
+        public string ProductName { get; set; }
+        public int RecordCantidad { get; set; }
+
+
         public virtual CatalogShipmentTypeViewModel CatalogShipmentType { get; set; }
         public virtual ClientesViewModel Clients { get; set; }
         public virtual Shipping_Catalog_ProductsViewModel Shipping_Catalog_Products { get; set; }
