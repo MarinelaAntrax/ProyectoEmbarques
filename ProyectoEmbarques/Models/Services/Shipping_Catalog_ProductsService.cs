@@ -9,6 +9,7 @@ namespace ProyectoEmbarques.Models.Services
     public class Shipping_Catalog_ProductsService : IDisposable
     {
         private static bool UpdateDatabase = true;
+
         private MaterialShippingControlEntities entities;
 
         public Shipping_Catalog_ProductsService(MaterialShippingControlEntities entities)

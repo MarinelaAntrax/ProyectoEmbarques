@@ -51,11 +51,19 @@
                                     </div>
                                 </text>);
                             })
-                                                            .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation("Estas a punto de eliminar un registro. ¿Deseas continuar?"))
-                                                            .Pageable(x => x.Numeric(true)
+                                                        .Scrollable()
+                                                        .Reorderable(reordable => reordable.Columns(true))
+                                                        .Resizable(resize => resize.Columns(true))
+                                                        .Sortable()
+                                                        .Pageable()
+                                                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                                                        .Groupable()
+                                                        .Pageable(x => x.Numeric(true)
                                                             .PreviousNext(true)
                                                             .Refresh(true)
                                                             .ButtonCount(5))
+                                                            .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation("Estas a punto de eliminar un registro. ¿Deseas continuar?"))
+
                                                             .DataSource(dataSource => dataSource
                                                             .Ajax()
                                                             .Model(model =>
@@ -122,14 +130,7 @@
                                                                     columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(250);
                                                                 })
                                                         .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
-                                                        .Scrollable()
-                                                        .Resizable(resize => resize.Columns(true))
-                                                        .Reorderable(reordable => reordable.Columns(true))
-                                                        .Sortable()
-                                                        .Pageable()
-                                                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                                                        .Groupable()
-                                                        .ColumnMenu()
+
                                                         .HtmlAttributes(new { style = "height: 650px" })
     )
 </div>

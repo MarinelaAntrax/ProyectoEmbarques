@@ -64,9 +64,9 @@
                         .DataValueField("Value")
                         .BindTo(new List<SelectListItem>()
                         {
-                            new SelectListItem() { Text = "Con Orden de Trabajo", Value = "1" },
-                            new SelectListItem() { Text = "WK o RM", Value = "2" },
-                            new SelectListItem() { Text = "Con Orden TID Serie", Value = "3" }
+                            new SelectListItem() { Text = "Con Orden de Trabajo", Value = "Con Orden de Trabajo" },
+                            new SelectListItem() { Text = "WK o RM", Value = "WK o RM" },
+                            new SelectListItem() { Text = "Con Orden TID Serie", Value = "Con Orden TID Serie" }
                         })
                         .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
                         .HtmlAttributes(new { style = "width:60%;" }) )

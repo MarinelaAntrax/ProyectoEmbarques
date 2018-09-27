@@ -1,4 +1,4 @@
-﻿using ProyectoEmbarques.Models;
+﻿
 using Kendo.Mvc.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace ProyectoEmbarques.Models.Services
 {
       public class EnsamblesRealizadosService : IDisposable
       {
-        private static bool UpdateDatabase = true;
+        private static readonly bool UpdateDatabase = true;
         MaterialShippingControlEntities BD = new MaterialShippingControlEntities();
         private MaterialShippingControlEntities Entities;
 
@@ -94,30 +94,31 @@ namespace ProyectoEmbarques.Models.Services
             }
             else
             {
-                var entity = new Shipping_Records();
-                
-                entity.ClientID = Record.ClientID;
-                entity.ProductID = Record.ProductID;
-                entity.RecordQuantity = Record.RecordQuantity;
-                entity.RecordDate = Record.RecordDate;
-                entity.RecordFedexTracking = Record.RecordFedexTracking;
-                entity.RecordControlBoxNo = Record.RecordControlBoxNo;
-                entity.RecordPieceBoxNo = Record.RecordPieceBoxNo;
-                entity.ShipmentTypeID = Record.ShipmentTypeID;
-                entity.RecordServiceType = Record.RecordServiceType;
-                entity.RecordComment = Record.RecordComment;
-                entity.RecordWorkOrder = Record.RecordWorkOrder;
-                entity.RecordSerialNo = Record.RecordSerialNo;
-                entity.RecordTrackingId = Record.RecordTrackingId;
-                entity.RecordRework = Record.RecordRework;
-                entity.RecordComment1 = Record.RecordComment1;
-                entity.RecordComment2 = Record.RecordComment2;
-                entity.RecordFAI = Record.RecordFAI;
-                entity.RecordTransfer = Record.RecordTransfer;
-                entity.RecordSeguritySeal1 = Record.RecordSeguritySeal1;
-                entity.RecordSeguritySeal2 = Record.RecordSeguritySeal2;
-                entity.RecordSeguritySeal3 = Record.RecordSeguritySeal3;
-                entity.RecordSeguritySeal4 = Record.RecordSeguritySeal4;
+                var entity = new Shipping_Records
+                {
+                    ClientID = Record.ClientID,
+                    ProductID = Record.ProductID,
+                    RecordQuantity = Record.RecordQuantity,
+                    RecordDate = Record.RecordDate,
+                    RecordFedexTracking = Record.RecordFedexTracking,
+                    RecordControlBoxNo = Record.RecordControlBoxNo,
+                    RecordPieceBoxNo = Record.RecordPieceBoxNo,
+                    ShipmentTypeID = Record.ShipmentTypeID,
+                    RecordServiceType = Record.RecordServiceType,
+                    RecordComment = Record.RecordComment,
+                    RecordWorkOrder = Record.RecordWorkOrder,
+                    RecordSerialNo = Record.RecordSerialNo,
+                    RecordTrackingId = Record.RecordTrackingId,
+                    RecordRework = Record.RecordRework,
+                    RecordComment1 = Record.RecordComment1,
+                    RecordComment2 = Record.RecordComment2,
+                    RecordFAI = Record.RecordFAI,
+                    RecordTransfer = Record.RecordTransfer,
+                    RecordSeguritySeal1 = Record.RecordSeguritySeal1,
+                    RecordSeguritySeal2 = Record.RecordSeguritySeal2,
+                    RecordSeguritySeal3 = Record.RecordSeguritySeal3,
+                    RecordSeguritySeal4 = Record.RecordSeguritySeal4
+                };
                 Entities.Shipping_Records.Add(entity);
                 Entities.SaveChanges();
                 Record.RecordID = entity.RecordID;
@@ -136,9 +137,10 @@ namespace ProyectoEmbarques.Models.Services
             }
             else
             {
-                var entity = new Shipping_Records();
-
-                entity.RecordID = Record.RecordID;
+                var entity = new Shipping_Records
+                {
+                    RecordID = Record.RecordID
+                };
 
                 Entities.Shipping_Records.Attach(entity);
                 Entities.Shipping_Records.Remove(entity);
@@ -165,7 +167,6 @@ namespace ProyectoEmbarques.Models.Services
 
         public IEnumerable<Shipping_RecordsViewModel> ReadD(decimal ParametroFedex)
         {
-
             var total = from Shipping_Records in BD.Shipping_Records
                        join products in BD.Shipping_Catalog_Products on Shipping_Records.ProductID equals products.ProductID 
                         group Shipping_Records by new {
@@ -211,31 +212,33 @@ namespace ProyectoEmbarques.Models.Services
                 }
                 else
                  {
-                    var entity = new Shipping_Records();
-                    entity.RecordID = Record.RecordID;
-                    entity.RecordTransfer = Record.RecordTransfer;
-                    entity.ClientID = Record.ClientID;
-                    entity.ProductID = Record.ProductID;
-                    entity.RecordQuantity = Record.RecordQuantity;
-                    entity.RecordDate = Record.RecordDate;
-                    entity.RecordFedexTracking = Record.RecordFedexTracking;
-                    entity.RecordControlBoxNo = Record.RecordControlBoxNo;
-                    entity.RecordPieceBoxNo = Record.RecordPieceBoxNo;
-                    entity.ShipmentTypeID = Record.ShipmentTypeID;
-                    entity.RecordServiceType = Record.RecordServiceType;
-                    entity.RecordComment = Record.RecordComment;
-                    entity.RecordWorkOrder = Record.RecordWorkOrder;
-                    entity.RecordSerialNo = Record.RecordSerialNo;
-                    entity.RecordTrackingId = Record.RecordTrackingId;
-                    entity.RecordRework = Record.RecordRework;
-                    entity.RecordComment1 = Record.RecordComment1;
-                    entity.RecordComment2 = Record.RecordComment2;
-                    entity.RecordFAI = Record.RecordFAI;
-                    
-                    entity.RecordSeguritySeal1 = Record.RecordSeguritySeal1;
-                    entity.RecordSeguritySeal2 = Record.RecordSeguritySeal2;
-                    entity.RecordSeguritySeal3 = Record.RecordSeguritySeal3;
-                    entity.RecordSeguritySeal4 = Record.RecordSeguritySeal4;
+                var entity = new Shipping_Records
+                {
+                    RecordID = Record.RecordID,
+                    RecordTransfer = Record.RecordTransfer,
+                    ClientID = Record.ClientID,
+                    ProductID = Record.ProductID,
+                    RecordQuantity = Record.RecordQuantity,
+                    RecordDate = Record.RecordDate,
+                    RecordFedexTracking = Record.RecordFedexTracking,
+                    RecordControlBoxNo = Record.RecordControlBoxNo,
+                    RecordPieceBoxNo = Record.RecordPieceBoxNo,
+                    ShipmentTypeID = Record.ShipmentTypeID,
+                    RecordServiceType = Record.RecordServiceType,
+                    RecordComment = Record.RecordComment,
+                    RecordWorkOrder = Record.RecordWorkOrder,
+                    RecordSerialNo = Record.RecordSerialNo,
+                    RecordTrackingId = Record.RecordTrackingId,
+                    RecordRework = Record.RecordRework,
+                    RecordComment1 = Record.RecordComment1,
+                    RecordComment2 = Record.RecordComment2,
+                    RecordFAI = Record.RecordFAI,
+
+                    RecordSeguritySeal1 = Record.RecordSeguritySeal1,
+                    RecordSeguritySeal2 = Record.RecordSeguritySeal2,
+                    RecordSeguritySeal3 = Record.RecordSeguritySeal3,
+                    RecordSeguritySeal4 = Record.RecordSeguritySeal4
+                };
                     Entities.Shipping_Records.Add(entity);
                     
                     Entities.Entry(entity).State = EntityState.Modified;
