@@ -28,7 +28,7 @@ namespace ProyectoEmbarques.Controllers
             var FD = new MaterialShippingControlEntities().Shipping_Records.Select(client => new
             {
                 RecordFedexTracking = client.RecordFedexTracking.ToString()
-            });
+            }).Take(1);
             return Json(FD, JsonRequestBehavior.AllowGet);
         }
 

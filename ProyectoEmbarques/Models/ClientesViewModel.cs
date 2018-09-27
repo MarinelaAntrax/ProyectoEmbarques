@@ -12,16 +12,15 @@ namespace ProyectoEmbarques.Models
         public int ClientID { get; set; }
 
         [Display(Name = "Nombre del Cliente")]
-        [Required(ErrorMessage = "Nombre requerido.")]
-        [StringLength(50, ErrorMessage = "El nombre del cliente no puede ser mayor de 50 caracteres.")]
+        [Required(ErrorMessage = "Nombre del cliente requerido.")]
         public string ClientName { get; set; }
 
-        [Display(Name = "Nombre de la Compañia ")]
-        [Required(ErrorMessage = "Nombre de la compañia requerida.")]
+        [Display(Name = "Nombre de la Compañía ")]
+        [Required(ErrorMessage = "Nombre de la compañía requerida.")]
         public string ClientCompany { get; set; }
 
-        [Display(Name = "Direccion ")]
-        [Required(ErrorMessage = "Dirreccion requerida.")]
+        [Display(Name = "Dirección ")]
+        [Required(ErrorMessage = "Dirrección requerida.")]
         public string ClientAddress { get; set; }
     }
 }

@@ -43,9 +43,15 @@ namespace ProyectoEmbarques
        
         private static void DrawDescription(FixedContentEditor editor, double maxWidth)
         {
-            double WriteWhere = 20;//Define el actual tope del editor en 500
-            editor.Position.Translate(MargenIzquierdo + 300, WriteWhere);//Traslada el editor al nuevo punto de escritura
+            double WriteWhere = 0;//Define el actual tope del editor en 500
+            editor.Position.Translate(0, WriteWhere);//Traslada el editor al nuevo punto de escritura
 
+            //using (FileStream fss = new FileStream(System.Web.HttpContext.Current.Server.MapPath("~/Images/Blank.PNG"), FileMode.Open, FileAccess.Read))
+            //{ editor.DrawImage(fss); }
+
+            WriteWhere = 20;//Define el actual tope del editor en 500
+            editor.Position.Translate(MargenIzquierdo + 300, WriteWhere);//Traslada el editor al nuevo punto de escritura
+            
             using (FileStream fs = new FileStream(System.Web.HttpContext.Current.Server.MapPath("~/Images/LogoBae.jpeg"), FileMode.Open, FileAccess.Read))
             { editor.DrawImage(fs); }
             Block block = new Block();

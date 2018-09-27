@@ -30,7 +30,6 @@ namespace ProyectoEmbarques.Controllers
         // GET: Shipping_Catalog_Products
         public ActionResult Create()
         {
-            ViewBag.showMs = 0;
             return View();
         }
 

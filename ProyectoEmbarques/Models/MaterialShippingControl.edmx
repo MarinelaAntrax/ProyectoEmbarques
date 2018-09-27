@@ -32,6 +32,15 @@
           <Property Name="ClientAddress" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="ClientCompany" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+          </Key>
+          <Property Name="ComponentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComponentPN" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="ComponentDescription" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ComponentName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="WireKit">
           <Key>
             <PropertyRef Name="WireKitID" />
@@ -156,6 +165,7 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <EntitySet Name="Areas" EntityType="Self.Areas" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="Assemblies" EntityType="Self.Assemblies" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="Catalog" store:Type="Tables" />
+          <EntitySet Name="Components" EntityType="Self.Components" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="WireKit" EntityType="Self.WireKit" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="Shipping_Catalog_Products" EntityType="Self.Shipping_Catalog_Products" Schema="Material" store:Type="Tables" />
           <EntitySet Name="Shipping_Catalog_ShipmentTypes" EntityType="Self.Shipping_Catalog_ShipmentTypes" Schema="Material" store:Type="Tables" />
@@ -225,6 +235,7 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             <End Role="Shipping_Catalog_ShipmentTypes" EntitySet="Shipping_Catalog_ShipmentTypes" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
           </AssociationSet>
+          <EntitySet Name="Components" EntityType="MaterialShippingControlModel.Components" />
           </EntityContainer>
         <EntityType Name="Areas">
           <Key>
@@ -375,6 +386,15 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+          </Key>
+          <Property Name="ComponentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentPN" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ComponentDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -471,6 +491,16 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Components">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
+                <ScalarProperty Name="ComponentPN" ColumnName="ComponentPN" />
+                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

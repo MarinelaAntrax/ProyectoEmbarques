@@ -106,7 +106,7 @@
                                                                     columns.Bound(o => o.RecordQuantity).Width(150).Title("Cantidad");
                                                                     columns.Bound(o => o.RecordFedexTracking).Width(130).Title("FedEx Tracking");
                                                                     columns.Bound(o => o.RecordControlBoxNo).Width(150);
-                                                                    columns.Bound(o => o.RecordPieceBoxNo).Width(140);
+                                                                    columns.Bound(o => o.RecordPieceBoxNo).Width(140).Hidden();
                                                                     columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(140);
                                                                     columns.Bound(o => o.RecordSeguritySeal1).Width(140);
                                                                     columns.Bound(o => o.RecordSeguritySeal2).Width(140);
@@ -115,8 +115,8 @@
                                                                     columns.Bound(o => o.RecordComment).Width(200);
                                                                     columns.Bound(o => o.RecordComment1).Width(200);
                                                                     columns.Bound(o => o.RecordComment2).Width(200);
-                                                                    columns.Bound(o => o.RecordRework).Width(120);
-                                                                    columns.Bound(o => o.RecordFAI).Width(130);
+                                                                    columns.Bound(o => o.RecordRework).Width(120).Hidden();
+                                                                    columns.Bound(o => o.RecordFAI).Width(130).Hidden();
                                                                     columns.Bound(o => o.RecordServiceType).Width(140);
                                                                     columns.Bound(o => o.RecordTransfer).Width(130).Title("Transferir");
                                                                     columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(250);

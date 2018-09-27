@@ -11,8 +11,7 @@ namespace ProyectoEmbarques.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Shipping_Catalog_Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,17 +19,13 @@ namespace ProyectoEmbarques.Models
         {
             this.Shipping_Records = new HashSet<Shipping_Records>();
         }
-
+    
         public int ProductID { get; set; }
-
         public int AreaID { get; set; }
-
         public string ProductName { get; set; }
-
         public string ProductInternalArea { get; set; }
-
         public string ProductType { get; set; }
-
+    
         public virtual Areas Areas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }

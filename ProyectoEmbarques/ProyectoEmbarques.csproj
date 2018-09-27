@@ -50,9 +50,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc, Version=2018.2.620.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Kendo.Mvc, Version=2017.3.1026.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\Kendo.Mvc.dll</HintPath>
+      <HintPath>..\lib\KENDOUIMVC\2018.1.221.545\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Kendo.Mvc.Export">
       <HintPath>..\lib\KENDOUIMVC\2018.2.620.545.Trial\export\binaries\net40\Kendo.Mvc.Export.dll</HintPath>
@@ -81,7 +81,7 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -170,9 +170,6 @@
     <Compile Include="Models\Clients.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Components.cs">
-      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EnsamblesController.cs" />
     <Compile Include="Controllers\EnsamblesRealizadosController.cs" />
@@ -181,6 +178,9 @@
     <Compile Include="Controllers\CatalogShipmentTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Components.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\MaterialShippingControl.Context.cs">
@@ -254,6 +254,7 @@
     <Content Include="Content\Images\bae-logo-black.png" />
     <Content Include="Content\Images\bae-logo-grey.png" />
     <Content Include="Content\Images\bae-logo.svg" />
+    <Content Include="Images\Blank.PNG" />
     <Content Include="Content\Images\heading-banner.png" />
     <Content Include="Content\kendo\2018.1.221\Black\editor.png" />
     <Content Include="Content\kendo\2018.1.221\Black\imagebrowser.png" />
@@ -1161,7 +1162,6 @@
     <Content Include="Scripts\cultures\kendo.culture.zh.min.js" />
     <Content Include="Scripts\cultures\kendo.culture.zu-ZA.min.js" />
     <Content Include="Scripts\cultures\kendo.culture.zu.min.js" />
-    <Content Include="Scripts\InstruccionesScript.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
