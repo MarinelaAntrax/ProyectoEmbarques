@@ -56,21 +56,12 @@
 
         <div class="col-lg-8">
             <h4>Área Interna del Producto</h4>
-            <div class="form-group">
-                @(Html.Kendo().DropDownListFor(f => f.ProductInternalArea)
-                        .Name("ProductInternalArea")
-                        .OptionLabel("Seleccione área interna...")
-                        .DataTextField("Text")
-                        .DataValueField("Value")
-                        .BindTo(new List<SelectListItem>()
-                        {
-                            new SelectListItem() { Text = "Con Orden de Trabajo", Value = "Con Orden de Trabajo" },
-                            new SelectListItem() { Text = "WK o RM", Value = "WK o RM" },
-                            new SelectListItem() { Text = "Con Orden TID Serie", Value = "Con Orden TID Serie" }
-                        })
-                        .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
-                        .HtmlAttributes(new { style = "width:60%;" }) )
-            </div>
+
+            <div class="col-lg-3">@Html.Kendo().CheckBoxFor(m => m.WOrder)</div>
+            <div class="col-lg-3">@Html.Kendo().CheckBoxFor(m => m.WKRMSerie)</div>
+            <div class="col-lg-3">@Html.Kendo().CheckBoxFor(m => m.TIDSerie)</div>
+            <div class="col-lg-3"> </div>
+
         </div>
 
         <div class="col-lg-8">

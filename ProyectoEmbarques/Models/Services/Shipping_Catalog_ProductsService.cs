@@ -33,7 +33,7 @@ namespace ProyectoEmbarques.Models.Services
                 Areas = new AreasViewModel()
                 {
                     AreaName = product.Areas.AreaName
-              },
+                },
                 ProductName =product.ProductName,
                 ProductInternalArea = product.ProductInternalArea,
                 ProductType=product.ProductType
