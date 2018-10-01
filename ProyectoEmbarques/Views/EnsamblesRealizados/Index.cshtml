@@ -75,7 +75,7 @@
                                                                 model.Field(Fie => Fie.Shipping_Catalog_Products.ProductName).Editable(false);
                                                                 model.Field(Fie => Fie.Shipping_Catalog_Products.Areas.AreaName).Editable(false);
                                                                 model.Field(Fie => Fie.Clients.ClientName).Editable(false);
-                                                                model.Field(Fie => Fie.Clients.ClientAddress).Editable(false);
+                                                                model.Field(Fie => Fie.Clients.ClientCompany).Editable(false);
                                                                 model.Field(Fie => Fie.RecordWorkOrder).Editable(false);
                                                                 model.Field(Fie => Fie.RecordTrackingId).Editable(false);
                                                                 model.Field(Fie => Fie.RecordSerialNo).Editable(false);
@@ -107,7 +107,7 @@
                                                                     columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(200).Title("No. Parte");
                                                                     columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(150).Title("Área");
                                                                     columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(210);
-                                                                    columns.Bound(o => o.Clients.ClientAddress).Title("Compañía").Width(200);
+                                                                    columns.Bound(o => o.Clients.ClientCompany).Title("Compañía").Width(200);
                                                                     columns.Bound(o => o.RecordWorkOrder).Width(150);
                                                                     columns.Bound(o => o.RecordTrackingId).Width(150);
                                                                     columns.Bound(o => o.RecordSerialNo).Width(150);

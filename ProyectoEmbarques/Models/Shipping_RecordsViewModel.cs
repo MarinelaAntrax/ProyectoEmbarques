@@ -25,7 +25,7 @@ namespace ProyectoEmbarques.Models
         public Nullable<decimal> RecordTrackingId { get; set; }
 
         [Display(Name = "Serial#")]
-        public Nullable<decimal> RecordSerialNo { get; set; }
+        public string RecordSerialNo { get; set; }
 
         [Required(ErrorMessage = "Cantidad requerida.")]
         public int RecordQuantity { get; set; }

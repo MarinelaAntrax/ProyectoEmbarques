@@ -37,7 +37,6 @@ namespace ProyectoEmbarques.Models.Services
                     Clients = new ClientesViewModel()
                     {
                         ClientName = componente.Clients.ClientName,
-                        ClientAddress = componente.Clients.ClientAddress,
                         ClientCompany = componente.Clients.ClientCompany
                     },
                     ProductID = componente.ProductID,
@@ -51,7 +50,9 @@ namespace ProyectoEmbarques.Models.Services
                         AreaName = componente.Shipping_Catalog_Products.Areas.AreaName
                     },
                         ProductType = componente.Shipping_Catalog_Products.ProductType,
-                        ProductInternalArea = componente.Shipping_Catalog_Products.ProductInternalArea
+                        WOrder = componente.Shipping_Catalog_Products.WOrder,
+                        WKRMSerie = componente.Shipping_Catalog_Products.WKRMSerie,
+                        TIDSerie = componente.Shipping_Catalog_Products.TIDSerie,
                     },
                     RecordID = componente.RecordID,
                     RecordQuantity = componente.RecordQuantity,

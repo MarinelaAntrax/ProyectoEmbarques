@@ -167,9 +167,6 @@
     <Compile Include="Models\Assemblies.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Clients.cs">
-      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EnsamblesController.cs" />
     <Compile Include="Controllers\EnsamblesRealizadosController.cs" />
@@ -178,6 +175,9 @@
     <Compile Include="Controllers\CatalogShipmentTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clients.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Components.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
@@ -202,6 +202,9 @@
     <Compile Include="Models\ClientesViewModel.cs" />
     <Compile Include="Models\ComponentesViewModel.cs" />
     <Compile Include="Models\Services\CreateDocument.cs" />
+    <Compile Include="Models\Shipping_Catalog_Products.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Shipping_Records.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
@@ -219,9 +222,6 @@
     <Compile Include="Models\CatalogShipmentTypeViewModel.cs" />
     <Compile Include="Models\VIEWDATAViewModel.cs" />
     <Compile Include="Controllers\Shipping_Catalog_ProductsController.cs" />
-    <Compile Include="Models\Shipping_Catalog_Products.cs">
-      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Shipping_Catalog_ShipmentTypes.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>

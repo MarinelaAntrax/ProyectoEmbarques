@@ -8,7 +8,7 @@
 <h2 class="page-header"> @ViewBag.Title</h2>
 
 @using (Html.BeginForm("Create", "Shipping_Records", FormMethod.Post, new { id = "SealDiferentes" }))
-{
+ {
     @Html.ValidationSummary(true);
     @Html.AntiForgeryToken()
     <div class="form-horizontal telerik-controls">
@@ -33,7 +33,7 @@
                                             .ServerFiltering(false);
                                     })
                                     .HtmlAttributes(new { style = "width:90%;" })
-                                    //.Events(ev=>ev.Change("onChangePID"))
+                                    .Events(ev=>ev.Change("onChangePID"))
                                     .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ProductID))
                         </div>
@@ -76,15 +76,15 @@
                             <h4>Orden de Trabajo</h4>
                             @(Html.Kendo().TextBox()
                                     .Name("RecordWorkOrder")
-                                    .HtmlAttributes(new {/*id="idOrdendeTrabajo"*/ type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                                    .HtmlAttributes(new { id="idOrdendeTrabajo",disabled=true, type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" style="">
                         <div class="form-group">
                             <h4>No. Serie</h4>
                             @(Html.Kendo().TextBox()
                                     .Name("RecordSerialNo")
-                                    .HtmlAttributes(new {id="IdRecordSerialNo", style = "width:90%" }) )
+                                    .HtmlAttributes(new {disabled = true,id = "IdRecordSerialNo", style = "width:90%;opacity:0.8;" }) )
                         </div>
                     </div>
 
@@ -116,7 +116,7 @@
                             <h4>Tracking de Papelería</h4>
                             @(Html.Kendo().TextBox()
                                     .Name("RecordTrackingId")
-                                    .HtmlAttributes(new {/*id="idTrackingPapeleria"*/ type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                                    .HtmlAttributes(new {id="idTrackingPapeleria", type = "number", disabled = true, style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
                         </div>
                     </div>
 
@@ -304,6 +304,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-12">
             <div class="form-group">
                 <center>
@@ -313,42 +314,57 @@
             </div>
         </div>
     </div>
-}
+ }
 
 <script>
     $("#SealDiferentes").kendoValidator().data("kendoValidator");
     $("#RecordDate").prop("readonly", true);
 
-    //function onChangePID(ev) {
-    //    var item = this.dataItem(ev.item);
-    //    var elem=item.ProductInternalArea
-    //    switch(elem) {
-    //        case "Con Orden de Trabajo":
-    //            document.getElementById("idOrdendeTrabajo").disabled = false;
-    //            document.getElementById("IdRecordSerialNo").disabled = true;
-    //            document.getElementById("idTrackingPapeleria").disabled = true;
-                
-                 
-    //            //Deshabilita los campos correspondientes
-    //            //y activa los otros
-    //            break;
-    //        case "WK o RM":
-    //            document.getElementById("idOrdendeTrabajo").disabled = true;
-    //            document.getElementById("IdRecordSerialNo").disabled = true;
-    //            document.getElementById("idTrackingPapeleria").disabled = true;
-    //            //Deshabilita los campos correspondientes
-    //            //y activa los otros
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
+    function onChangePID(ev) {
+        var item = this.dataItem(ev.item);
+
+        var elem1 = item.WOrder;
+        var elem2 = item.WKRMSerie;
+        var elem3 = item.TIDSerie;
+        if (elem1) {
+            document.getElementById("idOrdendeTrabajo").disabled = false;
+            document.getElementById("idOrdendeTrabajo").required = true;
+            document.getElementById("idOrdendeTrabajo").style.opacity = "1";
+        } else {
+            document.getElementById("idOrdendeTrabajo").disabled = true;
+            document.getElementById("idOrdendeTrabajo").style.opacity = "0.8";
+            document.getElementById("idOrdendeTrabajo").required = false;
+        }
+        if (elem2) {
+            document.getElementById("IdRecordSerialNo").disabled = false;
+            document.getElementById("IdRecordSerialNo").required = true;
+            document.getElementById("IdRecordSerialNo").style.opacity = "1";
+        } else {
+            document.getElementById("IdRecordSerialNo").disabled = true;
+            document.getElementById("IdRecordSerialNo").style.opacity = "0.8";
+            document.getElementById("IdRecordSerialNo").required = false;
+        }
+        if (elem3) {
+            document.getElementById("idTrackingPapeleria").disabled = false;
+            document.getElementById("idTrackingPapeleria").required = true;
+            document.getElementById("idTrackingPapeleria").style.opacity = "1";
+        } else {
+            document.getElementById("idTrackingPapeleria").disabled = true;
+            document.getElementById("idTrackingPapeleria").style.opacity = "0.8";
+            document.getElementById("idTrackingPapeleria").required = false;
+        }
+
+        document.getElementById("idTrackingPapeleria").value = "";
+        document.getElementById("idOrdendeTrabajo").value = "";
+        document.getElementById("IdRecordSerialNo").value = "";
+    }
 </script>
 
 <script>
-    $(document).ready(function () {
-
-        $.ajax({
+    $(document).ready(function ()
+    {
+        $.ajax(
+        {
                 type: 'GET',
                 url: '@Url.Action("GetMaxControlBox", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
                 success: function (Content)
@@ -359,33 +375,34 @@
                     {
                         alert("Error while GettingMaxControlBox");
                     }
+        });
+            $.ajax(
+            {
+                type: 'GET',
+                url: '@Url.Action("GetMaxFedexTracking", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
+                success: function (Content)
+                {
+                    $("#RecordFedexTracking").val(Content);
+                },
+                    error: function ()
+                    {
+                        alert("Error while GettingMaxFedexTracking");
+                    }
             });
-        $.ajax({
-            type: 'GET',
-            url: '@Url.Action("GetMaxFedexTracking", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
-            success: function (Content)
-            {
-                $("#RecordFedexTracking").val(Content);
-            },
-                error: function ()
+                $.ajax(
                 {
-                    alert("Error while GettingMaxFedexTracking");
-                }
-        });
-        $.ajax({
-            type: 'GET',
-            url: '@Url.Action("GetMaxPieceBoxNo", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
-            success: function (Content)
-            {
-                $("#RecordPieceBoxNo").val(Content);
-            },
-                error: function ()
-                {
-                    alert("Error while GettingMaxPieceBoxNo");
-                }
-        });
+                    type: 'GET',
+                    url: '@Url.Action("GetMaxPieceBoxNo", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
+                    success: function (Content)
+                    {
+                        $("#RecordPieceBoxNo").val(Content);
+                    },
+                        error: function ()
+                        {
+                            alert("Error while GettingMaxPieceBoxNo");
+                        }
+                });
     });
-
 
     $("#ProductID").change(function ()
     {
@@ -475,38 +492,35 @@
             document.getElementById("2alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
         }
     });
-
 </script>
-<script>
-    $(document).ready(function () {
-        $("#SealDiferentes").submit(function (e) {
 
+<script>
+    $(document).ready(function ()
+    {
+        $("#SealDiferentes").submit(function (e)
+        {
             var field1 = document.getElementById('RecordSeguritySeal1').value;
             var field2 = document.getElementById('RecordSeguritySeal2').value;
             var field3 = document.getElementById('RecordSeguritySeal3').value;
             var field4 = document.getElementById('RecordSeguritySeal4').value;
 
-           
             if (field1 == field2 || field1 == field3 || field1 == field4)//sello 1 es igual de 2,3.4
             {
-                
-                alert("Sellos no pueden repetirse");
-                return false;
-            } else if (field2 == field3 || field2 == field4)//sello 2 es igual de 1,3.4
-            {
-                
-                alert("Sellos no pueden repetirse");
-                return false;
-
-            } else if (field3 == field4)//sello 3 es igual de 1,2.4
-            {
-                
-                alert("Sellos no pueden repetirse");
+                    alert("Sellos no pueden repetirse");
                 return false;
             }
+                else if (field2 == field3 || field2 == field4)//sello 2 es igual de 1,3.4
+                {
+                        alert("Sellos no pueden repetirse");
+                    return false;
+                }
+                    else if (field3 == field4)//sello 3 es igual de 1,2.4
+                    {
+                            alert("Sellos no pueden repetirse");
+                        return false;
+                    }
         });
     });
-
 </script>
 @* -----------------------------------------Notificaciones--------------------------------------------------- *@
 @(Html.Kendo().Notification()
@@ -534,49 +548,58 @@
         <h4 style="color:white;">#= message #</h4>
     </div>
 </script>
+
 @if (ViewBag.showMs==1)
-{
+ {
     <script>
-        $(document).ready(function () {
-            $("#notification").data("kendoNotification").show({
+        $(document).ready(function ()
+        {
+            $("#notification").data("kendoNotification").show(
+            {
                 message: "registro guardado"
             }, "upload-success");
         });
 
     </script>
     ViewBag.showMs = 0;
-}
-else if (ViewBag.showMs == 2)
-{
+ }
+  else if (ViewBag.showMs == 2)
+  {
     <script>
-        $(document).ready(function () {
-            $("#notification").data("kendoNotification").show({
+        $(document).ready(function ()
+        {
+            $("#notification").data("kendoNotification").show(
+            {
                 message: "Error al procesar solicitud"
             }, "error");
         });
     </script>
     ViewBag.showMs = 0;
-}
+  }
 
 <style>
-    .k-notification {
+    .k-notification 
+    {
         border: 0;
     }
     /* Error template */
-    .k-notification-error.k-group {
+    .k-notification-error.k-group 
+    {
         background: rgba(100%,0%,0%,.7);
         color: #FFFFFF;
     }
 
-    .wrong {
+    .wrong 
+    {
         width: 240px;
         height: 100px;
         padding: 0 30px;
         line-height: 100px;
     }
 
-        .wrong h4 {
-            font - size: 1em;
+        .wrong h4
+        {
+            font-size: 1em;
             padding: 32px 10px 5px;
         }
 
@@ -586,31 +609,36 @@ else if (ViewBag.showMs == 2)
         }
 
     /* Info template */
-    .k-notification-info.k-group {
+    .k-notification-info.k-group 
+    {
         background: rgba(0%,0%,0%,.7);
         color: #FFF;
     }
     /* Success template */
-    .k-notification-upload-success {
+    .k-notification-upload-success
+    {
         background: rgba(0%,60%,0%,.7);
         color: #FFF;
     }
 
-    .upload-success {
+    .upload-success 
+    {
         width: 240px;
         height: 100px;
         padding: 0 30px;
         line-height: 100px;
     }
 
-        .upload-success h4 {
+        .upload-success h4 
+        {
             font - size: 1em;
             font-weight: normal;
             display: inline-block;
             vertical-align: middle;
         }
 
-        .upload-success img {
+        .upload-success img 
+        {
             display: inline-block;
             vertical-align: middle;
             margin-right: 10px;

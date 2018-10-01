@@ -101,10 +101,10 @@ namespace ProyectoEmbarques.Controllers
 
         // POST: Shipping_Catalog_Products/Create
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([Bind(Include = "AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_ProductsViewModel Products)
+        public ActionResult Create([Bind(Include = "AreaID,ProductName,WOrder,WKRMSerie,TIDSerie,ProductType")] Shipping_Catalog_ProductsViewModel Products)
         {
 
-            if (Products.ProductName!=null&&Products.ProductInternalArea!=null&&Products.ProductType!=null)
+            if (Products.ProductName!=null&&Products.ProductType!=null)
             {
                 _Service.Create(Products);
                 ModelState.Clear();

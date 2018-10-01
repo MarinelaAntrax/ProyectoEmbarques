@@ -29,7 +29,6 @@
           </Key>
           <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="ClientAddress" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="ClientCompany" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Components">
@@ -55,8 +54,10 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AreaID" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProductInternalArea" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ProductType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WOrder" Type="bit" Nullable="false" />
+          <Property Name="WKRMSerie" Type="bit" Nullable="false" />
+          <Property Name="TIDSerie" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Shipping_Catalog_ShipmentTypes">
           <Key>
@@ -81,7 +82,7 @@
           <Property Name="RecordServiceType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RecordComment" Type="varchar" MaxLength="250" />
           <Property Name="RecordWorkOrder" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="RecordSerialNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RecordSerialNo" Type="varchar" MaxLength="50" />
           <Property Name="RecordRework" Type="bit" Nullable="false" />
           <Property Name="RecordTrackingId" Type="decimal" Precision="18" Scale="0" />
           <Property Name="RecordComment1" Type="varchar" MaxLength="250" />
@@ -210,23 +211,19 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <EntitySet Name="VIEWDATA" EntityType="Self.VIEWDATA" />
           <EntitySet Name="Areas" EntityType="MaterialShippingControlModel.Areas" />
           <EntitySet Name="Assemblies" EntityType="MaterialShippingControlModel.Assemblies" />
-          <EntitySet Name="Clients" EntityType="MaterialShippingControlModel.Clients" />
           <EntitySet Name="WireKit" EntityType="MaterialShippingControlModel.WireKit" />
-          <EntitySet Name="Shipping_Catalog_Products" EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" />
           <EntitySet Name="Shipping_Catalog_ShipmentTypes" EntityType="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes" />
-          <EntitySet Name="Shipping_Records" EntityType="MaterialShippingControlModel.Shipping_Records" />
           <AssociationSet Name="FK_Assemblies_Areas" Association="MaterialShippingControlModel.FK_Assemblies_Areas">
             <End Role="Areas" EntitySet="Areas" />
             <End Role="Assemblies" EntitySet="Assemblies" />
           </AssociationSet>
+          <EntitySet Name="Components" EntityType="MaterialShippingControlModel.Components" />
+          <EntitySet Name="Shipping_Catalog_Products" EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" />
           <AssociationSet Name="FK_Products_Areas" Association="MaterialShippingControlModel.FK_Products_Areas">
             <End Role="Areas" EntitySet="Areas" />
             <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shipping_Records_Clients" Association="MaterialShippingControlModel.FK_Shipping_Records_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
-          </AssociationSet>
+          <EntitySet Name="Shipping_Records" EntityType="MaterialShippingControlModel.Shipping_Records" />
           <AssociationSet Name="FK_Shipping_Records_Shipping_Catalog_Products" Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products">
             <End Role="Shipping_Catalog_Products" EntitySet="Shipping_Catalog_Products" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
@@ -235,7 +232,11 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             <End Role="Shipping_Catalog_ShipmentTypes" EntitySet="Shipping_Catalog_ShipmentTypes" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
           </AssociationSet>
-          <EntitySet Name="Components" EntityType="MaterialShippingControlModel.Components" />
+          <EntitySet Name="Clients" EntityType="MaterialShippingControlModel.Clients" />
+          <AssociationSet Name="FK_Shipping_Records_Clients" Association="MaterialShippingControlModel.FK_Shipping_Records_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Shipping_Records" EntitySet="Shipping_Records" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Areas">
           <Key>
@@ -258,34 +259,12 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="Quantity" Type="Byte" />
           <NavigationProperty Name="Areas" Relationship="MaterialShippingControlModel.FK_Assemblies_Areas" FromRole="Assemblies" ToRole="Areas" />
         </EntityType>
-        <EntityType Name="Clients">
-          <Key>
-            <PropertyRef Name="ClientID" />
-          </Key>
-          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ClientAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ClientCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Clients" ToRole="Shipping_Records" />
-        </EntityType>
         <EntityType Name="WireKit">
           <Key>
             <PropertyRef Name="WireKitID" />
           </Key>
           <Property Name="WireKitID" Type="Int32" Nullable="false" />
           <Property Name="WireKitPN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Shipping_Catalog_Products">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AreaID" Type="Int32" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductInternalArea" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Areas" Relationship="MaterialShippingControlModel.FK_Products_Areas" FromRole="Shipping_Catalog_Products" ToRole="Areas" />
-          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Catalog_Products" ToRole="Shipping_Records" />
         </EntityType>
         <EntityType Name="Shipping_Catalog_ShipmentTypes">
           <Key>
@@ -295,6 +274,53 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="ShipmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" FromRole="Shipping_Catalog_ShipmentTypes" ToRole="Shipping_Records" />
         </EntityType>
+        <Association Name="FK_Assemblies_Areas">
+          <End Type="MaterialShippingControlModel.Areas" Role="Areas" Multiplicity="0..1" />
+          <End Type="MaterialShippingControlModel.Assemblies" Role="Assemblies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Assemblies">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+          </Key>
+          <Property Name="ComponentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentPN" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ComponentDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Shipping_Catalog_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WOrder" Type="Boolean" Nullable="false" />
+          <Property Name="WKRMSerie" Type="Boolean" Nullable="false" />
+          <Property Name="TIDSerie" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="MaterialShippingControlModel.FK_Products_Areas" FromRole="Shipping_Catalog_Products" ToRole="Areas" />
+          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Catalog_Products" ToRole="Shipping_Records" />
+        </EntityType>
+        <Association Name="FK_Products_Areas">
+          <End Type="MaterialShippingControlModel.Areas" Role="Areas" Multiplicity="1" />
+          <End Type="MaterialShippingControlModel.Shipping_Catalog_Products" Role="Shipping_Catalog_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Shipping_Catalog_Products">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Shipping_Records">
           <Key>
             <PropertyRef Name="RecordID" />
@@ -311,7 +337,7 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="RecordServiceType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RecordComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RecordWorkOrder" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="RecordSerialNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RecordSerialNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RecordRework" Type="Boolean" Nullable="false" />
           <Property Name="RecordTrackingId" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="RecordComment1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -322,46 +348,10 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="RecordSeguritySeal3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RecordSeguritySeal4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RecordTransfer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Shipping_Records" ToRole="Clients" />
           <NavigationProperty Name="Shipping_Catalog_Products" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Records" ToRole="Shipping_Catalog_Products" />
           <NavigationProperty Name="Shipping_Catalog_ShipmentTypes" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" FromRole="Shipping_Records" ToRole="Shipping_Catalog_ShipmentTypes" />
+          <NavigationProperty Name="Clients" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Shipping_Records" ToRole="Clients" />
         </EntityType>
-        <Association Name="FK_Assemblies_Areas">
-          <End Type="MaterialShippingControlModel.Areas" Role="Areas" Multiplicity="0..1" />
-          <End Type="MaterialShippingControlModel.Assemblies" Role="Assemblies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Areas">
-              <PropertyRef Name="AreaID" />
-            </Principal>
-            <Dependent Role="Assemblies">
-              <PropertyRef Name="AreaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_Areas">
-          <End Type="MaterialShippingControlModel.Areas" Role="Areas" Multiplicity="1" />
-          <End Type="MaterialShippingControlModel.Shipping_Catalog_Products" Role="Shipping_Catalog_Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Areas">
-              <PropertyRef Name="AreaID" />
-            </Principal>
-            <Dependent Role="Shipping_Catalog_Products">
-              <PropertyRef Name="AreaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shipping_Records_Clients">
-          <End Type="MaterialShippingControlModel.Clients" Role="Clients" Multiplicity="1" />
-          <End Type="MaterialShippingControlModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="ClientID" />
-            </Principal>
-            <Dependent Role="Shipping_Records">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Shipping_Records_Shipping_Catalog_Products">
           <End Type="MaterialShippingControlModel.Shipping_Catalog_Products" Role="Shipping_Catalog_Products" Multiplicity="1" />
           <End Type="MaterialShippingControlModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
@@ -386,15 +376,27 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Components">
+        <EntityType Name="Clients">
           <Key>
-            <PropertyRef Name="ComponentID" />
+            <PropertyRef Name="ClientID" />
           </Key>
-          <Property Name="ComponentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ComponentPN" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="ComponentDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Shipping_Records" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Clients" ToRole="Shipping_Records" />
         </EntityType>
+        <Association Name="FK_Shipping_Records_Clients">
+          <End Type="MaterialShippingControlModel.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="MaterialShippingControlModel.Shipping_Records" Role="Shipping_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Shipping_Records">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -428,16 +430,6 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="MaterialShippingControlModel.Clients">
-              <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="ClientCompany" ColumnName="ClientCompany" />
-                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
-                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WireKit">
             <EntityTypeMapping TypeName="MaterialShippingControlModel.WireKit">
               <MappingFragment StoreEntitySet="WireKit">
@@ -446,22 +438,34 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shipping_Catalog_Products">
-            <EntityTypeMapping TypeName="MaterialShippingControlModel.Shipping_Catalog_Products">
-              <MappingFragment StoreEntitySet="Shipping_Catalog_Products">
-                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
-                <ScalarProperty Name="ProductInternalArea" ColumnName="ProductInternalArea" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Shipping_Catalog_ShipmentTypes">
             <EntityTypeMapping TypeName="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes">
               <MappingFragment StoreEntitySet="Shipping_Catalog_ShipmentTypes">
                 <ScalarProperty Name="ShipmentType" ColumnName="ShipmentType" />
                 <ScalarProperty Name="ShipmentTypeID" ColumnName="ShipmentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Components">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
+                <ScalarProperty Name="ComponentPN" ColumnName="ComponentPN" />
+                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipping_Catalog_Products">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Shipping_Catalog_Products">
+              <MappingFragment StoreEntitySet="Shipping_Catalog_Products">
+                <ScalarProperty Name="TIDSerie" ColumnName="TIDSerie" />
+                <ScalarProperty Name="WKRMSerie" ColumnName="WKRMSerie" />
+                <ScalarProperty Name="WOrder" ColumnName="WOrder" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -494,13 +498,12 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Components">
-            <EntityTypeMapping TypeName="MaterialShippingControlModel.Components">
-              <MappingFragment StoreEntitySet="Components">
-                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
-                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
-                <ScalarProperty Name="ComponentPN" ColumnName="ComponentPN" />
-                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientCompany" ColumnName="ClientCompany" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -35,8 +35,10 @@ namespace ProyectoEmbarques.Models.Services
                     AreaName = product.Areas.AreaName
                 },
                 ProductName =product.ProductName,
-                ProductInternalArea = product.ProductInternalArea,
-                ProductType=product.ProductType
+                WOrder = product.WOrder,
+                WKRMSerie = product.WKRMSerie,
+                TIDSerie = product.TIDSerie,
+                ProductType =product.ProductType
            }).ToList();
             return result;
         }
@@ -64,7 +66,9 @@ namespace ProyectoEmbarques.Models.Services
                     //entity.ProductID = product.ProductID;
                     entity.AreaID = product.AreaID;
                     entity.ProductName = product.ProductName;
-                    entity.ProductInternalArea = product.ProductInternalArea;
+                    entity.WOrder = product.WOrder;
+                    entity.WKRMSerie = product.WKRMSerie;
+                    entity.TIDSerie = product.TIDSerie;
                     entity.ProductType = product.ProductType;
 
                     entities.Shipping_Catalog_Products.Add(entity);

@@ -23,8 +23,10 @@ namespace ProyectoEmbarques.Models
         public int ProductID { get; set; }
         public int AreaID { get; set; }
         public string ProductName { get; set; }
-        public string ProductInternalArea { get; set; }
         public string ProductType { get; set; }
+        public bool WOrder { get; set; }
+        public bool WKRMSerie { get; set; }
+        public bool TIDSerie { get; set; }
     
         public virtual Areas Areas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

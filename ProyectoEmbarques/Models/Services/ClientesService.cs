@@ -30,7 +30,6 @@ namespace ProyectoEmbarques.Models.Services
             {
                 ClientID = componente.ClientID,
                 ClientName = componente.ClientName,
-                ClientAddress = componente.ClientAddress,
                 ClientCompany = componente.ClientCompany
             }).ToList();
             return result;
@@ -58,7 +57,6 @@ namespace ProyectoEmbarques.Models.Services
 
                 entity.ClientID = clientes.ClientID;
                 entity.ClientName = clientes.ClientName;
-                entity.ClientAddress = clientes.ClientAddress;
                 entity.ClientCompany = clientes.ClientCompany;
 
                 BAE.Clients.Add(entity);
@@ -78,7 +76,6 @@ namespace ProyectoEmbarques.Models.Services
                 {
                     target.ClientID = clientes.ClientID;
                     target.ClientName = clientes.ClientName;
-                    target.ClientAddress = clientes.ClientAddress;
                     target.ClientCompany = clientes.ClientCompany;
                 }
             }
@@ -88,7 +85,6 @@ namespace ProyectoEmbarques.Models.Services
 
                 entity.ClientID = clientes.ClientID;
                 entity.ClientName = clientes.ClientName;
-                entity.ClientAddress = clientes.ClientAddress;
                 entity.ClientCompany = clientes.ClientCompany;
 
                 BAE.Clients.Attach(entity);

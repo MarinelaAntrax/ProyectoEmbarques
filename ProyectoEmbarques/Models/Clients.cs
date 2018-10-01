@@ -22,7 +22,6 @@ namespace ProyectoEmbarques.Models
     
         public int ClientID { get; set; }
         public string ClientName { get; set; }
-        public string ClientAddress { get; set; }
         public string ClientCompany { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -26,7 +26,7 @@ namespace ProyectoEmbarques.Models
         public string RecordServiceType { get; set; }
         public string RecordComment { get; set; }
         public Nullable<decimal> RecordWorkOrder { get; set; }
-        public Nullable<decimal> RecordSerialNo { get; set; }
+        public string RecordSerialNo { get; set; }
         public bool RecordRework { get; set; }
         public Nullable<decimal> RecordTrackingId { get; set; }
         public string RecordComment1 { get; set; }
@@ -38,8 +38,8 @@ namespace ProyectoEmbarques.Models
         public string RecordSeguritySeal4 { get; set; }
         public string RecordTransfer { get; set; }
     
-        public virtual Clients Clients { get; set; }
         public virtual Shipping_Catalog_Products Shipping_Catalog_Products { get; set; }
         public virtual Shipping_Catalog_ShipmentTypes Shipping_Catalog_ShipmentTypes { get; set; }
+        public virtual Clients Clients { get; set; }
     }
 }
