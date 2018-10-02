@@ -1,0 +1,31 @@
+﻿
+@model ProyectoEmbarques.Models.ClientesViewModel
+<div class="form-horizontal">
+    <div class="form-group">
+        <div class="col-lg-8">
+            <CENTER>
+                @Html.LabelFor(l => l.ClientName)
+                @Html.TextBoxFor(f => f.ClientName, new { @id = "idClientName", @class = "k k-textbox" })
+            </CENTER>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-7">
+            <CENTER>
+                @Html.LabelFor(l => l.ClientCompany)
+                @Html.TextBoxFor(f => f.ClientCompany, new { @id = "idClientCompany", @class = "k k-textbox" })
+            </CENTER>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#idClientName").keyup(function (e) {
+            $("#idClientName").val(($("#idClientName").val()).toUpperCase());
+        });
+
+        $("#idClientCompany").keyup(function (e) {
+            $("#idClientCompany").val(($("#idClientCompany").val()).toUpperCase());
+        });
+    });
+</script>

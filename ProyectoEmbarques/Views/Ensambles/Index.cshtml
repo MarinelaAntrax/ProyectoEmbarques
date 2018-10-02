@@ -10,10 +10,9 @@
                         .Sortable()
                         .ToolBar(tools =>
                         {
-                            tools.Template(@<text>
-                                <a class="k-button k-button-icontext" href="@Url.Action("Create", "Shipping_Catalog_Products")"><span class="k-icon k-i-add"></span>Agregar Ensamble</a>
-                            </text>);
-                                })
+                            tools.Create().Text("Agregar Ensambles");
+                        })
+                                    .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Ensambles"))
                                     .Pageable(x => x.Numeric(true)
                                     .PreviousNext(true)
                                     .Refresh(true)
@@ -23,32 +22,30 @@
                                     .Model(model => model.Id(e => e.ProductID))
                                     .Events(events => events.Error("error_handler"))
                                     .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
+                                    .Create(create => create.Action("Create", "Shipping_Catalog_Products"))
+                                    .Update(update => update.Action("Update", "Shipping_Catalog_Products"))
                                     .PageSize(100)
                                     )
                                         .Columns(columns =>
                                         {
                                             columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
-                                            columns.Bound(o => o.Areas.AreaName).Title("Área").Width(5);
+                                            columns.Bound(o => o.AreaName).Title("Área").Width(5);
                                         })
                                         .Scrollable()
                                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
                                         .HtmlAttributes(new { style = "height: 650px;" })
+                                        .Events(e => { e.Edit("onEdit"); })
     )
 </div>
 
 @section Scripts{
     <script type="text/javascript">
-        function error_handler(e)
-        {
-            if (e.errors)
-            {
+        function error_handler(e) {
+            if (e.errors) {
                 var message = "Errors:\n";
-                $.each(e.errors, function (key, value)
-                {
-                    if ('errors' in value)
-                    {
-                        $.each(value.errors, function ()
-                        {
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
                             message += this + "\n";
                         });
                     }
@@ -57,11 +54,16 @@
             }
         }
     </script>
+
+    <script>
+        function onEdit(e) {
+            e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Ensambles" : + $('#nombreproducto').val());
+        }
+    </script>
 }
 
 <style>
-    .k-edit-form-container 
-    {
+    .k-edit-form-container {
         width: 600px;
     }
 </style>

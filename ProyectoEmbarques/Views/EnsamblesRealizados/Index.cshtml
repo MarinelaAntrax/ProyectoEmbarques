@@ -58,6 +58,7 @@
                                                         .Pageable()
                                                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
                                                         .Groupable()
+                                                        .ColumnMenu()
                                                         .Pageable(x => x.Numeric(true)
                                                             .PreviousNext(true)
                                                             .Refresh(true)

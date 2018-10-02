@@ -12,7 +12,7 @@
                         {
                             tools.Create().Text("Agregar Cliente");
                         })
-                            .Editable(editable => editable.Mode(GridEditMode.PopUp))
+                            .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Clientes"))
                             .Pageable(x => x.Numeric(true)
                             .PreviousNext(true)
                             .Refresh(true)

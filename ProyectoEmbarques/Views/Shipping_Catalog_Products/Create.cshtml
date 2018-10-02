@@ -56,10 +56,9 @@
 
         <div class="col-lg-8">
             <h4> Datos requeridos </h4>
-            <div class="col-lg-3"> @Html.Kendo().CheckBoxFor(m => m.WOrder)    </div> <h4> Orden de trabajo </h4>
-            <div class="col-lg-3"> @Html.Kendo().CheckBoxFor(m => m.WKRMSerie) </div> <h4> No. Serie </h4>
-            <div class="col-lg-3"> @Html.Kendo().CheckBoxFor(m => m.TIDSerie)  </div> <h4> Tracking papeleria </h4>
-            <div class="col-lg-3"> </div>
+            <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WOrder)</div> <h4> Orden de trabajo </h4>
+            <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WKRMSerie)</div> <h4> No. Serie </h4>
+            <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.TIDSerie)</div> <h4> Tracking papeleria </h4>
         </div>
 
         <div class="col-lg-8">
@@ -98,7 +97,7 @@
                     .Name("notification")
                     .Position(p => p.Pinned(true).Top(30).Right(30))
                     .Stacking(NotificationStackingSettings.Down)
-                    .AutoHideAfter(4000)
+                    .AutoHideAfter(1000)
                     .Templates(t =>
                     {
                         t.Add().Type("upload-success").ClientTemplateID("successTemplate");

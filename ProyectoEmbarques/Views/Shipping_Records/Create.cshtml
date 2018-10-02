@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Embarques";
-    TempData["ShowMS"]=0;
+    TempData["ShowMS"] = 0;
 }
 
 <h2 class="page-header"> @ViewBag.Title</h2>
 
 @using (Html.BeginForm("Create", "Shipping_Records", FormMethod.Post, new { id = "SealDiferentes" }))
- {
+{
     @Html.ValidationSummary(true);
     @Html.AntiForgeryToken()
     <div class="form-horizontal telerik-controls">
@@ -19,22 +19,22 @@
                         <h4>No. Parte</h4>
                         <div class="form-group">
                             @(Html.Kendo().DropDownListFor(fo => fo.ProductID)
-                                    .Name("ProductID")
-                                    .OptionLabel("Seleccione no.pieza...")
-                                    .DataTextField("ProductName")
-                                    .DataValueField("ProductID")
-                                    .Filter(FilterType.Contains)
-                                    .DataSource(source =>
-                                    {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("FillCombobox", "Shipping_Catalog_Products");
-                                        })
-                                            .ServerFiltering(false);
-                                    })
-                                    .HtmlAttributes(new { style = "width:90%;" })
-                                    .Events(ev=>ev.Change("onChangePID"))
-                                    .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
+                                                    .Name("ProductID")
+                                                    .OptionLabel("Seleccione no.pieza...")
+                                                    .DataTextField("ProductName")
+                                                    .DataValueField("ProductID")
+                                                    .Filter(FilterType.Contains)
+                                                    .DataSource(source =>
+                                                    {
+                                                        source.Read(read =>
+                                                        {
+                                                            read.Action("FillCombobox", "Shipping_Catalog_Products");
+                                                        })
+                                                            .ServerFiltering(false);
+                                                    })
+                                                    .HtmlAttributes(new { style = "width:90%;" })
+                                                    .Events(ev => ev.Change("onChangePID"))
+                                                    .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ProductID))
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                         <div class="form-group">
                             <h4> Área </h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("AreaName")
-                                    .HtmlAttributes(new { id = "AreaName", style = "width:90%", @readonly = "readonly" }) )
+                                                    .Name("AreaName")
+                                                    .HtmlAttributes(new { id = "AreaName", style = "width:90%", @readonly = "readonly" }) )
                         </div>
                     </div>
 
@@ -52,9 +52,9 @@
                         <div class="form-group">
                             <h4>Fecha de Embarque</h4>
                             @(Html.Kendo().DatePickerFor(model => model.RecordDate)
-                                    .Name("RecordDate")
-                                    .Value(DateTime.Today).Format("dd MMM yyyy")
-                                    .HtmlAttributes(new { style = "width:90%", title = "datepicker" }) )
+                                                    .Name("RecordDate")
+                                                    .Value(DateTime.Today).Format("dd MMM yyyy")
+                                                    .HtmlAttributes(new { style = "width:90%", title = "datepicker" }) )
                             @(Html.ValidationMessageFor(nam => nam.RecordDate, "", new { @class = "text-danger" }))
                         </div>
                     </div>
@@ -63,8 +63,8 @@
                         <div class="form-group">
                             <h4>Tracking de FedEx</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordFedexTracking")
-                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                                                    .Name("RecordFedexTracking")
+                                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
                             @(Html.ValidationMessageFor(nam => nam.RecordFedexTracking))
                         </div>
                     </div>
@@ -75,27 +75,24 @@
                         <div class="form-group">
                             <h4>Orden de Trabajo</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordWorkOrder")
-                                    .HtmlAttributes(new { id="idOrdendeTrabajo",disabled=true, type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                                                    .Name("RecordWorkOrder")
+                                                    .HtmlAttributes(new { id = "idOrdendeTrabajo", disabled = true, type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
                         </div>
                     </div>
                     <div class="col-lg-3" style="">
                         <div class="form-group">
                             <h4>No. Serie</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordSerialNo")
-                                    .HtmlAttributes(new {disabled = true,id = "IdRecordSerialNo", style = "width:90%;opacity:0.8;" }) )
+                                                    .Name("RecordSerialNo")
+                                                    .HtmlAttributes(new { disabled = true, id = "IdRecordSerialNo", style = "width:90%;opacity:0.8;" }) )
                         </div>
                     </div>
 
                     <div class="col-lg-3">
                         <div class="form-group">
                             <h4>Retrabajo</h4>
-                            <center>
-                                @(Html.Kendo().CheckBox()
-                                        .Name("RecordRework")
-                                        .HtmlAttributes(new { style = "width:300%; height:500px" }) )
-                            </center>
+                            @(Html.Kendo().CheckBox()
+                                                    .Name("RecordRework"))
                         </div>
                     </div>
 
@@ -103,8 +100,8 @@
                         <div class="form-group">
                             <h4>No. de Caja C. Doc.</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordControlBoxNo")
-                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
+                                                    .Name("RecordControlBoxNo")
+                                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
                             @(Html.ValidationMessageFor(nam => nam.RecordControlBoxNo))
                         </div>
                     </div>
@@ -115,8 +112,8 @@
                         <div class="form-group">
                             <h4>Tracking de Papelería</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordTrackingId")
-                                    .HtmlAttributes(new {id="idTrackingPapeleria", type = "number", disabled = true, style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                                                    .Name("RecordTrackingId")
+                                                    .HtmlAttributes(new { id = "idTrackingPapeleria", type = "number", disabled = true, style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
                         </div>
                     </div>
 
@@ -124,9 +121,9 @@
                         <div class="form-group">
                             <h4>Cantidad</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordQuantity")
-                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" })
-                                    .Value("1") )
+                                                    .Name("RecordQuantity")
+                                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" })
+                                                    .Value("1") )
                             @(Html.ValidationMessageFor(nam => nam.RecordQuantity))
                         </div>
                     </div>
@@ -135,8 +132,8 @@
                         <div class="form-group">
                             <h4>No. de Caja Piezas</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("RecordPieceBoxNo")
-                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                                                    .Name("RecordPieceBoxNo")
+                                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
                             @(Html.ValidationMessageFor(nam => nam.RecordPieceBoxNo))
                         </div>
                     </div>
@@ -145,20 +142,20 @@
                         <div class="form-group">
                             <h4>Tipo de Embarque</h4>
                             @(Html.Kendo().DropDownList()
-                                    .Name("ShipmentTypeID")
-                                    .DataTextField("ShipmentType")
-                                    .DataValueField("ShipmentTypeID")
-                                    .DataSource(source =>
-                                    {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("FillCombobox", "CatalogShipmentType");
-                                        })
-                                            .ServerFiltering(false);
-                                    })
-                                    .HtmlAttributes(new { style = "width:90%;" })
-                                    .ValueTemplate("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
-                            @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID))
+                                                    .Name("ShipmentTypeID")
+                                                    .DataTextField("ShipmentType")
+                                                    .DataValueField("ShipmentTypeID")
+                                                    .DataSource(source =>
+                                                    {
+                                                        source.Read(read =>
+                                                        {
+                                                            read.Action("FillCombobox", "CatalogShipmentType");
+                                                        })
+                                                            .ServerFiltering(false);
+                                                    })
+                                                    .HtmlAttributes(new { style = "width:90%;" })
+                                                    .ValueTemplate("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
+                            @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID) )
                         </div>
                     </div>
                 </div>
@@ -168,22 +165,22 @@
                         <div class="form-group">
                             <h4>Dirigido a</h4>
                             @(Html.Kendo().DropDownListFor(mod => mod.ClientID)
-                                    .Name("ClientID")
-                                    .OptionLabel("Seleccione cliente...")
-                                    .DataTextField("ClientName")
-                                    .DataValueField("ClientID")
-                                    .Filter(FilterType.Contains)
-                                    .DataSource(source =>
-                                    {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("Fillcombobox", "Clientes");
-                                        })
-                                            .ServerFiltering(false);
-                                    })
-                                    .HtmlAttributes(new { style = "width:90%;" })
-                                    .ValueTemplate("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
-                            @(Html.ValidationMessageFor(nam => nam.ClientID))
+                                                    .Name("ClientID")
+                                                    .OptionLabel("Seleccione cliente...")
+                                                    .DataTextField("ClientName")
+                                                    .DataValueField("ClientID")
+                                                    .Filter(FilterType.Contains)
+                                                    .DataSource(source =>
+                                                    {
+                                                        source.Read(read =>
+                                                        {
+                                                            read.Action("Fillcombobox", "Clientes");
+                                                        })
+                                                            .ServerFiltering(false);
+                                                    })
+                                                    .HtmlAttributes(new { style = "width:90%;" })
+                                                    .ValueTemplate("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
+                            @(Html.ValidationMessageFor(nam => nam.ClientID) )
                         </div>
                     </div>
 
@@ -191,8 +188,8 @@
                         <div class="form-group">
                             <h4>Compañía</h4>
                             @(Html.Kendo().TextBox()
-                                    .Name("Compania")
-                                    .HtmlAttributes(new { id = "Compania", style = "width:90%", @readonly = "readonly" }) )
+                                                    .Name("Compania")
+                                                    .HtmlAttributes(new { id = "Compania", style = "width:90%", @readonly = "readonly" }) )
                         </div>
                     </div>
 
@@ -200,29 +197,25 @@
                         <div class="form-group">
                             <h4>Tipo de Servicio</h4>
                             @(Html.Kendo().DropDownList()
-                                    .Name("RecordServiceType")
-                                    .OptionLabel("Seleccione servicio...")
-                                    .DataTextField("Text")
-                                    .DataValueField("Value")
-                                    .BindTo(new List<SelectListItem>()
-                                    {
-                                            new SelectListItem() { Text = "Priority" , Value="FEDEX AIR" },
-                                            new SelectListItem() { Text = "Ground" , Value="FEDEX GROUND PARCEL"}
-                                    })
-                                    .HtmlAttributes(new { style = "width:90%;" }) )
-                            <br />
-                            @(Html.ValidationMessageFor(nam => nam.RecordServiceType))
+                                                    .Name("RecordServiceType")
+                                                    .OptionLabel("Seleccione servicio...")
+                                                    .DataTextField("Text")
+                                                    .DataValueField("Value")
+                                                    .BindTo(new List<SelectListItem>()
+                                                    {
+                                                                            new SelectListItem() { Text = "PRIORITY" , Value= "FEDEX AIR" },
+                                                                            new SelectListItem() { Text = "GROUND" , Value= "FEDEX GROUND PARCEL"}
+                                                    })
+                                                    .HtmlAttributes(new { style = "width:90%;" }) )
+                            @(Html.ValidationMessageFor(nam => nam.RecordServiceType) )
                         </div>
                     </div>
 
                     <div class="col-lg-3">
                         <div class="form-group">
                             <h4>FAI(Primera Pieza)</h4>
-                            <center>
-                                @(Html.Kendo().CheckBox()
-                                        .Name("RecordFAI")
-                                        .HtmlAttributes(new { style = "width:300%; height:500px" }) )
-                            </center>
+                            @(Html.Kendo().CheckBox()
+                                                    .Name("RecordFAI") )
                         </div>
                     </div>
                 </div>
@@ -232,17 +225,17 @@
                         <div class="form-group">
                             <h4>Transferir</h4>
                             @(Html.Kendo().DropDownList()
-                                    .Name("RecordTransfer")
-                                    .DataTextField("Text")
-                                    .DataValueField("Value")
-                                    .BindTo(new List<SelectListItem>()
-                                    {
-                                            new SelectListItem() { Text = "Transferir" , Value="TRANSFERIR"},
-                                            new SelectListItem() { Text = "No Transferir" , Value="NO TRANSFERIR"}
-                                    })
-                                    .SelectedIndex(3)
-                                    .Value("TRANSFERIR")
-                                    .HtmlAttributes(new { style = "width:80%;" }) )
+                                                    .Name("RecordTransfer")
+                                                    .DataTextField("Text")
+                                                    .DataValueField("Value")
+                                                    .BindTo(new List<SelectListItem>()
+                                                    {
+                                                                            new SelectListItem() { Text = "TRANSFERIR" , Value="TRANSFERIR"},
+                                                                            new SelectListItem() { Text = "NO TRANSFERIR" , Value="NO TRANSFERIR"}
+                                                    })
+                                                    .SelectedIndex(3)
+                                                    .Value("TRANSFERIR")
+                                                    .HtmlAttributes(new { style = "width:80%;" }) )
                         </div>
                     </div>
 
@@ -264,7 +257,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <h4>Sello de seguridad 3</h4>
-                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal3, new {@class="k-textbox", id = "RecordSeguritySeal3", style = "width:70%;" })
+                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal3, new { @class = "k-textbox", id = "RecordSeguritySeal3", style = "width:70%;" })
                             </div>
                         </div>
 
@@ -314,12 +307,11 @@
             </div>
         </div>
     </div>
- }
+}
 
 <script>
     $("#SealDiferentes").kendoValidator().data("kendoValidator");
     $("#RecordDate").prop("readonly", true);
-
     function onChangePID(ev) {
         var item = this.dataItem(ev.item);
 
@@ -366,7 +358,7 @@
         $.ajax(
         {
                 type: 'GET',
-                url: '@Url.Action("GetMaxControlBox", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
+                url: '@Url.Action("GetMaxControlBox", "Shipping_Catalog_Products")',
                 success: function (Content)
                 {
                     $("#RecordControlBoxNo").val(Content);
@@ -376,32 +368,32 @@
                         alert("Error while GettingMaxControlBox");
                     }
         });
-            $.ajax(
+        $.ajax(
+        {
+            type: 'GET',
+            url: '@Url.Action("GetMaxFedexTracking", "Shipping_Catalog_Products")',
+            success: function (Content)
             {
-                type: 'GET',
-                url: '@Url.Action("GetMaxFedexTracking", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
-                success: function (Content)
+                $("#RecordFedexTracking").val(Content);
+            },
+                error: function ()
                 {
-                    $("#RecordFedexTracking").val(Content);
-                },
-                    error: function ()
-                    {
-                        alert("Error while GettingMaxFedexTracking");
-                    }
-            });
-                $.ajax(
+                    alert("Error while GettingMaxFedexTracking");
+                }
+        });
+        $.ajax(
+        {
+            type: 'GET',
+            url: '@Url.Action("GetMaxPieceBoxNo", "Shipping_Catalog_Products")',
+            success: function (Content)
+            {
+                $("#RecordPieceBoxNo").val(Content);
+            },
+                error: function ()
                 {
-                    type: 'GET',
-                    url: '@Url.Action("GetMaxPieceBoxNo", "Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
-                    success: function (Content)
-                    {
-                        $("#RecordPieceBoxNo").val(Content);
-                    },
-                        error: function ()
-                        {
-                            alert("Error while GettingMaxPieceBoxNo");
-                        }
-                });
+                    alert("Error while GettingMaxPieceBoxNo");
+                }
+        });
     });
 
     $("#ProductID").change(function ()
@@ -415,7 +407,7 @@
             $.ajax({
                 data: { id: $("#ProductID").val() },//Parametros de entrada
                 type: 'GET',
-                url: '@Url.Action("GetAreaName","Shipping_Catalog_Products")', //Vinculacion con caracteristicas de ASP.Net
+                url: '@Url.Action("GetAreaName","Shipping_Catalog_Products")',
                 success: function (Content)
                 {
                     $("#AreaName").val(Content);
@@ -495,10 +487,8 @@
 </script>
 
 <script>
-    $(document).ready(function ()
-    {
-        $("#SealDiferentes").submit(function (e)
-        {
+    $(document).ready(function () {
+        $("#SealDiferentes").submit(function (e) {
             var field1 = document.getElementById('RecordSeguritySeal1').value;
             var field2 = document.getElementById('RecordSeguritySeal2').value;
             var field3 = document.getElementById('RecordSeguritySeal3').value;
@@ -506,34 +496,34 @@
 
             if (field1 == field2 || field1 == field3 || field1 == field4)//sello 1 es igual de 2,3.4
             {
-                    alert("Sellos no pueden repetirse");
+                alert("Sellos no pueden repetirse");
                 return false;
             }
-                else if (field2 == field3 || field2 == field4)//sello 2 es igual de 1,3.4
-                {
-                        alert("Sellos no pueden repetirse");
-                    return false;
-                }
-                    else if (field3 == field4)//sello 3 es igual de 1,2.4
-                    {
-                            alert("Sellos no pueden repetirse");
-                        return false;
-                    }
+            else if (field2 == field3 || field2 == field4)//sello 2 es igual de 1,3.4
+            {
+                alert("Sellos no pueden repetirse");
+                return false;
+            }
+            else if (field3 == field4)//sello 3 es igual de 1,2.4
+            {
+                alert("Sellos no pueden repetirse");
+                return false;
+            }
         });
     });
 </script>
 @* -----------------------------------------Notificaciones--------------------------------------------------- *@
 @(Html.Kendo().Notification()
-                                                .Name("notification")
-                                                .Position(p => p.Pinned(true).Top(30).Right(30))
-                                                .Stacking(NotificationStackingSettings.Down)
-                                                .AutoHideAfter(4000)
-                                                .Templates(t =>
-                                                {
-                                                    t.Add().Type("upload-success").ClientTemplateID("successTemplate");
-                                                    t.Add().Type("error").ClientTemplateID("errorTemplate");
+                                                        .Name("notification")
+                                                        .Position(p => p.Pinned(true).Top(30).Right(30))
+                                                        .Stacking(NotificationStackingSettings.Down)
+                                                        .AutoHideAfter(3000)
+                                                        .Templates(t =>
+                                                        {
+                                                            t.Add().Type("upload-success").ClientTemplateID("successTemplate");
+                                                            t.Add().Type("error").ClientTemplateID("errorTemplate");
 
-                                                })
+                                                        })
 )
 <script id="successTemplate" type="text/x-kendo-template">
     <div class="upload-success">
@@ -549,56 +539,80 @@
     </div>
 </script>
 
-@if (ViewBag.showMs==1)
- {
+@if (ViewBag.showMs == 1)
+{
     <script>
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             $("#notification").data("kendoNotification").show(
-            {
-                message: "registro guardado"
-            }, "upload-success");
+                {
+                    message: "registro guardado"
+                }, "upload-success");
         });
 
     </script>
     ViewBag.showMs = 0;
- }
-  else if (ViewBag.showMs == 2)
-  {
+}
+else if (ViewBag.showMs == 2)
+{
     <script>
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             $("#notification").data("kendoNotification").show(
-            {
-                message: "Error al procesar solicitud"
-            }, "error");
+                {
+                    message: "Error al procesar solicitud"
+                }, "error");
         });
     </script>
     ViewBag.showMs = 0;
-  }
+}
+else if (ViewBag.showMs == 3)
+{
+    <script>
+        document.getElementById("idTrackingPapeleria").disabled = false;
+        $(document).ready(function () {
+            $("#notification").data("kendoNotification").show(
+                {
+                    message: "Traking de papeleria ya existe en el sistema"
+                }, "error");
+        });
+        
+    </script>
+    ViewBag.showMs = 0;
+}
+else if (ViewBag.showMs == 4)
+{
+    <script>
+        document.getElementById("idOrdendeTrabajo").disabled = false;
+        $(document).ready(function () {
+            $("#notification").data("kendoNotification").show(
+                {
+                    message: "WorkOrder ya existe en el sistema"
+                }, "error");
+        });
+        
+    </script>
+
+    ViewBag.showMs = 0;
+}
+
 
 <style>
-    .k-notification 
-    {
+    .k-notification {
         border: 0;
     }
     /* Error template */
-    .k-notification-error.k-group 
-    {
+    .k-notification-error.k-group {
         background: rgba(100%,0%,0%,.7);
         color: #FFFFFF;
     }
 
-    .wrong 
-    {
+    .wrong {
         width: 240px;
         height: 100px;
         padding: 0 30px;
         line-height: 100px;
     }
 
-        .wrong h4
-        {
+        .wrong h4 {
             font-size: 1em;
             padding: 32px 10px 5px;
         }
@@ -609,36 +623,31 @@
         }
 
     /* Info template */
-    .k-notification-info.k-group 
-    {
+    .k-notification-info.k-group {
         background: rgba(0%,0%,0%,.7);
         color: #FFF;
     }
     /* Success template */
-    .k-notification-upload-success
-    {
+    .k-notification-upload-success {
         background: rgba(0%,60%,0%,.7);
         color: #FFF;
     }
 
-    .upload-success 
-    {
+    .upload-success {
         width: 240px;
         height: 100px;
         padding: 0 30px;
         line-height: 100px;
     }
 
-        .upload-success h4 
-        {
+        .upload-success h4 {
             font - size: 1em;
             font-weight: normal;
             display: inline-block;
             vertical-align: middle;
         }
 
-        .upload-success img 
-        {
+        .upload-success img {
             display: inline-block;
             vertical-align: middle;
             margin-right: 10px;

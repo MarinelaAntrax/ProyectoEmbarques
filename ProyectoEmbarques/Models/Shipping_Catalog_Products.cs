@@ -31,5 +31,6 @@ namespace ProyectoEmbarques.Models
         public virtual Areas Areas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shipping_Records> Shipping_Records { get; set; }
+        public string AreaName { get; internal set; }
     }
 }
