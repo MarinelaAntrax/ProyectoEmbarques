@@ -38,8 +38,8 @@ namespace ProyectoEmbarques.Models
         public string RecordSeguritySeal4 { get; set; }
         public string RecordTransfer { get; set; }
     
+        public virtual Clients Clients { get; set; }
         public virtual Shipping_Catalog_Products Shipping_Catalog_Products { get; set; }
         public virtual Shipping_Catalog_ShipmentTypes Shipping_Catalog_ShipmentTypes { get; set; }
-        public virtual Clients Clients { get; set; }
     }
 }

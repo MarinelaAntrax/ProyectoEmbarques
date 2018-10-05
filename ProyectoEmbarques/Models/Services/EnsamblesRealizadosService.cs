@@ -126,6 +126,27 @@ namespace ProyectoEmbarques.Models.Services
             }
         }
 
+        public bool WOrderUnik(int Worder) {
+            var x = One(w => w.RecordWorkOrder == Worder);
+            if (x == null) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        public bool TID(int TID)
+        {
+            var x = One(w => w.RecordTrackingId == TID);
+            if (x == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void Destroy(Shipping_RecordsViewModel Record)
         {
             if (!UpdateDatabase)

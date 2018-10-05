@@ -26,6 +26,9 @@ namespace ProyectoEmbarques.Controllers
         }
 
         // GET: Shipping_Catalog_Products
+        public ActionResult Create() {
+            return View();
+        }
 
         public ActionResult GetMaxControlBox()
         {
@@ -93,72 +96,22 @@ namespace ProyectoEmbarques.Controllers
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Shipping_Catalog_Products/Create
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([DataSourceRequest] DataSourceRequest request, Shipping_Catalog_ProductsViewModel Products)
+        public ActionResult Create([Bind(Include = "AreaID,ProductName,WOrder,WKRMSerie,TIDSerie,ProductType")] Shipping_Catalog_ProductsViewModel Products)
         {
-            try
+            if (Products.ProductName != null && Products.ProductType != null)
             {
-                if (Products != null && ModelState.IsValid)
-                {
-                    _Service.Create(Products);
-                    ViewBag.showSuccessAlert = true;
-                }
+                _Service.Create(Products);
+                ModelState.Clear();
+                ViewBag.showMs = 1;
+                return View("Create");
             }
-            catch (Exception ex)
+            else
             {
-                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY contraint"))
-                {
-
-                }
-                else
-                {
-                    ModelState.AddModelError("", ex.Message);
-
-                }
+                ViewBag.showMs = 2;
+                return View("Create", Products);
             }
-            return Json(new[] { Products }.ToDataSourceResult(request, ModelState));
         }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_Catalog_ProductsViewModel Products)
-        {
-            try
-            {
-                if (_Service != null && ModelState.IsValid)
-                {
-                    _Service.Update(Products);
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY constraint"))
-                {
-                    ModelState.AddModelError("", "El Nombre de la compañia que introdujo ya existe en la base de datos.");
-                }
-                else
-                {
-                    ModelState.AddModelError("", ex.Message);
-                }
-            }
-            return Json(new[] { Products }.ToDataSourceResult(request, ModelState));
-        }
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult Create([Bind(Include = "AreaID,ProductName,WOrder,WKRMSerie,TIDSerie,ProductType")] Shipping_Catalog_ProductsViewModel Products)
-        //{
-        //    if (Products.ProductName!=null&&Products.ProductType!=null)
-        //    {
-        //        _Service.Create(Products);
-        //        ModelState.Clear();
-        //        ViewBag.showMs = 1;
-        //        return View("Create");
-        //    }
-        //        else
-        //        {
-        //            ViewBag.showMs = 2;
-        //            return View("Create", Products);
-        //        }
-        //}
 
         public ActionResult FillComboboxAreas()
         {

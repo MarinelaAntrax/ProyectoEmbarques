@@ -63,7 +63,7 @@ namespace ProyectoEmbarques.Models.Services
                     //entity.ProductID = product.ProductID;
                     entity.AreaID = product.AreaID;
                     entity.ProductName = product.ProductName;
-                    entity.AreaName = product.AreaName;
+                    entity.Areas.AreaName = product.Areas.AreaName;
                     entity.WOrder = product.WOrder;
                     entity.WKRMSerie = product.WKRMSerie;
                     entity.TIDSerie = product.TIDSerie;
@@ -74,39 +74,6 @@ namespace ProyectoEmbarques.Models.Services
 
                     //product.ProductID = entity.ProductID;
                 }
-        }
-
-        public void Update(Shipping_Catalog_ProductsViewModel product)
-        {
-            if (!UpdateDatabase)
-            {
-                var target = One(e => e.ProductID == product.ProductID);
-
-                if (target != null)
-                {
-                    target.ProductID = product.ProductID;
-                    target.ProductName = product.ProductName;
-                    target.ProductType = product.ProductType;
-                    target.WOrder = product.WOrder;
-                    target.WKRMSerie = product.WKRMSerie;
-                    target.TIDSerie = product.TIDSerie;
-                }
-            }
-            else
-            {
-                var entity = new Shipping_Catalog_Products();
-
-                entity.ProductID = product.ProductID;
-                entity.ProductName = product.ProductName;
-                entity.ProductType = product.ProductType;
-                entity.WOrder = product.WOrder;
-                entity.WKRMSerie = product.WKRMSerie;
-                entity.TIDSerie = product.TIDSerie;
-
-                entities.Shipping_Catalog_Products.Attach(entity);
-                entities.Entry(entity).State = EntityState.Modified;
-                entities.SaveChanges();
-            }
         }
 
         public Shipping_Catalog_ProductsViewModel One(Func<Shipping_Catalog_ProductsViewModel, bool> predicate)
