@@ -177,31 +177,33 @@ namespace ProyectoEmbarques.Models.Services
             }
         }
 
-        public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
+            public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
             {
-               return GetAll().FirstOrDefault(predicate);
+                    return GetAll().FirstOrDefault(predicate);
             }
 
         public IEnumerable<Shipping_RecordsViewModel> Read()
-                {
-                    return GetAll();
-                }
+        {
+            return GetAll();
+        }
 
         public IEnumerable<Shipping_RecordsViewModel> ReadD(decimal ParametroFedex)
         {
-            var total = from Shipping_Records in BD.Shipping_Records
-                       join products in BD.Shipping_Catalog_Products on Shipping_Records.ProductID equals products.ProductID 
-                        group Shipping_Records by new {
+            var total = from Shipping_Records in BD.Shipping_Records where Shipping_Records.RecordFedexTracking==ParametroFedex
+                        join products in BD.Shipping_Catalog_Products on Shipping_Records.ProductID equals products.ProductID
+                        group Shipping_Records by new
+                        {
                             products.ProductName,
                             Shipping_Records.RecordPieceBoxNo
                         } into Shipping_RecordsGroup
                         select new Shipping_RecordsViewModel()
-                        {   ProductName=Shipping_RecordsGroup.Key.ProductName,
-                            RecordPieceBoxNo=Shipping_RecordsGroup.Key.RecordPieceBoxNo,
-                           RecordCantidad = Shipping_RecordsGroup.Sum(x=> x.RecordQuantity)
+                        {
+                            ProductName = Shipping_RecordsGroup.Key.ProductName,
+                            RecordPieceBoxNo = Shipping_RecordsGroup.Key.RecordPieceBoxNo,
+                            RecordCantidad = Shipping_RecordsGroup.Sum(x => x.RecordQuantity)
                         };
             return total;
-            //return GetAll().Where(w => w.RecordFedexTracking == ParametroFedex).ToList();
+          
         }
 
         public string ReadE(decimal ParametroFedex)

@@ -63,7 +63,6 @@ namespace ProyectoEmbarques.Models.Services
                     //entity.ProductID = product.ProductID;
                     entity.AreaID = product.AreaID;
                     entity.ProductName = product.ProductName;
-                    entity.Areas.AreaName = product.Areas.AreaName;
                     entity.WOrder = product.WOrder;
                     entity.WKRMSerie = product.WKRMSerie;
                     entity.TIDSerie = product.TIDSerie;
