@@ -8,6 +8,7 @@ using Kendo.Mvc.Extensions;
 
 namespace ProyectoEmbarques.Controllers
 {
+    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class ClientesController : Controller
     {
         MaterialShippingControlEntities Entities = new MaterialShippingControlEntities();

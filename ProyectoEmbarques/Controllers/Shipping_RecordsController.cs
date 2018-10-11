@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ProyectoEmbarques.Controllers
 {
+    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public  class Shipping_RecordsController : Controller{
 
         private EnsamblesRealizadosService _ServiceSR;
