@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ProyectoEmbarques.Controllers
 {
-    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class CatalogShipmentTypeController : Controller
     {
         private CatalogShipmentTypeService _Service;

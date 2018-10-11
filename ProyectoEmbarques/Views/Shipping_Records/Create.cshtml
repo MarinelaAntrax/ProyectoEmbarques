@@ -18,9 +18,9 @@
                     <div class="col-lg-3">
                         <h4>No. Parte</h4>
                         <div class="form-group">
-                            @(Html.Kendo().DropDownListFor(fo => fo.ProductID)
+                            @(Html.Kendo().ComboBoxFor(fo => fo.ProductID)
                                     .Name("ProductID")
-                                    .OptionLabel("Seleccione no.pieza...")
+                                    .Placeholder("Seleccione no.pieza...")
                                     .DataTextField("ProductName")
                                     .DataValueField("ProductID")
                                     .Filter(FilterType.Contains)
@@ -30,11 +30,11 @@
                                         {
                                             read.Action("FillCombobox", "Shipping_Catalog_Products");
                                         })
-                                            .ServerFiltering(false);
+                                            .ServerFiltering(true);
                                     })
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Events(ev => ev.Change("onChangePID"))
-                                    .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
+                                    .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ProductID))
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                                             .ServerFiltering(false);
                                     })
                                     .HtmlAttributes(new { style = "width:90%;" })
-                                    .ValueTemplate("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
+                                    .Template("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID) )
                         </div>
                     </div>
@@ -164,9 +164,9 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <h4>Dirigido a</h4>
-                            @(Html.Kendo().DropDownListFor(mod => mod.ClientID)
+                            @(Html.Kendo().ComboBoxFor(mod => mod.ClientID)
                                     .Name("ClientID")
-                                    .OptionLabel("Seleccione cliente...")
+                                    .Placeholder("Seleccione cliente...")
                                     .DataTextField("ClientName")
                                     .DataValueField("ClientID")
                                     .Filter(FilterType.Contains)
@@ -178,8 +178,8 @@
                                         })
                                             .ServerFiltering(false);
                                     })
-                                    .HtmlAttributes(new { style = "width:90%;" })
-                                    .ValueTemplate("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
+                                    .HtmlAttributes(new {id="idClient", style = "width:90%;" })
+                                    .Template("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ClientID) )
                         </div>
                     </div>
@@ -240,31 +240,10 @@
                     </div>
 
                     <div class="col-lg-9" style="padding:0;">
-                        <div class="col-lg-3">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <h4>Sello de seguridad 1</h4>
+                                <h4>Sellos de seguridad </h4>
                                 @Html.TextBoxFor(tb => tb.RecordSeguritySeal1, new { @class = "k-textbox", id = "RecordSeguritySeal1", style = "width:90%;" })
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <h4>Sello de seguridad 2</h4>
-                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal2, new { @class = "k-textbox", id = "RecordSeguritySeal2", style = "width:90%;" })
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <h4>Sello de seguridad 3</h4>
-                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal3, new { @class = "k-textbox", id = "RecordSeguritySeal3", style = "width:90%;" })
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <h4>Sello de seguridad 4</h4>
-                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal4, new { @class = "k-textbox", id = "RecordSeguritySeal4", style = "width:90%;" })
                             </div>
                         </div>
                     </div>
@@ -307,7 +286,7 @@
             </div>
         </div>
     </div>
-}
+ }
 
 <script>
     $("#SealDiferentes").kendoValidator().data("kendoValidator");
@@ -345,7 +324,6 @@
             document.getElementById("idTrackingPapeleria").style.opacity = "0.8";
             document.getElementById("idTrackingPapeleria").required = false;
         }
-
         document.getElementById("idTrackingPapeleria").value = "";
         document.getElementById("idOrdendeTrabajo").value = "";
         document.getElementById("IdRecordSerialNo").value = "";
@@ -368,6 +346,21 @@
                         alert("Error while GettingMaxControlBox");
                     }
         });
+       
+        $.ajax(
+        {
+                type: 'GET',
+                url: '@Url.Action("GetLastClient", "Shipping_Catalog_Products")',
+                success: function (Content)
+                {
+                    $("#idClient").val(Content);
+                }, 
+                    error: function ()
+                    {
+                        alert("Error while GettingLastClient");
+                    }
+        });
+
         $.ajax(
         {
             type: 'GET',
@@ -381,6 +374,7 @@
                     alert("Error while GettingMaxFedexTracking");
                 }
         });
+
         $.ajax(
         {
             type: 'GET',

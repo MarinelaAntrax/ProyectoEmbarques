@@ -14,7 +14,7 @@ using Kendo.Mvc.Extensions;
 using System.Diagnostics;
 namespace ProyectoEmbarques.Controllers
 {
-    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class Shipping_Catalog_ProductsController : Controller
     {
         MaterialShippingControlEntities db = new MaterialShippingControlEntities();
@@ -44,6 +44,13 @@ namespace ProyectoEmbarques.Controllers
             {
                 Debug.WriteLine("Exepcion controlada por el usuario: " + ex);
             }
+            return Content(Max.ToString());
+        }
+
+        public ActionResult GetLastClient()
+        {
+               var Max = (db.Shipping_Records.Select(sel=> new { sel.ClientID, sel.RecordID}).OrderByDescending(max => max.RecordID));
+
             return Content(Max.ToString());
         }
 

@@ -12,9 +12,9 @@
         <div class="col-lg-8">
             <h4>Productos</h4>
             <div class="form-group">
-                @(Html.Kendo().DropDownListFor(fo => fo.ProductName)
+                @(Html.Kendo().ComboBoxFor(fo => fo.ProductName)
                         .Name("ProductName")
-                        .OptionLabel("Seleccione No.Pieza...")
+                        .Placeholder("Seleccione No.Pieza...")
                         .DataTextField("DATA")
                         .DataValueField("ProductName")
                         .Filter(FilterType.Contains)
@@ -28,16 +28,16 @@
                                 .ServerFiltering(true);
                         })
                         .HtmlAttributes(new { style = "width:60%;" })
-                        .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:DATA#</div>") )
+                        .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:DATA#</div>") )
             </div>
         </div>
 
         <div class="col-lg-8">
             <h4>Área</h4>
             <div class="form-group">
-                @(Html.Kendo().DropDownListFor(f => f.AreaID)
+                @(Html.Kendo().ComboBoxFor(f => f.AreaID)
                         .Name("AreaID")
-                        .OptionLabel("Seleccione área...")
+                        .Placeholder("Seleccione área...")
                         .DataTextField("AreaName")
                         .DataValueField("AreaID")
                         .Filter(FilterType.Contains)
@@ -50,7 +50,7 @@
                                 .ServerFiltering(false);
                         })
                         .HtmlAttributes(new { style = "width:60%;" })
-                        .ValueTemplate("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:AreaName#</div>") )
+                        .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:AreaName#</div>") )
             </div>
         </div>
 

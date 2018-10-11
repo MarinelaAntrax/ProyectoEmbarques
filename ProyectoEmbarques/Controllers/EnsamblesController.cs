@@ -6,7 +6,7 @@ using ProyectoEmbarques.Models;
 
 namespace ProyectoEmbarques.Controllers
 {
-    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class EnsamblesController : Controller
     {
         MaterialShippingControlEntities db = new MaterialShippingControlEntities();

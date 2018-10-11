@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ProyectoEmbarques.Controllers
 {
-    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public  class Shipping_RecordsController : Controller{
 
         private EnsamblesRealizadosService _ServiceSR;
@@ -29,6 +29,7 @@ namespace ProyectoEmbarques.Controllers
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(_ServiceSR.Read().ToDataSourceResult(request));
+            
         }
 
         [HttpPost]
