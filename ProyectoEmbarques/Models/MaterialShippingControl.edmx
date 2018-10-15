@@ -89,9 +89,9 @@
           <Property Name="RecordComment2" Type="varchar" MaxLength="250" />
           <Property Name="RecordFAI" Type="bit" Nullable="false" />
           <Property Name="RecordSeguritySeal1" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RecordSeguritySeal2" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RecordSeguritySeal3" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RecordSeguritySeal4" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordSeguritySeal2" Type="varchar" MaxLength="50" />
+          <Property Name="RecordSeguritySeal3" Type="varchar" MaxLength="50" />
+          <Property Name="RecordSeguritySeal4" Type="varchar" MaxLength="50" />
           <Property Name="RecordTransfer" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
@@ -353,9 +353,9 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="RecordComment2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RecordFAI" Type="Boolean" Nullable="false" />
           <Property Name="RecordSeguritySeal1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RecordSeguritySeal2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RecordSeguritySeal3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RecordSeguritySeal4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordSeguritySeal4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RecordTransfer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Clients" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Clients" FromRole="Shipping_Records" ToRole="Clients" />
           <NavigationProperty Name="Shipping_Catalog_Products" Relationship="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" FromRole="Shipping_Records" ToRole="Shipping_Catalog_Products" />

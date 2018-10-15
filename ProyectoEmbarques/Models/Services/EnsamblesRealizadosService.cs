@@ -76,10 +76,7 @@ namespace ProyectoEmbarques.Models.Services
                     RecordServiceType = componente.RecordServiceType,
                     RecordFAI = componente.RecordFAI,
                     RecordTransfer = componente.RecordTransfer,
-                    RecordSeguritySeal1 = componente.RecordSeguritySeal1,
-                    RecordSeguritySeal2 = componente.RecordSeguritySeal2,
-                    RecordSeguritySeal3 = componente.RecordSeguritySeal3,
-                    RecordSeguritySeal4 = componente.RecordSeguritySeal4
+                    RecordSeguritySeal1 = componente.RecordSeguritySeal1
                 }).ToList();
                 return result;
             } 
@@ -115,10 +112,7 @@ namespace ProyectoEmbarques.Models.Services
                     RecordComment2 = Record.RecordComment2,
                     RecordFAI = Record.RecordFAI,
                     RecordTransfer = Record.RecordTransfer,
-                    RecordSeguritySeal1 = Record.RecordSeguritySeal1,
-                    RecordSeguritySeal2 = Record.RecordSeguritySeal2,
-                    RecordSeguritySeal3 = Record.RecordSeguritySeal3,
-                    RecordSeguritySeal4 = Record.RecordSeguritySeal4
+                    RecordSeguritySeal1 = Record.RecordSeguritySeal1
                 };
                 Entities.Shipping_Records.Add(entity);
                 Entities.SaveChanges();
@@ -177,10 +171,12 @@ namespace ProyectoEmbarques.Models.Services
             }
         }
 
-            public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
-            {
-                    return GetAll().FirstOrDefault(predicate);
-            }
+        public Shipping_RecordsViewModel One(Func<Shipping_RecordsViewModel, bool> predicate)
+        {
+                return GetAll().FirstOrDefault(predicate);
+        }
+
+        
 
         public IEnumerable<Shipping_RecordsViewModel> Read()
         {
@@ -269,7 +265,24 @@ namespace ProyectoEmbarques.Models.Services
                     Entities.SaveChanges();
                 }
             }
-      }
+
+        public Shipping_RecordsViewModel TakeLast()
+        {
+            return GetAll().OrderByDescending(des => des.RecordID).Select(sel=> new Shipping_RecordsViewModel {
+                RecordControlBoxNo=sel.RecordControlBoxNo,
+                RecordFedexTracking=sel.RecordFedexTracking,
+                RecordPieceBoxNo=sel.RecordPieceBoxNo,
+                ClientID = sel.ClientID,
+                Clients = new ClientesViewModel()
+                {
+                    ClientName = sel.Clients.ClientName,
+                    ClientCompany = sel.Clients.ClientCompany
+                },
+            }).FirstOrDefault();
+        }
+    }
+    
+        
 }
 
 

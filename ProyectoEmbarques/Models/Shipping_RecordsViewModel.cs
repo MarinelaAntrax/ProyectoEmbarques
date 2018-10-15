@@ -48,20 +48,17 @@ namespace ProyectoEmbarques.Models
         [UIHint("Transferible")]
         public string RecordTransfer { get; set; }
        
-        [Display(Name = "Sello de Seguridad1")]
-        [Required(ErrorMessage = "Sello de seguridad requerido.")]
+        [Display(Name = "Sellos de Seguridad")]
+        [Required(ErrorMessage = "Sellos de seguridad requerido.")]
         public string RecordSeguritySeal1 { get; set; }
 
         [Display(Name = "Sello de Seguridad2")]
-        [Required(ErrorMessage = "Sello de seguridad requerido.")]
         public string RecordSeguritySeal2 { get; set; }
 
         [Display(Name = "Sello de Seguridad3")]
-        [Required(ErrorMessage = "Sello de seguridad requerido.")]
         public string RecordSeguritySeal3 { get; set; }
 
         [Display(Name = "Sello de Seguridad4")]
-        [Required(ErrorMessage = "Sello de seguridad requerido.")]
         public string RecordSeguritySeal4 { get; set; }
 
         [Display(Name = "Job #")]

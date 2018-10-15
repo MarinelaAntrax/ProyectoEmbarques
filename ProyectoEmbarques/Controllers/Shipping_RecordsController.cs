@@ -23,7 +23,8 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            Shipping_RecordsViewModel Perro = _ServiceSR.TakeLast();
+            return View(Perro);
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
@@ -38,6 +39,7 @@ namespace ProyectoEmbarques.Controllers
         {
             bool va1 = false;
             bool va2 = false;
+            
             if (Perro != null && ModelState.IsValid)
             {
                 if (Perro.RecordWorkOrder != null && !_ServiceSR.WOrderUnik((int)Perro.RecordWorkOrder))
@@ -64,7 +66,8 @@ namespace ProyectoEmbarques.Controllers
                     ViewBag.showMs = 1;
                     _ServiceSR.Create(Perro);
                     ModelState.Clear();
-                    return View("Create");
+                    Perro = _ServiceSR.TakeLast();
+                    return View("Create",Perro);
                 }
                 else {
                     return View("Create", Perro);

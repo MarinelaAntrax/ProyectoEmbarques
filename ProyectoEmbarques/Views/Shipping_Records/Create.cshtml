@@ -1,5 +1,4 @@
-﻿
-@model ProyectoEmbarques.Models.Shipping_RecordsViewModel
+﻿@model ProyectoEmbarques.Models.Shipping_RecordsViewModel
 
 @{
     ViewBag.Title = "Embarques";
@@ -20,6 +19,7 @@
                         <div class="form-group">
                             @(Html.Kendo().ComboBoxFor(fo => fo.ProductID)
                                     .Name("ProductID")
+                                    .Value(Model.ProductID == 0 ? string.Empty : Model.ToString())
                                     .Placeholder("Seleccione no.pieza...")
                                     .DataTextField("ProductName")
                                     .DataValueField("ProductID")
@@ -30,7 +30,7 @@
                                         {
                                             read.Action("FillCombobox", "Shipping_Catalog_Products");
                                         })
-                                            .ServerFiltering(true);
+                                            .ServerFiltering(false);
                                     })
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Events(ev => ev.Change("onChangePID"))
@@ -92,13 +92,13 @@
                         <div class="form-group">
                             <h4>Retrabajo</h4>
                             @(Html.Kendo().CheckBox()
-                                   .Name("RecordRework"))
+                                   .Name("RecordRework").HtmlAttributes(new {id="switch" }))
                         </div>
                     </div>
 
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <h4>No. de Caja C. Doc.</h4>
+                            <h4> No. de Caja C. Doc. </h4>
                             @(Html.Kendo().TextBox()
                                     .Name("RecordControlBoxNo")
                                     .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
@@ -178,7 +178,7 @@
                                         })
                                             .ServerFiltering(false);
                                     })
-                                    .HtmlAttributes(new {id="idClient", style = "width:90%;" })
+                                    .HtmlAttributes(new { style = "width:90%;" })
                                     .Template("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ClientID) )
                         </div>
@@ -187,7 +187,7 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <h4>Compañía</h4>
-                            @(Html.Kendo().TextBox()
+                            @(Html.Kendo().TextBoxFor(f=>f.Clients.ClientCompany)
                                     .Name("Compania")
                                     .HtmlAttributes(new { id = "Compania", style = "width:90%", @readonly = "readonly" }) )
                         </div>
@@ -243,7 +243,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <h4>Sellos de seguridad </h4>
-                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal1, new { @class = "k-textbox", id = "RecordSeguritySeal1", style = "width:90%;" })
+                                @Html.TextBoxFor(tb => tb.RecordSeguritySeal1, new { @class = "k-textbox", style = "width:90%;" })
                             </div>
                         </div>
                     </div>
@@ -331,64 +331,6 @@
 </script>
 
 <script>
-    $(document).ready(function ()
-    {
-        $.ajax(
-        {
-                type: 'GET',
-                url: '@Url.Action("GetMaxControlBox", "Shipping_Catalog_Products")',
-                success: function (Content)
-                {
-                    $("#RecordControlBoxNo").val(Content);
-                },
-                    error: function ()
-                    {
-                        alert("Error while GettingMaxControlBox");
-                    }
-        });
-       
-        $.ajax(
-        {
-                type: 'GET',
-                url: '@Url.Action("GetLastClient", "Shipping_Catalog_Products")',
-                success: function (Content)
-                {
-                    $("#idClient").val(Content);
-                }, 
-                    error: function ()
-                    {
-                        alert("Error while GettingLastClient");
-                    }
-        });
-
-        $.ajax(
-        {
-            type: 'GET',
-            url: '@Url.Action("GetMaxFedexTracking", "Shipping_Catalog_Products")',
-            success: function (Content)
-            {
-                $("#RecordFedexTracking").val(Content);
-            },
-                error: function ()
-                {
-                    alert("Error while GettingMaxFedexTracking");
-                }
-        });
-
-        $.ajax(
-        {
-            type: 'GET',
-            url: '@Url.Action("GetMaxPieceBoxNo", "Shipping_Catalog_Products")',
-            success: function (Content)
-            {
-                $("#RecordPieceBoxNo").val(Content);
-            },
-                error: function ()
-                {
-                    alert("Error while GettingMaxPieceBoxNo");
-                }
-        });
-    });
 
     $("#ProductID").change(function ()
     {
@@ -406,31 +348,6 @@
                 success: function (Content)
                 {
                     $("#AreaName").val(Content);
-                },
-                    error: function ()
-                    {
-                        alert("Error while inserting data");
-                    }
-            });
-        }
-    });
-
-    $("#ClientID").change(function ()
-    {
-        if ($("#ClientID").val() === "")
-        {
-            $("#Compania").val("");
-        }
-            else
-        {
-            $.ajax(
-            {
-                data: { id: $("#ClientID").val() },//Parametros de entrada
-                type: 'GET',
-                url: '@Url.Action("GetCompania","Clientes")', //Vinculacion con caracteristicas de ASP.Net
-                success: function (Content)
-                {
-                    $("#Compania").val(Content);
                 },
                     error: function ()
                     {
@@ -478,35 +395,6 @@
         {
             document.getElementById("2alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
         }
-    });
-</script>
-
-<script>
-    $(document).ready(function ()
-    {
-        $("#SealDiferentes").submit(function (e)
-        {
-            var field1 = document.getElementById('RecordSeguritySeal1').value;
-            var field2 = document.getElementById('RecordSeguritySeal2').value;
-            var field3 = document.getElementById('RecordSeguritySeal3').value;
-            var field4 = document.getElementById('RecordSeguritySeal4').value;
-
-            if (field1 == field2 || field1 == field3 || field1 == field4)//sello 1 es igual de 2,3.4
-            {
-                alert("Sellos no pueden repetirse");
-                return false;
-            }
-                else if (field2 == field3 || field2 == field4)//sello 2 es igual de 1,3.4
-                {
-                    alert("Sellos no pueden repetirse");
-                    return false;
-                }
-                    else if (field3 == field4)//sello 3 es igual de 1,2.4
-                    {
-                        alert("Sellos no pueden repetirse");
-                         return false;
-                    }
-        });
     });
 </script>
 @* -----------------------------------------Notificaciones--------------------------------------------------- *@

@@ -49,7 +49,7 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult GetLastClient()
         {
-               var Max = (db.Shipping_Records.Select(sel=> new { sel.ClientID, sel.RecordID}).OrderByDescending(max => max.RecordID));
+            var Max = (db.Shipping_Records.Select(sel => new { sel.ClientID, sel.RecordID }).OrderByDescending(max => max.RecordID));
 
             return Content(Max.ToString());
         }
