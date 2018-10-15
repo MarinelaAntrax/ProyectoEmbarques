@@ -1,4 +1,5 @@
-﻿@model ProyectoEmbarques.Models.Shipping_RecordsViewModel
+﻿
+@model ProyectoEmbarques.Models.Shipping_RecordsViewModel
 
 @{
     ViewBag.Title = "Embarques";
@@ -12,7 +13,6 @@
     @Html.AntiForgeryToken()
     <div class="form-horizontal telerik-controls">
         <div class="col-lg-12">
-            <div id="MainForm">
                 <div class="row">
                     <div class="col-lg-3">
                         <h4>No. Parte</h4>
@@ -285,12 +285,12 @@
                 </center>
             </div>
         </div>
-    </div>
  }
 
 <script>
     $("#SealDiferentes").kendoValidator().data("kendoValidator");
     $("#RecordDate").prop("readonly", true);
+
     function onChangePID(ev) {
         var item = this.dataItem(ev.item);
 
@@ -331,9 +331,16 @@
 </script>
 
 <script>
-
-    $("#ProductID").change(function ()
-    {
+    $('#SealDiferentes').on('keyup keypress', function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+           
+           
+            $('#idOrdendeTrabajo').focus();
+            e.preventDefault();
+        }
+    });
+    $("#ProductID").change(function (){
         if ($("#ProductID").val() === "")
         {
             $("#AreaName").val("");
@@ -351,7 +358,7 @@
                 },
                     error: function ()
                     {
-                        alert("Error while inserting data");
+                        //alert("Error while inserting data");
                     }
             });
         }
