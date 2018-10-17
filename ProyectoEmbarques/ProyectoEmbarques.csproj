@@ -161,6 +161,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GraficaController.cs" />
+    <Compile Include="Models\AirGroundViewModel.cs" />
     <Compile Include="Models\Areas.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
@@ -1536,6 +1538,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\ErrorDuplicateValue.cshtml" />
     <Content Include="Views\Clientes\EditorTemplates\Clientes.cshtml" />
+    <Content Include="Views\Grafica\IndexGrafica.cshtml" />
     <None Include="Views\Shipping_Records\Create.cshtml" />
     <Content Include="Views\Ensambles\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />

@@ -334,12 +334,11 @@
     $('#SealDiferentes').on('keyup keypress', function (e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) {
-           
-           
             $('#idOrdendeTrabajo').focus();
             e.preventDefault();
         }
     });
+
     $("#ProductID").change(function (){
         if ($("#ProductID").val() === "")
         {

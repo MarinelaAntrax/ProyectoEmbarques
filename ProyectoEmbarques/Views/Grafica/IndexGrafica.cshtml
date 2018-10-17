@@ -1,0 +1,83 @@
+﻿<div class="demo-section k-content wide">
+    <div class="row well" style="margin:0 50px 50px 50px;">
+        <div class="col-lg-12">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.Label("Subir Archivo")
+                    @(Html.Kendo().Upload()
+                        .Name("DDAreas")
+                        .HtmlAttributes(new { style = "width:100%;" }))
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                @Html.Label("Fecha de inicio")
+                @(Html.Kendo().DatePicker().Name("StartDate").Value(System.DateTime.Today.AddDays(-1)).Max(System.DateTime.Today.AddDays(-1)).HtmlAttributes(new { style = "width:100%;" }))
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.Label("Fecha final")
+                    @(Html.Kendo().DatePicker().Name("EndDate").Value(System.DateTime.Now).Max(System.DateTime.Today).HtmlAttributes(new { style = "width:100%;" }))
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <br />
+                    @(Html.Kendo().Button().Name("Submit").Content("Generar").HtmlAttributes(new { id = "smtBtn" }))
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
+                .Name("chart")
+                .Title("Overnight shipments Air vs. Ground by Pieces")
+                .Legend(legend => legend
+
+                .Position(ChartLegendPosition.Right)
+                )
+                .Series(series =>
+                {
+                    series
+                         .Column(model=> model.FedExGround)
+                         .Stack("yes")
+                         .Color("#0F80DE")
+                         .Name("FedEx Ground")
+                         .Axis("New");
+
+                    series
+                       .Column(model => model.FedExAir)
+                       .Stack("yes")
+                       .Color("#E2060D")
+                       .Name("FedEx Air")
+                       .Axis("New");
+
+                    series
+                          .Column(model => model.NewScans)
+                          .Stack("Yellow")
+                          .Name("New Scans")
+                          .Color("#F3B934")
+                          .Axis("New");
+
+                    series
+                        .Line(model => model.TotalinShip)
+                        .Name("Total in Ship")
+                        .Color("#0A6DBF")
+                        .Axis("total");
+                })
+                .CategoryAxis(axis => axis
+                    .Categories(model => model.FechaDia)
+                    .AxisCrossingValue(0, 10)
+                )
+                .ValueAxis(axis => axis
+                    .Numeric("New")
+                        .Min(0).Max(2500)
+                )
+                .ValueAxis(axis => axis
+                    .Numeric("total")
+                        .Min(0).Max(4500)
+                )
+    )
+</div>

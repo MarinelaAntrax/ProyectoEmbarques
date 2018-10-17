@@ -44,6 +44,11 @@ namespace ProyectoEmbarques
                 defaults: new { controller = "EnsamblesRealizados", action = "Index", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Grafica",
+                url: "Grafica/{action}/{id}",
+                defaults: new { controller = "Grafica", action = "IndexGrafica", id = UrlParameter.Optional }
+            );
         }
     }
 }
