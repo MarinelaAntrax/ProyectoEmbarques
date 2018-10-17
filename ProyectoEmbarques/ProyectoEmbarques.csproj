@@ -1539,6 +1539,7 @@
     <Content Include="Views\Shared\ErrorDuplicateValue.cshtml" />
     <Content Include="Views\Clientes\EditorTemplates\Clientes.cshtml" />
     <Content Include="Views\Grafica\IndexGrafica.cshtml" />
+    <Content Include="Views\Ensambles\EditorTemplates\Ensambles.cshtml" />
     <None Include="Views\Shipping_Records\Create.cshtml" />
     <Content Include="Views\Ensambles\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />

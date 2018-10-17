@@ -253,7 +253,6 @@ namespace ProyectoEmbarques.Models.Services
                     RecordComment1 = Record.RecordComment1,
                     RecordComment2 = Record.RecordComment2,
                     RecordFAI = Record.RecordFAI,
-
                     RecordSeguritySeal1 = Record.RecordSeguritySeal1,
                     RecordSeguritySeal2 = Record.RecordSeguritySeal2,
                     RecordSeguritySeal3 = Record.RecordSeguritySeal3,
@@ -268,16 +267,24 @@ namespace ProyectoEmbarques.Models.Services
 
         public Shipping_RecordsViewModel TakeLast()
         {
-            return GetAll().OrderByDescending(des => des.RecordID).Select(sel=> new Shipping_RecordsViewModel {
-                RecordControlBoxNo=sel.RecordControlBoxNo,
-                RecordFedexTracking=sel.RecordFedexTracking,
-                RecordPieceBoxNo=sel.RecordPieceBoxNo,
+            return GetAll().OrderByDescending(des => des.RecordID).Select(sel => new Shipping_RecordsViewModel {
+                RecordControlBoxNo = sel.RecordControlBoxNo,
+                RecordFedexTracking = sel.RecordFedexTracking,
+                RecordPieceBoxNo = sel.RecordPieceBoxNo,
                 ClientID = sel.ClientID,
                 Clients = new ClientesViewModel()
                 {
                     ClientName = sel.Clients.ClientName,
                     ClientCompany = sel.Clients.ClientCompany
                 },
+                ShipmentTypeID = sel.ShipmentTypeID,
+                CatalogShipmentType = new CatalogShipmentTypeViewModel()
+                {
+                    ShipmentType = sel.CatalogShipmentType.ShipmentType
+                },
+                RecordServiceType = sel.RecordServiceType,
+                RecordTransfer = sel.RecordTransfer,
+                RecordSeguritySeal1 = sel.RecordSeguritySeal1
             }).FirstOrDefault();
         }
       }

@@ -6,33 +6,33 @@
 
 <div class="telerik-controls">
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel>()
-                            .Name("grid")
-                                .Sortable()
-                                .ToolBar(tools =>
-                                {
-                                    tools.Template(@<text>
-                                        <a class="k-button k-button-icontext" href="@Url.Action("Create", "Shipping_Catalog_Products")"><span class="k-icon k-i-add"></span>Agregar Ensamble</a>
-                                    </text>);
-                                })
-                                                    .Pageable(x => x.Numeric(true)
-                                                    .PreviousNext(true)
-                                                    .Refresh(true)
-                                                    .ButtonCount(5))
-                                                    .DataSource(dataSource => dataSource
-                                                    .Ajax()
-                                                    .Model(model => model.Id(e => e.ProductID))
-                                                    .Events(events => events.Error("error_handler"))
-                                                    .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
-                                                    .PageSize(100)
-                                                    )
-                                                        .Columns(columns =>
-                                                        {
-                                                            columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
-                                                            columns.Bound(o => o.AreaName).Title("Área").Width(5);
-                                                        })
-                                                        .Scrollable()
-                                                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                                                        .HtmlAttributes(new { style = "height: 650px;" })
+                                    .Name("grid")
+                                        .Sortable()
+                                        .ToolBar(tools =>
+                                        {
+                                            tools.Create().Text("Agregar Productos");
+                                        })
+                                                .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Ensambles"))
+                                                .Pageable(x => x.Numeric(true)
+                                                .PreviousNext(true)
+                                                .Refresh(true)
+                                                .ButtonCount(5))
+                                                .DataSource(dataSource => dataSource
+                                                .Ajax()
+                                                .Model(model => model.Id(e => e.ProductID))
+                                                .Events(events => events.Error("error_handler"))
+                                                .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
+                                                .PageSize(100)
+                                                )
+                                                    .Columns(columns =>
+                                                    {
+                                                        columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
+                                                        columns.Bound(o => o.AreaName).Title("Área").Width(5);
+                                                    })
+                                                    .Scrollable()
+                                                    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                                                    .HtmlAttributes(new { style = "height: 650px;" })
+                                                    .Events(e => { e.Edit("onEdit"); })
     )
 </div>
 
@@ -50,6 +50,12 @@
                 });
                 alert(message);
             }
+        }
+    </script>
+
+    <script>
+        function onEdit(e) {
+            e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Productos" : + $('#ProductoNombre').val());
         }
     </script>
 }
