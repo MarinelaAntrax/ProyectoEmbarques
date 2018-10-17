@@ -79,7 +79,7 @@ namespace ProyectoEmbarques.Models.Services
         {
             if (!UpdateDatabase)
             {
-                var target = One(e => e.ProductID == clientes.ClientID);
+                var target = One(e => e.ProductID == product.ClientID);
 
                 if (target != null)
                 {
