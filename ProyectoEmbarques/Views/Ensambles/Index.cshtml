@@ -22,6 +22,8 @@
                                                 .Model(model => model.Id(e => e.ProductID))
                                                 .Events(events => events.Error("error_handler"))
                                                 .Read(read => read.Action("Read", "Shipping_Catalog_Products"))
+                                                .Create(create => create.Action("Create", "Shipping_Catalog_Products"))
+                                                .Update(update => update.Action("Update", "Shipping_Catalog_Products"))
                                                 .PageSize(100)
                                                 )
                                                     .Columns(columns =>

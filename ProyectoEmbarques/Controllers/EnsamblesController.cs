@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using ProyectoEmbarques.Models;
+using System;
 
 namespace ProyectoEmbarques.Controllers
 {
@@ -40,6 +41,30 @@ namespace ProyectoEmbarques.Controllers
                 return RedirectToAction("Create");
             }
             return View(Products);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_Catalog_Products Products)
+        {
+            try
+            {
+                if (_EnsamblesService != null && ModelState.IsValid)
+                {
+                    _EnsamblesService.Update(Products);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY constraint"))
+                {
+                    ModelState.AddModelError("", "El Nombre de la compañia que introdujo ya existe en la base de datos.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+            return Json(new[] { Products }.ToDataSourceResult(request, ModelState));
         }
 
         public ActionResult FillCombobox()

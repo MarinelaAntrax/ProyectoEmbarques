@@ -71,8 +71,35 @@ namespace ProyectoEmbarques.Models.Services
                     entities.Shipping_Catalog_Products.Add(entity);
                     entities.SaveChanges();
 
-                    //product.ProductID = entity.ProductID;
+                product.ProductID = entity.ProductID;
+            }
+        }
+
+        public void Update(Shipping_Catalog_ProductsViewModel product)
+        {
+            if (!UpdateDatabase)
+            {
+                var target = One(e => e.ProductID == clientes.ClientID);
+
+                if (target != null)
+                {
+                    target.ClientID = clientes.ClientID;
+                    target.ClientName = clientes.ClientName;
+                    target.ClientCompany = clientes.ClientCompany;
                 }
+            }
+            else
+            {
+                var entity = new Clients();
+
+                entity.ClientID = clientes.ClientID;
+                entity.ClientName = clientes.ClientName;
+                entity.ClientCompany = clientes.ClientCompany;
+
+                BAE.Clients.Attach(entity);
+                BAE.Entry(entity).State = EntityState.Modified;
+                BAE.SaveChanges();
+            }
         }
 
         public Shipping_Catalog_ProductsViewModel One(Func<Shipping_Catalog_ProductsViewModel, bool> predicate)
