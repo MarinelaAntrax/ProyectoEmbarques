@@ -1,8 +1,8 @@
 ﻿@model ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel
 
-@using (Html.BeginForm("Create", "Shipping_Catalog_Products", FormMethod.Post, new { id = "FormularioArea" }))
-{
-    @Html.AntiForgeryToken()
+@*@using (Html.BeginForm("", "", FormMethod.Post, new { id = "FormularioArea" }))
+{*@
+    @*@Html.AntiForgeryToken()*@
     <div id="MainForm" class="form-horizontal telerik-controls">
         <div class="container">
             <div class="col-lg-8">
@@ -33,6 +33,7 @@
                 <div class="form-group">
                     @(Html.Kendo().ComboBoxFor(f => f.AreaID)
                                     .Name("AreaID")
+                                    .Value(Model.AreaID == 0 ? string.Empty : Model.ToString())
                                     .Placeholder("Seleccione área...")
                                     .DataTextField("AreaName")
                                     .DataValueField("AreaID")
@@ -76,18 +77,14 @@
                 </div>
             </div>
         </div>
-
-        <center>
-            <input type="submit" value="Guardar" class="k-button k-primary" style="width: 20%; height:40px; margin:50px;" />
-        </center>
     </div>
-}
+ @*}*@
 
 <script>
-    $("#FormularioArea").kendoValidator().data("kendoValidator");
+    $("#MainForm").kendoValidator().data("kendoValidator");
 </script>
 @* -----------------------------------------Notificaciones--------------------------------------------------- *@
-@(Html.Kendo().Notification()
+@*@(Html.Kendo().Notification()
                         .Name("notification")
                         .Position(p => p.Pinned(true).Top(30).Right(30))
                         .Stacking(NotificationStackingSettings.Down)
@@ -141,7 +138,7 @@
         </script>
         ViewBag.showMs = 0;
     }
-}
+}*@       
 
 <style>
     .k-notification {

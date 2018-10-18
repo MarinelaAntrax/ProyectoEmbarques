@@ -11,7 +11,9 @@
                                         .ToolBar(tools =>
                                         {
                                             tools.Create().Text("Agregar Productos");
+
                                         })
+
                                                 .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Ensambles"))
                                                 .Pageable(x => x.Numeric(true)
                                                 .PreviousNext(true)
@@ -28,8 +30,9 @@
                                                 )
                                                     .Columns(columns =>
                                                     {
-                                                        columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza").Width(5);
-                                                        columns.Bound(o => o.AreaName).Title("Área").Width(5);
+                                                        columns.Bound(o => o.ProductName).Title("Numero de parte de la pieza");
+                                                        columns.Bound(o => o.AreaName).Title("Área");
+                                                        columns.Command(com => com.Edit()).Title("Editar");
                                                     })
                                                     .Scrollable()
                                                     .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
@@ -58,6 +61,11 @@
     <script>
         function onEdit(e) {
             e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Productos" : + $('#ProductoNombre').val());
+            var combobox = e.container.find("#AreaID").data("kendoComboBox");
+            if (combobox && combobox.value() === "0") {
+                combobox.value("");
+            }
+
         }
     </script>
 }

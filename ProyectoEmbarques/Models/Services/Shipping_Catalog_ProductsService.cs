@@ -60,9 +60,9 @@ namespace ProyectoEmbarques.Models.Services
                 {
                     var entity = new Shipping_Catalog_Products();
 
-                    //entity.ProductID = product.ProductID;
-                    entity.AreaID = product.AreaID;
+                    entity.ProductID = product.ProductID;
                     entity.ProductName = product.ProductName;
+                    entity.AreaID = product.AreaID;
                     entity.WOrder = product.WOrder;
                     entity.WKRMSerie = product.WKRMSerie;
                     entity.TIDSerie = product.TIDSerie;
@@ -79,26 +79,34 @@ namespace ProyectoEmbarques.Models.Services
         {
             if (!UpdateDatabase)
             {
-                var target = One(e => e.ProductID == product.ClientID);
+                var target = One(e => e.ProductID == product.ProductID);
 
                 if (target != null)
                 {
-                    target.ClientID = clientes.ClientID;
-                    target.ClientName = clientes.ClientName;
-                    target.ClientCompany = clientes.ClientCompany;
+                    target.ProductID = product.ProductID;
+                    target.ProductName = product.ProductName;
+                    target.AreaID = product.AreaID;
+                    target.WOrder = product.WOrder;
+                    target.TIDSerie = product.TIDSerie;
+                    target.WKRMSerie = product.WKRMSerie;
+                    target.ProductType = product.ProductType;
                 }
             }
             else
             {
-                var entity = new Clients();
+                var entity = new Shipping_Catalog_Products();
 
-                entity.ClientID = clientes.ClientID;
-                entity.ClientName = clientes.ClientName;
-                entity.ClientCompany = clientes.ClientCompany;
+                entity.ProductID = product.ProductID;
+                entity.ProductName = product.ProductName;
+                entity.AreaID = product.AreaID;
+                entity.WOrder = product.WOrder;
+                entity.TIDSerie = product.TIDSerie;
+                entity.WKRMSerie = product.WKRMSerie;
+                entity.ProductType = product.ProductType; 
 
-                BAE.Clients.Attach(entity);
-                BAE.Entry(entity).State = EntityState.Modified;
-                BAE.SaveChanges();
+                entities.Shipping_Catalog_Products.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+                entities.SaveChanges();
             }
         }
 

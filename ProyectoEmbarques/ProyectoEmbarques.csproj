@@ -1545,7 +1545,6 @@
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\EnsamblesRealizados\Index.cshtml" />
-    <Content Include="Views\Shipping_Catalog_Products\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

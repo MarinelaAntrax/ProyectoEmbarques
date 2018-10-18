@@ -147,12 +147,12 @@
                                     .DataValueField("ShipmentTypeID")
                                     .DataSource(source =>
                                     {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("FillCombobox", "CatalogShipmentType");
-                                        })
-                                            .ServerFiltering(false);
-                                    })
+    source.Read(read =>
+    {
+        read.Action("FillCombobox", "CatalogShipmentType");
+    })
+        .ServerFiltering(false);
+})
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Template("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID) )
@@ -172,12 +172,12 @@
                                     .Filter(FilterType.Contains)
                                     .DataSource(source =>
                                     {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("Fillcombobox", "Clientes");
-                                        })
-                                            .ServerFiltering(false);
-                                    })
+    source.Read(read =>
+    {
+        read.Action("Fillcombobox", "Clientes");
+    })
+        .ServerFiltering(false);
+})
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Template("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ClientID) )
@@ -291,117 +291,150 @@
     $("#SealDiferentes").kendoValidator().data("kendoValidator");
     $("#RecordDate").prop("readonly", true);
 
-    function onChangePID(ev) {
-        var item = this.dataItem(ev.item);
+function onChangePID(ev) {
+    var item = this.dataItem(ev.item);
 
-        var elem1 = item.WOrder;
-        var elem2 = item.WKRMSerie;
-        var elem3 = item.TIDSerie;
-        if (elem1) {
-            document.getElementById("idOrdendeTrabajo").disabled = false;
-            document.getElementById("idOrdendeTrabajo").required = true;
-            document.getElementById("idOrdendeTrabajo").style.opacity = "1";
-        } else {
-            document.getElementById("idOrdendeTrabajo").disabled = true;
-            document.getElementById("idOrdendeTrabajo").style.opacity = "0.8";
-            document.getElementById("idOrdendeTrabajo").required = false;
-        }
-        if (elem2) {
-            document.getElementById("IdRecordSerialNo").disabled = false;
-            document.getElementById("IdRecordSerialNo").required = true;
-            document.getElementById("IdRecordSerialNo").style.opacity = "1";
-        } else {
-            document.getElementById("IdRecordSerialNo").disabled = true;
-            document.getElementById("IdRecordSerialNo").style.opacity = "0.8";
-            document.getElementById("IdRecordSerialNo").required = false;
-        }
-        if (elem3) {
-            document.getElementById("idTrackingPapeleria").disabled = false;
-            document.getElementById("idTrackingPapeleria").required = true;
-            document.getElementById("idTrackingPapeleria").style.opacity = "1";
-        } else {
-            document.getElementById("idTrackingPapeleria").disabled = true;
-            document.getElementById("idTrackingPapeleria").style.opacity = "0.8";
-            document.getElementById("idTrackingPapeleria").required = false;
-        }
-        document.getElementById("idTrackingPapeleria").value = "";
-        document.getElementById("idOrdendeTrabajo").value = "";
-        document.getElementById("IdRecordSerialNo").value = "";
+    var elem1 = item.WOrder;
+    var elem2 = item.WKRMSerie;
+    var elem3 = item.TIDSerie;
+    if (elem1) {
+        document.getElementById("idOrdendeTrabajo").disabled = false;
+        document.getElementById("idOrdendeTrabajo").required = true;
+        document.getElementById("idOrdendeTrabajo").style.opacity = "1";
+    } else {
+        document.getElementById("idOrdendeTrabajo").disabled = true;
+        document.getElementById("idOrdendeTrabajo").style.opacity = "0.8";
+        document.getElementById("idOrdendeTrabajo").required = false;
     }
+    if (elem2) {
+        document.getElementById("IdRecordSerialNo").disabled = false;
+        document.getElementById("IdRecordSerialNo").required = true;
+        document.getElementById("IdRecordSerialNo").style.opacity = "1";
+    } else {
+        document.getElementById("IdRecordSerialNo").disabled = true;
+        document.getElementById("IdRecordSerialNo").style.opacity = "0.8";
+        document.getElementById("IdRecordSerialNo").required = false;
+    }
+    if (elem3) {
+        document.getElementById("idTrackingPapeleria").disabled = false;
+        document.getElementById("idTrackingPapeleria").required = true;
+        document.getElementById("idTrackingPapeleria").style.opacity = "1";
+    } else {
+        document.getElementById("idTrackingPapeleria").disabled = true;
+        document.getElementById("idTrackingPapeleria").style.opacity = "0.8";
+        document.getElementById("idTrackingPapeleria").required = false;
+    }
+    document.getElementById("idTrackingPapeleria").value = "";
+    document.getElementById("idOrdendeTrabajo").value = "";
+    document.getElementById("IdRecordSerialNo").value = "";
+}
 </script>
 
 <script>
-    $('#SealDiferentes').on('keyup keypress', function (e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) {
-            $('#idOrdendeTrabajo').focus();
-            e.preventDefault();
-        }
+    //$(document).ready(function () { });
+    $("#ProductID").kendoComboBox();
+    var combobox = $("#ProductID").data("kendoComboBox");
+    $(document).ready(function () {
+        combobox.input.keypress(function (e) {
+            if (e.keyCode == 13) {
+                if (!$("#idOrdendeTrabajo").prop('disabled')) {
+                    $("#idOrdendeTrabajo").focus();
+                } else {
+                    if (!$("#IdRecordSerialNo").prop('disabled')) {
+                        $("#IdRecordSerialNo").focus();
+                    } else {
+                        $("#idTrackingPapeleria").focus();
+                    }
+                }
+                return false;
+            }
+        });
+    });
+    
+    var TextOrder = $("#idOrdendeTrabajo");
+    $(document).ready(function () {
+        TextOrder.keypress(function (e) {
+            if (e.keyCode == 13) {
+                $("#IdRecordSerialNo").focus();
+                return false;
+            }
+        });
     });
 
+    var TextPapeleria = $("#IdRecordSerialNo");
+    $(document).ready(function () {
+        TextPapeleria.keypress(function (e) {
+            if (e.keyCode == 13) {
+                $("#idTrackingPapeleria").focus();
+                return false;
+            }
+        });
+    });
+ 
+
     $("#ProductID").change(function (){
-        if ($("#ProductID").val() === "")
+    if ($("#ProductID").val() === "")
         {
             $("#AreaName").val("");
-        }
+    }
             else
         {
             $.ajax(
             {
-                data: { id: $("#ProductID").val() },//Parametros de entrada
+            data: { id: $("#ProductID").val() },//Parametros de entrada
                 type: 'GET',
                 url: '@Url.Action("GetAreaName","Shipping_Catalog_Products")',
                 success: function (Content)
                 {
                     $("#AreaName").val(Content);
-                },
+            },
                     error: function ()
                     {
-                        //alert("Error while inserting data");
-                    }
-            });
-        }
-    });
+                //alert("Error while inserting data");
+            }
+        });
+    }
+});
 
         /*comentarios*/
     $('#RecordComment').keyup(function ()
     {
-        var dim = this.value.length;
-        if (dim === 250)
-        {
-            document.getElementById("alert").innerHTML = "El comentario no puede contener tantos caracteres";
-        }
-            else
-        {
-            document.getElementById("alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
-        }
-    });
+    var dim = this.value.length;
+    if (dim === 250)
+    {
+        document.getElementById("alert").innerHTML = "El comentario no puede contener tantos caracteres";
+    }
+    else
+    {
+        document.getElementById("alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
+    }
+});
 
     $('#RecordComment1').keyup(function ()
     {
-        var dim = this.value.length;
-        if (dim === 250)
-        {
-            document.getElementById("1alert").innerHTML = "El comentario no puede contener tantos caracteres";
-        }
-            else
-        {
-            document.getElementById("1alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
-        }
-    });
+    var dim = this.value.length;
+    if (dim === 250)
+    {
+        document.getElementById("1alert").innerHTML = "El comentario no puede contener tantos caracteres";
+    }
+    else
+    {
+        document.getElementById("1alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
+    }
+});
 
     $('#RecordComment2').keyup(function ()
     {
-        var dim = this.value.length;
-        if (dim === 250)
-        {
-            document.getElementById("2alert").innerHTML = "El comentario no puede contener tantos caracteres";
-        }
-            else
-        {
-            document.getElementById("2alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
-        }
-    });
+    var dim = this.value.length;
+    if (dim === 250)
+    {
+        document.getElementById("2alert").innerHTML = "El comentario no puede contener tantos caracteres";
+    }
+    else
+    {
+        document.getElementById("2alert").innerHTML = "Quedan " + (250 - dim) + " caracteres";
+    }
+});
 </script>
 @* -----------------------------------------Notificaciones--------------------------------------------------- *@
 @(Html.Kendo().Notification()

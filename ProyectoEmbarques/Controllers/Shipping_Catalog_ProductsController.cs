@@ -121,6 +121,30 @@ namespace ProyectoEmbarques.Controllers
             }
         }
 
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_Catalog_ProductsViewModel Products)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _Service.Update(Products);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("UNIQUE KEY constraint"))
+                {
+                }
+                else
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+            return Json(new[] { Products }.ToDataSourceResult(request, ModelState));
+        }
+
         public ActionResult FillComboboxAreas()
         {
             return Json(_Areas.Read(), JsonRequestBehavior.AllowGet);
