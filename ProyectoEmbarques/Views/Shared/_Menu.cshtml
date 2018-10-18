@@ -12,8 +12,8 @@
         </div>
 
         <div class="collapse navbar-collapse bae-area-menu" id="bs-example-navbar-collapse-2">
-            @*@if (HttpContext.Current.User.Identity.IsAuthenticated && (User.IsInRole("AppAdminEMBARQUES") || User.IsInRole("IT")))*@
-            @*{*@
+            @if (HttpContext.Current.User.Identity.IsAuthenticated && (User.IsInRole("AppAdminEMBARQUES") || User.IsInRole("IT")))
+            {
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Agregar <b class="caret"></b></a>
@@ -33,15 +33,15 @@
                     </li>
                 </ul>
 
-                <ul class="nav navbar-nav">
+                @*<ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Grafica <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("IndexGrafica", "Grafica")"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Air Vs Ground</a></li>
                         </ul>
                     </li>
-                </ul>
-            @*}*@
+                </ul>*@
+            }
             <p class="nav navbar-text navbar-right"><i class="fa fa-lg fa-user-circle"></i>&nbsp;¡Hola, @User.Identity.Name!</p>
         </div>
     </div>
