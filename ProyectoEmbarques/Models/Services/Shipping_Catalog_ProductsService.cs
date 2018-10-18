@@ -71,7 +71,7 @@ namespace ProyectoEmbarques.Models.Services
                     entities.Shipping_Catalog_Products.Add(entity);
                     entities.SaveChanges();
 
-                product.ProductID = entity.ProductID;
+                //product.ProductID = entity.ProductID;
             }
         }
 

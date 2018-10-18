@@ -30,7 +30,7 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Cantidad requerida.")]
         public int RecordQuantity { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: dd MMM yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:d}")]
         public System.DateTime RecordDate { get; set; }
 
         [Required(ErrorMessage = "Fedex Tracking requerido.")]
@@ -52,12 +52,15 @@ namespace ProyectoEmbarques.Models
         [Required(ErrorMessage = "Sellos de seguridad requerido.")]
         public string RecordSeguritySeal1 { get; set; }
 
+        [ScaffoldColumn(false)]
         [Display(Name = "Sello de Seguridad2")]
         public string RecordSeguritySeal2 { get; set; }
 
+        [ScaffoldColumn(false)]
         [Display(Name = "Sello de Seguridad3")]
         public string RecordSeguritySeal3 { get; set; }
 
+        [ScaffoldColumn(false)]
         [Display(Name = "Sello de Seguridad4")]
         public string RecordSeguritySeal4 { get; set; }
 

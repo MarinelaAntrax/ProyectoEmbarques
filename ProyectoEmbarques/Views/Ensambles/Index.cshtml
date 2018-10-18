@@ -10,10 +10,9 @@
                                         .Sortable()
                                         .ToolBar(tools =>
                                         {
-                                            tools.Create().Text("Agregar Productos");
+                                            tools.Create().Text("Agregar Producto");
 
                                         })
-
                                                 .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Ensambles"))
                                                 .Pageable(x => x.Numeric(true)
                                                 .PreviousNext(true)
@@ -60,7 +59,7 @@
 
     <script>
         function onEdit(e) {
-            e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Productos" : + $('#ProductoNombre').val());
+            e.container.parent().find('.k-window-title').text(e.model.isNew() ? "Agregar Producto" : + $('#ProductoNombre').val());
             var combobox = e.container.find("#AreaID").data("kendoComboBox");
             if (combobox && combobox.value() === "0") {
                 combobox.value("");

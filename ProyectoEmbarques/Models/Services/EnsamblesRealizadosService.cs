@@ -13,7 +13,7 @@ namespace ProyectoEmbarques.Models.Services
 {
       public class EnsamblesRealizadosService : IDisposable
       {
-        private static readonly bool UpdateDatabase = true;
+        private static bool UpdateDatabase = true;
         MaterialShippingControlEntities BD = new MaterialShippingControlEntities();
         private MaterialShippingControlEntities Entities;
 

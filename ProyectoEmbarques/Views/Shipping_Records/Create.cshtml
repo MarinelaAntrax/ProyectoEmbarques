@@ -1,5 +1,4 @@
-﻿
-@model ProyectoEmbarques.Models.Shipping_RecordsViewModel
+﻿@model ProyectoEmbarques.Models.Shipping_RecordsViewModel
 
 @{
     ViewBag.Title = "Embarques";
@@ -30,7 +29,7 @@
                                         {
                                             read.Action("FillCombobox", "Shipping_Catalog_Products");
                                         })
-                                            .ServerFiltering(false);
+                                            .ServerFiltering(true);
                                     })
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Events(ev => ev.Change("onChangePID"))
@@ -147,12 +146,12 @@
                                     .DataValueField("ShipmentTypeID")
                                     .DataSource(source =>
                                     {
-    source.Read(read =>
-    {
-        read.Action("FillCombobox", "CatalogShipmentType");
-    })
-        .ServerFiltering(false);
-})
+                                        source.Read(read =>
+                                        {
+                                            read.Action("FillCombobox", "CatalogShipmentType");
+                                        })
+                                            .ServerFiltering(false);
+                                    })
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Template("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID) )
@@ -172,12 +171,12 @@
                                     .Filter(FilterType.Contains)
                                     .DataSource(source =>
                                     {
-    source.Read(read =>
-    {
-        read.Action("Fillcombobox", "Clientes");
-    })
-        .ServerFiltering(false);
-})
+                                        source.Read(read =>
+                                        {
+                                            read.Action("Fillcombobox", "Clientes");
+                                        })
+                                            .ServerFiltering(false);
+                                    })
                                     .HtmlAttributes(new { style = "width:90%;" })
                                     .Template("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
                             @(Html.ValidationMessageFor(nam => nam.ClientID) )
@@ -239,7 +238,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-9" style="padding:0;">
+                    <div class="col-lg-9">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <h4>Sellos de seguridad </h4>
