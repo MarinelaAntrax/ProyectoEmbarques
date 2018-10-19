@@ -334,8 +334,8 @@ function onChangePID(ev) {
     $("#ProductID").kendoComboBox();
 var combobox = $("#ProductID").data("kendoComboBox");
     $(document).ready(function () {
-    combobox.input.keypress(function (e) {
-        if (e.keyCode == 13) {
+        combobox.input.keydown(function (e) {
+        if (e.keyCode == 13 || e.keyCode == 9) {
             if (!$("#idOrdendeTrabajo").prop('disabled')) {
                     $("#idOrdendeTrabajo").focus();
             } else {
@@ -345,6 +345,8 @@ var combobox = $("#ProductID").data("kendoComboBox");
                         $("#idTrackingPapeleria").focus();
                 }
             }
+            e.preventDefault()
+        
             return false;
         }
     });
@@ -352,9 +354,11 @@ var combobox = $("#ProductID").data("kendoComboBox");
     
     var TextOrder = $("#idOrdendeTrabajo");
     $(document).ready(function () {
-    TextOrder.keypress(function (e) {
-        if (e.keyCode == 13) {
-                $("#IdRecordSerialNo").focus();
+        TextOrder.keydown(function (e) {
+        if (e.keyCode == 13 || e.keyCode == 9) {
+            $("#IdRecordSerialNo").focus();
+            e.preventDefault()
+        
             return false;
         }
     });
@@ -362,14 +366,16 @@ var combobox = $("#ProductID").data("kendoComboBox");
 
     var TextPapeleria = $("#IdRecordSerialNo");
     $(document).ready(function () {
-    TextPapeleria.keypress(function (e) {
-        if (e.keyCode == 13) {
+        TextPapeleria.keydown(function (e) {
+        if (e.keyCode == 13 || e.keyCode == 9) {
                 $("#idTrackingPapeleria").focus();
-            return false;
+
+            e.preventDefault()
+        return false;
         }
     });
+
 });
- 
 
     $("#ProductID").change(function (){
     if ($("#ProductID").val() === "")
@@ -394,10 +400,13 @@ var combobox = $("#ProductID").data("kendoComboBox");
         });
     }
 });
-
+    $('#RecordComment').on('keydown', function (e) {
+        if (e.keyCode == 9) e.preventDefault()
+    });
         /*comentarios*/
-    $('#RecordComment').keyup(function ()
+    $('#RecordComment').keyup(function (e)
     {
+    
     var dim = this.value.length;
     if (dim === 250)
     {
