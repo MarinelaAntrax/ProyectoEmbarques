@@ -1,11 +1,6 @@
 ﻿@model ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel
 
-@*@using (Html.BeginForm("", "", FormMethod.Post, new { id = "FormularioArea" }))
-{*@
-    @*@Html.AntiForgeryToken()*@
-    <div id="MainForm" class="form-horizontal telerik-controls">
-        <div class="container">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <h4>Productos</h4>
                 <div class="form-group">
                     @(Html.Kendo().ComboBoxFor(fo => fo.ProductName)
@@ -26,9 +21,7 @@
                                     .HtmlAttributes(new { style = "width:60%;" })
                                     .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:DATA#</div>") )
                 </div>
-            </div>
 
-            <div class="col-lg-8">
                 <h4>Área</h4>
                 <div class="form-group">
                     @(Html.Kendo().ComboBoxFor(f => f.AreaID)
@@ -49,16 +42,14 @@
                                     .HtmlAttributes(new { style = "width:60%;" })
                                     .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:AreaName#</div>") )
                 </div>
-            </div>
 
-            <div class="col-lg-8">
+
                 <h4> Datos requeridos </h4>
                 <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WOrder)</div> <h4> Orden de trabajo </h4>
                 <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WKRMSerie)</div> <h4> No. Serie </h4>
                 <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.TIDSerie)</div> <h4> Tracking papeleria </h4>
-            </div>
 
-            <div class="col-lg-8">
+
                 <h4>Tipo del Producto</h4>
                 <div class="form-group">
                     @(Html.Kendo().DropDownListFor(f => f.ProductType)
@@ -76,125 +67,4 @@
                                     .HtmlAttributes(new { style = "width:60%;" }) )
                 </div>
             </div>
-        </div>
-    </div>
- @*}*@
 
-<script>
-    $("#MainForm").kendoValidator().data("kendoValidator");
-</script>
-@* -----------------------------------------Notificaciones--------------------------------------------------- *@
-@*@(Html.Kendo().Notification()
-                        .Name("notification")
-                        .Position(p => p.Pinned(true).Top(30).Right(30))
-                        .Stacking(NotificationStackingSettings.Down)
-                        .AutoHideAfter(1000)
-                        .Templates(t =>
-                        {
-                            t.Add().Type("upload-success").ClientTemplateID("successTemplate");
-                            t.Add().Type("error").ClientTemplateID("errorTemplate");
-
-                        })
-)
-
-<script id="successTemplate" type="text/x-kendo-template">
-    <div class="upload-success">
-        <img src="/Content/Images/success.png" />
-        <h4 style="color:white;">#= message #</h4>
-    </div>
-</script>
-
-<script id="errorTemplate" type="text/x-kendo-template">
-    <div class="wrong">
-        <img src="/Content/Images/error.png" />
-        <h4 style="color:white;">#= message #</h4>
-    </div>
-</script>
-
-@{
-    if (ViewBag.showMs == 1)
-    {
-        <script>
-            $(document).ready(function ()
-            {
-                $("#notification").data("kendoNotification").show(
-                {
-                    message: "Producto Guardado"
-                }, "upload-success");
-            });
-        </script>
-        ViewBag.showMs = 0;
-    }
-    else if (ViewBag.showMs == 2)
-    {
-        <script>
-            $(document).ready(function ()
-            {
-                $("#notification").data("kendoNotification").show(
-                {
-                    message: "Error al procesar solicitud"
-                }, "error");
-            });
-        </script>
-        ViewBag.showMs = 0;
-    }
-}*@       
-
-<style>
-    .k-notification {
-        border: 0;
-    }
-    /* Error template */
-    .k-notification-error.k-group {
-        background: rgba(100%,0%,0%,.7);
-        color: #FFFFFF;
-    }
-
-    .wrong {
-        width: 240px;
-        height: 100px;
-        padding: 0 30px;
-        line-height: 100px;
-    }
-
-        .wrong h4 {
-            font-size: 1em;
-            padding: 32px 10px 5px;
-        }
-
-        .wrong img {
-            float: left;
-            margin: 30px 15px 30px 30px;
-        }
-
-    /* Info template */
-    .k-notification-info.k-group {
-        background: rgba(0%,0%,0%,.7);
-        color: #FFF;
-    }
-    /* Success template */
-    .k-notification-upload-success {
-        background: rgba(0%,60%,0%,.7);
-        color: #FFF;
-    }
-
-    .upload-success {
-        width: 240px;
-        height: 100px;
-        padding: 0 30px;
-        line-height: 100px;
-    }
-
-        .upload-success h4 {
-            font-size: 1em;
-            font-weight: normal;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .upload-success img {
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-</style>

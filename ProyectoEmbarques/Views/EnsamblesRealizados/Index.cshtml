@@ -75,7 +75,7 @@
                                                     {
                                                         columns.Bound(o => o.RecordDate).Width(120).Filterable(false).Title("Fecha");
                                                         columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(170).Title("No. Parte");
-                                                        columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(100).Title("Área");
+                                                        columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(100).Title("Área").Hidden();
                                                         columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(180);
                                                         columns.Bound(o => o.Clients.ClientCompany).Title("Compañía").Width(200).Hidden();
                                                         columns.Bound(o => o.RecordWorkOrder).Width(120);
@@ -92,9 +92,9 @@
                                                         columns.Bound(o => o.RecordComment2).Width(200).Hidden();
                                                         columns.Bound(o => o.RecordRework).Width(120).Hidden().Hidden();
                                                         columns.Bound(o => o.RecordFAI).Width(130).Hidden().Hidden();
-                                                        columns.Bound(o => o.RecordServiceType).Width(140);
+                                                        columns.Bound(o => o.RecordServiceType).Width(140).Hidden();
                                                         columns.Bound(o => o.RecordTransfer).Width(100).Title("Transferir");
-                                                        columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(220);
+                                                        columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(190);
                                                     })
                                                             .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
                                                             .HtmlAttributes(new { style = "height: 650px" })

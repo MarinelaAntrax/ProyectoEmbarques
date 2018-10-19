@@ -90,8 +90,7 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <h4>Retrabajo</h4>
-                            @(Html.Kendo().CheckBox()
-                                   .Name("RecordRework").HtmlAttributes(new {id="switch" }))
+                            @(Html.CheckBoxFor(fo=>fo.RecordRework,new {@id= "RecordRework" }))
                         </div>
                     </div>
 
@@ -213,8 +212,7 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <h4>FAI(Primera Pieza)</h4>
-                            @(Html.Kendo().CheckBox()
-                                    .Name("RecordFAI") )
+                            @(Html.CheckBoxFor(fo => fo.RecordFAI))
                         </div>
                     </div>
                 </div>
@@ -231,7 +229,7 @@
                                     {
                                             new SelectListItem() { Text = "TRANSFERIR" , Value="TRANSFERIR"},
                                             new SelectListItem() { Text = "NO TRANSFERIR" , Value="NO TRANSFERIR"}
-                                    })
+    })
                                     .SelectedIndex(3)
                                     .Value("TRANSFERIR")
                                     .HtmlAttributes(new { style = "width:90%;" }) )
@@ -334,43 +332,43 @@ function onChangePID(ev) {
 <script>
     //$(document).ready(function () { });
     $("#ProductID").kendoComboBox();
-    var combobox = $("#ProductID").data("kendoComboBox");
+var combobox = $("#ProductID").data("kendoComboBox");
     $(document).ready(function () {
-        combobox.input.keypress(function (e) {
-            if (e.keyCode == 13) {
-                if (!$("#idOrdendeTrabajo").prop('disabled')) {
+    combobox.input.keypress(function (e) {
+        if (e.keyCode == 13) {
+            if (!$("#idOrdendeTrabajo").prop('disabled')) {
                     $("#idOrdendeTrabajo").focus();
-                } else {
-                    if (!$("#IdRecordSerialNo").prop('disabled')) {
+            } else {
+                if (!$("#IdRecordSerialNo").prop('disabled')) {
                         $("#IdRecordSerialNo").focus();
-                    } else {
+                } else {
                         $("#idTrackingPapeleria").focus();
-                    }
                 }
-                return false;
             }
-        });
+            return false;
+        }
     });
+});
     
     var TextOrder = $("#idOrdendeTrabajo");
     $(document).ready(function () {
-        TextOrder.keypress(function (e) {
-            if (e.keyCode == 13) {
+    TextOrder.keypress(function (e) {
+        if (e.keyCode == 13) {
                 $("#IdRecordSerialNo").focus();
-                return false;
-            }
-        });
+            return false;
+        }
     });
+});
 
     var TextPapeleria = $("#IdRecordSerialNo");
     $(document).ready(function () {
-        TextPapeleria.keypress(function (e) {
-            if (e.keyCode == 13) {
+    TextPapeleria.keypress(function (e) {
+        if (e.keyCode == 13) {
                 $("#idTrackingPapeleria").focus();
-                return false;
-            }
-        });
+            return false;
+        }
     });
+});
  
 
     $("#ProductID").change(function (){
@@ -524,6 +522,21 @@ else if (ViewBag.showMs == 4)
     }
     
 <style>
+    input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        padding: 5px;
+    }
+
+    /* Might want to wrap a span around your checkbox text */
+    .checkboxtext {
+        /* Checkbox text */
+        font-size: 110%;
+        display: inline;
+    }
     .k-notification 
     {
         border: 0;
