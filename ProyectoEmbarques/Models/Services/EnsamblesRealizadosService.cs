@@ -203,26 +203,22 @@ namespace ProyectoEmbarques.Models.Services
         }
         public IEnumerable<AirGroundViewModel> ReadServiceType(DateTime starDate, DateTime endDate)
         {
-            var total = from Shipping_Records in BD.Shipping_Records where Shipping_Records.RecordDate>=starDate&&Shipping_Records.RecordDate<=endDate
-                        group Shipping_Records 
-                        by new
-                        {
-                            Shipping_Records.RecordDate,
-                            Shipping_Records.RecordServiceType
-                        } 
-                        into datosFiltrados
-                        select new AirGroundViewModel()
-                        {
-                            FechaDia = datosFiltrados.Key.RecordDate,
-                            FedExAir = datosFiltrados==null? 0 :(from Air in BD.Shipping_Records
-                                       where datosFiltrados.Key.RecordServiceType.Contains("Air")
-                                       select Air.RecordQuantity).Sum(),
-                            FedExGround = datosFiltrados==null? 0 :(from Ground in BD.Shipping_Records
-                                          where datosFiltrados.Key.RecordServiceType.Contains("Ground")
-                                          select Ground.RecordQuantity).Sum()
-                        };
-            return total;
+           List<AirGroundViewModel> x = new List<AirGroundViewModel>();
+            x = (from sel in BD.Shipping_Records
+                 where sel.RecordDate>=starDate&&sel.RecordDate<=endDate
+                 select new AirGroundViewModel()
+                 {
+                     FechaDia = sel.RecordDate,
+                     FedExAir = (from consulta1 in BD.Shipping_Records
+                                 where consulta1.RecordDate==sel.RecordDate&&consulta1.RecordServiceType.Contains("Air")
+                                 select (int?)consulta1.RecordQuantity).Sum() ?? 0,
+                     FedExGround = (from consulta2 in BD.Shipping_Records
+                                    where consulta2.RecordDate == sel.RecordDate && consulta2.RecordServiceType.Contains("Ground")
+                                    select (int?)consulta2.RecordQuantity).Sum() ?? 0,
+                 }).ToList();
+            return x;
         }
+
 
         public string ReadE(decimal ParametroFedex)
         {

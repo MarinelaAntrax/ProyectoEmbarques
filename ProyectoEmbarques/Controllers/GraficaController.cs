@@ -24,7 +24,7 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult ReadServiceType([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
-            return Json(_GraficaAirVSGroundService.Read(starDate, endDate), JsonRequestBehavior.AllowGet);
+            return Json(_GraficaAirVSGroundService.ReadServiceType(starDate, endDate), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -78,7 +78,10 @@
                     .CategoryAxis(axis => axis
                         .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
                         .ValueAxis(axis => axis.Numeric("New").Min(0))
-                        /*.ValueAxis(axis => axis.Numeric("total").Min(0))*/ )
+                        /*.ValueAxis(axis => axis.Numeric("total").Min(0))*/
+
+                        .Tooltip(tooltip => tooltip
+                        .Visible(true)) )
 </div>
 
 <script>
