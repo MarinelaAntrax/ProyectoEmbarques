@@ -201,6 +201,28 @@ namespace ProyectoEmbarques.Models.Services
             return total;
           
         }
+        public IEnumerable<AirGroundViewModel> ReadServiceType(DateTime fechaInicio, DateTime fechaFinal)
+        {
+            var total = from Shipping_Records in BD.Shipping_Records where Shipping_Records.RecordDate>=fechaInicio&&Shipping_Records.RecordDate<=fechaFinal
+                        group Shipping_Records 
+                        by new
+                        {
+                            Shipping_Records.RecordDate,
+                            Shipping_Records.RecordServiceType
+                        } 
+                        into datosFiltrados
+                        select new AirGroundViewModel()
+                        {
+                            FechaDia = datosFiltrados.Key.RecordDate,
+                            FedExAir = datosFiltrados==null? 0 :(from Air in BD.Shipping_Records
+                                       where datosFiltrados.Key.RecordServiceType.Contains("Air")
+                                       select Air.RecordQuantity).Sum(),
+                            FedExGround = datosFiltrados==null? 0 :(from Ground in BD.Shipping_Records
+                                          where datosFiltrados.Key.RecordServiceType.Contains("Ground")
+                                          select Ground.RecordQuantity).Sum()
+                        };
+            return total;
+        }
 
         public string ReadE(decimal ParametroFedex)
         {
