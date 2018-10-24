@@ -170,6 +170,14 @@
             alert("Tracking invalido");
         }
     }
+
+    $(document).ready(function () {
+        $('#exampleModalCenter').on('shown.bs.modal', function () {
+            var autocomplete = $("#ParametroFedex").data("kendoAutoComplete");
+            autocomplete.focus();
+        })
+
+    });
 </script>
 
 <script>

@@ -54,8 +54,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\KENDOUIMVC\2018.1.221.545\Kendo.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc.Export, Version=2018.3.620.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Kendo.Mvc.Export">
       <HintPath>..\packages\export\binaries\net40\Kendo.Mvc.Export.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
