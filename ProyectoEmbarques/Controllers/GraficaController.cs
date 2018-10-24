@@ -9,6 +9,7 @@ using Kendo.Mvc.UI;
 
 namespace ProyectoEmbarques.Controllers
 {
+    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class GraficaController : Controller
     {
         MaterialShippingControlEntities BD = new MaterialShippingControlEntities();

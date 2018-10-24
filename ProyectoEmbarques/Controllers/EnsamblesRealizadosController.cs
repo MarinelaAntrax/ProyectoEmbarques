@@ -14,7 +14,7 @@ using System.Web.Routing;
 
 namespace ProyectoEmbarques.Controllers
 {
-    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public partial class EnsamblesRealizadosController : Controller
     {
         MaterialShippingControlEntities BD = new MaterialShippingControlEntities();

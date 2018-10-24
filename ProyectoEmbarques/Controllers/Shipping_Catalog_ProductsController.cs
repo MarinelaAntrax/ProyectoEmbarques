@@ -14,7 +14,7 @@ using Kendo.Mvc.Extensions;
 using System.Diagnostics;
 namespace ProyectoEmbarques.Controllers
 {
-    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class Shipping_Catalog_ProductsController : Controller
     {
         MaterialShippingControlEntities db = new MaterialShippingControlEntities();
