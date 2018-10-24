@@ -22,9 +22,9 @@ namespace ProyectoEmbarques.Controllers
             return View();
         }
 
-        public ActionResult ReadServiceType([DataSourceRequest] DataSourceRequest request, DateTime fechaInicio, DateTime fechaFinal)
+        public ActionResult ReadServiceType([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
-            return Json(_GraficaAirVSGroundService.ReadServiceType(fechaInicio, fechaFinal), JsonRequestBehavior.AllowGet);
+            return Json(_GraficaAirVSGroundService.Read(starDate, endDate), JsonRequestBehavior.AllowGet);
         }
     }
 }

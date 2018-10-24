@@ -201,9 +201,9 @@ namespace ProyectoEmbarques.Models.Services
             return total;
           
         }
-        public IEnumerable<AirGroundViewModel> ReadServiceType(DateTime fechaInicio, DateTime fechaFinal)
+        public IEnumerable<AirGroundViewModel> ReadServiceType(DateTime starDate, DateTime endDate)
         {
-            var total = from Shipping_Records in BD.Shipping_Records where Shipping_Records.RecordDate>=fechaInicio&&Shipping_Records.RecordDate<=fechaFinal
+            var total = from Shipping_Records in BD.Shipping_Records where Shipping_Records.RecordDate>=starDate&&Shipping_Records.RecordDate<=endDate
                         group Shipping_Records 
                         by new
                         {
