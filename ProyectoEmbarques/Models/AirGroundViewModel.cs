@@ -7,7 +7,7 @@ namespace ProyectoEmbarques.Models
 {
     public class AirGroundViewModel
     {
-        public int NewScans { get; set;}
+        public int NewScans { get; set; }
 
         public int FedExAir { get; set; }
 

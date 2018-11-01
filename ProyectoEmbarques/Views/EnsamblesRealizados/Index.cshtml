@@ -26,82 +26,81 @@
 
 <div class="telerik-controls">
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
-                                        .Name("grid")
-                                        .Selectable()
-                                        .ToolBar(tools =>
-                                        {
-                                            tools.Template(@<text>
-                                                <a class="k-button k-button-icontext" href="#" data-toggle="modal" data-target="#exampleModalCenter"><span class="k-icon k-i-pdf"></span>Packing List</a>
-                                                <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
-                                                <a class="k-button k-button-icontext k-grid-pdf" href="#"><span class="k-icon k-i-pdf"></span>Exportar a PDF</a>
-                                                <div class="toolbar">
-                                                    <label class="category-label"> De </label>
-                                                    @(Html.Kendo().DatePicker()
-                                                            .Name("Inicio")
-                                                            .Value(DateTime.Today)
-                                                            .Min("01/01/2018")
-                                                            .HtmlAttributes(new { style = "width: 150px;" }) )
-                                                    <label class="category-label"> &nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp; </label>
-                                                    @(Html.Kendo().DatePicker()
-                                                            .Name("Final")
-                                                            .Value(DateTime.Today.AddDays(1))
-                                                            .Min("07/01/2018")
-                                                            .HtmlAttributes(new { style = "width: 150px;" }) )
-                                                    <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar </a>
-                                                </div>
-                                            </text>);
-                                                })
-                                                                    .Scrollable()
-                                                                    .Reorderable(reordable => reordable.Columns(true))
-                                                                    .Resizable(resize => resize.Columns(true))
-                                                                    .Sortable()
-                                                                    .Pageable()
-                                                                    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
-                                                                    .Groupable()
-                                                                    .ColumnMenu()
-                                                                    .Pageable(x => x.Numeric(true)
-                                                                        .PreviousNext(true)
-                                                                        .Refresh(true)
-                                                                        .ButtonCount(5))
-                                                                        .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Sumario").DisplayDeleteConfirmation("Estas a punto de eliminar un registro. ¿Deseas continuar?"))
-                                                                        .DataSource(dataSource => dataSource
-                                                                        .Ajax()
-                                                                            .Model(model => { model.Id(id => id.RecordID); })
-                                                                            .Events(events => events.Error("error_handler"))
-                                                                            .Update(up => up.Action("Update", "EnsamblesRealizados"))
-                                                                            .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
-                                                                            .Destroy(destroy => destroy.Action("Destroy", "EnsamblesRealizados"))
-                                                                            .PageSize(100))
-                                                                    .Columns(columns =>
-                                                                    {
-                                                                        columns.Bound(o => o.RecordDate).Width(120).Filterable(false).Title("Fecha");
-                                                                        columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(170).Title("No. Parte");
-                                                                        columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(100).Title("Área").Hidden();
-                                                                        columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Width(150).Hidden();
-                                                                        columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(180);
-                                                                        columns.Bound(o => o.Clients.ClientCompany).Title("Compañía").Width(200).Hidden();
-                                                                        columns.Bound(o => o.RecordWorkOrder).Width(120);
-                                                                        columns.Bound(o => o.RecordTrackingId).Width(120);
-                                                                        columns.Bound(o => o.RecordSerialNo).Width(100);
-                                                                        columns.Bound(o => o.RecordQuantity).Width(120).Title("Cantidad");
-                                                                        columns.Bound(o => o.RecordFedexTracking).Width(130).Title("FedEx Tracking").Hidden();
-                                                                        columns.Bound(o => o.RecordControlBoxNo).Width(150).Hidden();
-                                                                        columns.Bound(o => o.RecordPieceBoxNo).Width(140).Hidden();
-                                                                        columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(140).Hidden();
-                                                                        columns.Bound(o => o.RecordSeguritySeal1).Width(250).Hidden();
-                                                                        columns.Bound(o => o.RecordComment).Width(200).Hidden();
-                                                                        columns.Bound(o => o.RecordComment1).Width(200).Hidden();
-                                                                        columns.Bound(o => o.RecordComment2).Width(200).Hidden();
-                                                                        columns.Bound(o => o.RecordRework).Width(120).Hidden().Hidden();
-                                                                        columns.Bound(o => o.RecordFAI).Width(130).Hidden().Hidden();
-                                                                        columns.Bound(o => o.RecordServiceType).Width(140).Hidden();
-                                                                        columns.Bound(o => o.RecordTransfer).Width(100).Title("Transferir");
-                                                                        columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(190);
-                                                                    })
-                                                                            .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
-                                                                            .HtmlAttributes(new { style = "height: 650px" })
-                                                                            .Events(e => { e.Edit("onEdit"); })
-    )
+            .Name("grid")
+            .Selectable()
+            .ToolBar(tools =>
+            {
+                tools.Template(@<text>
+                    <a class="k-button k-button-icontext" href="#" data-toggle="modal" data-target="#exampleModalCenter"><span class="k-icon k-i-pdf"></span>Packing List</a>
+                    <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
+                    <a class="k-button k-button-icontext k-grid-pdf" href="#"><span class="k-icon k-i-pdf"></span>Exportar a PDF</a>
+                    <div class="toolbar">
+                        <label class="category-label"> De </label>
+                        @(Html.Kendo().DatePicker()
+                                .Name("Inicio")
+                                .Value(DateTime.Today)
+                                .Min("01/01/2018")
+                                .HtmlAttributes(new { style = "width: 150px;" }) )
+                        <label class="category-label"> &nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp; </label>
+                        @(Html.Kendo().DatePicker()
+                                .Name("Final")
+                                .Value(DateTime.Today.AddDays(1))
+                                .Min("07/01/2018")
+                                .HtmlAttributes(new { style = "width: 150px;" }) )
+                        <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar </a>
+                    </div>
+                </text>);
+            })
+            .Scrollable()
+            .Reorderable(reordable => reordable.Columns(true))
+            .Resizable(resize => resize.Columns(true))
+            .Sortable()
+            .Pageable()
+            .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+            .Groupable()
+            .ColumnMenu()
+            .Pageable(x => x.Numeric(true)
+                .PreviousNext(true)
+                .Refresh(true)
+                .ButtonCount(5))
+                .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Sumario").DisplayDeleteConfirmation("Estas a punto de eliminar un registro. ¿Deseas continuar?"))
+            .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Model(model => { model.Id(id => id.RecordID); })
+                    .Events(events => events.Error("error_handler"))
+                    .Update(up => up.Action("Update", "EnsamblesRealizados"))
+                    .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
+                    .Destroy(destroy => destroy.Action("Destroy", "EnsamblesRealizados"))
+                    .PageSize(100))
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.RecordDate).Width(120).Filterable(false).Title("Fecha");
+                columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(170).Title("No. Parte");
+                columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(100).Title("Área").Hidden();
+                columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Width(150).Hidden();
+                columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(180);
+                columns.Bound(o => o.Clients.ClientCompany).Title("Compañía").Width(200).Hidden();
+                columns.Bound(o => o.RecordWorkOrder).Width(120);
+                columns.Bound(o => o.RecordTrackingId).Width(120);
+                columns.Bound(o => o.RecordSerialNo).Width(100);
+                columns.Bound(o => o.RecordQuantity).Width(120).Title("Cantidad");
+                columns.Bound(o => o.RecordFedexTracking).Width(130).Title("FedEx Tracking").Hidden();
+                columns.Bound(o => o.RecordControlBoxNo).Width(150).Hidden();
+                columns.Bound(o => o.RecordPieceBoxNo).Width(140).Hidden();
+                columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(140).Hidden();
+                columns.Bound(o => o.RecordSeguritySeal1).Width(250).Hidden();
+                columns.Bound(o => o.RecordComment).Width(200).Hidden();
+                columns.Bound(o => o.RecordComment1).Width(200).Hidden();
+                columns.Bound(o => o.RecordComment2).Width(200).Hidden();
+                columns.Bound(o => o.RecordRework).Width(120).Hidden().Hidden();
+                columns.Bound(o => o.RecordFAI).Width(130).Hidden().Hidden();
+                columns.Bound(o => o.RecordServiceType).Width(140).Hidden();
+                columns.Bound(o => o.RecordTransfer).Width(100).Title("Transferir");
+                columns.Command(command => { command.Destroy().Text("Eliminar"); command.Edit().Text("Editar"); }).Width(190);
+            })
+            .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
+            .HtmlAttributes(new { style = "height: 650px" })
+            .Events(e => { e.Edit("onEdit"); }) )
 </div>
 
 @using (Html.BeginForm("PackingList", "Reportes"))
@@ -123,20 +122,20 @@
                         <div class="form-group py-5">
                             <h4>Ingrese el Tracking de Fedex</h4>
                             @(Html.Kendo().AutoCompleteFor(f => f.RecordFedexTracking)
-                                                    .Name("ParametroFedex")
-                                                    .DataTextField("RecordFedexTracking")
-                                                    .Filter(FilterType.StartsWith)
-                                                    .Events(e => e.Change("onChange"))
-                                                    .DataSource(source =>
-                                                    {
-                                                        source.Read(read =>
-                                                        {
-                                                            read.Action("FillCombobox", "Reportes");
-                                                        })
-                                                            .ServerFiltering(false);
-                                                    })
-                                                    .HtmlAttributes(new { style = "width:90%;" })
-                                                    .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.RecordFedexTracking" + " #</div>") )
+                                    .Name("ParametroFedex")
+                                    .DataTextField("RecordFedexTracking")
+                                    .Filter(FilterType.StartsWith)
+                                    .Events(e => e.Change("onChange"))
+                                    .DataSource(source =>
+                                    {
+                                        source.Read(read =>
+                                        {
+                                            read.Action("FillCombobox", "Reportes");
+                                        })
+                                            .ServerFiltering(false);
+                                    })
+                                    .HtmlAttributes(new { style = "width:90%;" })
+                                    .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.RecordFedexTracking" + " #</div>") )
                         </div>
                     </div>
                     <br /><br />
@@ -149,7 +148,7 @@
             </div>
         </div>
     </div>
-}
+ }
 
 <script>
     function onChange(e) {

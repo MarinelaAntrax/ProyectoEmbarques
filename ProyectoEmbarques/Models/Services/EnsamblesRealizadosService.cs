@@ -285,7 +285,8 @@ namespace ProyectoEmbarques.Models.Services
 
         public Shipping_RecordsViewModel TakeLast()
         {
-            return GetAll().OrderByDescending(des => des.RecordID).Select(sel => new Shipping_RecordsViewModel {
+            var ultimo= GetAll().OrderByDescending(des => des.RecordID).Select(sel => new Shipping_RecordsViewModel
+            {
                 RecordControlBoxNo = sel.RecordControlBoxNo,
                 RecordFedexTracking = sel.RecordFedexTracking,
                 RecordPieceBoxNo = sel.RecordPieceBoxNo,
@@ -304,6 +305,33 @@ namespace ProyectoEmbarques.Models.Services
                 RecordTransfer = sel.RecordTransfer,
                 RecordSeguritySeal1 = sel.RecordSeguritySeal1
             }).FirstOrDefault();
+
+            if (ultimo == null) {
+                ultimo = new Shipping_RecordsViewModel();
+                ultimo.RecordTransfer = "";
+                ultimo.ClientID = 0;
+                ultimo.ProductID = 0;
+                ultimo.RecordQuantity = 0;
+                ultimo.RecordDate = DateTime.Now;
+                ultimo.RecordFedexTracking = 0;
+                ultimo.RecordControlBoxNo = 0;
+                ultimo.RecordPieceBoxNo = 0;
+                ultimo.ShipmentTypeID = 0;
+                ultimo.RecordServiceType = "";
+                ultimo.RecordComment = "";
+                ultimo.RecordWorkOrder = 0;
+                ultimo.RecordSerialNo = "";
+                ultimo.RecordTrackingId = 0;
+                ultimo.RecordRework = false;
+                ultimo.RecordComment1 = "";
+                ultimo.RecordComment2 = "";
+                ultimo.RecordFAI = false;
+                ultimo.RecordSeguritySeal1 = "";
+                ultimo.RecordSeguritySeal2 = "";
+                ultimo.RecordSeguritySeal3 = "";
+                ultimo.RecordSeguritySeal4 = "";
+            }
+            return ultimo;
         }
       }
 }

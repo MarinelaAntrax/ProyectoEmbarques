@@ -1,87 +1,93 @@
 ﻿<div class="demo-section k-content wide">
-    <div class="row well" style="margin:0 100px 100px 100px;">
+    <div class="row well" style="margin:0 150px 150px 150px;">
         <div class="col-lg-12">
             <div class="col-lg-3">
                 @*<div class="form-group">
-                @Html.Label("Subir Archivo")
-                @(Html.Kendo().Upload()
-                    .Name("DDAreas")
-                    .HtmlAttributes(new { style = "width:100%;" }))
-            </div>*@
+                        @Html.Label("Subir Archivo")
+                        @(Html.Kendo().Upload()
+                            .Name("DDAreas")
+                            .HtmlAttributes(new { style = "width:100%;" }))
+                    </div>*@
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
-            @Html.Label("Fecha de inicio")
-            @(Html.Kendo().DatePicker()
-                   .Name("fechaInicio")
-                   .Value(System.DateTime.Today.AddDays(-1)).Max(System.DateTime.Today.AddDays(-1))
-                   .HtmlAttributes(new { style = "width:100%;" }))
-            </div>
+                    @Html.Label("Fecha de inicio")
+                    @(Html.Kendo().DatePicker()
+                            .Name("fechaInicio")
+                            .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
+                            .Events(ev => ev.Open("Open"))
+                            .Value(System.DateTime.Today.AddDays(-1)).Max(System.DateTime.Today.AddDays(-1))
+                            .HtmlAttributes(new { style = "width:90%;" }))
+                </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
                     @Html.Label("Fecha final")
                     @(Html.Kendo().DatePicker()
-                           .Name("fechaFinal")
-                           .Value(System.DateTime.Now).Max(System.DateTime.Today)
-                           .HtmlAttributes(new { style = "width:100%;" }))
+                            .Name("fechaFinal")
+                            .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
+                            .Events(ev => ev.Open("Open"))
+                            .Value(System.DateTime.Now).Max(System.DateTime.Today)
+                            .HtmlAttributes(new { style = "width:90%;" }))
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
                     <br />
                     @(Html.Kendo().Button()
-                                  .Name("Submit")
-                                  .Content("Generar")
-                                  .HtmlAttributes(new { id = "smtBtn" }))
+                            .Name("Submit")
+                            .Content("Generar")
+                            .HtmlAttributes(new { id = "smtBtn" }))
                 </div>
             </div>
 
+            <div class="box-col">
+                <button class='export-pdf k-button'>Exportar PDF</button>
+            </div>
         </div>
     </div>
     
+    <center><h4>Overnight shipments Air VS. Ground by Pieces</h4></center>
     @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
-                .Name("chart")
-                .Title("Overnight shipments Air VS. Ground by Pieces")
-                .DataSource(data=>data.Read(rd=>rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
-                .Legend(legend => legend
-                .Position(ChartLegendPosition.Right))
-                .Series(series =>
-                {
-                    series
-                        .Column(model => model.FedExGround)
+            .Name("chart")
+            .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
+            .Legend(legend => legend
+            .Position(ChartLegendPosition.Right))
+            .Series(series =>
+            {
+                series
+                    .Column(model => model.FedExGround)
                     .Stack("yes")
                     .Color("#0F80DE")
                     .Name("FedEx Ground")
                     .Axis("New");
 
-                    series
-                        .Column(model => model.FedExAir)
-                        .Stack("yes")
-                        .Color("#E2060D")
-                        .Name("FedEx Air")
-                        .Axis("New");
+                series
+                    .Column(model => model.FedExAir)
+                    .Stack("yes")
+                    .Color("#E2060D")
+                    .Name("FedEx Air")
+                    .Axis("New");
 
-                    //series
-                    //    .Column(model => model.NewScans)
-                    //    .Stack("Yellow")
-                    //    .Name("New Scans")
-                    //    .Color("#F3B934")
-                    //    .Axis("New");
+                //series
+                //    .Column(model => model.NewScans)
+                //    .Stack("Yellow")
+                //    .Name("New Scans")
+                //    .Color("#F3B934")
+                //    .Axis("New");
 
-                    //series
-                    //    .Line(model => model.TotalinShip)
-                    //    .Name("Total in Ship")
-                    //    .Color("#0A6DBF")
-                    //    .Axis("total");
-                })
-                    .CategoryAxis(axis => axis
-                        .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
-                        .ValueAxis(axis => axis.Numeric("New").Min(0))
-                        /*.ValueAxis(axis => axis.Numeric("total").Min(0))*/
-
-                        .Tooltip(tooltip => tooltip
-                        .Visible(true)) )
+                //series
+                //    .Line(model => model.TotalinShip)
+                //    .Name("Total in Ship")
+                //    .Color("#0A6DBF")
+                //    .Axis("total");
+            })
+                .CategoryAxis(axis => axis
+                    .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
+                    .ValueAxis(axis => axis.Numeric("New").Min(0))
+                    //.ValueAxis(axis => axis.Numeric("total").Min(0))
+                    .Tooltip(tooltip => tooltip
+                    .Visible(true)) )
 </div>
 
 <script>
@@ -91,9 +97,28 @@
             endDate: $("#fechaFinal").val()
         };
     }
-
     $('#smtBtn').on("click", function (e) {
         $("#chart").data("kendoChart").dataSource.read();
         return false;
+    });
+</script>
+<script>
+    function Open() {
+        $('.k-weekend a').bind('click', function () {
+            return false;
+        });
+    }
+</script>
+
+<script>
+     $(".export-pdf").click(function () {
+        var chart = $("#chart").getKendoChart();
+        chart.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
+            kendo.saveAs({
+                dataURI: data,
+                fileName: "Overnight shipments Air VS. Ground by Pieces.pdf",
+                proxyURL: "@Url.Action("Export_Save", "Grafica")"
+            });
+        });
     });
 </script>

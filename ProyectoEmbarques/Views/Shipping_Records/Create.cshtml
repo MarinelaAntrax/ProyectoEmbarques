@@ -229,9 +229,8 @@
                                     {
                                             new SelectListItem() { Text = "TRANSFERIR" , Value="TRANSFERIR"},
                                             new SelectListItem() { Text = "NO TRANSFERIR" , Value="NO TRANSFERIR"}
-    })
+                                    })
                                     .SelectedIndex(3)
-                                    .Value("TRANSFERIR")
                                     .HtmlAttributes(new { style = "width:90%;" }) )
                         </div>
                     </div>
@@ -287,6 +286,11 @@
  }
 
 <script>
+    $(document).ready(function () {
+        var autocomplete = $("#ProductID").data("kendoComboBox");
+        autocomplete.focus();
+    });
+
     $("#SealDiferentes").kendoValidator().data("kendoValidator");
     $("#RecordDate").prop("readonly", true);
 
