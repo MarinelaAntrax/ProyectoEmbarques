@@ -232,11 +232,6 @@ namespace ProyectoEmbarques.Models.Services
                             products.ProductType,
                             Shipping_Records.RecordServiceType,
                             Shipping_Records.RecordSerialNo,
-                            Shipping_Records.RecordDate,
-                            products.Areas.AreaName,
-                            Shipping_Records.ShipmentTypeID,
-                            Shipping_Records.Shipping_Catalog_ShipmentTypes.ShipmentType,
-                            Shipping_Records.RecordQuantity
                         } into Shipping_RecordsGroup
                         select new Shipping_RecordsViewModel()
                         {
@@ -248,23 +243,12 @@ namespace ProyectoEmbarques.Models.Services
                                 Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
                                 {
                                     ProductName = Shipping_RecordsGroup.Key.ProductName,
-                            
-                                    Areas = new AreasViewModel()
-                                    {
-                                            AreaName = Shipping_RecordsGroup.Key.AreaName
-                                    },
                                 ProductType = Shipping_RecordsGroup.Key.ProductType
                                 },
-                            RecordDate = Shipping_RecordsGroup.Key.RecordDate,
                             RecordFedexTracking = Shipping_RecordsGroup.Key.RecordFedexTracking,
-                                CatalogShipmentType = new CatalogShipmentTypeViewModel()
-                                {
-                                   ShipmentTypeID = Shipping_RecordsGroup.Key.ShipmentTypeID,
-                                   ShipmentType = Shipping_RecordsGroup.Key.ShipmentType
-                                },
                             RecordSerialNo = Shipping_RecordsGroup.Key.RecordSerialNo,
                             RecordServiceType = Shipping_RecordsGroup.Key.RecordServiceType,
-                            RecordQuantity = Shipping_RecordsGroup.Sum(x => x.RecordQuantity)
+                            RecordQuantity = Shipping_RecordsGroup.Sum(a => a.RecordQuantity)
                         };
             return suma;
         }

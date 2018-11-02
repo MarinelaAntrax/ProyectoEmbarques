@@ -71,7 +71,7 @@
                     .Update(up => up.Action("Update", "EnsamblesRealizados"))
                     .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
                     .Destroy(destroy => destroy.Action("Destroy", "EnsamblesRealizados"))
-                    .PageSize(100))
+                    .PageSize(3000))
             .Columns(columns =>
             {
                 columns.Bound(o => o.RecordDate).Width(120).Filterable(false).Title("Fecha");
