@@ -176,8 +176,6 @@ namespace ProyectoEmbarques.Models.Services
                 return GetAll().FirstOrDefault(predicate);
         }
 
-        
-
         public IEnumerable<Shipping_RecordsViewModel> Read()
         {
             return GetAll();
@@ -199,8 +197,8 @@ namespace ProyectoEmbarques.Models.Services
                             RecordCantidad = Shipping_RecordsGroup.Sum(x => x.RecordQuantity)
                         };
             return total;
-          
         }
+
         public IEnumerable<AirGroundViewModel> ReadServiceType(DateTime starDate, DateTime endDate)
         {
            List<AirGroundViewModel> x = new List<AirGroundViewModel>();
@@ -219,6 +217,57 @@ namespace ProyectoEmbarques.Models.Services
             return x;
         }
 
+        public IEnumerable<Shipping_RecordsViewModel> ReadHotShot(DateTime starDate, DateTime endDate)
+        {
+            var suma = from Shipping_Records in BD.Shipping_Records
+                       where Shipping_Records.RecordDate >= starDate && Shipping_Records.RecordDate <= endDate
+                       join products in BD.Shipping_Catalog_Products on Shipping_Records.ProductID equals products.ProductID
+                       join clients in BD.Clients on Shipping_Records.ClientID equals clients.ClientID
+                        group Shipping_Records by new
+                        {
+                            products.ProductName,
+                            clients.ClientName,
+                            clients.ClientCompany,
+                            Shipping_Records.RecordFedexTracking,
+                            products.ProductType,
+                            Shipping_Records.RecordServiceType,
+                            Shipping_Records.RecordSerialNo,
+                            Shipping_Records.RecordDate,
+                            products.Areas.AreaName,
+                            Shipping_Records.ShipmentTypeID,
+                            Shipping_Records.Shipping_Catalog_ShipmentTypes.ShipmentType,
+                            Shipping_Records.RecordQuantity
+                        } into Shipping_RecordsGroup
+                        select new Shipping_RecordsViewModel()
+                        {
+                                Clients = new ClientesViewModel()
+                                {
+                                    ClientName = Shipping_RecordsGroup.Key.ClientName,
+                                    ClientCompany = Shipping_RecordsGroup.Key.ClientCompany
+                                },
+                                Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
+                                {
+                                    ProductName = Shipping_RecordsGroup.Key.ProductName,
+                            
+                                    Areas = new AreasViewModel()
+                                    {
+                                            AreaName = Shipping_RecordsGroup.Key.AreaName
+                                    },
+                                ProductType = Shipping_RecordsGroup.Key.ProductType
+                                },
+                            RecordDate = Shipping_RecordsGroup.Key.RecordDate,
+                            RecordFedexTracking = Shipping_RecordsGroup.Key.RecordFedexTracking,
+                                CatalogShipmentType = new CatalogShipmentTypeViewModel()
+                                {
+                                   ShipmentTypeID = Shipping_RecordsGroup.Key.ShipmentTypeID,
+                                   ShipmentType = Shipping_RecordsGroup.Key.ShipmentType
+                                },
+                            RecordSerialNo = Shipping_RecordsGroup.Key.RecordSerialNo,
+                            RecordServiceType = Shipping_RecordsGroup.Key.RecordServiceType,
+                            RecordQuantity = Shipping_RecordsGroup.Sum(x => x.RecordQuantity)
+                        };
+            return suma;
+        }
 
         public string ReadE(decimal ParametroFedex)
         {

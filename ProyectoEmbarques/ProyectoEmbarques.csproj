@@ -1520,6 +1520,7 @@
     <Content Include="Views\Grafica\IndexGrafica.cshtml" />
     <Content Include="Views\Ensambles\EditorTemplates\Ensambles.cshtml" />
     <Content Include="Views\EnsamblesRealizados\EditorTemplates\Sumario.cshtml" />
+    <Content Include="Views\EnsamblesRealizados\EditorTemplates\HotShot.cshtml" />
     <None Include="Views\Shipping_Records\Create.cshtml" />
     <Content Include="Views\Ensambles\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />

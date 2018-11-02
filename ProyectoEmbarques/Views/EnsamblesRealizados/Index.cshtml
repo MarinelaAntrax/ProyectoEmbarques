@@ -33,7 +33,7 @@
                 tools.Template(@<text>
                     <a class="k-button k-button-icontext" href="#" data-toggle="modal" data-target="#exampleModalCenter"><span class="k-icon k-i-pdf"></span>Packing List</a>
                     <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
-                    <a class="k-button k-button-icontext k-grid-pdf" href="#"><span class="k-icon k-i-pdf"></span>Exportar a PDF</a>
+                    <a class="k-button k-button-icontext" href="@Url.Action("HotShot", "EnsamblesRealizados")"><span class="k-icon k-i-pdf"></span>HOT SHOT</a>
                     <div class="toolbar">
                         <label class="category-label"> De </label>
                         @(Html.Kendo().DatePicker()
@@ -232,10 +232,7 @@
 </style>
 
 <style>
-    k-pdf-export .k-grid-toolbar,
-    .k-pdf-export .k-pager-wrap {
-        display: none;
-    }
+
     #grid .k-grid-toolbar {
         padding: .75em 1.3em .8333em 1em;
     }
@@ -248,7 +245,12 @@
         background-color: #fdd;
     }
     .k-pdf-export .k-grid-toolbar,
-    .k-pdf-export .k-grouping-header {
+    .k-pdf-export .k-grouping-header,
+    .k-pdf-export .k-command-cell,
+    .k-pdf-export .k-grid-top,
+    .k-pdf-export .k-pager-wrap,
+    .k-pdf-export .k-filter-row,
+    .k-pdf-export .k-header-column-menu k-state-border-down {
         display: none;
     }
     

@@ -32,10 +32,20 @@ namespace ProyectoEmbarques.Controllers
             return View();
         }
 
+        public ActionResult HotShot()
+        {
+
+            return View("EditorTemplates/HotShot");
+        }
         //Load data to a grid
+        public ActionResult ReadHotShot([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
+        {
+            return Json(_SumarioEmbarquesService.ReadHotShot(starDate, endDate).OrderByDescending(ord=>ord.RecordID).ToDataSourceResult(request));
+        }
+
         public ActionResult Read([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
-            return Json(_SumarioEmbarquesService.Read(starDate, endDate).OrderByDescending(ord=>ord.RecordID).ToDataSourceResult(request));
+            return Json(_SumarioEmbarquesService.Read(starDate, endDate).OrderByDescending(ord => ord.RecordID).ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
