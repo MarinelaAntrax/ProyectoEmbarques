@@ -51,7 +51,7 @@
         @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
                 .Name("chart")
                 .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
-                .Legend(legend => legend 
+                .Legend(legend => legend
                 .Position(ChartLegendPosition.Right))
                 .Series(series =>
                 {
@@ -69,24 +69,23 @@
                         .Name("FedEx Air")
                         .Axis("New");
 
-                    //series
-                    //    .Column(model => model.NewScans)
-                    //    .Stack("Yellow")
-                    //    .Name("New Scans")
-                    //    .Color("#F3B934")
-                    //    .Axis("New");
+                    series
+                        .Column(model => model.NewScans)
+                        .Stack("Yellow")
+                        .Name("New Scans")
+                        .Color("#F3B934")
+                        .Axis("New");
 
-                    //series
-                    //    .Line(model => model.TotalinShip)
-                    //    .Name("Total in Ship")
-                    //    .Color("#0A6DBF")
-                    //    .Axis("total");
+                    series
+                        .Line(new double[] { 3986, 3535 })
+                        .Name("Total in Ship")
+                        .Color("#0A6DBF")
+                        .Axis("total");
                 })
                     .CategoryAxis(axis => axis
                         .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
-                        .ValueAxis(axis => axis.Numeric("New")
-                        .Labels(labels => labels.Format("")))
-                        //.ValueAxis(axis => axis.Numeric("total").Min(0))
+                        .ValueAxis(axis => axis.Numeric("New"))
+                        .ValueAxis(axis => axis.Numeric("total").Min(0))
                         .Tooltip(tooltip => tooltip
                         .Visible(true)) )
     </div>

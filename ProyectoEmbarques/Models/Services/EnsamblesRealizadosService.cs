@@ -33,39 +33,12 @@ namespace ProyectoEmbarques.Models.Services
 
                 result = Entities.Shipping_Records.Select(componente => new Shipping_RecordsViewModel
                 {
-                    ClientID = componente.ClientID,
-                    Clients = new ClientesViewModel()
-                    {
-                        ClientName = componente.Clients.ClientName,
-                        ClientCompany = componente.Clients.ClientCompany
-                    },
-                    ProductID = componente.ProductID,
-                    Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
-                    {
-                        ProductID = componente.Shipping_Catalog_Products.ProductID,
-                        ProductName = componente.Shipping_Catalog_Products.ProductName,
-                        AreaID = componente.Shipping_Catalog_Products.AreaID,
-                    Areas = new AreasViewModel()
-                    {
-                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName
-                    },
-                        ProductType = componente.Shipping_Catalog_Products.ProductType,
-                        WOrder = componente.Shipping_Catalog_Products.WOrder,
-                        WKRMSerie = componente.Shipping_Catalog_Products.WKRMSerie,
-                        TIDSerie = componente.Shipping_Catalog_Products.TIDSerie,
-                    },
                     RecordID = componente.RecordID,
                     RecordQuantity = componente.RecordQuantity,
                     RecordDate = componente.RecordDate,
                     RecordFedexTracking = componente.RecordFedexTracking,
                     RecordControlBoxNo = componente.RecordControlBoxNo,
                     RecordPieceBoxNo = componente.RecordPieceBoxNo,
-                    ShipmentTypeID = componente.ShipmentTypeID,
-                    CatalogShipmentType = new CatalogShipmentTypeViewModel()
-                    {
-                        ShipmentTypeID = componente.Shipping_Catalog_ShipmentTypes.ShipmentTypeID,
-                        ShipmentType = componente.Shipping_Catalog_ShipmentTypes.ShipmentType
-                    },
                     RecordComment = componente.RecordComment,
                     RecordWorkOrder = componente.RecordWorkOrder,
                     RecordSerialNo = componente.RecordSerialNo,
@@ -76,7 +49,37 @@ namespace ProyectoEmbarques.Models.Services
                     RecordServiceType = componente.RecordServiceType,
                     RecordFAI = componente.RecordFAI,
                     RecordTransfer = componente.RecordTransfer,
-                    RecordSeguritySeal1 = componente.RecordSeguritySeal1
+                    RecordSeguritySeal1 = componente.RecordSeguritySeal1,
+                    ClientID = componente.ClientID,
+                        Clients = new ClientesViewModel()
+                        {
+                            ClientName = componente.Clients.ClientName,
+                            ClientCompany = componente.Clients.ClientCompany
+                        },
+                    ProductID = componente.ProductID,
+                        Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
+                        {
+                                ProductID = componente.Shipping_Catalog_Products.ProductID,
+
+
+
+                                ProductName = componente.Shipping_Catalog_Products.ProductName,
+                            AreaID = componente.Shipping_Catalog_Products.AreaID,
+                                    Areas = new AreasViewModel()
+                                    {
+                                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName
+                                    },
+                            ProductType = componente.Shipping_Catalog_Products.ProductType,
+                            WOrder = componente.Shipping_Catalog_Products.WOrder,
+                            WKRMSerie = componente.Shipping_Catalog_Products.WKRMSerie,
+                            TIDSerie = componente.Shipping_Catalog_Products.TIDSerie,
+                        },
+                    ShipmentTypeID = componente.ShipmentTypeID,
+                        CatalogShipmentType = new CatalogShipmentTypeViewModel()
+                        {
+                            ShipmentTypeID = componente.Shipping_Catalog_ShipmentTypes.ShipmentTypeID,
+                            ShipmentType = componente.Shipping_Catalog_ShipmentTypes.ShipmentType
+                        }
                 }).ToList();
                 return result;
             } 
@@ -114,9 +117,9 @@ namespace ProyectoEmbarques.Models.Services
                     RecordTransfer = Record.RecordTransfer,
                     RecordSeguritySeal1 = Record.RecordSeguritySeal1
                 };
-                Entities.Shipping_Records.Add(entity);
-                Entities.SaveChanges();
-                Record.RecordID = entity.RecordID;
+                    Entities.Shipping_Records.Add(entity);
+                    Entities.SaveChanges();
+                    Record.RecordID = entity.RecordID;
             }
         }
 
@@ -157,7 +160,6 @@ namespace ProyectoEmbarques.Models.Services
                 {
                     RecordID = Record.RecordID
                 };
-
                 Entities.Shipping_Records.Attach(entity);
                 Entities.Shipping_Records.Remove(entity);
 
@@ -208,10 +210,10 @@ namespace ProyectoEmbarques.Models.Services
                  {
                      FechaDia = sel.RecordDate,
                      FedExAir = (from consulta1 in BD.Shipping_Records
-                                 where consulta1.RecordDate==sel.RecordDate&&consulta1.RecordServiceType.Contains("Air")
+                                 where consulta1.RecordDate==sel.RecordDate&&consulta1.RecordServiceType.Contains("Air")&&consulta1.Shipping_Catalog_Products.AreaID!=1&&consulta1.Shipping_Catalog_Products.AreaID!=33
                                  select (int?)consulta1.RecordQuantity).Sum() ?? 0,
                      FedExGround = (from consulta2 in BD.Shipping_Records
-                                    where consulta2.RecordDate == sel.RecordDate && consulta2.RecordServiceType.Contains("Ground")
+                                    where consulta2.RecordDate==sel.RecordDate&&consulta2.RecordServiceType.Contains("Ground")&&consulta2.Shipping_Catalog_Products.AreaID!=1&&consulta2.Shipping_Catalog_Products.AreaID!=33
                                     select (int?)consulta2.RecordQuantity).Sum() ?? 0,
                  }).ToList();
             return x;
@@ -268,7 +270,6 @@ namespace ProyectoEmbarques.Models.Services
         {
             Entities.Dispose();
         }
-
             public void Update(Shipping_RecordsViewModel Record)
             {
             //Record.Shipping_Catalog_Products = null;
@@ -278,11 +279,11 @@ namespace ProyectoEmbarques.Models.Services
 
                     if (target != null)
                     {
-                    target.RecordTransfer = Record.RecordTransfer;
+                        target.RecordTransfer = Record.RecordTransfer;
                     }
                 }
                 else
-                 {
+                {
                 var entity = new Shipping_Records
                 {
                     RecordID = Record.RecordID,
@@ -310,7 +311,6 @@ namespace ProyectoEmbarques.Models.Services
                     RecordSeguritySeal4 = Record.RecordSeguritySeal4
                 };
                     Entities.Shipping_Records.Add(entity);
-                    
                     Entities.Entry(entity).State = EntityState.Modified;
                     Entities.SaveChanges();
                 }
@@ -338,7 +338,6 @@ namespace ProyectoEmbarques.Models.Services
                 RecordTransfer = sel.RecordTransfer,
                 RecordSeguritySeal1 = sel.RecordSeguritySeal1
             }).FirstOrDefault();
-
             if (ultimo == null) {
                 ultimo = new Shipping_RecordsViewModel();
                 ultimo.RecordTransfer = "";

@@ -13,7 +13,7 @@ using ProyectoEmbarques.Models;
 
 namespace ProyectoEmbarques.Controllers
 {
-    [Authorize(Roles = "IT,AppAdminEMBARQUES")]
+    //[Authorize(Roles = "IT,AppAdminEMBARQUES")]
     public class ReportesController : Controller
     {
         MaterialShippingControlEntities Entities = new MaterialShippingControlEntities();
