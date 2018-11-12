@@ -1,53 +1,74 @@
-﻿<div style="margin:50px 0 0 0;">
-    <div class="row well" style="margin:0 150px 150px 150px;">
-        <div class="col-lg-12">
-            <div class="col-lg-3">
-                @*<div class="form-group">
-                        @Html.Label("Subir Archivo")
-                        @(Html.Kendo().Upload()
-                            .Name("DDAreas")
-                            .HtmlAttributes(new { style = "width:100%;" }))
-                    </div>*@
+﻿@model ProyectoEmbarques.Models.AirGroundViewModel
+
+<div style="margin:50px 0 0 0;">
+   @if (Model.variable)
+    {
+        <div class="row well" style="margin:0 150px 150px 150px;">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("InsertData", "Grafica"))
+                 {
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @(Html.Label("Total"))
+                            @(Html.Kendo().TextBox()
+                                    .Name("Total"))
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <br />
+                            <input name="Submit" class="k-button" value="Generar" type="submit" />
+                        </div>
+                    </div>
+                 }
             </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    @Html.Label("Fecha de inicio")
-                    @(Html.Kendo().DatePicker()
-                            .Name("fechaInicio")
-                            .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
-                            .Events(ev => ev.Open("Open"))
-                            .Value(System.DateTime.Today.AddDays(-1)).Max(System.DateTime.Today.AddDays(-1))
-                            .HtmlAttributes(new { style = "width:90%;" }))
+        </div>
+    }
+      else
+      {
+        <div class="row well" style="margin:0 150px 150px 150px;">
+            <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.Label("Fecha de inicio")
+                        @(Html.Kendo().DatePicker()
+                                .Name("fechaInicio")
+                                .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
+                                .Events(ev => ev.Open("Open"))
+                                .Value(System.DateTime.Today.AddDays(-1)).Max(System.DateTime.Today.AddDays(-1))
+                                .HtmlAttributes(new { style = "width:90%;" }))
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    @Html.Label("Fecha final")
-                    @(Html.Kendo().DatePicker()
-                            .Name("fechaFinal")
-                            .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
-                            .Events(ev => ev.Open("Open"))
-                            .Value(System.DateTime.Now).Max(System.DateTime.Today)
-                            .HtmlAttributes(new { style = "width:90%;" }))
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.Label("Fecha final")
+                        @(Html.Kendo().DatePicker()
+                                .Name("fechaFinal")
+                                .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
+                                .Events(ev => ev.Open("Open"))
+                                .Value(System.DateTime.Now).Max(System.DateTime.Today)
+                                .HtmlAttributes(new { style = "width:90%;" }))
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <br />
-                    @(Html.Kendo().Button()
-                            .Name("Submit")
-                            .Content("Generar")
-                            .HtmlAttributes(new { id = "smtBtn" }))
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <br />
+                        @(Html.Kendo().Button()
+                                .Name("Submit")
+                                .Content("Generar")
+                                .HtmlAttributes(new { id = "smtBtn" }))
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+      }
 
-        
     <div class="k-content demo-section" style="margin:0 20px 0 20px;padding:0;">
-        <button style="margin:0 0 -50px 25px;" class='export-pdf k-button'>Exportar PDF</button>
-
-        <center><h4>Overnight shipments Air VS. Ground by Pieces</h4></center>
+      <button style="margin:0 0 -50px 25px;" class='export-pdf k-button'>Exportar PDF</button>
+       <center><h4>Overnight shipments Air VS. Ground by Pieces</h4></center>
         @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
                 .Name("chart")
                 .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
@@ -69,15 +90,15 @@
                         .Name("FedEx Air")
                         .Axis("New");
 
-                    series
+                     series
                         .Column(model => model.NewScans)
                         .Stack("Yellow")
                         .Name("New Scans")
                         .Color("#F3B934")
                         .Axis("New");
 
-                    series
-                        .Line(new double[] { 3986, 3535 })
+                      series
+                        .Line(model => model.TotalinShip)
                         .Name("Total in Ship")
                         .Color("#0A6DBF")
                         .Axis("total");
@@ -86,11 +107,14 @@
                         .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
                         .ValueAxis(axis => axis.Numeric("New"))
                         .ValueAxis(axis => axis.Numeric("total").Min(0))
-                        .Tooltip(tooltip => tooltip
+                        .Tooltip(tooltip =>
+                        
+                        
+                        tooltip
                         .Visible(true)) )
     </div>
 </div>
-
+    
 <script>
     function FilterByDate() {
         return {
@@ -98,28 +122,34 @@
             endDate: $("#fechaFinal").val()
         };
     }
-    $('#smtBtn').on("click", function (e) {
-        $("#chart").data("kendoChart").dataSource.read();
-        return false;
-    });
+        $('#smtBtn').on("click", function (e) {
+            $("#chart").data("kendoChart").dataSource.read();
+            return false;
+        });
 </script>
+
 <script>
-    function Open() {
-        $('.k-weekend a').bind('click', function () {
+    function Open()
+    {
+        $('.k-weekend a').bind('click', function ()
+        {
             return false;
         });
     }
 </script>
 
 <script>
-     $(".export-pdf").click(function () {
+    $(".export-pdf").click(function ()
+    {
         var chart = $("#chart").getKendoChart();
-        chart.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
-            kendo.saveAs({
+        chart.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data)
+        {
+            kendo.saveAs(
+            {
                 dataURI: data,
                 fileName: "Overnight shipments Air VS. Ground by Pieces.pdf",
                 proxyURL: "@Url.Action("Export_Save", "Grafica")"
             });
         });
-    });
+     });
 </script>

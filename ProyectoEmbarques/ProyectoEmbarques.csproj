@@ -163,6 +163,9 @@
     <Compile Include="Models\Components.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GraficaAirGround.cs">
+      <DependentUpon>MaterialShippingControl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\MaterialShippingControl.Context.cs">
       <AutoGen>True</AutoGen>
@@ -182,6 +185,7 @@
     <Compile Include="Models\AreasViewModel.cs" />
     <Compile Include="Models\ClientesViewModel.cs" />
     <Compile Include="Models\ComponentesViewModel.cs" />
+    <Compile Include="Models\Services\AirGroundService.cs" />
     <Compile Include="Models\Services\CreateDocument.cs" />
     <Compile Include="Models\Shipping_Catalog_Products.cs">
       <DependentUpon>MaterialShippingControl.tt</DependentUpon>

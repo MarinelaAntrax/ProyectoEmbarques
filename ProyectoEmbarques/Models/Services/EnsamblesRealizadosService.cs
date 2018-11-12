@@ -205,9 +205,10 @@ namespace ProyectoEmbarques.Models.Services
         {
            List<AirGroundViewModel> x = new List<AirGroundViewModel>();
             x = (from sel in BD.Shipping_Records
+                 from col in BD.GraficaAirGround
                  where sel.RecordDate>=starDate&&sel.RecordDate<=endDate
                  select new AirGroundViewModel()
-                 {
+                 {   
                      FechaDia = sel.RecordDate,
                      FedExAir = (from consulta1 in BD.Shipping_Records
                                  where consulta1.RecordDate==sel.RecordDate&&consulta1.RecordServiceType.Contains("Air")&&consulta1.Shipping_Catalog_Products.AreaID!=1&&consulta1.Shipping_Catalog_Products.AreaID!=33
@@ -215,8 +216,11 @@ namespace ProyectoEmbarques.Models.Services
                      FedExGround = (from consulta2 in BD.Shipping_Records
                                     where consulta2.RecordDate==sel.RecordDate&&consulta2.RecordServiceType.Contains("Ground")&&consulta2.Shipping_Catalog_Products.AreaID!=1&&consulta2.Shipping_Catalog_Products.AreaID!=33
                                     select (int?)consulta2.RecordQuantity).Sum() ?? 0,
+                     TotalinShip = (from consulta3 in BD.GraficaAirGround
+                                    where consulta3.FechaDia==sel.RecordDate
+                                    select (int) consulta3.TotalinShip).Sum()
                  }).ToList();
-            return x;
+            return x;   
         }
 
         public IEnumerable<Shipping_RecordsViewModel> ReadHotShot(DateTime starDate, DateTime endDate)
@@ -367,5 +371,3 @@ namespace ProyectoEmbarques.Models.Services
         }
       }
 }
-
-

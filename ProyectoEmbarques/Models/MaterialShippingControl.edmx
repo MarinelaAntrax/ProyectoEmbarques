@@ -21,7 +21,12 @@
           <Property Name="AreaID" Type="int" />
           <Property Name="BinLocation" Type="varchar" MaxLength="20" />
           <Property Name="Image" Type="varchar(max)" />
-          <Property Name="Quantity" Type="tinyint" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AssemblyStandarTime" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InspectionStandarTime" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TestStandarTime" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TouchUpStandarTime" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -37,8 +42,8 @@
           </Key>
           <Property Name="ComponentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ComponentPN" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="ComponentDescription" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="ComponentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComponentDescription" Type="varchar" MaxLength="150" />
+          <Property Name="ComponentName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="WireKit">
           <Key>
@@ -46,6 +51,15 @@
           </Key>
           <Property Name="WireKitID" Type="int" Nullable="false" />
           <Property Name="WireKitPN" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GraficaAirGround">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="NewScans" Type="int" Nullable="false" />
+          <Property Name="TotalinShip" Type="int" Nullable="false" />
+          <Property Name="FechaDia" Type="date" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Shipping_Catalog_Products">
           <Key>
@@ -168,6 +182,7 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="Components" EntityType="Self.Components" Schema="Catalog" store:Type="Tables" />
           <EntitySet Name="WireKit" EntityType="Self.WireKit" Schema="Catalog" store:Type="Tables" />
+          <EntitySet Name="GraficaAirGround" EntityType="Self.GraficaAirGround" Schema="Material" store:Type="Tables" />
           <EntitySet Name="Shipping_Catalog_Products" EntityType="Self.Shipping_Catalog_Products" Schema="Material" store:Type="Tables" />
           <EntitySet Name="Shipping_Catalog_ShipmentTypes" EntityType="Self.Shipping_Catalog_ShipmentTypes" Schema="Material" store:Type="Tables" />
           <EntitySet Name="Shipping_Records" EntityType="Self.Shipping_Records" Schema="Material" store:Type="Tables" />
@@ -217,7 +232,6 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             <End Role="Areas" EntitySet="Areas" />
             <End Role="Assemblies" EntitySet="Assemblies" />
           </AssociationSet>
-          <EntitySet Name="Components" EntityType="MaterialShippingControlModel.Components" />
           <EntitySet Name="Shipping_Catalog_Products" EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" />
           <AssociationSet Name="FK_Products_Areas" Association="MaterialShippingControlModel.FK_Products_Areas">
             <End Role="Areas" EntitySet="Areas" />
@@ -237,6 +251,8 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             <End Role="Shipping_Catalog_ShipmentTypes" EntitySet="Shipping_Catalog_ShipmentTypes" />
             <End Role="Shipping_Records" EntitySet="Shipping_Records" />
           </AssociationSet>
+          <EntitySet Name="Components" EntityType="MaterialShippingControlModel.Components" />
+          <EntitySet Name="GraficaAirGround" EntityType="MaterialShippingControlModel.GraficaAirGround" />
           </EntityContainer>
         <EntityType Name="Areas">
           <Key>
@@ -258,6 +274,11 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Quantity" Type="Byte" />
           <NavigationProperty Name="Areas" Relationship="MaterialShippingControlModel.FK_Assemblies_Areas" FromRole="Assemblies" ToRole="Areas" />
+          <Property Name="AssemblyStandarTime" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InspectionStandarTime" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TestStandarTime" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TouchUpStandarTime" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="WireKit">
           <Key>
@@ -286,15 +307,6 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Components">
-          <Key>
-            <PropertyRef Name="ComponentID" />
-          </Key>
-          <Property Name="ComponentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ComponentPN" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="ComponentDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Shipping_Catalog_Products">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -397,6 +409,24 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+          </Key>
+          <Property Name="ComponentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentPN" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ComponentDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GraficaAirGround">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="NewScans" Type="Int32" Nullable="false" />
+          <Property Name="TotalinShip" Type="Int32" Nullable="false" />
+          <Property Name="FechaDia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -421,6 +451,11 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <EntitySetMapping Name="Assemblies">
             <EntityTypeMapping TypeName="MaterialShippingControlModel.Assemblies">
               <MappingFragment StoreEntitySet="Assemblies">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TouchUpStandarTime" ColumnName="TouchUpStandarTime" />
+                <ScalarProperty Name="TestStandarTime" ColumnName="TestStandarTime" />
+                <ScalarProperty Name="InspectionStandarTime" ColumnName="InspectionStandarTime" />
+                <ScalarProperty Name="AssemblyStandarTime" ColumnName="AssemblyStandarTime" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="BinLocation" ColumnName="BinLocation" />
@@ -443,16 +478,6 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
               <MappingFragment StoreEntitySet="Shipping_Catalog_ShipmentTypes">
                 <ScalarProperty Name="ShipmentType" ColumnName="ShipmentType" />
                 <ScalarProperty Name="ShipmentTypeID" ColumnName="ShipmentTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Components">
-            <EntityTypeMapping TypeName="MaterialShippingControlModel.Components">
-              <MappingFragment StoreEntitySet="Components">
-                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
-                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
-                <ScalarProperty Name="ComponentPN" ColumnName="ComponentPN" />
-                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -504,6 +529,26 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.Components">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
+                <ScalarProperty Name="ComponentPN" ColumnName="ComponentPN" />
+                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GraficaAirGround">
+            <EntityTypeMapping TypeName="MaterialShippingControlModel.GraficaAirGround">
+              <MappingFragment StoreEntitySet="GraficaAirGround">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FechaDia" ColumnName="FechaDia" />
+                <ScalarProperty Name="TotalinShip" ColumnName="TotalinShip" />
+                <ScalarProperty Name="NewScans" ColumnName="NewScans" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

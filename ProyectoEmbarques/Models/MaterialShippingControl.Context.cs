@@ -30,9 +30,10 @@ namespace ProyectoEmbarques.Models
         public virtual DbSet<Assemblies> Assemblies { get; set; }
         public virtual DbSet<WireKit> WireKit { get; set; }
         public virtual DbSet<Shipping_Catalog_ShipmentTypes> Shipping_Catalog_ShipmentTypes { get; set; }
-        public virtual DbSet<Components> Components { get; set; }
         public virtual DbSet<Shipping_Catalog_Products> Shipping_Catalog_Products { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Shipping_Records> Shipping_Records { get; set; }
+        public virtual DbSet<Components> Components { get; set; }
+        public virtual DbSet<GraficaAirGround> GraficaAirGround { get; set; }
     }
 }

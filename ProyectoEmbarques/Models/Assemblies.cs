@@ -20,6 +20,11 @@ namespace ProyectoEmbarques.Models
         public string BinLocation { get; set; }
         public string Image { get; set; }
         public Nullable<byte> Quantity { get; set; }
+        public Nullable<decimal> AssemblyStandarTime { get; set; }
+        public Nullable<decimal> InspectionStandarTime { get; set; }
+        public Nullable<decimal> TestStandarTime { get; set; }
+        public Nullable<decimal> TouchUpStandarTime { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         public virtual Areas Areas { get; set; }
     }
