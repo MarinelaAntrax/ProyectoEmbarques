@@ -18,5 +18,8 @@ namespace ProyectoEmbarques.Models
         public int TotalinShip { get; set; }
         public System.DateTime FechaDia { get; set; }
         public int id { get; set; }
+        public int actualGround { get; set; }
+        public int actualAir { get; set; }
+        public int FedexAirGraundAyer { get; set; }
     }
 }

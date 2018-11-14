@@ -14,7 +14,11 @@ namespace ProyectoEmbarques.Models
         public int FedExGround { get; set; }
 
         public int TotalinShip { get; set; }
+
         public bool variable { get; set; }
+
         public DateTime FechaDia { get; set; }
+
+        public int FedexAirGraundAyer { get; set; }
     }
 }
