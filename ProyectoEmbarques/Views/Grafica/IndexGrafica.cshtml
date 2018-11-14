@@ -67,10 +67,10 @@
       }
 
     <div class="k-content demo-section" style="margin:0 20px 0 20px;padding:0;">
-        <button style="margin:0 0 -50px 25px;" class='export-pdf k-button'>Exportar PDF</button>
-        <center><h4>Overnight shipments Air VS. Ground by Pieces</h4></center>
+        <button style="margin:0 0 -20px 25px;" class='export-pdf k-button'>Exportar PDF</button>
         @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
                 .Name("chart")
+                .Title("Overnight shipments Air VS. Ground by Pieces")
                 .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
                 .Legend(legend => legend
                 .Position(ChartLegendPosition.Right))
