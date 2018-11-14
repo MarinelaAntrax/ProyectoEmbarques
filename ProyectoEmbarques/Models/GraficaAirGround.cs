@@ -21,5 +21,6 @@ namespace ProyectoEmbarques.Models
         public int actualGround { get; set; }
         public int actualAir { get; set; }
         public int FedexAirGraundAyer { get; set; }
+        public int porcentaje { get; set; }
     }
 }

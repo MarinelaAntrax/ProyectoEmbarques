@@ -2,11 +2,11 @@
 
 <div style="margin:50px 0 0 0;">
     @if (Model.variable)
-    {
+     {
         <div class="row well" style="margin:0 150px 150px 150px;">
             <div class="col-lg-12">
                 @using (Html.BeginForm("InsertData", "Grafica"))
-                {
+                 {
                     <div class="col-lg-3">
                         <div class="form-group">
                             @(Html.Label("Total"))
@@ -21,12 +21,12 @@
                             <input name="Submit" class="k-button" value="Generar" type="submit" />
                         </div>
                     </div>
-                }
+                 }
             </div>
         </div>
-    }
-    else
-    {
+     }
+      else
+      {
         <div class="row well" style="margin:0 150px 150px 150px;">
             <div class="col-lg-12">
                 <div class="col-lg-3">
@@ -64,56 +64,63 @@
                 </div>
             </div>
         </div>
-    }
+      }
 
     <div class="k-content demo-section" style="margin:0 20px 0 20px;padding:0;">
         <button style="margin:0 0 -50px 25px;" class='export-pdf k-button'>Exportar PDF</button>
         <center><h4>Overnight shipments Air VS. Ground by Pieces</h4></center>
         @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
-                                .Name("chart")
-                                .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
-                                .Legend(legend => legend
-                                .Position(ChartLegendPosition.Right))
-                                .Series(series =>
-                                {
-                                    series
-                                        .Column(model => model.FedExGround)
-                                        .Stack("yes")
-                                        .Color("#0F80DE")
-                                        .Name("FedEx Ground")
-                                        .Labels(labels => labels.Format("{0}").Visible(true).Position(ChartBarLabelsPosition.Center).Background("transparent"))
-                                        .Axis("New");
+                .Name("chart")
+                .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
+                .Legend(legend => legend
+                .Position(ChartLegendPosition.Right))
+                .Series(series =>
+                {
+                    series
+                        .Column(model => model.FedExGround)
+                        .Stack("yes")
+                        .Color("#0F80DE")
+                        .Name("FedEx Ground")
+                        .Labels(labels => labels.Format("{0}").Visible(true).Position(ChartBarLabelsPosition.Center).Background("transparent"))
+                        .Axis("New");
 
-                                    series
-                                        .Column(model => model.FedExAir)
-                                        .Stack("yes")
-                                        .Color("#E2060D")
-                                        .Name("FedEx Air")
-                                        .Labels(labels => labels.Format("{0}").Visible(true).Position(ChartBarLabelsPosition.Center).Background("transparent"))
-                                        .Axis("New");
+                    series
+                       .Column(model => model.FedExAir)
+                       .Stack("yes")
+                       .Color("#E2060D")
+                       .Name("FedEx Air")
+                       .Labels(labels => labels.Format("{0}").Visible(true).Position(ChartBarLabelsPosition.Center).Background("transparent"))
+                       .Axis("New");
 
-                                    series
-                                        .Column(model => model.NewScans)
-                                        .Stack("Yellow")
-                                        .Name("New Scans")
-                                        .Labels(labels => labels.Format("{0}").Visible(true).Position(ChartBarLabelsPosition.Center).Background("transparent"))
-                                        .Color("#F3B934")
-                                        .Axis("New");
+                    series
+                        .Column(model => model.porcentaje)
+                        .Stack("yes")
+                        .Name("Ratio Ground")
+                        .Color("#C0C0C0").Opacity(0.0)
+                        .Labels(labels => labels.Format("{0}%").Visible(true).Background("transparent"));
 
-                                    series
-                                        .Line(model => model.TotalinShip)
-                                        .Name("Total in Ship")
-                                        .Labels(labels => labels.Format("{0}").Visible(true))
-                                        .Color("#0A6DBF")
-                                        .Axis("total");
-                                })
-                                        .AutoBind(false)
-                                        .CategoryAxis(axis => axis
-                                        .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
-                                        .ValueAxis(axis => axis.Numeric("New"))
-                                        .ValueAxis(axis => axis.Numeric("total").Min(0))
-                                        .Tooltip(tooltip => tooltip
-                                        .Visible(true)))
+                    series
+                        .Column(model => model.NewScans)
+                        .Stack("Yellow")
+                        .Name("New Scans")
+                        .Labels(labels => labels.Format("{0}").Visible(true).Position(ChartBarLabelsPosition.Center).Background("transparent"))
+                        .Color("#F3B934")
+                        .Axis("New");
+
+                    series
+                        .Line(model => model.TotalinShip)
+                        .Name("Total in Ship")
+                        .Labels(labels => labels.Format("{0}").Visible(true))
+                        .Color("#0A6DBF")
+                        .Axis("total");
+                })
+                    .AutoBind(true)
+                    .CategoryAxis(axis => axis
+                    .Categories(model => model.FechaDia).AxisCrossingValue(0, 10))
+                    .ValueAxis(axis => axis.Numeric("New").Min(0).Max(3000))
+                    .ValueAxis(axis => axis.Numeric("total").Min(0).Max(6000))
+                    .Tooltip(tooltip => tooltip
+                    .Visible(true)))
     </div>
 </div>
 <script>

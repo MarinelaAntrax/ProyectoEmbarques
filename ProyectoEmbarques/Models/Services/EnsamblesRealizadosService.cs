@@ -213,7 +213,8 @@ namespace ProyectoEmbarques.Models.Services
                      FedExGround = col.actualGround,
                      TotalinShip = col.TotalinShip,
                      NewScans = col.NewScans,
-                     FedexAirGraundAyer = col.FedexAirGraundAyer
+                     FedexAirGraundAyer = col.FedexAirGraundAyer,
+                     porcentaje = col.porcentaje
                  }).ToList();
             return x;   
         }

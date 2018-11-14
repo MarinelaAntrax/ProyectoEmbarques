@@ -20,5 +20,7 @@ namespace ProyectoEmbarques.Models
         public DateTime FechaDia { get; set; }
 
         public int FedexAirGraundAyer { get; set; }
+
+        public int porcentaje { get; set; }
     }
 }

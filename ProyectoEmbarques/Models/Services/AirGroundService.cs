@@ -27,14 +27,15 @@ namespace ProyectoEmbarques.Models.Services
                                 where consulta2.RecordDate == TotalAyer.FechaDia && consulta2.RecordServiceType.Contains("Ground") && consulta2.Shipping_Catalog_Products.AreaID != 1 && consulta2.Shipping_Catalog_Products.AreaID != 33
                                 select (int?)consulta2.RecordQuantity).Sum() ?? 0;
             var FedexAirGraundAyer = (ayerAir + ayerGround);
-
+            
             var entity = new GraficaAirGround() {
                 FechaDia = DateTime.Today,
-                NewScans = ((TotalAyer.TotalinShip-FedexAirGraundAyer)-Parametro)*-1,
+                NewScans = ((TotalAyer.TotalinShip - FedexAirGraundAyer)-Parametro)*-1,
                 TotalinShip = Parametro,
                 actualAir = actualAir,
                 actualGround = actualGround,
-                FedexAirGraundAyer = FedexAirGraundAyer
+                FedexAirGraundAyer = FedexAirGraundAyer,
+                porcentaje = (int)Math.Round(((decimal)actualGround / (decimal)(actualAir + actualGround)* 100))
             };
             BD.GraficaAirGround.Add(entity);
             BD.SaveChanges();
