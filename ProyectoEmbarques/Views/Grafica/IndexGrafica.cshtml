@@ -1,10 +1,10 @@
 ﻿@model ProyectoEmbarques.Models.AirGroundViewModel
 
-<div style="margin:50px 0 0 0;">
+<div style="margin:30px 0 0 0;">
     @if (Model.Variable)
      {
-        <div class="row well" style="margin:0 150px 150px 150px;">
-            <div class="col-lg-12">
+        <div class="row well" style="margin:0 100px 100px 100px;">
+            <div class="col-lg-8">
                 @using (Html.BeginForm("InsertData", "Grafica"))
                  {
                     <div class="col-lg-3">
@@ -26,9 +26,9 @@
      }
       else
       {
-        <div class="row well" style="margin:0 150px 150px 150px;">
-            <div class="col-lg-12">
-                <div class="col-lg-3">
+        <div class="row well" style="margin:0 100px 100px 100px;">
+            <div class="col-lg-8">
+                <div class="col-lg-4">
                     <div class="form-group">
                         @Html.Label("Fecha de inicio")
                         @(Html.Kendo().DatePicker()
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         @Html.Label("Fecha final")
                         @(Html.Kendo().DatePicker()
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <br />
                         <a id="btnSearch" class="k-button k-button-icontext" href="#"> Generar </a>
