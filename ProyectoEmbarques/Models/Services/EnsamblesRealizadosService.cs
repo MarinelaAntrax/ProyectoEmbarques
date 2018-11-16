@@ -13,7 +13,7 @@ namespace ProyectoEmbarques.Models.Services
 {
       public class EnsamblesRealizadosService : IDisposable
       {
-        private static bool UpdateDatabase = true;
+        private static readonly bool UpdateDatabase = true;
         MaterialShippingControlEntities BD = new MaterialShippingControlEntities();
         private MaterialShippingControlEntities Entities;
 
@@ -214,7 +214,7 @@ namespace ProyectoEmbarques.Models.Services
                      TotalinShip = col.TotalinShip,
                      NewScans = col.NewScans,
                      FedexAirGraundAyer = col.FedexAirGraundAyer,
-                     porcentaje = col.porcentaje
+                     Porcentaje = col.Porcentaje
                  }).ToList();
             return x;   
         }
@@ -338,30 +338,33 @@ namespace ProyectoEmbarques.Models.Services
                 RecordTransfer = sel.RecordTransfer,
                 RecordSeguritySeal1 = sel.RecordSeguritySeal1
             }).FirstOrDefault();
-            if (ultimo == null) {
-                ultimo = new Shipping_RecordsViewModel();
-                ultimo.RecordTransfer = "";
-                ultimo.ClientID = 0;
-                ultimo.ProductID = 0;
-                ultimo.RecordQuantity = 0;
-                ultimo.RecordDate = DateTime.Now;
-                ultimo.RecordFedexTracking = 0;
-                ultimo.RecordControlBoxNo = 0;
-                ultimo.RecordPieceBoxNo = 0;
-                ultimo.ShipmentTypeID = 0;
-                ultimo.RecordServiceType = "";
-                ultimo.RecordComment = "";
-                ultimo.RecordWorkOrder = 0;
-                ultimo.RecordSerialNo = "";
-                ultimo.RecordTrackingId = 0;
-                ultimo.RecordRework = false;
-                ultimo.RecordComment1 = "";
-                ultimo.RecordComment2 = "";
-                ultimo.RecordFAI = false;
-                ultimo.RecordSeguritySeal1 = "";
-                ultimo.RecordSeguritySeal2 = "";
-                ultimo.RecordSeguritySeal3 = "";
-                ultimo.RecordSeguritySeal4 = "";
+            if (ultimo == null)
+            {
+                ultimo = new Shipping_RecordsViewModel
+                {
+                    RecordTransfer = "",
+                    ClientID = 0,
+                    ProductID = 0,
+                    RecordQuantity = 0,
+                    RecordDate = DateTime.Now,
+                    RecordFedexTracking = 0,
+                    RecordControlBoxNo = 0,
+                    RecordPieceBoxNo = 0,
+                    ShipmentTypeID = 0,
+                    RecordServiceType = "",
+                    RecordComment = "",
+                    RecordWorkOrder = 0,
+                    RecordSerialNo = "",
+                    RecordTrackingId = 0,
+                    RecordRework = false,
+                    RecordComment1 = "",
+                    RecordComment2 = "",
+                    RecordFAI = false,
+                    RecordSeguritySeal1 = "",
+                    RecordSeguritySeal2 = "",
+                    RecordSeguritySeal3 = "",
+                    RecordSeguritySeal4 = ""
+                };
             }
             return ultimo;
         }

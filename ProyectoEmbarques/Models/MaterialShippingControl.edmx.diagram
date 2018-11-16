@@ -6,15 +6,15 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a6c013e856a14f2a8b2e94262d7900eb" Name="Diagram1">
         <EntityTypeShape EntityType="MaterialShippingControlModel.VIEWDATA" Width="2" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialShippingControlModel.Areas" Width="1.875" PointX="6.5" PointY="4" />
-        <EntityTypeShape EntityType="MaterialShippingControlModel.Assemblies" Width="2" PointX="6.375" PointY="0.5" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Areas" Width="1.875" PointX="6.5" PointY="4.625" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Assemblies" Width="2" PointX="6.375" PointY="0.625" />
         <EntityTypeShape EntityType="MaterialShippingControlModel.WireKit" Width="2" PointX="0.875" PointY="0.625" />
         <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Catalog_ShipmentTypes" Width="2.5" PointX="0.625" PointY="2.25" />
         <AssociationConnector Association="MaterialShippingControlModel.FK_Assemblies_Areas" />
-        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" Width="1.875" PointX="6.5" PointY="6.25" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Catalog_Products" Width="1.875" PointX="6.5" PointY="7" />
         <AssociationConnector Association="MaterialShippingControlModel.FK_Products_Areas" />
         <EntityTypeShape EntityType="MaterialShippingControlModel.Clients" Width="2" PointX="0.75" PointY="4" />
-        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Records" Width="2.375" PointX="3.625" PointY="3.125" />
+        <EntityTypeShape EntityType="MaterialShippingControlModel.Shipping_Records" Width="2.375" PointX="3.625" PointY="3.75" />
         <AssociationConnector Association="MaterialShippingControlModel.FK_Shipping_Records_Clients" />
         <AssociationConnector Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_Products" />
         <AssociationConnector Association="MaterialShippingControlModel.FK_Shipping_Records_Shipping_Catalog_ShipmentTypes" />

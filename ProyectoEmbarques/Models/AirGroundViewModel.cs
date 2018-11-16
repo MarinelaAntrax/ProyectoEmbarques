@@ -7,6 +7,8 @@ namespace ProyectoEmbarques.Models
 {
     public class AirGroundViewModel
     {
+        public int id { get; set; }
+
         public int NewScans { get; set; }
 
         public int FedExAir { get; set; }
@@ -15,12 +17,12 @@ namespace ProyectoEmbarques.Models
 
         public int TotalinShip { get; set; }
 
-        public bool variable { get; set; }
+        public bool Variable { get; set; }
 
         public DateTime FechaDia { get; set; }
 
         public int FedexAirGraundAyer { get; set; }
 
-        public int porcentaje { get; set; }
+        public int Porcentaje { get; set; }
     }
 }

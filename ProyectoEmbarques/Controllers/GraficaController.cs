@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using ProyectoEmbarques.Models.Services;
 using Kendo.Mvc.UI;
 using System.Diagnostics;
+using Kendo.Mvc.Extensions;
+using System.Data.Entity.Validation;
 
 namespace ProyectoEmbarques.Controllers
 {
@@ -27,22 +29,22 @@ namespace ProyectoEmbarques.Controllers
                 .FirstOrDefault();
             if (consulta == null)
             {
-                model.variable = true;
+                model.Variable = true;
             }
             else
             {
-                model.variable = false;
+                model.Variable = false;
             }
            
             return View(model);
         }
 
-        public ActionResult InsertData(int Total)
+        public ActionResult InsertData(int TotalinShip)
         {
             try
             {
                 //service.metodo(Total);
-                _ServiceAG.Create(Total);
+                _ServiceAG.Create(TotalinShip);
             }
             catch (Exception ex) {
                 Debug.WriteLine("la exception es: "+ex.Message);
@@ -53,7 +55,10 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult ReadServiceType([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
+            _ServiceAG.Update();
+
             return Json(_GraficaAirVSGroundService.ReadServiceType(starDate, endDate), JsonRequestBehavior.AllowGet);
         }
+       
     }
 }

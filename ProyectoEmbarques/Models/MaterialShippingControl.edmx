@@ -63,7 +63,7 @@
           <Property Name="actualGround" Type="int" Nullable="false" />
           <Property Name="actualAir" Type="int" Nullable="false" />
           <Property Name="FedexAirGraundAyer" Type="int" Nullable="false" />
-          <Property Name="porcentaje" Type="int" Nullable="false" />
+          <Property Name="Porcentaje" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Shipping_Catalog_Products">
           <Key>
@@ -433,7 +433,7 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <Property Name="actualGround" Type="Int32" Nullable="false" />
           <Property Name="actualAir" Type="Int32" Nullable="false" />
           <Property Name="FedexAirGraundAyer" Type="Int32" Nullable="false" />
-          <Property Name="porcentaje" Type="Int32" Nullable="false" />
+          <Property Name="Porcentaje" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -553,7 +553,7 @@ advertencia 6002: La tabla o vista 'BAESystemsGuaymas.dbo.VIEWDATA' no tiene def
           <EntitySetMapping Name="GraficaAirGround">
             <EntityTypeMapping TypeName="MaterialShippingControlModel.GraficaAirGround">
               <MappingFragment StoreEntitySet="GraficaAirGround">
-                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
                 <ScalarProperty Name="FedexAirGraundAyer" ColumnName="FedexAirGraundAyer" />
                 <ScalarProperty Name="actualAir" ColumnName="actualAir" />
                 <ScalarProperty Name="actualGround" ColumnName="actualGround" />

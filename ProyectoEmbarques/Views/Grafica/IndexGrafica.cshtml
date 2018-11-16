@@ -1,7 +1,7 @@
 ﻿@model ProyectoEmbarques.Models.AirGroundViewModel
 
 <div style="margin:50px 0 0 0;">
-    @if (Model.variable)
+    @if (Model.Variable)
      {
         <div class="row well" style="margin:0 150px 150px 150px;">
             <div class="col-lg-12">
@@ -10,8 +10,7 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             @(Html.Label("Total"))
-                            @(Html.Kendo().TextBox()
-                                   .Name("Total"))
+                            @(Html.Kendo().TextBoxFor(fo=>fo.TotalinShip))
                         </div>
                     </div>
 
@@ -56,10 +55,7 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <br />
-                        @(Html.Kendo().Button()
-                                        .Name("Submit")
-                                        .Content("Generar")
-                                        .HtmlAttributes(new { id = "smtBtn" }))
+                        <a id="btnSearch" class="k-button k-button-icontext" href="#"> Generar </a>
                     </div>
                 </div>
             </div>
@@ -71,7 +67,8 @@
         @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
                 .Name("chart")
                 .Title("Overnight shipments Air VS. Ground by Pieces")
-                .DataSource(data => data.Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
+                .DataSource(data => data
+                .Read(rd => rd.Action("ReadServiceType", "Grafica").Data("FilterByDate")))
                 .Legend(legend => legend
                 .Position(ChartLegendPosition.Right))
                 .Series(series =>
@@ -93,7 +90,7 @@
                        .Axis("New");
 
                     series
-                        .Column(model => model.porcentaje)
+                        .Column(model => model.Porcentaje)
                         .Stack("yes")
                         .Name("Ratio Ground")
                         .Color("#C0C0C0").Opacity(0.0)
@@ -130,7 +127,7 @@
             endDate: $("#fechaFinal").val()
         };
     }
-    $('#smtBtn').on("click", function (e) {
+    $('#btnSearch').on("click", function (e) {
         $("#chart").data("kendoChart").dataSource.read();
         return false;
     });
