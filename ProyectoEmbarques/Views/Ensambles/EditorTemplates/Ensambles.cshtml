@@ -1,70 +1,69 @@
 ﻿@model ProyectoEmbarques.Models.Shipping_Catalog_ProductsViewModel
+<div class="col-lg-12">
+    <h4>Productos</h4>
+    <div class="form-group">
+        @(Html.Kendo().ComboBoxFor(fo => fo.ProductName)
+                .Name("ProductName")
+                .Placeholder("Seleccione No.Pieza...")
+                .DataTextField("DATA")
+                .DataValueField("ProductName")
+                .Filter(FilterType.Contains)
+                .AutoBind(true)
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("FillComboboxViewData", "Shipping_Catalog_Products");
+                    })
+                        .ServerFiltering(true);
+                })
+                .HtmlAttributes(new { style = "width:60%;" })
+                .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:DATA#</div>") )
+    </div>
 
-            <div class="col-lg-12">
-                <h4>Productos</h4>
-                <div class="form-group">
-                    @(Html.Kendo().ComboBoxFor(fo => fo.ProductName)
-                                    .Name("ProductName")
-                                    .Placeholder("Seleccione No.Pieza...")
-                                    .DataTextField("DATA")
-                                    .DataValueField("ProductName")
-                                    .Filter(FilterType.Contains)
-                                    .AutoBind(true)
-                                    .DataSource(source =>
-                                    {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("FillComboboxViewData", "Shipping_Catalog_Products");
-                                        })
-                                            .ServerFiltering(true);
-                                    })
-                                    .HtmlAttributes(new { style = "width:60%;" })
-                                    .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:DATA#</div>") )
-                </div>
-
-                <h4>Área</h4>
-                <div class="form-group">
-                    @(Html.Kendo().ComboBoxFor(f => f.AreaID)
-                                    .Name("AreaID")
-                                    .Value(Model.AreaID == 0 ? string.Empty : Model.ToString())
-                                    .Placeholder("Seleccione área...")
-                                    .DataTextField("AreaName")
-                                    .DataValueField("AreaID")
-                                    .Filter(FilterType.Contains)
-                                    .DataSource(source =>
-                                    {
-                                        source.Read(read =>
-                                        {
-                                            read.Action("FillComboboxAreas", "Shipping_Catalog_Products");
-                                        })
-                                            .ServerFiltering(false);
-                                    })
-                                    .HtmlAttributes(new { style = "width:60%;" })
-                                    .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:AreaName#</div>") )
-                </div>
-
-
-                <h4> Datos requeridos </h4>
-                <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WOrder)</div> <h4> Orden de trabajo </h4>
-                <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WKRMSerie)</div> <h4> No. Serie </h4>
-                <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.TIDSerie)</div> <h4> Tracking papeleria </h4>
+    <h4>Área</h4>
+    <div class="form-group">
+        @(Html.Kendo().ComboBoxFor(f => f.AreaID)
+                .Name("AreaID")
+                .Value(Model.AreaID == 0 ? string.Empty : Model.ToString())
+                .Placeholder("Seleccione área...")
+                .DataTextField("AreaName")
+                .DataValueField("AreaID")
+                .Filter(FilterType.Contains)
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("FillComboboxAreas", "Shipping_Catalog_Products");
+                    })
+                        .ServerFiltering(false);
+                })
+                .HtmlAttributes(new { style = "width:60%;" })
+                .Template("<i class='fa fa-sitemap' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:AreaName#</div>") )
+    </div>
 
 
-                <h4>Tipo del Producto</h4>
-                <div class="form-group">
-                    @(Html.Kendo().DropDownListFor(f => f.ProductType)
-                                    .Name("ProductType")
-                                    .OptionLabel("Seleccione el Tipo...")
-                                    .DataTextField("Text")
-                                    .DataValueField("Value")
-                                    .BindTo(new List<SelectListItem>()
-                                    {
-                                    new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
-                                    new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
-                                    new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}
-                                    })
-                                    .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
-                                    .HtmlAttributes(new { style = "width:60%;" }) )
-                </div>
-            </div>
+    <h4> Datos requeridos </h4>
+    <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WOrder)</div> <h4> Orden de trabajo </h4>
+    <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.WKRMSerie)</div> <h4> No. Serie </h4>
+    <div class="col-lg-1">@Html.Kendo().CheckBoxFor(m => m.TIDSerie)</div> <h4> Tracking papeleria </h4>
+
+
+    <h4>Tipo del Producto</h4>
+    <div class="form-group">
+        @(Html.Kendo().DropDownListFor(f => f.ProductType)
+                .Name("ProductType")
+                .OptionLabel("Seleccione el Tipo...")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .BindTo(new List<SelectListItem>()
+                {
+                new SelectListItem() { Text = "FG - Finished Good", Value = "FG - Finished Good" },
+                new SelectListItem() { Text = "RM - Raw Material", Value = "RM - Raw Material" },
+                new SelectListItem() {  Text = "WK - Wire Kits", Value = "WK - Wire Kits"}
+                })
+                .ValueTemplate("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.Text" + " #</div>")
+                .HtmlAttributes(new { style = "width:60%;" }) )
+    </div>
+</div>
 

@@ -3,14 +3,15 @@
 <div style="margin:30px 0 0 0;">
     @if (Model.Variable)
      {
-        <div class="row well" style="margin:0 100px 100px 100px;">
-            <div class="col-lg-8">
+        <div class="row well" style="margin:0 150px 100px 150px;">
+            <div class="col-lg-12">
                 @using (Html.BeginForm("InsertData", "Grafica"))
                  {
                     <div class="col-lg-3">
                         <div class="form-group">
                             @(Html.Label("Total"))
-                            @(Html.Kendo().TextBoxFor(fo=>fo.TotalinShip))
+                            @(Html.Kendo().TextBoxFor(fo=>fo.TotalinShip)
+                            .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
                         </div>
                     </div>
 
@@ -26,7 +27,7 @@
      }
       else
       {
-        <div class="row well" style="margin:0 100px 100px 100px;">
+        <div class="row well" style="margin:0 150px 150px 150px;">
             <div class="col-lg-8">
                 <div class="col-lg-4">
                     <div class="form-group">

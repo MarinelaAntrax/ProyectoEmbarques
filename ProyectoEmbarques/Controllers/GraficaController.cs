@@ -41,15 +41,16 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult InsertData(int TotalinShip)
         {
-            try
-            {
-                //service.metodo(Total);
-                _ServiceAG.Create(TotalinShip);
+            if (!(TotalinShip <= 0)) { 
+                try
+                {
+                    //service.metodo(Total);
+                    _ServiceAG.Create(TotalinShip);
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine("la exception es: "+ex.Message);
+                }
             }
-            catch (Exception ex) {
-                Debug.WriteLine("la exception es: "+ex.Message);
-            }
-
             return RedirectToAction("IndexGrafica");
         }
 

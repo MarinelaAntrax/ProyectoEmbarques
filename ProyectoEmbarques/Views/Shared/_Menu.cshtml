@@ -12,8 +12,8 @@
         </div>
 
         <div class="collapse navbar-collapse bae-area-menu" id="bs-example-navbar-collapse-2">
-            @*@if (HttpContext.Current.User.Identity.IsAuthenticated && (User.IsInRole("AppAdminEMBARQUES") || User.IsInRole("IT")))
-            {*@
+            @if (HttpContext.Current.User.Identity.IsAuthenticated && (User.IsInRole("AppAdminEMBARQUES") || User.IsInRole("IT")))
+            {
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Agregar <b class="caret"></b></a>
@@ -32,7 +32,7 @@
                         </ul>
                     </li>
                 </ul>
-            @*}*@
+            }
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Grafica <b class="caret"></b></a>

@@ -27,7 +27,7 @@ namespace ProyectoEmbarques.Controllers
         }
 
         // GET: Shipping_Catalog_Products
-        public ActionResult Create() {
+        public ActionResult Index() {
             return View();
         }
 
@@ -104,22 +104,7 @@ namespace ProyectoEmbarques.Controllers
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([Bind(Include = "AreaID,ProductName,WOrder,WKRMSerie,TIDSerie,ProductType")] Shipping_Catalog_ProductsViewModel Products)
-        {
-            if (Products.ProductName != null && Products.ProductType != null)
-            {
-                _Service.Create(Products);
-                ModelState.Clear();
-                ViewBag.showMs = 1;
-                return View("Create");
-            }
-            else
-            {
-                ViewBag.showMs = 2;
-                return View("Create", Products);
-            }
-        }
+   
 
 
         [AcceptVerbs(HttpVerbs.Post)]

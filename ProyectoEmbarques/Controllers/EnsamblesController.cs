@@ -14,9 +14,11 @@ namespace ProyectoEmbarques.Controllers
 
         // GET: Ensambles
         private EnsamblesService _EnsamblesService;
+        private Shipping_Catalog_ProductsService _shipping;
 
         public EnsamblesController()
         {
+            _shipping = new Shipping_Catalog_ProductsService();
             _EnsamblesService = new EnsamblesService();
         }
 
@@ -30,19 +32,34 @@ namespace ProyectoEmbarques.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ProductID,AreaID,ProductName,ProductInternalArea,ProductType")] Shipping_Catalog_Products Products)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Shipping_Catalog_Products.Add(Products);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Create");
+        //    }
+        //    return View(Products);
+        //}
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create([Bind(Include = "AreaID,ProductName,WOrder,WKRMSerie,TIDSerie,ProductType")] Shipping_Catalog_ProductsViewModel Products)
         {
-            if (ModelState.IsValid)
+            if (Products.ProductName != null && Products.ProductType != null)
             {
-                db.Shipping_Catalog_Products.Add(Products);
-                db.SaveChanges();
-                return RedirectToAction("Create");
+                _shipping.Create(Products);
+                ModelState.Clear();
+                ViewBag.showMs = 1;
+                return View("Index");
             }
-            return View(Products);
+            else
+            {
+                ViewBag.showMs = 2;
+                return View("Index", Products);
+            }
         }
-
 
         public ActionResult FillCombobox()
         {
