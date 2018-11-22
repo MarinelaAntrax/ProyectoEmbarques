@@ -21,7 +21,7 @@ namespace ProyectoEmbarques.Models.Services
                 FechaDia = Grafica.FechaDia,
                 FedExAir = Grafica.actualAir,
                 FedExGround = Grafica.actualGround,
-                Porcentaje = Grafica.Porcentaje
+                Porcentaje = Grafica.Porcentaje,
             }).ToList();
             return result;
         }
@@ -52,6 +52,8 @@ namespace ProyectoEmbarques.Models.Services
         }
         public void Update()
         {
+            var ayer = DateTime.Today.AddDays(-1);
+            var registroAyer = BD.GraficaAirGround.Where(w => w.FechaDia.Day == ayer.Day && w.FechaDia.Year == ayer.Year && w.FechaDia.Month == ayer.Month);
             var hoy = DateTime.Today;
             var registroHoy = BD.GraficaAirGround.Where(w => w.FechaDia.Day == hoy.Day && w.FechaDia.Year == hoy.Year && w.FechaDia.Month == hoy.Month)
             .Select(sel => new AirGroundViewModel()
@@ -62,7 +64,7 @@ namespace ProyectoEmbarques.Models.Services
                 FedExGround = sel.actualGround,
                 FedexAirGraundAyer = sel.FedexAirGraundAyer,
                 NewScans = sel.NewScans,
-                Porcentaje = sel.Porcentaje,
+                Porcentaje = sel.Porcentaje, 
                 TotalinShip = sel.TotalinShip
             }).FirstOrDefault();
 
@@ -72,7 +74,8 @@ namespace ProyectoEmbarques.Models.Services
             var actualGround = (from consulta2 in BD.Shipping_Records
                                 where consulta2.RecordDate.Day == hoy.Day && consulta2.RecordDate.Month == hoy.Month && consulta2.RecordDate.Year == hoy.Year && consulta2.RecordServiceType.Contains("Ground") && consulta2.Shipping_Catalog_Products.AreaID != 1 && consulta2.Shipping_Catalog_Products.AreaID != 33
                                 select (int?)consulta2.RecordQuantity).Sum() ?? 0;
-            if (registroHoy != null)
+            
+            if (registroHoy != null || registroAyer != null)
             {
                 if (actualGround != 0 || actualAir != 0)
                 {

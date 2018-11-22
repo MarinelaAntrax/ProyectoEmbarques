@@ -16,6 +16,7 @@ using System.Windows.Media;
 using ProyectoEmbarques.Models;
 using System.Diagnostics;
 using ProyectoEmbarques.Models.Services;
+using Telerik.Windows.Documents.Flow.Model.Fields;
 
 namespace ProyectoEmbarques
 {
@@ -195,6 +196,7 @@ namespace ProyectoEmbarques
                     TableCell ObjetoContenido = FilaContent.Cells.AddTableCell();//Objeto TableCell se anade a la tabla como fila
                     ObjetoContenido.Background = rowColor;//Toma el color de fondo
                     Block amountBlock = ObjetoContenido.Blocks.AddBlock();
+                    amountBlock.TextProperties.FontSize = 8;
                     amountBlock.HorizontalAlignment = HorizontalAlignment.Center;
                     amountBlock.InsertText(sel.RecordPieceBoxNo.ToString());
 
@@ -202,6 +204,7 @@ namespace ProyectoEmbarques
                     TableCell ObjetoContenido2 = FilaContent.Cells.AddTableCell();//Objeto TableCell se anade a la tabla como fila
                     ObjetoContenido2.Background = rowColor;//Toma el color de fondo
                     Block amountBlock2 = ObjetoContenido2.Blocks.AddBlock();
+                    amountBlock2.TextProperties.FontSize = 8;
                     amountBlock2.HorizontalAlignment = HorizontalAlignment.Center;
                     amountBlock2.InsertText(sel.ProductName);
                     
@@ -209,6 +212,7 @@ namespace ProyectoEmbarques
                     TableCell ObjetoContenido3 = FilaContent.Cells.AddTableCell();//Objeto TableCell se anade a la tabla como fila
                     ObjetoContenido3.Background = rowColor;//Toma el color de fondo
                     Block amountBlock3 = ObjetoContenido3.Blocks.AddBlock();
+                    amountBlock3.TextProperties.FontSize = 8;
                     amountBlock3.HorizontalAlignment = HorizontalAlignment.Center;
                     amountBlock3.InsertText(sel.RecordCantidad.ToString());
 
@@ -219,12 +223,19 @@ namespace ProyectoEmbarques
 
         private static void Footer(FixedContentEditor editor, double maxWidth)
         {
-            double WriteWhere =650;
+            Telerik.Windows.Documents.Flow.Model.RadFlowDocument document = new Telerik.Windows.Documents.Flow.Model.RadFlowDocument();
+            document.Sections.AddSection();
+
+            document.Sections.First().Footers.Add();
+            document.Sections.First().Footers.Add(Telerik.Windows.Documents.Flow.Model.HeaderFooterType.First);
+            document.Sections.First().Footers.Add(Telerik.Windows.Documents.Flow.Model.HeaderFooterType.Even);
+
+            double WriteWhere = 650;
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
 
             Block block = new Block();
             block.TextProperties.Font = FontsRepository.TimesRoman;
-            block.TextProperties.FontSize = 13;
+            block.TextProperties.FontSize = 10;
             block.InsertText("Certificate of Conformance Statement");
 
             editor.DrawBlock(block);
@@ -233,7 +244,7 @@ namespace ProyectoEmbarques
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
 
             block = new Block();
-            block.TextProperties.FontSize = 13;
+            block.TextProperties.FontSize = 10;
             block.InsertText(new FontFamily("Calibri"), "We hereby certify that all products listed above have been produced, assembled, inspected, and tested in full accordance with all specifications, drawings, and quality requirements.");
             editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
 
@@ -241,7 +252,7 @@ namespace ProyectoEmbarques
             editor.Position.Translate(MargenIzquierdo, WriteWhere);//Traslada el editor al nuevo punto de escritura
 
             block = new Block();
-            block.TextProperties.FontSize = 13;
+            block.TextProperties.FontSize = 10;
             block.InsertText(new FontFamily("Calibri"), "Certificamos por este medio todos los productos arriba mencionados se han producido, ensamblado, examinados, y probados de acuerdo a todas las especificaciones, dibujos, y requisitos de calidad.");
             editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
         }
