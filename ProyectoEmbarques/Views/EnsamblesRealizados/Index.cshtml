@@ -75,17 +75,17 @@
                     .PageSize(3000))
             .Columns(columns =>
             {
-                columns.Bound(o => o.RecordDate).Width(120).Filterable(false).Title("Fecha");
+                columns.Bound(o => o.RecordDate).Width(75).Filterable(false).Title("Fecha");
                 columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(170).Title("No. Parte");
                 columns.Bound(o => o.Shipping_Catalog_Products.Areas.AreaName).Width(100).Title("Área").Hidden();
                 columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Width(150).Hidden();
-                columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(180);
+                columns.Bound(o => o.Clients.ClientName).Title("Cliente").Width(170);
                 columns.Bound(o => o.Clients.ClientCompany).Title("Compañía").Width(200).Hidden();
-                columns.Bound(o => o.RecordWorkOrder).Width(120);
-                columns.Bound(o => o.RecordTrackingId).Width(120);
+                columns.Bound(o => o.RecordWorkOrder).Width(110);
+                columns.Bound(o => o.RecordTrackingId).Width(110);
                 columns.Bound(o => o.RecordSerialNo).Width(100);
-                columns.Bound(o => o.RecordQuantity).Width(120).Title("Cantidad");
-                columns.Bound(o => o.RecordFedexTracking).Width(130).Title("FedEx Tracking").Hidden();
+                columns.Bound(o => o.RecordQuantity).Width(85).Title("Cantidad").Filterable(false);
+                columns.Bound(o => o.RecordFedexTracking).Width(120).Title("FedEx Tracking");
                 columns.Bound(o => o.RecordControlBoxNo).Width(150).Hidden();
                 columns.Bound(o => o.RecordPieceBoxNo).Width(140).Hidden();
                 columns.Bound(o => o.CatalogShipmentType.ShipmentType).Width(140).Hidden();

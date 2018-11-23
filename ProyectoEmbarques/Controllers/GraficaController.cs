@@ -24,11 +24,11 @@ namespace ProyectoEmbarques.Controllers
         public ActionResult IndexGrafica()
         {
             AirGroundViewModel model= new AirGroundViewModel();
-
             var consulta = BD.GraficaAirGround.Where(w => w.FechaDia.Day == DateTime.Today.Day && w.FechaDia.Month == DateTime.Today.Month && w.FechaDia.Year == DateTime.Today.Year)
                 .FirstOrDefault();
             if (consulta == null)
             {
+                _ServiceAG.UpdateAyer();
                 model.Variable = true;
             }
             else

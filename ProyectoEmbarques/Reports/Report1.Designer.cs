@@ -13,6 +13,7 @@ namespace ReportingTest.Views
             Telerik.Reporting.TableGroup tableGroup2 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup3 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup4 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.Drawing.FormattingRule formattingRule1 = new Telerik.Reporting.Drawing.FormattingRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report1));
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
@@ -47,7 +48,7 @@ namespace ReportingTest.Views
             // 
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.5769999027252197D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
-            this.textBox1.Style.BackgroundColor = System.Drawing.Color.Silver;
+            this.textBox1.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.textBox1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Double;
             this.textBox1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
@@ -61,7 +62,7 @@ namespace ReportingTest.Views
             // 
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.3459997177124023D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
-            this.textBox3.Style.BackgroundColor = System.Drawing.Color.Silver;
+            this.textBox3.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.textBox3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Double;
             this.textBox3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
@@ -75,7 +76,7 @@ namespace ReportingTest.Views
             // 
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.5769999027252197D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
-            this.textBox5.Style.BackgroundColor = System.Drawing.Color.Silver;
+            this.textBox5.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.textBox5.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Double;
             this.textBox5.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox5.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
@@ -130,6 +131,10 @@ namespace ReportingTest.Views
             // 
             // textBox2
             // 
+            formattingRule1.Filters.Add(new Telerik.Reporting.Filter("=RowNumber()%2", Telerik.Reporting.FilterOperator.Equal, "=0"));
+            formattingRule1.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textBox2.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
+            formattingRule1});
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.5769999027252197D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
             this.textBox2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Groove;
@@ -139,6 +144,8 @@ namespace ReportingTest.Views
             // 
             // textBox4
             // 
+            this.textBox4.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
+            formattingRule1});
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.3459997177124023D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
             this.textBox4.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Groove;
@@ -148,6 +155,8 @@ namespace ReportingTest.Views
             // 
             // textBox6
             // 
+            this.textBox6.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
+            formattingRule1});
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.5769999027252197D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
             this.textBox6.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Groove;
