@@ -1,0 +1,900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ProyectoEmbarques.csproj" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\packages.config" />
+  <event action="Analyze" type="Success" name="telerikReportViewer-12.2.18.1017.js" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\js\telerikReportViewer-12.2.18.1017.js" />
+  <event action="Analyze" type="Success" name="telerikReportViewer-12.2.18.1017.min.js" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\js\telerikReportViewer-12.2.18.1017.min.js" />
+  <event action="Analyze" type="Success" name="telerikReportViewer.kendo-12.2.18.1017.min.js" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\js\telerikReportViewer.kendo-12.2.18.1017.min.js" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate-FA.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate-FA.html" />
+  <event action="Analyze" type="Success" name="telerikReportViewerTemplate-FA.html" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate-FA.html" />
+  <event action="Analyze" type="Success" name="telerikReportViewerTemplate.html" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate.html" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate.html" />
+  <event action="Analyze" type="Success" name="telerikReportViewerTemplate.html" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewStart.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Clientes\EditorTemplates\Clientes.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Clientes\EditorTemplates\Clientes.cshtml" />
+  <event action="Analyze" type="Success" name="Clientes.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Clientes\EditorTemplates\Clientes.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Clientes\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Clientes\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Clientes\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Ensambles\EditorTemplates\Ensambles.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Ensambles\EditorTemplates\Ensambles.cshtml" />
+  <event action="Analyze" type="Success" name="Ensambles.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Ensambles\EditorTemplates\Ensambles.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Ensambles\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Ensambles\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Ensambles\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\EditorTemplates\HotShot.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\EditorTemplates\HotShot.cshtml" />
+  <event action="Analyze" type="Success" name="HotShot.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\EditorTemplates\HotShot.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\EditorTemplates\Sumario.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\EditorTemplates\Sumario.cshtml" />
+  <event action="Analyze" type="Success" name="Sumario.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\EditorTemplates\Sumario.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\PackingList.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\PackingList.cshtml" />
+  <event action="Analyze" type="Success" name="PackingList.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\PackingList.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Grafica\IndexGrafica.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Grafica\IndexGrafica.cshtml" />
+  <event action="Analyze" type="Success" name="IndexGrafica.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Grafica\IndexGrafica.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="_Layout.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_MainFooter.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_MainFooter.cshtml" />
+  <event action="Analyze" type="Success" name="_MainFooter.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_MainFooter.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_MainMenu.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_MainMenu.cshtml" />
+  <event action="Analyze" type="Success" name="_MainMenu.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_MainMenu.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_Menu.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_Menu.cshtml" />
+  <event action="Analyze" type="Success" name="_Menu.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\_Menu.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Boolean.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Boolean.cshtml" />
+  <event action="Analyze" type="Success" name="Boolean.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Boolean.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Currency.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Currency.cshtml" />
+  <event action="Analyze" type="Success" name="Currency.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Currency.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Date.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Date.cshtml" />
+  <event action="Analyze" type="Success" name="Date.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Date.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\DateTime.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\DateTime.cshtml" />
+  <event action="Analyze" type="Success" name="DateTime.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\DateTime.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Email.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  <event action="Analyze" type="Success" name="EmailAddress.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="GridForeignKey.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Integer.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Integer.cshtml" />
+  <event action="Analyze" type="Success" name="Integer.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Integer.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Number.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Number.cshtml" />
+  <event action="Analyze" type="Success" name="Number.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Number.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Password.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Password.cshtml" />
+  <event action="Analyze" type="Success" name="Password.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Password.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\String.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\String.cshtml" />
+  <event action="Analyze" type="Success" name="String.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\String.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Time.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Time.cshtml" />
+  <event action="Analyze" type="Success" name="Time.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Time.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Transferible.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Transferible.cshtml" />
+  <event action="Analyze" type="Success" name="Transferible.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Transferible.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Url.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Url.cshtml" />
+  <event action="Analyze" type="Success" name="Url.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\EditorTemplates\Url.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Error.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\ErrorDuplicateValue.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\ErrorDuplicateValue.cshtml" />
+  <event action="Analyze" type="Success" name="ErrorDuplicateValue.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shared\ErrorDuplicateValue.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shipping_Records\Create.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shipping_Records\Create.cshtml" />
+  <event action="Analyze" type="Success" name="Create.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Shipping_Records\Create.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Web.Release.config" />
+  <event action="Analyze" type="Success" name="ProyectoEmbarques" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ProyectoEmbarques.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ClassLibrary1.csproj" />
+  <event action="Analyze" type="Success" name="Report1.resx" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Reports\Report1.resx" />
+  <event action="Analyze" type="Success" name="ClassLibrary1" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ClassLibrary1.csproj" />
+  <event action="Analyze" type="Success" name="ProyectoEmbarques" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques.sln" />
+  <event action="Analyze" type="Success" name="telerikReportViewer-12.2.18.1017.min.js" path="telerikReportViewer-12.2.18.1017.min.js" />
+  <event action="Analyze" type="Success" name=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" path=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" />
+  <event action="Analyze" type="Success" name=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" path=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" />
+  <event action="Analyze" type="Success" name="telerikReportViewer.kendo-12.2.18.1017.min.js" path="telerikReportViewer.kendo-12.2.18.1017.min.js" />
+  <event action="Backup" type="Success" name="ProyectoEmbarques" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ProyectoEmbarques.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ProyectoEmbarques.csproj" />
+  <event action="Upgrade" type="Success" name="telerikReportViewer-12.2.18.1017.js" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\js\telerikReportViewer-12.2.18.1017.js" />
+  <event action="Upgrade" type="Success" name="telerikReportViewer-12.2.18.1017.min.js" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\js\telerikReportViewer-12.2.18.1017.min.js" />
+  <event action="Upgrade" type="Success" name="telerikReportViewer.kendo-12.2.18.1017.min.js" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\js\telerikReportViewer.kendo-12.2.18.1017.min.js" />
+  <event action="Upgrade" type="Success" name="telerikReportViewerTemplate.html" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ReportViewer\templates\telerikReportViewerTemplate.html" />
+  <event action="Upgrade" type="Success" name="telerikReportViewer-12.2.18.1017.min.js" path="telerikReportViewer-12.2.18.1017.min.js" />
+  <event action="Upgrade" type="Success" name=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" path=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" />
+  <event action="Upgrade" type="Success" name=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" path=".TemplateUrl(Url.Content(&quot;~/ReportViewer/templates/telerikReportViewerTemplate-12.2.18.1017.html&quot;))" />
+  <event action="Upgrade" type="Success" name="telerikReportViewer.kendo-12.2.18.1017.min.js" path="telerikReportViewer.kendo-12.2.18.1017.min.js" />
+  <event action="Upgrade" type="Success" name="PackingList.cshtml" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\Views\EnsamblesRealizados\PackingList.cshtml" />
+  <event action="Upgrade" type="Success" name="ProyectoEmbarques" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques\ProyectoEmbarques.csproj" />
+  <event action="Upgrade" type="Success" name="ProyectoEmbarques" path="C:\Users\Maricela Rodriguez\source\repos\ProyectoEmbarques\ProyectoEmbarques.sln" />
+</log>

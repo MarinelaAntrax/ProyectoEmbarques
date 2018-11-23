@@ -31,6 +31,11 @@ namespace ProyectoEmbarques.Controllers
 
             return View();
         }
+        public ActionResult PackingList()
+        {
+
+            return View();
+        }
 
         public ActionResult HotShot()
         {
