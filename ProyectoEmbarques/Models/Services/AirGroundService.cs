@@ -100,7 +100,12 @@ namespace ProyectoEmbarques.Models.Services
         }
         public void UpdateAyer()
         {
-            var ayer = DateTime.Today.AddDays(-1);
+            var hoy = DateTime.Today;
+            var ayer = BD.Shipping_Records.Where(w=>w.RecordDate<hoy).Distinct()
+                .OrderByDescending(des=>des.RecordDate.Month)
+                .ThenByDescending(des=>des.RecordDate.Day)
+                .Select(d=>d.RecordDate)
+                .FirstOrDefault();
             var registroAyer = BD.GraficaAirGround.Where(w => w.FechaDia.Day == ayer.Day && w.FechaDia.Year == ayer.Year && w.FechaDia.Month == ayer.Month)
              .Select(sel => new AirGroundViewModel()
               {
