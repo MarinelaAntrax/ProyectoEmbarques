@@ -263,7 +263,63 @@ namespace ProyectoEmbarques.Models.Services
 
         public IEnumerable<Shipping_RecordsViewModel> Read(DateTime starDate, DateTime endDate)
         {
-            return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate);
+            //return GetAll().Where(componente=>componente.RecordDate>=starDate&&componente.RecordDate <= endDate).OrderByDescending(ord => ord.RecordID);
+            IList<Shipping_RecordsViewModel> result = new List<Shipping_RecordsViewModel>();
+
+            result = Entities.Shipping_Records.Select(componente => new Shipping_RecordsViewModel
+            {
+                RecordID = componente.RecordID,
+                RecordQuantity = componente.RecordQuantity,
+                RecordDate = componente.RecordDate,
+                RecordFedexTracking = componente.RecordFedexTracking,
+                RecordControlBoxNo = componente.RecordControlBoxNo,
+                RecordPieceBoxNo = componente.RecordPieceBoxNo,
+                RecordComment = componente.RecordComment,
+                RecordWorkOrder = componente.RecordWorkOrder,
+                RecordSerialNo = componente.RecordSerialNo,
+                RecordTrackingId = componente.RecordTrackingId,
+                RecordRework = componente.RecordRework,
+                RecordComment1 = componente.RecordComment1,
+                RecordComment2 = componente.RecordComment2,
+                RecordServiceType = componente.RecordServiceType,
+                RecordFAI = componente.RecordFAI,
+                RecordTransfer = componente.RecordTransfer,
+                RecordSeguritySeal1 = componente.RecordSeguritySeal1,
+                ClientID = componente.ClientID,
+                Clients = new ClientesViewModel()
+                {
+                    ClientName = componente.Clients.ClientName,
+                    ClientCompany = componente.Clients.ClientCompany
+                },
+                ProductID = componente.ProductID,
+                Shipping_Catalog_Products = new Shipping_Catalog_ProductsViewModel()
+                {
+                    ProductID = componente.Shipping_Catalog_Products.ProductID,
+
+
+
+                    ProductName = componente.Shipping_Catalog_Products.ProductName,
+                    AreaID = componente.Shipping_Catalog_Products.AreaID,
+                    Areas = new AreasViewModel()
+                    {
+                        AreaName = componente.Shipping_Catalog_Products.Areas.AreaName
+                    },
+                    ProductType = componente.Shipping_Catalog_Products.ProductType,
+                    WOrder = componente.Shipping_Catalog_Products.WOrder,
+                    WKRMSerie = componente.Shipping_Catalog_Products.WKRMSerie,
+                    TIDSerie = componente.Shipping_Catalog_Products.TIDSerie,
+                },
+                ShipmentTypeID = componente.ShipmentTypeID,
+                CatalogShipmentType = new CatalogShipmentTypeViewModel()
+                {
+                    ShipmentTypeID = componente.Shipping_Catalog_ShipmentTypes.ShipmentTypeID,
+                    ShipmentType = componente.Shipping_Catalog_ShipmentTypes.ShipmentType
+                }
+            }).Where(componente => componente.RecordDate >= starDate && componente.RecordDate <= endDate).OrderByDescending(ord => ord.RecordID).ToList();
+
+
+            return result; 
+
         }
 
         public void Dispose()

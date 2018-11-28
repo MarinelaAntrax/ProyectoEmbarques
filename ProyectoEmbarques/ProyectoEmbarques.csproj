@@ -1643,7 +1643,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51030</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51050/</IISUrl>
+          <IISUrl>http://localhost:51020/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

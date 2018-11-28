@@ -72,7 +72,7 @@
                     .Update(up => up.Action("Update", "EnsamblesRealizados"))
                     .Read(read => read.Action("Read", "EnsamblesRealizados").Data("FilterByDate"))
                     .Destroy(destroy => destroy.Action("Destroy", "EnsamblesRealizados"))
-                    .PageSize(3000))
+                  .PageSize(1000))
             .Columns(columns =>
             {
                 columns.Bound(o => o.RecordDate).Width(75).Filterable(false).Title("Fecha");
@@ -101,9 +101,14 @@
             })
             .Excel(excel => excel.FileName("Reportes - EMBARQUES (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
             .HtmlAttributes(new { style = "height: 650px" })
-            .Events(e => { e.Edit("onEdit"); }) )
+            .Events(e => { e.Edit("onEdit");e.ExcelExport("es"); }) )
 </div>
-
+<script>
+    function es(e) {
+        e.preventDefault();
+        
+    }
+</script>
 @using (Html.BeginForm("PackingList", "Reportes"))
 {
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

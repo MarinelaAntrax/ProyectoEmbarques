@@ -50,7 +50,7 @@ namespace ProyectoEmbarques.Controllers
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
         {
-            return Json(_SumarioEmbarquesService.Read(starDate, endDate).OrderByDescending(ord => ord.RecordID).ToDataSourceResult(request));
+            return Json(_SumarioEmbarquesService.Read(starDate, endDate).ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
