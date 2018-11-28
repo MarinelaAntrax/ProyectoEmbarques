@@ -119,8 +119,6 @@ namespace ProyectoEmbarques.Models.Services
                   TotalinShip = sel.TotalinShip
               }).FirstOrDefault();
 
-
-
             var UltimoAir = (from consulta1 in BD.Shipping_Records
                              where consulta1.RecordDate.Day == ayer.Day && consulta1.RecordDate.Month == ayer.Month && consulta1.RecordDate.Year == ayer.Year && consulta1.RecordServiceType.Contains("Air") && consulta1.Shipping_Catalog_Products.AreaID != 1 && consulta1.Shipping_Catalog_Products.AreaID != 33
                              select (int?)consulta1.RecordQuantity).Sum() ?? 0;

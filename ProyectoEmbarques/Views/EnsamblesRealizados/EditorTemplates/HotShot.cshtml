@@ -6,59 +6,59 @@
 <h2 class="page-header">@ViewBag.Title realizados </h2>
 <div class="telerik-controls">
     @(Html.Kendo().Grid<ProyectoEmbarques.Models.Shipping_RecordsViewModel>()
-                    .Name("grid")
-                    .Selectable()
-                    .ToolBar(tools =>
-                    {
-                        tools.Template(@<text>
-                            <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
-                            <a class="k-button k-button-icontext k-grid-pdf" href="#"><span class="k-icon k-i-pdf"></span>Exportar a PDF</a>
-                            <div class="toolbar">
-                                <label class="category-label"> De </label>
-                                @(Html.Kendo().DatePicker()
-                                                            .Name("Inicio")
-                                                            .Value(DateTime.Today)
-                                                            .Min("01/01/2018")
-                                                            .HtmlAttributes(new { style = "width: 150px;" }) )
-                                <label class="category-label"> &nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp; </label>
-                                @(Html.Kendo().DatePicker()
-                                                            .Name("Final")
-                                                            .Value(DateTime.Today.AddDays(1))
-                                                            .Min("07/01/2018")
-                                                            .HtmlAttributes(new { style = "width: 150px;" }) )
-                                <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar </a>
-                            </div>
-                        </text>);
-                            })
-                                        .Scrollable()
-                                        .Reorderable(reordable => reordable.Columns(true))
-                                        .Resizable(resize => resize.Columns(true))
-                                        .Sortable()
-                                        .Pageable()
-                                        .Pageable(x => x.Numeric(true)
-                                            .PreviousNext(true)
-                                            .Refresh(true)
-                                            .ButtonCount(5))
-                                        .DataSource(dataSource => dataSource
-                                                .Ajax()
-                                                .Model(model => { model.Id(id => id.RecordID); })
-                                                .Events(events => events.Error("error_handler"))
-                                                .Read(read => read.Action("ReadHotShot", "EnsamblesRealizados").Data("FilterByDate"))
-                                                .PageSize(1000))
-                                        .Columns(columns =>
-                                        {
-                                            columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(170).Title("P/N");
-                                            columns.Bound(o => o.RecordQuantity).Width(120).Title("Qty");
-                                            columns.Bound(o => o.RecordSerialNo).Width(100).Title("No.Serie");
-                                            columns.Bound(o => o.Clients.ClientName).Title("Attention").Width(180);
-                                            columns.Bound(o => o.Clients.ClientCompany).Title("Organization").Width(200);
-                                            columns.Bound(o => o.RecordFedexTracking).Width(130).Title("Tracking FedEx");
-                                            columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Width(150).Title("Material Type");
-                                            columns.Bound(o => o.RecordServiceType).Width(140).Title("Service");
-                                        })
-                                        .Excel(excel => excel.FileName("List of Parts Hot Shot (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
-                                        .Pdf(pdf => pdf.FileName("List of Parts Hot Shot (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").pdf").AllPages())
-                                        .HtmlAttributes(new { style = "height: 650px" }) )
+            .Name("grid")
+            .Selectable()
+            .ToolBar(tools =>
+            {
+                tools.Template(@<text>
+                    <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Exportar a Excel</a>
+                    <a class="k-button k-button-icontext k-grid-pdf" href="#"><span class="k-icon k-i-pdf"></span>Exportar a PDF</a>
+                    <div class="toolbar">
+                        <label class="category-label"> De </label>
+                        @(Html.Kendo().DatePicker()
+                                .Name("Inicio")
+                                .Value(DateTime.Today)
+                                .Min("01/01/2018")
+                                .HtmlAttributes(new { style = "width: 150px;" }) )
+                        <label class="category-label"> &nbsp;&nbsp;&nbsp; a &nbsp;&nbsp;&nbsp; </label>
+                        @(Html.Kendo().DatePicker()
+                                .Name("Final")
+                                .Value(DateTime.Today.AddDays(1))
+                                .Min("07/01/2018")
+                                .HtmlAttributes(new { style = "width: 150px;" }) )
+                        <a id="btnSearch" class="k-button k-button-icontext" href="#"><span class="glyphicon glyphicon-search"></span> Buscar </a>
+                    </div>
+                </text>);
+            })
+                .Scrollable()
+                .Reorderable(reordable => reordable.Columns(true))
+                .Resizable(resize => resize.Columns(true))
+                .Sortable()
+                .Pageable()
+                .Pageable(x => x.Numeric(true)
+                    .PreviousNext(true)
+                    .Refresh(true)
+                    .ButtonCount(5))
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Model(model => { model.Id(id => id.RecordID); })
+                    .Events(events => events.Error("error_handler"))
+                    .Read(read => read.Action("ReadHotShot", "EnsamblesRealizados").Data("FilterByDate"))
+                    .PageSize(1000))
+                .Columns(columns =>
+                {
+                    columns.Bound(o => o.Shipping_Catalog_Products.ProductName).Width(170).Title("P/N");
+                    columns.Bound(o => o.RecordQuantity).Width(120).Title("Qty");
+                    columns.Bound(o => o.RecordSerialNo).Width(100).Title("No.Serie");
+                    columns.Bound(o => o.Clients.ClientName).Title("Attention").Width(180);
+                    columns.Bound(o => o.Clients.ClientCompany).Title("Organization").Width(200);
+                    columns.Bound(o => o.RecordFedexTracking).Width(130).Title("Tracking FedEx");
+                    columns.Bound(o => o.Shipping_Catalog_Products.ProductType).Width(150).Title("Material Type");
+                    columns.Bound(o => o.RecordServiceType).Width(140).Title("Service");
+                })
+                .Excel(excel => excel.FileName("List of Parts Hot Shot (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").xlsx").AllPages(true))
+                .Pdf(pdf => pdf.FileName("List of Parts Hot Shot (" + DateTime.Now.ToString("dd-MMM-yyyy") + ").pdf").AllPages())
+                .HtmlAttributes(new { style = "height: 650px" }) )
 </div>
 <script>
     function FilterByDate() {
@@ -92,32 +92,36 @@
     </script>
     }
     <style>
-        .k-edit-form-container {
+        .k-edit-form-container 
+        {
             width: 650px;
         }
     </style>
 
     <style>
 
-        #grid .k-grid-toolbar {
+        #grid .k-grid-toolbar 
+        {
             padding: .75em 1.3em .8333em 1em;
         }
 
-        .toolbar {
+        .toolbar
+        {
             float: right;
         }
 
-        .indicador-Columna {
+        .indicador-Columna 
+        {
             background-color: #fdd;
         }
-
         .k-pdf-export .k-grid-toolbar,
         .k-pdf-export .k-grouping-header,
         .k-pdf-export .k-command-cell,
         .k-pdf-export .k-grid-top,
         .k-pdf-export .k-pager-wrap,
         .k-pdf-export .k-filter-row,
-        .k-pdf-export .k-header-column-menu k-state-border-down {
+        .k-pdf-export .k-header-column-menu k-state-border-down
+        {
             display: none;
         }
     </style>

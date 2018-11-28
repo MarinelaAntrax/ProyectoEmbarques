@@ -114,7 +114,6 @@ namespace ProyectoEmbarques.Models.Services
              {
                 return Read().FirstOrDefault(predicate);       
              }
- 
 
             public void Dispose()
             {

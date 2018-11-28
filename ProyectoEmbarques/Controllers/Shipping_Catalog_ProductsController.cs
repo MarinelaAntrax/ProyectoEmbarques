@@ -104,9 +104,6 @@ namespace ProyectoEmbarques.Controllers
             return Json(_Service.Read(), JsonRequestBehavior.AllowGet);
         }
 
-   
-
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request, Shipping_Catalog_ProductsViewModel Products)
         {

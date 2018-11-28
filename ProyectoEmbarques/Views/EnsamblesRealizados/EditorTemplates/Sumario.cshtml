@@ -4,82 +4,82 @@
     <div class="form-group">
         <h4>Fecha de Embarque</h4>
         @(Html.Kendo().DatePickerFor(model => model.RecordDate)
-                                        .Name("RecordDate")
-                                        .Value(DateTime.Today)
-                                        .HtmlAttributes(new { style = "width:90%", title = "datepicker" }) )
+                .Name("RecordDate")
+                .Value(DateTime.Today)
+                .HtmlAttributes(new { style = "width:90%", title = "datepicker" }) )
         @(Html.ValidationMessageFor(nam => nam.RecordDate, "", new { @class = "text-danger" }))
     </div>
 
     <div class="form-group">
         <h4>No. Parte</h4>
         @(Html.Kendo().ComboBoxFor(fo => fo.ProductID)
-                                        .Name("ProductID")
-                                        .Value(Model.ProductID == 0 ? string.Empty : Model.ToString())
-                                        .Placeholder("Seleccione no.pieza...")
-                                        .DataTextField("ProductName")
-                                        .DataValueField("ProductID")
-                                        .Filter(FilterType.Contains)
-                                        .DataSource(source =>
-                                        {
-                                            source.Read(read =>
-                                            {
-                                                read.Action("FillCombobox", "Shipping_Catalog_Products");
-                                            })
-                                                .ServerFiltering(true);
-                                        })
-                                        .HtmlAttributes(new { style = "width:90%;" })
-                                        .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
+                .Name("ProductID")
+                .Value(Model.ProductID == 0 ? string.Empty : Model.ToString())
+                .Placeholder("Seleccione no.pieza...")
+                .DataTextField("ProductName")
+                .DataValueField("ProductID")
+                .Filter(FilterType.Contains)
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("FillCombobox", "Shipping_Catalog_Products");
+                    })
+                        .ServerFiltering(true);
+                })
+                .HtmlAttributes(new { style = "width:90%;" })
+                .Template("<i class='fa fa-check' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ProductName" + " #</div>") )
         @(Html.ValidationMessageFor(nam => nam.ProductID))
     </div>
 
     <div class="form-group">
         <h4>Tracking de FedEx</h4>
         @(Html.Kendo().TextBox()
-                                        .Name("RecordFedexTracking")
-                                        .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                .Name("RecordFedexTracking")
+                .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
         @(Html.ValidationMessageFor(nam => nam.RecordFedexTracking))
     </div>
 
     <div class="form-group">
         <h4>Orden de Trabajo</h4>
         @(Html.Kendo().TextBox()
-                                        .Name("RecordWorkOrder")
-                                        .HtmlAttributes(new { id = "idOrdendeTrabajo", type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                .Name("RecordWorkOrder")
+                .HtmlAttributes(new { id = "idOrdendeTrabajo", type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
     </div>
 
     <div class="form-group">
         <h4>No. Serie</h4>
         @(Html.Kendo().TextBox()
-                                        .Name("RecordSerialNo")
-                                        .HtmlAttributes(new { id = "IdRecordSerialNo", style = "width:90%;opacity:0.8;" }) )
+                .Name("RecordSerialNo")
+                .HtmlAttributes(new { id = "IdRecordSerialNo", style = "width:90%;opacity:0.8;" }) )
     </div>
 
     <div class="form-group">
         <h4>Retrabajo</h4>
         @(Html.Kendo().CheckBox()
-                                        .Name("RecordRework").HtmlAttributes(new { id = "switch" }))
+                .Name("RecordRework").HtmlAttributes(new { id = "switch" }))
     </div>
 
     <div class="form-group">
         <h4> No. de Caja C. Doc. </h4>
         @(Html.Kendo().TextBox()
-                                        .Name("RecordControlBoxNo")
-                                        .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
+                .Name("RecordControlBoxNo")
+                .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
         @(Html.ValidationMessageFor(nam => nam.RecordControlBoxNo))
     </div>
 
     <div class="form-group">
         <h4>Tracking de Papelería</h4>
         @(Html.Kendo().TextBox()
-                                        .Name("RecordTrackingId")
-                                        .HtmlAttributes(new { id = "idTrackingPapeleria", type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                .Name("RecordTrackingId")
+                .HtmlAttributes(new { id = "idTrackingPapeleria", type = "number", style = "opacity:0.8;width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
     </div>
 
     <div class="form-group">
         <h4>Cantidad</h4>
         @(Html.Kendo().TextBox()
-                                        .Name("RecordQuantity")
-                                        .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                .Name("RecordQuantity")
+                .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
         @(Html.ValidationMessageFor(nam => nam.RecordQuantity))
     </div>
 
@@ -94,86 +94,86 @@
     <div class="form-group">
         <h4>No. de Caja Piezas</h4>
         @(Html.Kendo().TextBox()
-                                .Name("RecordPieceBoxNo")
-                                .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
+                .Name("RecordPieceBoxNo")
+                .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }) )
         @(Html.ValidationMessageFor(nam => nam.RecordPieceBoxNo))
     </div>
 
     <div class="form-group">
         <h4>Tipo de Embarque</h4>
         @(Html.Kendo().DropDownList()
-                                .Name("ShipmentTypeID")
-                                .DataTextField("ShipmentType")
-                                .DataValueField("ShipmentTypeID")
-                                .DataSource(source =>
-                                {
-                                    source.Read(read =>
-                                    {
-                                        read.Action("FillCombobox", "CatalogShipmentType");
-                                    })
-                                        .ServerFiltering(false);
-                                })
-                                .HtmlAttributes(new { style = "width:90%;" })
-                                .Template("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
+                .Name("ShipmentTypeID")
+                .DataTextField("ShipmentType")
+                .DataValueField("ShipmentTypeID")
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("FillCombobox", "CatalogShipmentType");
+                    })
+                        .ServerFiltering(false);
+                })
+                .HtmlAttributes(new { style = "width:90%;" })
+                .Template("<i class='fa fa-plane' aria-hidden='true'></i><div class=\"k-state-default\" style=\"display: inline-block; \">#:data.ShipmentType #</div>") )
         @(Html.ValidationMessageFor(nam => nam.ShipmentTypeID) )
     </div>
 
     <div class="form-group">
         <h4>Dirigido a</h4>
         @(Html.Kendo().ComboBoxFor(mod => mod.ClientID)
-                                .Name("ClientID")
-                                .Placeholder("Seleccione cliente...")
-                                .DataTextField("ClientName")
-                                .DataValueField("ClientID")
-                                .Filter(FilterType.Contains)
-                                .DataSource(source =>
-                                {
-                                    source.Read(read =>
-                                    {
-                                        read.Action("Fillcombobox", "Clientes");
-                                    })
-                                        .ServerFiltering(false);
-                                })
-                                .HtmlAttributes(new { style = "width:90%;" })
-                                .Template("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
+                .Name("ClientID")
+                .Placeholder("Seleccione cliente...")
+                .DataTextField("ClientName")
+                .DataValueField("ClientID")
+                .Filter(FilterType.Contains)
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("Fillcombobox", "Clientes");
+                    })
+                        .ServerFiltering(false);
+                })
+                .HtmlAttributes(new { style = "width:90%;" })
+                .Template("<i class='fa fa-user' aria-hidden='true'></i> <div class=\"k-state-default\"  style=\"display: inline-block; \">#: data.ClientName #</div>") )
         @(Html.ValidationMessageFor(nam => nam.ClientID) )
     </div>
 
     <div class="form-group">
         <h4>Tipo de Servicio</h4>
         @(Html.Kendo().DropDownList()
-                                .Name("RecordServiceType")
-                                .OptionLabel("Seleccione servicio...")
-                                .DataTextField("Text")
-                                .DataValueField("Value")
-                                .BindTo(new List<SelectListItem>()
-                                {
-                                                new SelectListItem() { Text = "PRIORITY" , Value= "FEDEX AIR" },
-                                                new SelectListItem() { Text = "GROUND" , Value= "FEDEX GROUND PARCEL"}
-                                })
-                                .HtmlAttributes(new { style = "width:90%;" }) )
+                .Name("RecordServiceType")
+                .OptionLabel("Seleccione servicio...")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .BindTo(new List<SelectListItem>()
+                {
+                        new SelectListItem() { Text = "PRIORITY" , Value= "FEDEX AIR" },
+                        new SelectListItem() { Text = "GROUND" , Value= "FEDEX GROUND PARCEL"}
+                })
+                .HtmlAttributes(new { style = "width:90%;" }) )
         @(Html.ValidationMessageFor(nam => nam.RecordServiceType) )
     </div>
 
     <div class="form-group">
         <h4>FAI(Primera Pieza)</h4>
         @(Html.Kendo().CheckBox()
-                                 .Name("RecordFAI") )
+                .Name("RecordFAI") )
     </div>
 
     <div class="form-group">
         <h4>Transferir</h4>
         @(Html.Kendo().DropDownList()
-                                .Name("RecordTransfer")
-                                .DataTextField("Text")
-                                .DataValueField("Value")
-                                .BindTo(new List<SelectListItem>()
-                                {
-                                        new SelectListItem() { Text = "TRANSFERIR" , Value="TRANSFERIR"},
-                                        new SelectListItem() { Text = "NO TRANSFERIR" , Value="NO TRANSFERIR"}
-                                })
-                                .SelectedIndex(3)
-                                .HtmlAttributes(new { style = "width:90%;" }) )
+                .Name("RecordTransfer")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .BindTo(new List<SelectListItem>()
+                {
+                        new SelectListItem() { Text = "TRANSFERIR" , Value="TRANSFERIR"},
+                        new SelectListItem() { Text = "NO TRANSFERIR" , Value="NO TRANSFERIR"}
+                })
+                .SelectedIndex(3)
+                .HtmlAttributes(new { style = "width:90%;" }) )
     </div>
 
     <div class="form-group">
