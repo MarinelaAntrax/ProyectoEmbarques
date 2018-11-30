@@ -22,6 +22,7 @@ namespace ProyectoEmbarques.Models.Services
                 FedExAir = Grafica.actualAir,
                 FedExGround = Grafica.actualGround,
                 Porcentaje = Grafica.Porcentaje,
+
             }).ToList();
             return result;
         }
@@ -97,6 +98,23 @@ namespace ProyectoEmbarques.Models.Services
                         Debug.WriteLine("No hay registros para hoy");
                     }
             }
+        }
+        public void Update(AirGroundViewModel model)
+        {
+            var entity = new GraficaAirGround
+                {
+                    id = model.id,
+                    FedexAirGraundAyer = model.FedexAirGraundAyer,
+                    TotalinShip = model.TotalinShip,
+                    FechaDia = model.FechaDia,
+                    Porcentaje=model.Porcentaje,
+                    actualAir=model.FedExAir,
+                    NewScans =model.NewScans,
+                    actualGround=model.FedExGround
+                };
+                BD.GraficaAirGround.Add(entity);
+                BD.Entry(entity).State = EntityState.Modified;
+                BD.SaveChanges();
         }
         public void UpdateAyer()
         {

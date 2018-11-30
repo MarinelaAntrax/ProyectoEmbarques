@@ -1590,6 +1590,7 @@
     <Content Include="Views\EnsamblesRealizados\EditorTemplates\Sumario.cshtml" />
     <Content Include="Views\EnsamblesRealizados\EditorTemplates\HotShot.cshtml" />
     <Content Include="Views\EnsamblesRealizados\PackingList.cshtml" />
+    <Content Include="Views\Grafica\Historico.cshtml" />
     <None Include="Views\Shipping_Records\Create.cshtml" />
     <Content Include="Views\Ensambles\Index.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />

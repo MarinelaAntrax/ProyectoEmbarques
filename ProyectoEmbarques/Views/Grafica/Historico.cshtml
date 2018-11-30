@@ -1,0 +1,98 @@
+﻿<div class="container">
+<div class="row well" style="margin:30px 150px 150px 150px;">
+    <div class="col-lg-12">
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.Label("Fecha de inicio")
+                @(Html.Kendo().DatePicker()
+                        .Name("fechaInicio")
+                        .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
+                        .Events(ev => ev.Open("Open"))
+                        .Value(System.DateTime.Today.AddDays(-1)).Max(System.DateTime.Today.AddDays(-1))
+                        .HtmlAttributes(new { style = "width:90%;" }))
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.Label("Fecha final")
+                @(Html.Kendo().DatePicker()
+                        .Name("fechaFinal")
+                        .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
+                        .Events(ev => ev.Open("Open"))
+                        .Value(System.DateTime.Now).Max(System.DateTime.Today)
+                        .HtmlAttributes(new { style = "width:90%;" }))
+            </div>
+        </div>
+
+        <div class="col-lg-2">
+            <div class="form-group">
+                <br />
+                <a id="btnSearch" class="k-button k-button-icontext" href="#"> Consulta </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12" style="box-sizing:border-box;">
+        @(Html.Kendo().Grid<ProyectoEmbarques.Models.AirGroundViewModel>()
+                .Name("totalinships").ToolBar(tool => tool.Save())
+                    .Editable(editable => editable.Mode(GridEditMode.InCell))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Model(model => { model.Id(id => id.id); })
+                        .Update(up => up.Action("UpdateTotalsInShip", "Grafica"))
+                        .Read(read => read.Action("totalinships", "Grafica").Data("FilterByDate")))
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.NewScans).Title("New Scans");
+                        columns.Bound(o => o.TotalinShip).Title("Total in Ship");
+                        columns.Bound(o => o.FechaDia).ClientTemplate("#:kendo.toString(FechaDia,'dd/MM/yyyy')#").Title("Dia del Mes");
+                        columns.Bound(o => o.FedExGround).Title("FedEx Ground");
+                        columns.Bound(o => o.FedExAir).Title("FedEx Air");
+                        columns.Bound(o => o.FedexAirGraundAyer).Title("FedexAirGraundAyer");
+                        columns.Bound(o => o.Porcentaje).Title("Porcentaje");
+                    }).HtmlAttributes(new { style = "max-width:100%;max-height:100%;" })
+        )
+
+    </div>
+</div>
+</div>
+
+
+<script>
+    function FilterByDate() {
+        return {
+            starDate: $("#fechaInicio").val(),
+            endDate: $("#fechaFinal").val()
+        };
+    }
+    $('#btnSearch').on("click", function (e) {
+        $("#totalinships").data("kendoGrid").dataSource.read();
+        return false;
+    });
+</script>
+
+<script>
+    function Open() {
+        $('.k-weekend a').bind('click', function () {
+            return false;
+        });
+    }
+</script>
+
+<script>
+    $(".export-pdf").click(function ()
+    {
+        var chart = $("#chart").getKendoChart();
+        chart.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data)
+        {
+            kendo.saveAs(
+            {
+                dataURI: data,
+                fileName: "Overnight shipments Air VS. Ground by Pieces.pdf",
+                proxyURL: "@Url.Action("Export_Save", "Grafica")"
+            });
+        });
+     });
+</script>

@@ -11,7 +11,7 @@
                         <div class="form-group">
                             @(Html.Label("Total"))
                             @(Html.Kendo().TextBoxFor(fo => fo.TotalinShip)
-                                    .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
+                                            .HtmlAttributes(new { type = "number", style = "width:90%", onkeydown = "javascript: return event.keyCode == 69 ? false : true" }))
                         </div>
                     </div>
 
@@ -28,8 +28,9 @@
     else
     {
         <div class="row well" style="margin:0 150px 150px 150px;">
-            <div class="col-lg-8">
-                <div class="col-lg-4">
+            <div class="col-lg-12">
+                <button style="margin:0;" type="button" class="close"  data-toggle="modal" data-target="#ModalTotals"><span aria-hidden="true"><i class="fa fa-info-circle"></i></span></button>
+                <div class="col-lg-3">
                     <div class="form-group">
                         @Html.Label("Fecha de inicio")
                         @(Html.Kendo().DatePicker()
@@ -41,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="form-group">
                         @Html.Label("Fecha final")
                         @(Html.Kendo().DatePicker()
@@ -53,16 +54,28 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <div class="form-group">
                         <br />
                         <a id="btnSearch" class="k-button k-button-icontext" href="#"> Generar </a>
                     </div>
                 </div>
+
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <br />
+                        <a class="k-button k-button-icontext" href="@Url.Action("Historico", "Grafica")"><span></span>Historico</a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <br />
+                       
+                    </div>
+                </div>
+
             </div>
         </div>
-
-
         <div class="k-content demo-section" style="margin:0 20px 0 20px;padding:0;">
             <button style="margin:0 0 0;" class='export-pdf k-button'>Exportar PDF</button>
             @(Html.Kendo().Chart<ProyectoEmbarques.Models.AirGroundViewModel>()
@@ -122,6 +135,43 @@
         </div>
     }
 </div>
+
+
+<div class="modal fade" id="ModalTotals" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">
+                    Explicación de la grafica
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"> &times; </span>
+                </button>
+            </div>
+
+            <div class="row modal-body py-5">
+                <div class="col-xs-12 form-group py-5">
+                    <p><b> Fedex Air:</b> Son los envios por aire.</p>
+
+                    <p><b>Fedex Ground:</b> Son los envios por tierra.</p>
+
+                    <p><b>Ratio Ground:</b> Es el porcentaje este se saca
+                        (FedexGroundActual/suma(FedexGroundActual + FedexAirActual)*100).</p>
+
+                    <p><b>New Scans:</b> Este dato se saca (TotalinShipAnterior -
+                        (TotalEmbarcadoAnterior(FedexGroundAnterior + FedexAirAnterior) - TotalinShipActual)* -1).</p>
+
+                    <p><b>TotalinShip:</b> Son los pedidos que tienen por dia, les llega por medio de un correo muy temprano.</p>
+                </div> 
+                <br /><br />
+            </div><br /><br />
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function FilterByDate() {
         return {

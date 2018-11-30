@@ -207,7 +207,7 @@ namespace ProyectoEmbarques.Models.Services
             x = (from col in BD.GraficaAirGround
                  where col.FechaDia>=starDate&&col.FechaDia<=endDate
                  select new AirGroundViewModel()
-                 {   
+                 {   id=col.id,
                      FechaDia = col.FechaDia,
                      FedExAir = col.actualAir,
                      FedExGround = col.actualGround,

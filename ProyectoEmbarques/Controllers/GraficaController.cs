@@ -19,6 +19,15 @@ namespace ProyectoEmbarques.Controllers
         AirGroundService _ServiceAG = new AirGroundService();
         EnsamblesRealizadosService _GraficaAirVSGroundService = new EnsamblesRealizadosService();
 
+        public ActionResult Historico()
+        {
+            return View();
+        }
+
+        public ActionResult Ayuda()
+        {
+            return View();
+        }
 
         // GET: Grafica
         public ActionResult IndexGrafica()
@@ -60,6 +69,18 @@ namespace ProyectoEmbarques.Controllers
 
             return Json(_GraficaAirVSGroundService.ReadServiceType(starDate, endDate), JsonRequestBehavior.AllowGet);
         }
-       
+
+        public ActionResult totalinships([DataSourceRequest] DataSourceRequest request, DateTime starDate, DateTime endDate)
+        {
+            return Json(_GraficaAirVSGroundService.ReadServiceType(starDate, endDate).ToDataSourceResult(request));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateTotalsInShip([DataSourceRequest] DataSourceRequest request, AirGroundViewModel Datos)
+        {
+            _ServiceAG.Update(Datos);
+
+            return Json(new[] { Datos }.ToDataSourceResult(request, ModelState));
+        }
     }
 }
